@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FAQ - Bootstrap 3 Version</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    .faq-section { padding: 40px 20px; background: #fff; }
+    .faq-section h2 { text-align: center; font-size: 28px; font-weight: 600; margin-bottom: 30px; }
+    .faq-number {
+      background: orange; color: white; border-radius: 50%; display: inline-block;
+      width: 30px; height: 30px; text-align: center; line-height: 30px;
+      font-weight: bold; margin-right: 10px;
+    }
+    .panel-heading { padding: 15px 20px; cursor: pointer; position: relative; }
+    .panel-title { font-size: 18px; font-weight: 500; display: flex; align-items: center; justify-content: space-between; }
+    .panel-title h3 { margin: 0; font-size: 18px; display: inline-block; }
+    .faq-body { padding: 15px 20px; font-size: 15px; line-height: 1.6; }
+    .faq-icon {
+      transition: transform 0.3s ease;
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 16px;
+    }
+    .faq-icon.rotate { transform: translateY(-50%) rotate(180deg); }
+    .social-icons { margin-top: 15px; }
+    .social-icons a {
+      margin-right: 10px; text-decoration: none; color: #555; font-size: 18px;
+      transition: color 0.3s ease;
+    }
+    .social-icons a:hover { color: orange; }
+  </style>
+</head>
+<body>
+
+<div class="container faq-section">
+  <h2>Frequently Asked Questions</h2>
+  <div class="panel-group" id="faqAccordion">
+
+    <!-- FAQ Template -->
+    <div class="panel panel-default">
+      <div class="panel-heading" data-toggle="collapse" data-target="#faq1">
+        <div class="panel-title">
+          <span><span class="faq-number">1</span><h3>When will I collect the item that I am paying for?</h3></span>
+          <span class="faq-icon glyphicon glyphicon-chevron-down"></span>
+        </div>
+      </div>
+      <div id="faq1" class="panel-collapse collapse">
+        <div class="faq-body">
+          <p>Your item will be shipped when you reach the middle of your instalment period and meet all delivery conditions. You must have paid half of the cost of the item in equal instalments.</p>
+          <ul>
+            <li>2-month plan: delivery immediately.</li>
+            <li>6-month plan: delivery in 3rd month.</li>
+            <li>12-month plan: delivery in 6th month.</li>
+          </ul>
+          <div class="social-icons">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-instagram"></i></a>
+            <a href="#"><i class="fa fa-whatsapp"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ 2–10 -->
+    <div class="panel panel-default">
+      <div class="panel-heading" data-toggle="collapse" data-target="#faq2">
+        <div class="panel-title">
+          <span><span class="faq-number">2</span><h3>What are the requirements?</h3></span>
+          <span class="faq-icon glyphicon glyphicon-chevron-down"></span>
+        </div>
+      </div>
+      <div id="faq2" class="panel-collapse collapse">
+        <div class="faq-body">
+          <p>You need a valid ID, BVN, verified CDcare account, and a steady source of income linked to a Nigerian bank account for auto-debits.</p>
+          <div class="social-icons"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a><a href="#"><i class="fa fa-whatsapp"></i></a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading" data-toggle="collapse" data-target="#faq3">
+        <div class="panel-title">
+          <span><span class="faq-number">3</span><h3>Can I cancel my payment plan?</h3></span>
+          <span class="faq-icon glyphicon glyphicon-chevron-down"></span>
+        </div>
+      </div>
+      <div id="faq3" class="panel-collapse collapse">
+        <div class="faq-body">
+          <p>Yes, you can cancel before delivery. Refunds are issued minus a 5% processing fee.</p>
+          <div class="social-icons"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a><a href="#"><i class="fa fa-whatsapp"></i></a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading" data-toggle="collapse" data-target="#faq4">
+        <div class="panel-title">
+          <span><span class="faq-number">4</span><h3>What happens if I miss a payment?</h3></span>
+          <span class="faq-icon glyphicon glyphicon-chevron-down"></span>
+        </div>
+      </div>
+      <div id="faq4" class="panel-collapse collapse">
+        <div class="faq-body">
+          <p>Missed payments attract a penalty and may affect your eligibility for future plans. Ensure your account has funds before your due date.</p>
+          <div class="social-icons"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a><a href="#"><i class="fa fa-whatsapp"></i></a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading" data-toggle="collapse" data-target="#faq5">
+        <div class="panel-title">
+          <span><span class="faq-number">5</span><h3>Do I need to pay any deposit?</h3></span>
+          <span class="faq-icon glyphicon glyphicon-chevron-down"></span>
+        </div>
+      </div>
+      <div id="faq5" class="panel-collapse collapse">
+        <div class="faq-body">
+          <p>No upfront deposit. Your first instalment counts as your first payment.</p>
+          <div class="social-icons"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a><a href="#"><i class="fa fa-whatsapp"></i></a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading" data-toggle="collapse" data-target="#faq6">
+        <div class="panel-title">
+          <span><span class="faq-number">6</span><h3>Is CDcare a loan company?</h3></span>
+          <span class="faq-icon glyphicon glyphicon-chevron-down"></span>
+        </div>
+      </div>
+      <div id="faq6" class="panel-collapse collapse">
+        <div class="faq-body">
+          <p>No, CDcare is not a loan provider — it’s an interest-free instalment payment platform.</p>
+          <div class="social-icons"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a><a href="#"><i class="fa fa-whatsapp"></i></a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading" data-toggle="collapse" data-target="#faq7">
+        <div class="panel-title">
+          <span><span class="faq-number">7</span><h3>Can I change my item after paying?</h3></span>
+          <span class="faq-icon glyphicon glyphicon-chevron-down"></span>
+        </div>
+      </div>
+      <div id="faq7" class="panel-collapse collapse">
+        <div class="faq-body">
+          <p>Once a plan starts, you can’t change the product. You can cancel and start a new one instead.</p>
+          <div class="social-icons"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a><a href="#"><i class="fa fa-whatsapp"></i></a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading" data-toggle="collapse" data-target="#faq8">
+        <div class="panel-title">
+          <span><span class="faq-number">8</span><h3>Can I buy more than one item?</h3></span>
+          <span class="faq-icon glyphicon glyphicon-chevron-down"></span>
+        </div>
+      </div>
+      <div id="faq8" class="panel-collapse collapse">
+        <div class="faq-body">
+          <p>Yes, but you must complete your first plan before starting another.</p>
+          <div class="social-icons"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a><a href="#"><i class="fa fa-whatsapp"></i></a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading" data-toggle="collapse" data-target="#faq9">
+        <div class="panel-title">
+          <span><span class="faq-number">9</span><h3>What items can I buy?</h3></span>
+          <span class="faq-icon glyphicon glyphicon-chevron-down"></span>
+        </div>
+      </div>
+      <div id="faq9" class="panel-collapse collapse">
+        <div class="faq-body">
+          <p>You can buy phones, electronics, laptops, and appliances from verified vendors.</p>
+          <div class="social-icons"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a><a href="#"><i class="fa fa-whatsapp"></i></a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading" data-toggle="collapse" data-target="#faq10">
+        <div class="panel-title">
+          <span><span class="faq-number">10</span><h3>Is there interest on payment?</h3></span>
+          <span class="faq-icon glyphicon glyphicon-chevron-down"></span>
+        </div>
+      </div>
+      <div id="faq10" class="panel-collapse collapse">
+        <div class="faq-body">
+          <p>No interest. CDcare lets you pay over time without extra charges.</p>
+          <div class="social-icons"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a><a href="#"><i class="fa fa-whatsapp"></i></a></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script>
+  // Flip icon on open/close
+  $('#faqAccordion').on('shown.bs.collapse', function (e) {
+    $(e.target).siblings('.panel-heading').find('.faq-icon').addClass('rotate');
+  });
+  $('#faqAccordion').on('hidden.bs.collapse', function (e) {
+    $(e.target).siblings('.panel-heading').find('.faq-icon').removeClass('rotate');
+  });
+</script>
+
+</body>
+</html>

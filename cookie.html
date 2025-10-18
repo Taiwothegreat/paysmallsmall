@@ -1,0 +1,209 @@
+<!--------cookies instruction-------->
+
+<div class="overlay" id="cookieOverlay" style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.5); z-index:9999; justify-content:center; align-items:center;">
+  <div class="popup" style="background:#fff; padding:20px; border-radius:10px; max-width:600px; width:90%; overflow-y:auto; max-height:90vh;">
+    <span class="close-btn" onclick="closeOverlay()" style="float:right; cursor:pointer; font-size:22px;">&times;</span>
+  
+    <h2 style="margin-top:0;">Privacy Preference Center</h2>
+    <p>
+      Paysmallsmall Inc. and Partners use cookies to operate our website, show you personalized 
+      content, and manage our business objectives. You can find out more about how we use cookies below.  
+      You can allow all cookies, select them individually, or decline them all.
+    </p>
+    <h5><a href="privacy-policy.html">Cookie Policy</a></h5>
+
+    <!-- Strictly Necessary Cookies -->
+    <div class="cookie-section" style="margin-bottom:15px;">
+      <div id="alwaysActiveToggle" class="toggle-row" style="cursor:pointer; font-weight:bold;">
+        <span class="toggle-label">STRICTLY NECESSARY COOKIES</span>
+        <span class="always-active">Always Active &#9660;</span>
+      </div>
+      <div class="cookie-description" id="strictlyDesc" style="display:none; font-size:13px; margin-top:5px;">
+        These cookies are necessary for the website to function and cannot be switched off.  
+        They are usually only set in response to actions like setting preferences, logging in, or filling forms.  
+        You can set your browser to block or alert you about these cookies, but some parts of the site will not work.  
+        These cookies do not store any personally identifiable information.
+      </div>
+    </div>
+
+    <!-- Analytic Cookies -->
+    <div class="cookie-section" style="margin-bottom:15px;">
+      <div class="toggle-row clickable-toggle" data-target="analyticsDesc" style="display:flex; justify-content:space-between; align-items:center;">
+        <span class="toggle-label">ANALYTIC COOKIES</span>
+        <label class="toggle-switch" style="position:relative; display:inline-block; width:46px; height:24px;">
+          <input type="checkbox" class="cookie-toggle" data-desc="analyticsDesc" style="opacity:0; width:0; height:0;">
+          <span class="slider" style="position:absolute; cursor:pointer; top:0; left:0; right:0; bottom:0; background-color:#ccc; transition:.4s; border-radius:34px;"></span>
+          <span class="slider-circle" style="position:absolute; height:18px; width:18px; left:3px; bottom:3px; background:white; transition:.4s; border-radius:50%;"></span>
+        </label>
+      </div>
+      <div class="cookie-description" id="analyticsDesc" style="display:none; font-size:13px; margin-top:5px;">
+        These cookies help us understand how visitors interact with our website by collecting and reporting information anonymously.
+      </div>
+    </div>
+
+    <!-- Advertising Cookies -->
+    <div class="cookie-section" style="margin-bottom:15px;">
+      <div class="toggle-row clickable-toggle" data-target="advertisingDesc" style="display:flex; justify-content:space-between; align-items:center;">
+        <span class="toggle-label">ADVERTISING</span>
+        <label class="toggle-switch" style="position:relative; display:inline-block; width:46px; height:24px;">
+          <input type="checkbox" class="cookie-toggle" data-desc="advertisingDesc" style="opacity:0; width:0; height:0;">
+          <span class="slider" style="position:absolute; cursor:pointer; top:0; left:0; right:0; bottom:0; background-color:#ccc; transition:.4s; border-radius:34px;"></span>
+          <span class="slider-circle" style="position:absolute; height:18px; width:18px; left:3px; bottom:3px; background:white; transition:.4s; border-radius:50%;"></span>
+        </label>
+      </div>
+      <div class="cookie-description" id="advertisingDesc" style="display:none; font-size:13px; margin-top:5px;">
+        These cookies are set by us and/or partners to build a profile of your interests based on browsing behavior.  
+        If you accept, you may see personalized Paysmallsmall Inc. ads on other websites.
+      </div>
+    </div>
+
+    <!-- Third Party Consent -->
+    <div class="cookie-section" style="margin-bottom:15px;">
+      <div class="toggle-row clickable-toggle" data-target="thirdPartyDesc" style="display:flex; justify-content:space-between; align-items:center;">
+        <span class="toggle-label">THIRD PARTY CONSENT COOKIES</span>
+        <label class="toggle-switch" style="position:relative; display:inline-block; width:46px; height:24px;">
+          <input type="checkbox" class="cookie-toggle" data-desc="thirdPartyDesc" style="opacity:0; width:0; height:0;">
+          <span class="slider" style="position:absolute; cursor:pointer; top:0; left:0; right:0; bottom:0; background-color:#ccc; transition:.4s; border-radius:34px;"></span>
+          <span class="slider-circle" style="position:absolute; height:18px; width:18px; left:3px; bottom:3px; background:white; transition:.4s; border-radius:50%;"></span>
+        </label>
+      </div>
+      <div class="cookie-description" id="thirdPartyDesc" style="display:none; font-size:13px; margin-top:5px;">
+        These cookies allow third-party services to collect data based on your consent, enabling features such as personalized content or targeted advertising.
+      </div>
+    </div>
+
+    <div class="buttons" style="display:flex; justify-content:space-between; margin-top:20px;">
+      <button class="reject" id="allowAllBtn" onclick="allowAllCookies()" style="background:#28a745; color:#fff; border:none; padding:10px 20px; border-radius:5px;">Allow All</button>
+      <button class="reject" onclick="confirmCookies()" style="background:#007bff; color:#fff; border:none; padding:10px 20px; border-radius:5px;">Confirm My Choices</button>
+      <button class="reject" onclick="setCookies(false)" style="background:#dc3545; color:#fff; border:none; padding:10px 20px; border-radius:5px;">Reject All</button>
+    </div>
+  </div>
+</div>
+
+<!-- SCRIPT -->
+<script>
+// ---------- COOKIE HELPER FUNCTIONS ----------
+function setCookie(name, value, days = 365) {
+  const expires = new Date(Date.now() + days * 864e5).toUTCString();
+  document.cookie = name + "=" + encodeURIComponent(value) + "; expires=" + expires + "; path=/";
+}
+
+function getCookie(name) {
+  const nameEQ = name + "=";
+  const ca = document.cookie.split(';');
+  for (let i = 0; i < ca.length; i++) {
+    let c = ca[i].trim();
+    if (c.indexOf(nameEQ) === 0) return decodeURIComponent(c.substring(nameEQ.length));
+  }
+  return null;
+}
+
+// ---------- MAIN COOKIE LOGIC ----------
+window.addEventListener("DOMContentLoaded", function () {
+  const overlay = document.getElementById("cookieOverlay");
+  const isHomepage = window.location.pathname.endsWith("index.html") || window.location.pathname === "/";
+
+  if (isHomepage && !getCookie("cookieConsentLifetime")) {
+    overlay.style.display = "flex";
+  } else {
+    overlay.style.display = "none";
+  }
+
+  document.querySelectorAll('.cookie-description').forEach(desc => desc.style.display = "none");
+
+  const alwaysActiveHeader = document.getElementById("alwaysActiveToggle");
+  const strictlyDesc = document.getElementById("strictlyDesc");
+  if (alwaysActiveHeader && strictlyDesc) {
+    alwaysActiveHeader.addEventListener("click", function () {
+      const isVisible = strictlyDesc.style.display === "block";
+      strictlyDesc.style.display = isVisible ? "none" : "block";
+      alwaysActiveHeader.classList.toggle("open");
+    });
+  }
+
+  document.querySelectorAll('.cookie-toggle').forEach(input => {
+    const descId = input.getAttribute('data-desc');
+    const descElement = document.getElementById(descId);
+    const slider = input.parentElement.querySelector(".slider");
+    const circle = input.parentElement.querySelector(".slider-circle");
+
+    // Set initial visibility and styles
+    descElement.style.display = input.checked ? "block" : "none";
+    if (input.checked) {
+      slider.style.backgroundColor = "#4CAF50";
+      circle.style.transform = "translateX(22px)";
+    }
+
+    input.addEventListener('change', function () {
+      descElement.style.display = this.checked ? 'block' : 'none';
+      if (this.checked) {
+        slider.style.backgroundColor = "#4CAF50";
+        circle.style.transform = "translateX(22px)";
+      } else {
+        slider.style.backgroundColor = "#ccc";
+        circle.style.transform = "translateX(0)";
+      }
+    });
+  });
+});
+
+// ✅ Force popup to appear if not yet accepted
+window.onload = function() {
+  const overlay = document.getElementById("cookieOverlay");
+  const isHomepage = window.location.pathname.endsWith("index.html") || window.location.pathname === "/";
+  if (isHomepage && !getCookie("cookieConsentLifetime")) {
+    overlay.style.display = "flex";
+  }
+};
+
+// ---------- USER ACTION HANDLERS ----------
+function allowAllCookies() {
+  document.querySelectorAll(".cookie-toggle").forEach(input => {
+    input.checked = true;
+    const slider = input.parentElement.querySelector(".slider");
+    const circle = input.parentElement.querySelector(".slider-circle");
+    slider.style.backgroundColor = "#4CAF50";
+    circle.style.transform = "translateX(22px)";
+  });
+  setCookie("cookieConsent", "accepted");
+  setCookie("cookieConsentLifetime", "true", 365);
+  document.getElementById("cookieOverlay").style.display = "none";
+}
+
+function confirmCookies() {
+  const anyChecked = Array.from(document.querySelectorAll('.cookie-toggle')).some(cb => cb.checked);
+  if (anyChecked) {
+    alert("Your cookie preferences have been saved.");
+    setCookie("cookieConsent", "partial");
+    setCookie("cookieConsentLifetime", "true", 365);
+    document.getElementById("cookieOverlay").style.display = "none";
+  } else {
+    alert("Please select at least one cookie or click 'Reject All'.");
+  }
+}
+
+function setCookies(acceptAll) {
+  document.querySelectorAll(".cookie-toggle").forEach(input => {
+    input.checked = false;
+    const slider = input.parentElement.querySelector(".slider");
+    const circle = input.parentElement.querySelector(".slider-circle");
+    slider.style.backgroundColor = "#ccc";
+    circle.style.transform = "translateX(0)";
+  });
+  alert("All non-essential cookies rejected.");
+  setCookie("cookieConsent", "rejected");
+  setCookie("cookieConsentLifetime", "true", 365);
+  document.getElementById("cookieOverlay").style.display = "none";
+}
+
+function closeOverlay() {
+  setCookies(false);
+}
+
+function openCookiePanel() {
+  document.getElementById('cookieOverlay').style.display = 'flex';
+}
+function closeCookiePanel() {
+  document.getElementById('cookieOverlay').style.display = 'none';
+}
+</script>

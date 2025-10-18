@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Account | Paysmallsmall</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap 3 -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: #f8f9fa;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      padding-top: 20px;
+    }
+    .profile-section {
+      background: #fff;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+    .profile-pic {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background-color: #e9ecef;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      margin-right: 15px;
+      cursor: pointer;
+      position: relative;
+    }
+    .profile-pic img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .profile-info h4 {
+      margin-top: 0;
+      margin-bottom: 5px;
+    }
+    .section-title {
+      font-weight: 600;
+      color: #555;
+      margin-bottom: 10px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 5px;
+    }
+    .info-item {
+      padding: 8px 0;
+      border-bottom: 1px solid #eee;
+    }
+    .btn-edit {
+      float: right;
+      margin-top: -25px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <!-- Profile Header -->
+    <div class="row profile-section">
+      <div class="col-sm-3 text-center">
+        <div class="profile-pic" id="profilePic">
+          <span style="color:#888;">+</span>
+          <input type="file" id="uploadPic" style="display:none;" accept="image/*">
+        </div>
+        <p><a href="#" id="editProfile" style="text-decoration:none;">Edit Profile</a></p>
+      </div>
+      <div class="col-sm-9 profile-info">
+        <h4 id="custName">Customer Name</h4>
+        <p id="custEmail" style="color:#777;">customer@email.com</p>
+      </div>
+    </div>
+
+    <!-- Delivery Address List -->
+    <div class="row profile-section">
+      <div class="col-sm-12">
+        <h5 class="section-title">Delivery Address List 
+          <button class="btn btn-xs btn-default btn-edit">Edit</button>
+        </h5>
+        <div class="info-item">Home: 15 Allen Avenue, Ikeja, Lagos</div>
+        <div class="info-item">Office: 22 Freedom Way, Lekki Phase 1, Lagos</div>
+      </div>
+    </div>
+
+    <!-- Verification Status -->
+    <div class="row profile-section">
+      <div class="col-sm-12">
+        <h5 class="section-title">Verification Status</h5>
+        <p>Status: <span class="label label-success">Verified</span></p>
+      </div>
+    </div>
+
+    <!-- Order History -->
+    <div class="row profile-section">
+      <div class="col-sm-12">
+        <h5 class="section-title">Order History</h5>
+        <p>No recent orders.</p>
+      </div>
+    </div>
+
+    <!-- Payment Cards -->
+    <div class="row profile-section">
+      <div class="col-sm-12">
+        <h5 class="section-title">Payment Cards</h5>
+        <p>No cards saved. <a href="#">Add Card</a></p>
+      </div>
+    </div>
+
+    <!-- Bank Accounts -->
+    <div class="row profile-section">
+      <div class="col-sm-12">
+        <h5 class="section-title">Bank Accounts</h5>
+        <p>No bank account linked. <a href="#">Add Bank Account</a></p>
+      </div>
+    </div>
+
+    <!-- Referral Link -->
+    <div class="row profile-section">
+      <div class="col-sm-12">
+        <h5 class="section-title">Copy Your Referral Link</h5>
+        <div class="input-group">
+          <input type="text" id="referralLink" class="form-control" value="https://paysmallsmall.org/ref/USER123">
+          <span class="input-group-btn">
+            <button class="btn btn-primary" id="copyLink">Copy</button>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Legal and Policies -->
+    <div class="row profile-section">
+      <div class="col-sm-12">
+        <h5 class="section-title">Legal and Policies</h5>
+        <ul style="list-style:none; padding-left:0;">
+          <li><a href="#">Terms and Conditions</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- FAQs -->
+    <div class="row profile-section">
+      <div class="col-sm-12">
+        <h5 class="section-title">FAQs</h5>
+        <p>Have questions? Visit our <a href="#">FAQ Page</a>.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  <!-- Profile Picture Upload + Copy Link -->
+  <script>
+    // Upload profile picture
+    document.getElementById('profilePic').addEventListener('click', () => {
+      document.getElementById('uploadPic').click();
+    });
+
+    document.getElementById('uploadPic').addEventListener('change', function() {
+      const file = this.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          document.getElementById('profilePic').innerHTML = '<img src="' + e.target.result + '" alt="Profile Picture">';
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    // Copy referral link
+    document.getElementById('copyLink').addEventListener('click', function() {
+      const link = document.getElementById('referralLink');
+      link.select();
+      document.execCommand('copy');
+      this.textContent = 'Copied!';
+      setTimeout(() => this.textContent = 'Copy', 2000);
+    });
+  </script>
+</body>
+</html>

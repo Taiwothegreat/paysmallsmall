@@ -1,0 +1,54 @@
+<div class="container">
+  <h2 class="text-center">Your Wishlist</h2>
+  <div id="wishlistContainer" class="row" style="margin-top:20px;"></div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+  const container = document.getElementById("wishlistContainer");
+
+  if (wishlist.length === 0) {
+    container.innerHTML = '<p class="text-center">Your wishlist is empty.</p>';
+    return;
+  }
+
+  wishlist.forEach((item, i) => {
+    const col = document.createElement("div");
+    col.className = "col-sm-4";
+    col.innerHTML = `
+      <div class="panel panel-default">
+        <div class="panel-body text-center">
+          <img src="${item.image}" style="width:100%; height:200px; object-fit:cover; border-radius:6px;">
+          <h4>${item.name}</h4>
+          <p><strong>₦${item.price.toLocaleString()}</strong></p>
+          <button class="btn btn-success btn-sm" onclick="moveToCart(${i})">Move to Cart</button>
+          <button class="btn btn-danger btn-sm" onclick="removeWishlistItem(${i})">Remove</button>
+        </div>
+      </div>
+    `;
+    container.appendChild(col);
+  });
+});
+
+function moveToCart(index) {
+  let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  cart.push(wishlist[index]);
+  wishlist.splice(index, 1);
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+  localStorage.setItem("wishlist", JSON.stringify(wishlist));
+
+  alert("Moved to cart!");
+  location.reload();
+}
+
+function removeWishlistItem(index) {
+  let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+  wishlist.splice(index, 1);
+  localStorage.setItem("wishlist", JSON.stringify(wishlist));
+  location.reload();
+}
+</script>

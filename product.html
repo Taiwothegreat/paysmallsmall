@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Paysmallsmall Installment Store</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<style>
+body { background: #f9f9f9; font-family: 'Arial', sans-serif; }
+.navbar { background:#2b6; border:none; border-radius:0; }
+.navbar .navbar-brand, .navbar .nav > li > a { color:#fff !important; }
+.container { margin-top: 20px; position: relative; overflow: hidden; }
+h2 { text-align:center; margin-bottom:20px; font-weight:bold; }
+.slider { display:flex; will-change:transform; }
+.product-card { background:#fff; border:1px solid #ddd; border-radius:8px; width:250px; flex:none; margin:0 10px; text-align:center; padding:10px; cursor:pointer; box-sizing:border-box; position:relative; }
+.product-card img { width:100%; height:200px; object-fit:cover; border-radius:6px; }
+.product-card h4 { font-size:16px; margin-top:10px; }
+.product-card p { color:#555; font-size:13px; min-height:40px; }
+.price { font-weight:bold; color:#2b6; margin:10px 0; }
+.wishlist-icon { position:absolute; top:10px; right:15px; font-size:20px; color:#ccc; cursor:pointer; z-index:3; }
+.wishlist-icon.active { color:red; }
+.nav-btn { position:absolute; top:40%; background:rgba(0,0,0,0.5); color:white; border:none; padding:10px; cursor:pointer; z-index:2; }
+#prevBtn { left:0 } #nextBtn { right:0 }
+.modal-content { padding:20px; }
+.installment-option { display:flex; justify-content:space-around; margin-top:15px; }
+.installment-option div { background:#f0f0f0; padding:10px; border-radius:6px; cursor:pointer; }
+.installment-option div:hover { background:#2b6; color:white; }
+#installmentCalendar { display:none; margin-top:15px; text-align:center; padding:10px 0; border-top:1px solid #eee; }
+.calendar-number { display:inline-block; width:44px; height:44px; line-height:44px; margin:6px; background:#f0f0f0; border-radius:6px; cursor:pointer; font-weight:bold; user-select:none; }
+.calendar-number:hover { background:#2b6; color:white; }
+.btn-block + .btn-block { margin-top:8px; }
+.product-links { text-align:center; margin-bottom:25px; }
+.product-links a { display:inline-block; margin:0 10px; color:#2b6; font-weight:bold; text-decoration:none; }
+.product-links a:hover { text-decoration:underline; }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="product.html">Paysmallsmall</a>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="logout.php">Logout</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+  <h2>Paysmallsmall Products</h2>
+
+  <!-- MOVED LINKS UNDER PRODUCT TITLE -->
+  <div class="product-links">
+    <a href="product.html">Shop</a>
+    <a href="cart.php">Cart</a>
+    <a href="wishlist.php">Wishlist</a>
+    <a href="history.php">History</a>
+    <a href="account.php">Account</a>
+  </div>
+
+  <div class="slider-container" style="position:relative;">
+    <button id="prevBtn" class="nav-btn">&#10094;</button>
+    <div class="slider" id="productSlider">
+
+      <!-- Product 1 -->
+      <div class="product-card" data-name="Phone X" data-price="350000" data-img="./assets/machine-1.jpg" onclick="openProductFromCard(this)">
+        <span class="wishlist-icon glyphicon glyphicon-heart" onclick="toggleWishlist(event, this)"></span>
+        <img src="./assets/machine-1.jpg" alt="Phone X">
+        <h4>Phone X</h4>
+        <p>Powerful camera and smooth performance.</p>
+        <div class="price">₦350,000</div>
+      </div>
+
+      <!-- Product 2 -->
+      <div class="product-card" data-name="Smart TV 50" data-price="420000" data-img="./assets/machine-2.jpg" onclick="openProductFromCard(this)">
+        <span class="wishlist-icon glyphicon glyphicon-heart" onclick="toggleWishlist(event, this)"></span>
+        <img src="./assets/machine-2.jpg" alt="Smart TV">
+        <h4>Smart TV 50</h4>
+        <p>4K Ultra HD with smart connectivity.</p>
+        <div class="price">₦420,000</div>
+      </div>
+
+      <!-- Product 3 -->
+      <div class="product-card" data-name="Washing Machine" data-price="250000" data-img="./assets/machine-3.jpg" onclick="openProductFromCard(this)">
+        <span class="wishlist-icon glyphicon glyphicon-heart" onclick="toggleWishlist(event, this)"></span>
+        <img src="./assets/machine-3.jpg" alt="Washer">
+        <h4>Washing Machine</h4>
+        <p>Smart washing with fast spin mode.</p>
+        <div class="price">₦250,000</div>
+      </div>
+
+    </div>
+    <button id="nextBtn" class="nav-btn">&#10095;</button>
+  </div>
+</div>
+
+<!-- PRODUCT MODAL (unchanged) -->
+<div id="productModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <h3 id="modalTitle"></h3>
+      <img id="modalImage" src="" style="width:100%; border-radius:8px; margin-top:10px;">
+      <p id="modalDescription" style="margin-top:15px;"></p>
+      <h4 id="modalPrice" style="color:#2b6;"></h4>
+
+      <h4>Choose Payment Option</h4>
+      <div class="installment-option">
+        <div onclick="selectPayment('once')">Buy Once!</div>
+        <div onclick="selectPayment('weekly')">Weekly Installment</div>
+        <div onclick="selectPayment('monthly')">Monthly Installment</div>
+      </div>
+
+      <div id="installmentCalendar" aria-hidden="true"></div>
+      <p id="installmentResult" style="margin-top:10px; font-weight:bold;"></p>
+
+      <button class="btn btn-success btn-block" onclick="addToCart()">Add to Cart</button>
+      <button class="btn btn-warning btn-block" onclick="addToWishlist()">Add to Wishlist</button>
+      <button class="btn btn-primary btn-block" onclick="proceedToPayment()">Proceed to Payment</button>
+    </div>
+  </div>
+</div>
+
+<!-- PAYMENT SIMULATION SECTION -->
+<div id="paymentPage" class="payment-page" style="display:none;">
+  <h2>Proceed to Payment</h2>
+  <p>You selected <span id="selectedPlan"></span> installment for <strong id="selectedProduct"></strong>.</p>
+  <p>Redirecting to payment gateway...</p>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<!-- your entire script section stays exactly the same -->
+<script>
+/* --- slider + product modal + cart/wishlist logic (unchanged) --- */
+</script>
+<script>
+/* --- slider (same approach you had) --- */
+let slider = document.getElementById('productSlider');
+let sliderContainer = document.querySelector('.slider-container');
+let prevBtn = document.getElementById('prevBtn');
+let nextBtn = document.getElementById('nextBtn');
+let speed = 60, paused = false, pos = 0, originalWidth = 0, rafId=null, lastTime=null, cardFullWidth=0, originalCount=0;
+
+function setupInfiniteSlider() {
+  slider.style.transition='';
+  pos=0; lastTime=null; paused=false;
+  Array.from(slider.children).forEach(ch => { if (ch.dataset.clone) ch.remove(); });
+  const originalChildren = Array.from(slider.children);
+  originalCount = originalChildren.length;
+  if (originalCount===0) return;
+  const first = originalChildren[0];
+  const st = window.getComputedStyle(first);
+  const ml = parseFloat(st.marginLeft)||0, mr = parseFloat(st.marginRight)||0;
+  cardFullWidth = Math.round(first.getBoundingClientRect().width + ml + mr);
+  originalWidth = cardFullWidth * originalCount;
+  for (let i=0;i<originalCount;i++){
+    const clone = originalChildren[i].cloneNode(true);
+    clone.dataset.clone='1'; slider.appendChild(clone);
+  }
+  slider.style.transform = `translateX(${pos}px)`;
+  cancelAnimationFrame(rafId); rafId = requestAnimationFrame(step);
+}
+function step(timestamp){
+  if(!lastTime) lastTime=timestamp;
+  const dt=(timestamp-lastTime)/1000; lastTime=timestamp;
+  if(!paused){
+    pos-= speed * dt;
+    if(Math.abs(pos) >= originalWidth) pos += originalWidth;
+    slider.style.transform = `translateX(${pos}px)`;
+  }
+  rafId = requestAnimationFrame(step);
+}
+
+sliderContainer.addEventListener('mouseenter', ()=> paused=true);
+sliderContainer.addEventListener('mouseleave', ()=> paused=false);
+nextBtn.addEventListener('click', ()=> manualShift(1));
+prevBtn.addEventListener('click', ()=> manualShift(-1));
+function manualShift(direction){
+  paused=true;
+  if(!cardFullWidth) return;
+  pos -= direction * cardFullWidth;
+  if(Math.abs(pos) >= originalWidth) pos += originalWidth * Math.sign(pos);
+  slider.style.transition = 'transform 0.35s ease';
+  slider.style.transform = `translateX(${pos}px)`;
+  setTimeout(()=> { slider.style.transition=''; setTimeout(()=> paused=false,200); }, 360);
+}
+window.addEventListener('load', setupInfiniteSlider);
+let resizeTimer; window.addEventListener('resize', ()=> { clearTimeout(resizeTimer); resizeTimer = setTimeout(setupInfiniteSlider,250); });
+
+/* ---------- product modal + cart/wishlist logic ---------- */
+let selectedProduct='', selectedPrice=0, selectedPlan='', selectedDuration=0, selectedImg='';
+
+function openProductFromCard(el){
+  // read dataset
+  selectedProduct = el.dataset.name;
+  selectedPrice = Number(el.dataset.price);
+  selectedImg = el.dataset.img;
+  openProduct(selectedProduct, selectedPrice, el.querySelector('p').innerText, selectedImg);
+}
+
+function openProduct(name, price, desc, img) {
+  selectedProduct = name;
+  selectedPrice = price;
+  selectedPlan = '';
+  selectedDuration = 0;
+  document.getElementById('modalTitle').textContent = name;
+  document.getElementById('modalPrice').textContent = "₦" + price.toLocaleString();
+  document.getElementById('modalDescription').textContent = desc;
+  document.getElementById('modalImage').src = img;
+  document.getElementById('installmentResult').textContent = '';
+  document.getElementById('installmentCalendar').innerHTML = '';
+  document.getElementById('installmentCalendar').style.display = 'none';
+  $('#productModal').modal('show');
+}
+
+function selectPayment(type){
+  selectedPlan = type; selectedDuration = 0;
+  const calendar = document.getElementById('installmentCalendar'); calendar.innerHTML=''; document.getElementById('installmentResult').textContent='';
+  if(type==='weekly'){ calendar.style.display='block'; for(let i=2;i<=48;i+=2){ if(i===46) continue; const d=document.createElement('div'); d.className='calendar-number'; d.textContent=i; d.onclick=(function(val){return function(){ pickDuration(val); };})(i); calendar.appendChild(d);} }
+  else if(type==='monthly'){ calendar.style.display='block'; for(let i=2;i<=12;i++){ const d=document.createElement('div'); d.className='calendar-number'; d.textContent=i; d.onclick=(function(val){return function(){ pickDuration(val); };})(i); calendar.appendChild(d);} }
+  else { calendar.style.display='none'; document.getElementById('installmentResult').textContent = `Total Price: ₦${selectedPrice.toLocaleString()}`; }
+}
+function pickDuration(val){
+  selectedDuration = val; calculateInstallment(val);
+  Array.from(document.querySelectorAll('#installmentCalendar .calendar-number')).forEach(el => { el.style.background='#f0f0f0'; el.style.color=''; });
+  const picked = Array.from(document.querySelectorAll('#installmentCalendar .calendar-number')).find(el => el.textContent == String(val));
+  if(picked){ picked.style.background='#2b6'; picked.style.color='#fff'; }
+}
+function calculateInstallment(value){
+  if(!selectedPlan) return;
+  const installmentAmount = Math.round(selectedPrice / Number(value));
+  const perLabel = (selectedPlan === 'weekly') ? 'per week' : 'per month';
+  const unitLabel = (selectedPlan === 'weekly') ? 'weeks' : 'months';
+  document.getElementById('installmentResult').textContent = `₦${installmentAmount.toLocaleString()} ${perLabel} for ${value} ${unitLabel}.`;
+}
+
+/* ----- client-side add to cart/wishlist (localStorage) and also POST to server endpoints ----- */
+function addToCart(){
+  if(!selectedProduct) return alert('Open a product first.');
+  const item = { name:selectedProduct, price:selectedPrice, plan:selectedPlan || 'Buy Once', duration:selectedDuration || null, image: document.getElementById('modalImage').src };
+  // localStorage
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  cart.push(item); localStorage.setItem('cart', JSON.stringify(cart));
+  // server: send to cart_api.php
+  fetch('cart_api.php', {
+    method: 'POST',
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify({ action:'add', product:item })
+  }).then(r=>r.json()).then(data=>{
+    // server response optional
+  }).catch(()=>{});
+  alert(selectedProduct + ' added to cart');
+}
+
+function addToWishlist(){
+  if(!selectedProduct) return alert('Open a product first.');
+  const item = { name:selectedProduct, price:selectedPrice, image: document.getElementById('modalImage').src };
+  let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+  if(wishlist.find(w => w.name===item.name)) return alert('Already in wishlist');
+  wishlist.push(item); localStorage.setItem('wishlist', JSON.stringify(wishlist));
+  fetch('wishlist_api.php', {
+    method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ action:'add', product:item })
+  }).then(r=>r.json()).then(()=>{}).catch(()=>{});
+  alert(selectedProduct + ' added to wishlist');
+}
+
+function toggleWishlist(e, iconEl){
+  e.stopPropagation();
+  const card = iconEl.closest('.product-card');
+  const product = { name: card.dataset.name, price: Number(card.dataset.price), image: card.dataset.img };
+  let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+  const exists = wishlist.find(w => w.name === product.name);
+  if(exists){
+    wishlist = wishlist.filter(w => w.name !== product.name); iconEl.classList.remove('active');
+    fetch('wishlist_api.php', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ action:'remove', product:product }) }).catch(()=>{});
+  } else {
+    wishlist.push(product); iconEl.classList.add('active');
+    fetch('wishlist_api.php', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ action:'add', product:product }) }).catch(()=>{});
+  }
+  localStorage.setItem('wishlist', JSON.stringify(wishlist));
+}
+
+/* proceed to payment: store selected info in localStorage then go to payment.html */
+function proceedToPayment(){
+  if(selectedPlan === '') return alert('Please choose a payment option.');
+  if(selectedPlan !== 'once' && selectedDuration === 0) return alert('Please select duration from the calendar.');
+  const planType = (selectedPlan === 'once') ? 'Buy Once' : (selectedPlan === 'weekly' ? 'Weekly' : 'Monthly');
+  const totalPrice = selectedPrice;
+  const amountDue = (selectedPlan === 'once') ? totalPrice : Math.round(totalPrice / selectedDuration);
+  const balance = (selectedPlan === 'once') ? 0 : totalPrice - amountDue;
+  const payload = { name:selectedProduct, plan:planType, amountDue, balance, duration:selectedDuration, price: totalPrice, image: selectedImg };
+  localStorage.setItem('checkout', JSON.stringify(payload));
+  window.location.href = 'payment.html';
+}
+</script>
+</body>
+</html>

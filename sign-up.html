@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Demo Site</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap 3 -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+    }
+    .nav{
+      margin-top: 20px;
+    }
+    ul li{
+      font-size: 20px;
+    }
+    .navbar {
+      margin-bottom: 0;
+      border: none;
+      border-radius: 0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+    }
+    .hero {
+      padding: 50px 20px;
+      background: linear-gradient(90deg, #0b63b8, #126fb3);
+      color: #fff;
+    }
+    .hero h1 {
+      font-weight: bold;
+      margin-top: 0;
+    }
+    .feature-card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 25px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      margin-bottom: 20px;
+    }
+    .feature-card h3 {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    .btn-start {
+      background: #0b63b8;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      margin-top: 15px;
+      padding: 10px 18px;
+    }
+    .btn-start:hover {
+      background: #094f8a;
+      color: #fff;
+    }
+    .glyphicon-arrow-right {
+      margin-left: 5px;
+    }
+    .carousel-inner > .item > img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+      .faq-section { padding: 40px 20px; background: #fff; }
+    .faq-section h2 { text-align: center; font-size: 28px; font-weight: 600; margin-bottom: 30px; }
+    .faq-number {
+      background: orange; color: white; border-radius: 50%; display: inline-block;
+      width: 30px; height: 30px; text-align: center; line-height: 30px;
+      font-weight: bold; margin-right: 10px;
+    }
+    .panel-heading { padding: 15px 20px; cursor: pointer; position: relative; }
+    .panel-title { font-size: 18px; font-weight: 500; display: flex; align-items: center; justify-content: space-between; }
+    .panel-title h3 { margin: 0; font-size: 18px; display: inline-block; }
+    .faq-body { padding: 15px 20px; font-size: 15px; line-height: 1.6; }
+    .faq-icon {
+      transition: transform 0.3s ease;
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 16px;
+    }
+    .faq-icon.rotate { transform: translateY(-50%) rotate(180deg); }
+    .social-icons { margin-top: 15px; }
+    .social-icons a {
+      margin-right: 10px; text-decoration: none; color: #555; font-size: 18px;
+      transition: color 0.3s ease;
+    }
+    .social-icons a:hover { color: orange; }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#" style="font-weight:bold; color:#0b63b8;margin-top: 50px;">
+        <img src="./assets/paysmallsmall_logo-removebg-preview.png" alt="" width="150px" height="100px" style="margin-top: -60px;">
+      </a>
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mainNav">
+        <span class="sr-only">Toggle nav</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Sewing Machine</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Enquiry/Pickup Center</a></li>
+      </ul>
+    </div>
+  </div>
+  <p style="font-size:13px; font-family:'Cinageo Light', Arial, sans-serif; text-align: right; margin-right: 20px;">
+    <i>feel free to call us</i>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <span style="font-family:'Cinageo Regular', Arial, sans-serif;">
+      <u>Toll free call:</u> <strong style="color:#0b63b8;">+234 801 234 5678</strong>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <u>hello@cdcare.ng</u>
+    </span>
+  </p>
+</nav>
+
+<div class="container" style="max-width:500px; margin:50px auto; font-family:Arial, sans-serif;">
+  <h2 style="text-align:center; color:#0b63b8;">Create a Free Account</h2>
+  <p style="text-align:center; color:#555; margin-bottom:30px;">
+    Welcome to <strong>Paysmallsmall!</strong> Create your account in seconds and start paying small small for the things you love.
+  </p>
+
+  <form action="sign_up.php" method="post">
+    <div class="form-group">
+      <label for="fullname">Full Name</label>
+      <input type="text" class="form-control" id="fullname" name="fullname"    placeholder="Enter your full name" required>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email Address</label>
+      <input type="email" class="form-control" id="email"  name="email"  placeholder="Enter your email" required>
+    </div>
+
+    <div class="form-group">
+      <label for="phone">Phone Number</label>
+      <input type="tel" class="form-control" id="phone"    name="phone"   placeholder="Enter your phone number" required>
+    </div>
+
+    <div class="form-group">
+      <label for="state">Select State</label>
+      <select id="state"   name="state"  class="form-control" required>
+        <option value="">-- Select Your State --</option>
+        <option>Abia</option>
+        <option>Adamawa</option>
+        <option>Akwa Ibom</option>
+        <option>Anambra</option>
+        <option>Bauchi</option>
+        <option>Bayelsa</option>
+        <option>Benue</option>
+        <option>Borno</option>
+        <option>Cross River</option>
+        <option>Delta</option>
+        <option>Ebonyi</option>
+        <option>Edo</option>
+        <option>Ekiti</option>
+        <option>Enugu</option>
+        <option>Gombe</option>
+        <option>Imo</option>
+        <option>Jigawa</option>
+        <option>Kaduna</option>
+        <option>Kano</option>
+        <option>Katsina</option>
+        <option>Kebbi</option>
+        <option>Kogi</option>
+        <option>Kwara</option>
+        <option>Lagos</option>
+        <option>Nasarawa</option>
+        <option>Niger</option>
+        <option>Ogun</option>
+        <option>Ondo</option>
+        <option>Osun</option>
+        <option>Oyo</option>
+        <option>Plateau</option>
+        <option>Rivers</option>
+        <option>Sokoto</option>
+        <option>Taraba</option>
+        <option>Yobe</option>
+        <option>Zamfara</option>
+        <option>FCT - Abuja</option>
+      </select>
+    </div>
+
+    <div class="form-group" style="position:relative;">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" id="password"  name="password" placeholder="Enter your password" required>
+      <span id="togglePassword" class="glyphicon glyphicon-eye-close" style="position:absolute; right:10px; top:35px; cursor:pointer;"></span>
+    </div>
+
+    <div class="form-group" style="position:relative;">
+      <label for="confirmPassword">Confirm Password</label>
+      <input type="password" class="form-control" id="confirmPassword"  name="confirmPassword"  placeholder="Confirm your password" required>
+      <span id="toggleConfirmPassword" class="glyphicon glyphicon-eye-close" style="position:absolute; right:10px; top:35px; cursor:pointer;"></span>
+    </div>
+
+    <!-- New: Sign Up Later -->
+    <div style="text-align:right; margin-bottom:10px;">
+      <a href="#" style="font-size:13px; color:#0b63b8; text-decoration:underline;">Sign Up Later</a>
+    </div>
+
+    <p style="font-size:12px; color:#555; margin-top:10px;">
+      By clicking <strong>Sign Up</strong>, you agree to our 
+      <a href="#" style="color:#0b63b8; text-decoration:underline;">Terms and Conditions</a> 
+      and 
+      <a href="#" style="color:#0b63b8; text-decoration:underline;">Privacy Policy</a>.
+    </p>
+
+    <button type="submit" class="btn btn-primary btn-block" style="background:#0b63b8;
+     border:none; margin-top:10px;">Sign Up</button>
+
+    <p style="text-align:center; margin-top:15px; font-size:13px;">
+      Already have an account?
+      <a href="login.html" style="color:#0b63b8; text-decoration:underline;">Log in</a>
+    </p>
+  </form>
+</div>
+
+<script>
+  // Password toggle for main password
+  const togglePassword = document.getElementById('togglePassword');
+  const passwordField = document.getElementById('password');
+  togglePassword.addEventListener('click', function() {
+    const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+    passwordField.setAttribute('type', type);
+    this.classList.toggle('glyphicon-eye-close');
+    this.classList.toggle('glyphicon-eye-open');
+  });
+
+  // Password toggle for confirm password
+  const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
+  const confirmPasswordField = document.getElementById('confirmPassword');
+  toggleConfirmPassword.addEventListener('click', function() {
+    const type = confirmPasswordField.getAttribute('type') === 'password' ? 'text' : 'password';
+    confirmPasswordField.setAttribute('type', type);
+    this.classList.toggle('glyphicon-eye-close');
+    this.classList.toggle('glyphicon-eye-open');
+  });
+</script>
+
+
+
+
+<!-- Bootstrap JS (only if this file is used standalone) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+
+
+
+
+
+
+
+<!-- ====== Responsive Wix-style Footer (Bootstrap-Free) ====== -->
+<div id="pure-footer" style="background:#111; color:#fff; padding:50px 20px 20px 20px; font-family:Arial, sans-serif; box-sizing:border-box;">
+  <div style="display:flex; flex-wrap:wrap; justify-content:space-between; margin-bottom:30px;">
+
+    <!-- Logo + Description -->
+    <div class="footer-col" style="flex:1 1 300px; min-width:250px; margin-bottom:20px; text-align:left;">
+      <img src="./assets/paysmallsmall_logo-removebg-preview.png" alt="Logo" style="width:120px; margin-bottom:15px;">
+      <p style="font-size:14px; line-height:1.6; color:#ccc; margin:0;">
+        At <strong>Pure Finest Inc.</strong>, we empower communities and individuals through innovative solutions and trusted partnerships.
+        Join us in building a sustainable future — one step at a time.
+      </p>
+    </div>
+
+    <!-- Quick Links -->
+    <div class="footer-col" style="flex:1 1 200px; min-width:200px; margin-bottom:20px; text-align:left;">
+      <h4 style="color:#fff; font-weight:600; margin-bottom:15px;">Quick Links</h4>
+      <ul style="list-style:none; padding:0; margin:0;">
+        <li><a href="#" style="color:#ccc; text-decoration:none; display:block; padding:5px 0;">Home</a></li>
+        <li><a href="#" style="color:#ccc; text-decoration:none; display:block; padding:5px 0;">About Us</a></li>
+        <li><a href="#" style="color:#ccc; text-decoration:none; display:block; padding:5px 0;">Products</a></li>
+        <li><a href="#" style="color:#ccc; text-decoration:none; display:block; padding:5px 0;">Contact</a></li>
+        <li><a href="#" style="color:#ccc; text-decoration:none; display:block; padding:5px 0;">FAQs</a></li>
+      </ul>
+    </div>
+
+    <!-- Contact Info -->
+    <div class="footer-col" style="flex:1 1 250px; min-width:220px; text-align:left;">
+      <h4 style="color:#fff; font-weight:600; margin-bottom:15px;">Contact Us</h4>
+      <p style="font-size:14px; color:#ccc; margin:0;">📍 24 Unity Avenue, Lagos, Nigeria</p>
+      <p style="font-size:14px; color:#ccc; margin:0;">📞 +234 801 234 5678</p>
+      <p style="font-size:14px; color:#ccc; margin:0;">✉️ support@purefinest.com</p>
+
+      <!-- Social Media Icons -->
+      <div style="margin-top:15px; font-size:20px;">
+        <a href="#" style="color:#3b5998; margin-right:10px;">👍</a>
+        <a href="#" style="color:#E4405F; margin-right:10px;">📷</a>
+        <a href="#" style="color:#1DA1F2; margin-right:10px;">🐦</a>
+        <a href="#" style="color:#0077B5; margin-right:10px;">💼</a>
+        <a href="#" style="color:#FF0000;">▶️</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer Bottom -->
+  <div style="border-top:1px solid #333; text-align:center; padding-top:15px;">
+    <p style="font-size:13px; color:#999; margin:0;">
+      © <span id="year"></span> Pure Finest Inc. All Rights Reserved.
+    </p>
+  </div>
+</div>
+
+<!-- Inline Responsive Styles -->
+<style>
+  @media (max-width: 768px) {
+    #pure-footer {
+      padding: 40px 15px 15px 15px !important;
+    }
+    #pure-footer .footer-col {
+      flex: 1 1 100% !important;
+      text-align: center !important;
+      margin-bottom: 25px !important;
+    }
+    #pure-footer img {
+      margin: 0 auto 15px auto !important;
+      display: block !important;
+    }
+    #pure-footer h4 {
+      font-size: 16px !important;
+    }
+    #pure-footer p, #pure-footer a {
+      font-size: 13px !important;
+    }
+    #pure-footer ul {
+      padding-left: 0 !important;
+    }
+  }
+
+  @media (max-width: 480px) {
+    #pure-footer p, #pure-footer a {
+      font-size: 12px !important;
+    }
+    #pure-footer {
+      padding: 30px 10px 10px 10px !important;
+    }
+  }
+</style>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>

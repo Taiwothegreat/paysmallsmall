@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Paysmallsmall Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap 3 -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body style="background:#f7f7f7; font-family:Arial, sans-serif;">
+
+  <div class="container" style="max-width:400px; margin-top:80px; background:#fff; padding:30px; border-radius:6px; box-shadow:0 0 10px rgba(0,0,0,0.1);">
+    <h3 class="text-center" style="margin-bottom:25px; font-weight:bold; color:#333;">
+      Welcome Back to Paysmallsmall
+    </h3>
+
+    <form id="loginForm" action="login_process.php" method="post">
+
+      <!-- Email -->
+      <div class="form-group">
+        <label for="email" style="font-weight:600;">Email Address</label>
+        <input type="email" class="form-control" id="email" name="email"
+               placeholder="Enter your email" required style="height:40px;">
+      </div>
+
+      <!-- Password -->
+      <div class="form-group" style="position:relative;">
+        <label for="password" style="font-weight:600;">Password</label>
+        <input type="password" class="form-control" id="password" name="password"
+               placeholder="Enter your password" required style="height:40px; padding-right:35px;">
+        <i id="togglePassword" class="fa fa-eye-slash"
+           style="position:absolute; top:37px; right:10px; cursor:pointer; color:#555;"></i>
+      </div>
+
+      <!-- Forgot Password -->
+      <div style="text-align:right; margin-bottom:15px;">
+        <a href="forgot-password.html"
+           style="font-size:13px; color:#007bff; text-decoration:none;">Forgot Password?</a>
+      </div>
+
+      <!-- Login Button -->
+      <button type="submit" class="btn btn-primary btn-block"
+              style="background:#007bff; border:none; height:40px; font-weight:bold;">Login</button>
+
+      <!-- Signup Link -->
+      <p class="text-center" style="margin-top:15px; font-size:14px;">
+        Don't have an account?
+        <a href="sign-up.html" style="color:#007bff; text-decoration:none; font-weight:bold;">Sign Up</a>
+      </p>
+    </form>
+  </div>
+
+  <!-- jQuery + Bootstrap JS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  <!-- Password Toggle -->
+  <script>
+    $(document).ready(function(){
+      $("#togglePassword").click(function(){
+        var input = $("#password");
+        var icon = $(this);
+        if (input.attr("type") === "password") {
+          input.attr("type", "text");
+          icon.removeClass("fa-eye-slash").addClass("fa-eye");
+        } else {
+          input.attr("type", "password");
+          icon.removeClass("fa-eye").addClass("fa-eye-slash");
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

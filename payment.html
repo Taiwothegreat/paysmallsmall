@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Payment Details | Paysmallsmall</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body style="background-color:#f9f9f9;">
+
+<div class="container" style="max-width:600px; margin-top:50px;">
+  <div class="panel panel-default">
+    <div class="panel-heading text-center" style="background-color:#2c3e50; color:#fff;">
+      <h3>Payment Details</h3>
+    </div>
+    <div class="panel-body">
+      <h4>Bank Information</h4>
+      <p><strong>Bank Name:</strong> Access Bank</p>
+      <p><strong>Account Name:</strong> Paysmallsmall Limited</p>
+      <p><strong>Account Number:</strong> 0123456789</p>
+
+      <hr>
+      <h4>Payment Summary</h4>
+      <p><strong>Product:</strong> <span id="product"></span></p>
+      <p><strong>Payment Plan:</strong> <span id="plan"></span></p>
+      <p><strong>Amount Due:</strong> ₦<span id="amount"></span></p>
+      <p><strong>Balance Remaining:</strong> ₦<span id="balance"></span></p>
+      <p><strong>Duration:</strong> <span id="duration"></span></p>
+
+      <hr>
+      <form id="paymentForm" method="POST" action="payment_process.php">
+        <div class="form-group">
+          <label for="email">Your Email Address</label>
+          <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email to receive receipt" required>
+        </div>
+
+        <!-- Hidden fields -->
+        <input type="hidden" id="productField" name="product_name">
+        <input type="hidden" id="amountField" name="price">
+        <input type="hidden" id="planField" name="plan_type">
+        <input type="hidden" id="durationField" name="duration">
+        <input type="hidden" id="paymentOptionField" name="payment_option" value="Bank Transfer">
+
+        <button type="submit" class="btn btn-success btn-block">Confirm Payment</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", ()=>{
+  const checkout = JSON.parse(localStorage.getItem("checkout") || "{}");
+  document.getElementById("product").textContent = checkout.name || "Unknown";
+  document.getElementById("plan").textContent = checkout.plan || "Buy Once";
+  document.getElementById("amount").textContent = (checkout.amountDue || 0).toLocaleString();
+  document.getElementById("balance").textContent = (checkout.balance || 0).toLocaleString();
+  document.getElementById("duration").textContent = checkout.duration ? checkout.duration + ((checkout.plan==="Weekly")?" weeks":(checkout.plan==="Monthly"?" months":"")) : "0";
+
+  // Set hidden inputs
+  document.getElementById("productField").value = checkout.name || "";
+  document.getElementById("amountField").value = checkout.amountDue || 0;
+  document.getElementById("planField").value = checkout.plan || "";
+  document.getElementById("durationField").value = checkout.duration || 0;
+});
+</script>
+
+</body>
+</html>
