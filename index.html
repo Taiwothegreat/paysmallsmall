@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Demo Site</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap 3 -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+    }
+    .nav{
+      margin-top: 20px;
+    }
+    ul li{
+      font-size: 20px;
+    }
+    .navbar {
+      margin-bottom: 0;
+      border: none;
+      border-radius: 0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+    }
+    .hero {
+      padding: 50px 20px;
+      background: linear-gradient(90deg, #0b63b8, #126fb3);
+      color: #fff;
+    }
+    .hero h1 {
+      font-weight: bold;
+      margin-top: 0;
+    }
+    .feature-card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 25px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      margin-bottom: 20px;
+    }
+    .feature-card h3 {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    .btn-start {
+      background: #0b63b8;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      margin-top: 15px;
+      padding: 10px 18px;
+    }
+    .btn-start:hover {
+      background: #094f8a;
+      color: #fff;
+    }
+    .glyphicon-arrow-right {
+      margin-left: 5px;
+    }
+    .carousel-inner > .item > img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+      .faq-section { padding: 40px 20px; background: #fff; }
+    .faq-section h2 { text-align: center; font-size: 28px; font-weight: 600; margin-bottom: 30px; }
+    .faq-number {
+      background: orange; color: white; border-radius: 50%; display: inline-block;
+      width: 30px; height: 30px; text-align: center; line-height: 30px;
+      font-weight: bold; margin-right: 10px;
+    }
+    .panel-heading { padding: 15px 20px; cursor: pointer; position: relative; }
+    .panel-title { font-size: 18px; font-weight: 500; display: flex; align-items: center; justify-content: space-between; }
+    .panel-title h3 { margin: 0; font-size: 18px; display: inline-block; }
+    .faq-body { padding: 15px 20px; font-size: 15px; line-height: 1.6; }
+    .faq-icon {
+      transition: transform 0.3s ease;
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 16px;
+    }
+    .faq-icon.rotate { transform: translateY(-50%) rotate(180deg); }
+    .social-icons { margin-top: 15px; }
+    .social-icons a {
+      margin-right: 10px; text-decoration: none; color: #555; font-size: 18px;
+      transition: color 0.3s ease;
+    }
+    .social-icons a:hover { color: orange; }
+     @media (max-width: 767px) {
+      .navbar-brand img {
+        width: 100px;
+        margin-top: -5px;
+      }
+      .navbar-brand {
+        margin-top: 0;
+      }
+      .navbar p {
+        font-size: 11px;
+        text-align: center !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+
+<!-- Navbar -->
+
+
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#" style="font-weight:bold; color:#0b63b8;">
+          <img src="./assets/paysmallsmall_logo-removebg-preview.png" alt="logo">
+        </a>
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mainNav">
+          <span class="sr-only">Toggle nav</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#">Sewing Machine</a></li>
+          <li><a href="contactus.html">Contact Us</a></li>
+          <li><a href="aboutus.html">About Us</a></li>
+          <li><a href="pickup.html">Enquiry/Pickup Center</a></li>
+        </ul>
+      </div>
+    </div>
+    <p style="font-size:13px; text-align:right; margin-right:20px; color:white;">
+      <i>feel free to call us</i> &nbsp;&nbsp;
+      <u>Toll free call:</u> <strong>+234 801 234 5678</strong> &nbsp;&nbsp;
+      <u>info@paysmallsmall.org</u>
+    </p>
+  </nav>
+
+<!-- Hero Section -->
+<div class="container-fluid hero">
+  <div class="row">
+    <div class="col-sm-6" style="padding:20px;">
+      <h1>Own Everything Easily</h1>
+      <h5>Pay small small at the normal market price.<br>
+        0% Interest, Start Now Now <span class="glyphicon glyphicon-shopping-cart"></span>
+      </h5>
+    </div>
+    <div class="col-sm-6">
+      <div id="heroCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+          <li data-target="#heroCarousel" data-slide-to="0" class="active"></li>
+          <li data-target="#heroCarousel" data-slide-to="1"></li>
+          <li data-target="#heroCarousel" data-slide-to="2"></li>
+        </ol>
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+          <div class="item active">
+            <img src="./assets/machine-1.jpg" alt="Banner 1">
+          </div>
+          <div class="item">
+            <img src="./assets/machine-2.jpg" alt="Banner 2">
+          </div>
+          <div class="item">
+            <img src="./assets/machine-3.jpg" alt="Banner 3">
+          </div>
+        </div>
+        <!-- Controls -->
+        <a class="left carousel-control" href="#heroCarousel" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+        <a class="right carousel-control" href="#heroCarousel" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right"></span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Features -->
+<div class="container" style="padding:50px 15px;">
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="feature-card">
+        <span class="glyphicon glyphicon-lock" style="font-size:40px; color:#0b63b8;"></span>
+        <h3>No BVN<br>No Bank Login</h3>
+        <p>Your BVN is not required &amp; you don't have to input your bank login or tell your friend.</p>
+        <button class="btn btn-start">
+          Start Now <span class="glyphicon glyphicon-arrow-right"></span>
+        </button>
+      </div>
+    </div>
+    <!-- You can duplicate for more features -->
+    <div class="col-sm-4">
+      <div class="feature-card">
+        <span class="glyphicon glyphicon-ok-circle" style="font-size:40px; color:#0b63b8;"></span>
+        <h3>0% Interest</h3>
+        <p>We sell at market price, no interest. Just easy installment payments.</p>
+        <button class="btn btn-start">
+          Start Now <span class="glyphicon glyphicon-arrow-right"></span>
+        </button>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="feature-card">
+        <span class="glyphicon glyphicon-send" style="font-size:40px; color:#0b63b8;"></span>
+        <h3>Fast Delivery</h3>
+        <p>Your items are delivered quickly after your payment plan midpoint.</p>
+        <button class="btn btn-start">
+          Start Now <span class="glyphicon glyphicon-arrow-right"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Converted section (keeps styles inline and scoped via IDs to avoid affecting other code) -->
+<section id="comp-l6dm1jku" style="background:linear-gradient(90deg,#0b63b8,#126fb3); color:#fff; padding:40px 0;">
+  <div class="container" style="position:relative;">
+    <div class="row" style="align-items:stretch; display:flex; flex-wrap:wrap;">
+
+      <!-- LEFT COLUMN: headline + app image -->
+      <div class="col-sm-6" id="col-left" style="padding:20px; display:flex; flex-direction:column; justify-content:center;">
+        <h2 id="comp-head" style="font-size:50px; line-height:1.15; margin:0 0 18px 0; font-weight:600;">Take control of your finances, <br>you can<br>start immediately.</h2>
+
+        <!-- small info blocks (stacked) -->
+        <div style="margin-top:18px;">
+          <div style="display:flex; align-items:flex-start; margin-bottom:16px;">
+            <div style="width:8px; height:40px; background:rgba(255,255,255,0.18); margin-right:12px; border-radius:2px;"></div>
+            <div>
+              <h5 style="margin:0 0 6px 0; font-size:28px; font-weight:600; color:rgba(255,255,255,0.95);">Search &amp; Find</h5>
+              <p style="margin:0; font-size:13px; color:rgba(255,255,255,0.95);">Visit the CDcare app (web or mobile) to find your desired item from our wide range of product offerings, select it and check the properties.</p>
+            </div>
+          </div>
+
+          <div style="display:flex; align-items:flex-start; margin-bottom:16px;">
+            <div style="width:8px; height:40px; background:rgba(255,255,255,0.18); margin-right:12px; border-radius:2px;"></div>
+            <div>
+              <h5 style="margin:0 0 6px 0; font-size:28px; font-weight:600; color:rgba(255,255,255,0.95);">Plan &amp; start your installment</h5>
+              <p style="margin:0; font-size:13px; color:rgba(255,255,255,0.95);">Choose your desired installment. Choose between 4 - 40 weeks or 2 - 12 months (cars: up to 106 weeks / 36 months). Then proceed to pay your first payment.</p>
+            </div>
+          </div>
+
+          <div style="display:flex; align-items:flex-start;">
+            <div style="width:8px; height:40px; background:rgba(255,255,255,0.18); margin-right:12px; border-radius:2px;"></div>
+            <div>
+              <h5 style="margin:0 0 6px 0; font-size:28px; font-weight:600; color:rgba(255,255,255,0.95);">We will deliver at 50%</h5>
+              <p style="margin:0; font-size:13px; color:rgba(255,255,255,0.95);">Your desired item will be shipped to you before full payment at the mid-point of your installment. Delivery timing depends on plan length.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA button -->
+        <div style="margin-top:22px;">
+          <a href="sign-up.html" target="_blank" rel="noreferrer noopener" id="btn-start-now" style="display:inline-flex; align-items:center; background:#fff; color:#0b63b8; padding:12px 18px; border-radius:8px; text-decoration:none; font-weight:600;">
+            <span style="margin-right:10px;">Start now</span>
+            <!-- cart icon (inline SVG) -->
+            <svg width="20" height="20" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <g fill="#0b63b8">
+                <path d="M171.759 52.497H61.593L56.539 28.24H25.207c-3.032 0-5.054 1.565-5.054 4.043s2.021 4.043 5.054 4.043h25.268l15.161 78.835c1.127 5.026 4.808 8.086 10.107 8.086h80.856c5.299 0 8.982-3.059 10.107-8.086l13.139-55.589c1.008-4.501-3.033-7.075-8.086-7.075zm-12.128 61.653c-.194.865-1.011 2.021-3.032 2.021H76.753c-2.021 0-2.838-1.155-3.032-2.021L63.614 60.583h108.145l-12.128 53.567z"/>
+                <path d="M84.839 135.375c-10.047 0-18.193 8.145-18.193 18.193s8.145 18.193 18.193 18.193 18.193-8.145 18.193-18.193-8.146-18.193-18.193-18.193zm0 28.299c-5.582 0-10.107-4.525-10.107-10.107s4.525-10.107 10.107-10.107 10.107 4.525 10.107 10.107-4.525 10.107-10.107 10.107z"/>
+                <path d="M145.481 135.375c-10.047 0-18.193 8.145-18.193 18.193s8.145 18.193 18.193 18.193 18.193-8.145 18.193-18.193-8.146-18.193-18.193-18.193zm0 28.299c-5.582 0-10.107-4.525-10.107-10.107s4.525-10.107 10.107-10.107 10.107 4.525 10.107 10.107-4.525 10.107-10.107 10.107z"/>
+              </g>
+            </svg>
+          </a>
+        </div>
+
+      </div>
+
+      <!-- RIGHT COLUMN: phone mockup image -->
+      <div class="col-sm-6" id="col-right" style="padding:20px; display:flex; align-items:center; justify-content:center;">
+        <div style="max-width:420px; width:100%;">
+          <img src="https://static.wixstatic.com/media/a499f3_fc9f6d83ca924a89b7c294202ff66353~mv2.png/v1/fill/w_642,h_753,al_c,q_90,enc_avif,quality_auto/CD%20Care%20iPhone%20in%20Hand%20Mockup_edited_edi.png" alt="app mockup" style="width:100%; height:auto; display:block; object-fit:cover; border-radius:8px;">
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<div class="container-fluid" style="padding:50px 20px; background:#fff;">
+  
+  <!-- Section Title -->
+  <h3 style="font-size:32px; color:#131c2c; text-align:center; margin-bottom:40px;">
+    Read our stories
+  </h3>
+
+  <div class="row" style="max-width:1100px; margin:0 auto;">
+    
+    <!-- Logos Block -->
+    <div class="col-sm-6" style="text-align:center; margin-bottom:30px;">
+      <div class="row">
+        <div class="col-xs-6" style="margin-bottom:25px;">
+          <a href="https://finance.yahoo.com/news/nigeria-buy-now-pay-later-121100062.html" target="_blank">
+            <img src="https://static.wixstatic.com/media/a499f3_0bceb04fc07644f1a28a707877901b2a~mv2.png/v1/fill/w_182,h_26,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/yahoo1.png" alt="Yahoo" style="max-width:100%; height:auto;">
+          </a>
+        </div>
+        <div class="col-xs-6" style="margin-bottom:25px;">
+          <a href="https://techpoint.africa/2022/03/02/cdcare-pay-small-small" target="_blank">
+            <img src="https://static.wixstatic.com/media/a499f3_bc60b0f64af04e2db2d5d56615db9149~mv2.png/v1/fill/w_171,h_41,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/techpoint1.png" alt="Techpoint" style="max-width:100%; height:auto;">
+          </a>
+        </div>
+        <div class="col-xs-6" style="margin-bottom:25px;">
+          <a href="https://flutterwave.com/gb/blog/how-cdcare-is-helping-nigerians-buy-their-favourite-gadgets-while-paying-instalmentally" target="_blank">
+            <img src="https://static.wixstatic.com/media/a499f3_7d39b20f2f204b77a2ef5124111a8705~mv2.png/v1/fill/w_175,h_33,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Flutterwave_Logo%20(1).png" alt="Flutterwave" style="max-width:100%; height:auto;">
+          </a>
+        </div>
+        <div class="col-xs-6" style="margin-bottom:25px;">
+          <a href="https://technext.ng/2021/02/10/app-review-cd-care-offers-instalmental-payment-and-zero-interest-for-gadgets-and-home-essentials/" target="_blank">
+            <img src="https://static.wixstatic.com/media/a499f3_7ae02dfcfcd645029f5c0e825838c401~mv2.png/v1/fill/w_177,h_28,al_c,q_85,enc_avif,quality_auto/%20technet1.png" alt="Technext" style="max-width:100%; height:auto;">
+          </a>
+        </div>
+        <div class="col-xs-6" style="margin-bottom:25px;">
+          <a href="https://koboline.com.ng/cdcare-review-nigeria/" target="_blank">
+            <img src="https://static.wixstatic.com/media/a499f3_b2fce2bb1ca14c5c9cac89b3fbaf572f~mv2.png/v1/fill/w_127,h_42,al_c,q_85,enc_avif,quality_auto/koboline1.png" alt="Koboline" style="max-width:100%; height:auto;">
+          </a>
+        </div>
+        <div class="col-xs-6" style="margin-bottom:25px;">
+          <a href="https://disrupt-africa.com/2021/05/14/nigerias-cdcare-lets-you-buy-appliances-and-pay-over-time-with-zero-interest/" target="_blank">
+            <img src="https://static.wixstatic.com/media/a499f3_79dc96c41e5d4379a5d6ff9c5477e314~mv2.png/v1/fill/w_130,h_68,al_c,q_85,enc_avif,quality_auto/disrupt1.png" alt="Disrupt Africa" style="max-width:100%; height:auto;">
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Testimonial Block -->
+    <div class="col-sm-6" style="text-align:center;">
+      <div style="background:#f9f9f9; padding:30px; border-radius:10px; height:100%;">
+        <p style="font-size:16px; color:#131c2c; font-style:italic; line-height:1.8em; margin-bottom:25px;">
+          “I have always wanted to buy some cool gadgets and CDcare made owning these things very easy for me. I have bought four items already from CDcare. I like the fact that CDcare doesn't require much from me as a user.”
+        </p>
+        <h4 style="font-size:17px; color:#131c2c; margin-bottom:5px;">Tosin Amuda</h4>
+        <p style="font-size:15px; color:#131c2c; margin-bottom:20px;">@tosinamuda</p>
+        <a href="https://www.cdcare.ng/testimonial" target="_blank" style="color:#FA7A18; font-style:italic; font-size:16px; text-decoration:none;">
+          Read more testimonials →
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- Optional small script to ensure images are responsive inside Bootstrap 3 grids -->
+<script>
+  (function(){
+    function fixImg(){
+      var img = document.querySelector('#col-right img');
+      if(!img) return;
+      img.style.maxWidth = '100%';
+      img.style.height = 'auto';
+    }
+    if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fixImg);
+    else fixImg();
+  })();
+</script>
+
+<!-- Bootstrap JS (only if this file is used standalone) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<div class="container faq-section">
+  <h2>Frequently Asked Questions</h2>
+  <div class="panel-group" id="faqAccordion">
+
+    <!-- FAQ Template -->
+    <div class="panel panel-default">
+      <div class="panel-heading" data-toggle="collapse" data-target="#faq1">
+        <div class="panel-title">
+          <span><span class="faq-number">1</span><h3>When will I collect the item that I am paying for?</h3></span>
+          <span class="faq-icon glyphicon glyphicon-chevron-down"></span>
+        </div>
+      </div>
+      <div id="faq1" class="panel-collapse collapse">
+        <div class="faq-body">
+          <p>Your item will be shipped when you reach the middle of your instalment period and meet all delivery conditions. You must have paid half of the cost of the item in equal instalments.</p>
+          <ul>
+            <li>2-month plan: delivery immediately.</li>
+            <li>6-month plan: delivery in 3rd month.</li>
+            <li>12-month plan: delivery in 6th month.</li>
+          </ul>
+          <div class="social-icons">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-instagram"></i></a>
+            <a href="#"><i class="fa fa-whatsapp"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ 2–10 -->
+    <div class="panel panel-default">
+      <div class="panel-heading" data-toggle="collapse" data-target="#faq2">
+        <div class="panel-title">
+          <span><span class="faq-number">2</span><h3>What are the requirements?</h3></span>
+          <span class="faq-icon glyphicon glyphicon-chevron-down"></span>
+        </div>
+      </div>
+      <div id="faq2" class="panel-collapse collapse">
+        <div class="faq-body">
+          <p>You need a valid ID, BVN, verified CDcare account, and a steady source of income linked to a Nigerian bank account for auto-debits.</p>
+          <div class="social-icons"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a><a href="#"><i class="fa fa-whatsapp"></i></a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading" data-toggle="collapse" data-target="#faq3">
+        <div class="panel-title">
+          <span><span class="faq-number">3</span><h3>Can I cancel my payment plan?</h3></span>
+          <span class="faq-icon glyphicon glyphicon-chevron-down"></span>
+        </div>
+      </div>
+      <div id="faq3" class="panel-collapse collapse">
+        <div class="faq-body">
+          <p>Yes, you can cancel before delivery. Refunds are issued minus a 5% processing fee.</p>
+          <div class="social-icons"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a><a href="#"><i class="fa fa-whatsapp"></i></a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading" data-toggle="collapse" data-target="#faq4">
+        <div class="panel-title">
+          <span><span class="faq-number">4</span><h3>What happens if I miss a payment?</h3></span>
+          <span class="faq-icon glyphicon glyphicon-chevron-down"></span>
+        </div>
+      </div>
+      <div id="faq4" class="panel-collapse collapse">
+        <div class="faq-body">
+          <p>Missed payments attract a penalty and may affect your eligibility for future plans. Ensure your account has funds before your due date.</p>
+          <div class="social-icons"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a><a href="#"><i class="fa fa-whatsapp"></i></a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading" data-toggle="collapse" data-target="#faq5">
+        <div class="panel-title">
+          <span><span class="faq-number">5</span><h3>Do I need to pay any deposit?</h3></span>
+          <span class="faq-icon glyphicon glyphicon-chevron-down"></span>
+        </div>
+      </div>
+      <div id="faq5" class="panel-collapse collapse">
+        <div class="faq-body">
+          <p>No upfront deposit. Your first instalment counts as your first payment.</p>
+          <div class="social-icons"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a><a href="#"><i class="fa fa-whatsapp"></i></a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading" data-toggle="collapse" data-target="#faq6">
+        <div class="panel-title">
+          <span><span class="faq-number">6</span><h3>Is CDcare a loan company?</h3></span>
+          <span class="faq-icon glyphicon glyphicon-chevron-down"></span>
+        </div>
+      </div>
+      <div id="faq6" class="panel-collapse collapse">
+        <div class="faq-body">
+          <p>No, CDcare is not a loan provider — it’s an interest-free instalment payment platform.</p>
+          <div class="social-icons"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a><a href="#"><i class="fa fa-whatsapp"></i></a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading" data-toggle="collapse" data-target="#faq7">
+        <div class="panel-title">
+          <span><span class="faq-number">7</span><h3>Can I change my item after paying?</h3></span>
+          <span class="faq-icon glyphicon glyphicon-chevron-down"></span>
+        </div>
+      </div>
+      <div id="faq7" class="panel-collapse collapse">
+        <div class="faq-body">
+          <p>Once a plan starts, you can’t change the product. You can cancel and start a new one instead.</p>
+          <div class="social-icons"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a><a href="#"><i class="fa fa-whatsapp"></i></a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading" data-toggle="collapse" data-target="#faq8">
+        <div class="panel-title">
+          <span><span class="faq-number">8</span><h3>Can I buy more than one item?</h3></span>
+          <span class="faq-icon glyphicon glyphicon-chevron-down"></span>
+        </div>
+      </div>
+      <div id="faq8" class="panel-collapse collapse">
+        <div class="faq-body">
+          <p>Yes, but you must complete your first plan before starting another.</p>
+          <div class="social-icons"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a><a href="#"><i class="fa fa-whatsapp"></i></a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading" data-toggle="collapse" data-target="#faq9">
+        <div class="panel-title">
+          <span><span class="faq-number">9</span><h3>What items can I buy?</h3></span>
+          <span class="faq-icon glyphicon glyphicon-chevron-down"></span>
+        </div>
+      </div>
+      <div id="faq9" class="panel-collapse collapse">
+        <div class="faq-body">
+          <p>You can buy phones, electronics, laptops, and appliances from verified vendors.</p>
+          <div class="social-icons"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a><a href="#"><i class="fa fa-whatsapp"></i></a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading" data-toggle="collapse" data-target="#faq10">
+        <div class="panel-title">
+          <span><span class="faq-number">10</span><h3>Is there interest on payment?</h3></span>
+          <span class="faq-icon glyphicon glyphicon-chevron-down"></span>
+        </div>
+      </div>
+      <div id="faq10" class="panel-collapse collapse">
+        <div class="faq-body">
+          <p>No interest. CDcare lets you pay over time without extra charges.</p>
+          <div class="social-icons"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a><a href="#"><i class="fa fa-whatsapp"></i></a></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<script>
+  // Flip icon on open/close
+  $('#faqAccordion').on('shown.bs.collapse', function (e) {
+    $(e.target).siblings('.panel-heading').find('.faq-icon').addClass('rotate');
+  });
+  $('#faqAccordion').on('hidden.bs.collapse', function (e) {
+    $(e.target).siblings('.panel-heading').find('.faq-icon').removeClass('rotate');
+  });
+</script>
+
+
+
+
+<!-- ====== Responsive Wix-style Footer (Bootstrap-Free) ====== -->
+<div id="pure-footer" style="background:#111; color:#fff; padding:50px 20px 20px 20px; font-family:Arial, sans-serif; box-sizing:border-box;">
+  <div style="display:flex; flex-wrap:wrap; justify-content:space-between; margin-bottom:30px;">
+
+    <!-- Logo + Description -->
+    <div class="footer-col" style="flex:1 1 300px; min-width:250px; margin-bottom:20px; text-align:left;">
+      <img src="./assets/paysmallsmall_logo-removebg-preview.png" alt="Logo" style="width:120px; margin-bottom:15px;">
+      <p style="font-size:14px; line-height:1.6; color:#ccc; margin:0;">
+        At <strong>Pure Finest Inc.</strong>, we empower communities and individuals through innovative solutions and trusted partnerships.
+        Join us in building a sustainable future — one step at a time.
+      </p>
+    </div>
+
+    <!-- Quick Links -->
+    <div class="footer-col" style="flex:1 1 200px; min-width:200px; margin-bottom:20px; text-align:left;">
+      <h4 style="color:#fff; font-weight:600; margin-bottom:15px;">Quick Links</h4>
+      <ul style="list-style:none; padding:0; margin:0;">
+        <li><a href="#" style="color:#ccc; text-decoration:none; display:block; padding:5px 0;">Home</a></li>
+        <li><a href="#" style="color:#ccc; text-decoration:none; display:block; padding:5px 0;">About Us</a></li>
+        <li><a href="#" style="color:#ccc; text-decoration:none; display:block; padding:5px 0;">Products</a></li>
+        <li><a href="#" style="color:#ccc; text-decoration:none; display:block; padding:5px 0;">Contact</a></li>
+        <li><a href="#" style="color:#ccc; text-decoration:none; display:block; padding:5px 0;">FAQs</a></li>
+      </ul>
+    </div>
+
+    <!-- Contact Info -->
+    <div class="footer-col" style="flex:1 1 250px; min-width:220px; text-align:left;">
+      <h4 style="color:#fff; font-weight:600; margin-bottom:15px;">Contact Us</h4>
+      <p style="font-size:14px; color:#ccc; margin:0;">📍 24 Unity Avenue, Lagos, Nigeria</p>
+      <p style="font-size:14px; color:#ccc; margin:0;">📞 +234 801 234 5678</p>
+      <p style="font-size:14px; color:#ccc; margin:0;">✉️ support@purefinest.com</p>
+
+      <!-- Social Media Icons -->
+      <div style="margin-top:15px; font-size:20px;">
+        <a href="#" style="color:#3b5998; margin-right:10px;">👍</a>
+        <a href="#" style="color:#E4405F; margin-right:10px;">📷</a>
+        <a href="#" style="color:#1DA1F2; margin-right:10px;">🐦</a>
+        <a href="#" style="color:#0077B5; margin-right:10px;">💼</a>
+        <a href="#" style="color:#FF0000;">▶️</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer Bottom -->
+  <div style="border-top:1px solid #333; text-align:center; padding-top:15px;">
+    <p style="font-size:13px; color:#999; margin:0;">&copy; 2025 <span id="year"></span> Pure Finest Inc. All Rights Reserved.
+    </p>
+  </div>
+</div>
+
+<!-- Inline Responsive Styles -->
+<style>
+  @media (max-width: 768px) {
+    #pure-footer {
+      padding: 40px 15px 15px 15px !important;
+    }
+    #pure-footer .footer-col {
+      flex: 1 1 100% !important;
+      text-align: center !important;
+      margin-bottom: 25px !important;
+    }
+    #pure-footer img {
+      margin: 0 auto 15px auto !important;
+      display: block !important;
+    }
+    #pure-footer h4 {
+      font-size: 16px !important;
+    }
+    #pure-footer p, #pure-footer a {
+      font-size: 13px !important;
+    }
+    #pure-footer ul {
+      padding-left: 0 !important;
+    }
+  }
+
+  @media (max-width: 480px) {
+    #pure-footer p, #pure-footer a {
+      font-size: 12px !important;
+    }
+    #pure-footer {
+      padding: 30px 10px 10px 10px !important;
+    }
+  }
+</style>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
