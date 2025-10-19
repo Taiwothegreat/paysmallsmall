@@ -2,132 +2,132 @@
 session_start();
 include 'db_connect.php';
 
-// Initialize message
-$message = "";
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.html");
+    exit();
+}
 
-// Check session
-$id = $_SESSION['account_id'] ?? null;
+$user_id = (int) $_SESSION['user_id'];
 
-// Handle form submission
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $name = trim($_POST['name']);
-    $email = trim($_POST['email']);
-    $address = trim($_POST['address']);
-    $password = trim($_POST['password']);
+// Fetch user data
+$stmt = $conn->prepare("SELECT * FROM users WHERE id = ? LIMIT 1");
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+$user = $result->fetch_assoc();
 
-    if ($id) {
-        // Update with password hashing
-        if (!empty($password)) {
-            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-            $stmt = $conn->prepare("UPDATE accounts SET name=?, email=?, address=?, password=? WHERE id=?");
-            $stmt->bind_param("ssssi", $name, $email, $address, $hashed_password, $id);
+if (!$user) {
+    echo "<p style='font-family:Arial;padding:20px;'>User not found. Please log in again.</p>";
+    exit();
+}
+
+// Update logic (profile + optional password)
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $email        = trim($_POST['email']);
+    $first_name   = trim($_POST['first_name']);
+    $last_name    = trim($_POST['last_name']);
+    $phone        = trim($_POST['phone']);
+    $alt_phone    = trim($_POST['alt_phone']);
+    $current_pass = trim($_POST['current_password']);
+    $new_pass     = trim($_POST['new_password']);
+    $confirm_pass = trim($_POST['confirm_password']);
+
+    // Profile update
+    $update = $conn->prepare("UPDATE users SET email = ?, first_name = ?, last_name = ?, phone = ?, alt_phone = ? WHERE id = ?");
+    $update->bind_param("sssssi", $email, $first_name, $last_name, $phone, $alt_phone, $user_id);
+
+    $success = $update->execute();
+
+    // Password update (only if new password fields are filled)
+    if (!empty($current_pass) || !empty($new_pass) || !empty($confirm_pass)) {
+        if (empty($current_pass) || empty($new_pass) || empty($confirm_pass)) {
+            echo "<script>alert('Please fill all password fields to change your password.');</script>";
+        } elseif ($new_pass !== $confirm_pass) {
+            echo "<script>alert('New passwords do not match.');</script>";
+        } elseif (!password_verify($current_pass, $user['password'])) {
+            echo "<script>alert('Current password is incorrect.');</script>";
         } else {
-            // Update without changing password if left blank
-            $stmt = $conn->prepare("UPDATE accounts SET name=?, email=?, address=? WHERE id=?");
-            $stmt->bind_param("sssi", $name, $email, $address, $id);
+            $hashed_new = password_hash($new_pass, PASSWORD_DEFAULT);
+            $update_pass = $conn->prepare("UPDATE users SET password = ? WHERE id = ?");
+            $update_pass->bind_param("si", $hashed_new, $user_id);
+            $update_pass->execute();
+            echo "<script>alert('Password updated successfully!');</script>";
         }
+    }
 
-        if ($stmt->execute()) {
-            $message = "Profile updated successfully!";
-        } else {
-            $message = "Error updating profile: " . $conn->error;
-        }
-        $stmt->close();
+    if ($success) {
+        echo "<script>alert('Profile changes saved successfully!'); window.location='account.php';</script>";
+        exit();
     } else {
-        $message = "Note: You are not logged in. Changes won't be saved.";
+        echo "<script>alert('Error updating profile. Please try again.');</script>";
     }
 }
 
-// Fetch user info if logged in
-if ($id) {
-    $stmt = $conn->prepare("SELECT name, email, address FROM accounts WHERE id = ?");
-    $stmt->bind_param("i", $id);
-    $stmt->execute();
-    $stmt->bind_result($name, $email, $address);
-    $stmt->fetch();
-    $stmt->close();
-} else {
-    $name = $email = $address = "";
+function pick_field($arr, $candidates, $default = '') {
+    foreach ($candidates as $c) {
+        if (array_key_exists($c, $arr) && $arr[$c] !== null && $arr[$c] !== '') {
+            return $arr[$c];
+        }
+    }
+    return $default;
 }
-?>
 
+$email       = pick_field($user, ['email'], '');
+$first_name  = pick_field($user, ['first_name', 'fname'], '');
+$last_name   = pick_field($user, ['last_name', 'lname'], '');
+$phone       = pick_field($user, ['phone', 'mobile'], '');
+$alt_phone   = pick_field($user, ['alt_phone', 'alternate_phone'], '');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Edit Profile</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 40px;
-            background-color: #f8f8f8;
-        }
-        .container {
-            background: white;
-            padding: 20px 30px;
-            max-width: 500px;
-            margin: 0 auto;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        h2 {
-            text-align: center;
-            color: #333;
-        }
-        form input {
-            width: 100%;
-            padding: 10px;
-            margin: 6px 0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        button {
-            width: 100%;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 10px;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        .message {
-            text-align: center;
-            color: green;
-            font-weight: bold;
-        }
-        .note {
-            color: red;
-            text-align: center;
-        }
-    </style>
+  <meta charset="utf-8">
+  <title>Edit Profile - Paysmallsmall</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <style>
+    body { background:#f8f9fa; font-family:Arial, sans-serif; padding-top:20px; }
+    .form-container { background:#fff; padding:25px; border-radius:6px; max-width:600px; margin:30px auto; box-shadow:0 2px 8px rgba(0,0,0,0.1); }
+    h3 { text-align:center; margin-bottom:20px; color:#333; }
+    label { font-weight:600; margin-top:10px; }
+    input[type="text"], input[type="email"], input[type="password"] { width:100%; padding:10px; border:1px solid #ccc; border-radius:4px; margin-bottom:15px; }
+    button { background:#007bff; color:#fff; border:none; padding:10px 20px; border-radius:4px; width:100%; font-weight:bold; }
+    button:hover { background:#0056b3; }
+  </style>
 </head>
 <body>
 
-<div class="container">
-    <h2>Edit Profile</h2>
+<div class="form-container">
+  <h3>Edit Profile</h3>
+  <form method="POST" action="">
+    <label>Email</label>
+    <input type="email" name="email" value="<?php echo htmlspecialchars($email); ?>" required>
 
-    <?php if ($message): ?>
-        <p class="<?php echo $id ? 'message' : 'note'; ?>"><?php echo htmlspecialchars($message); ?></p>
-    <?php endif; ?>
+    <label>First Name</label>
+    <input type="text" name="first_name" value="<?php echo htmlspecialchars($first_name); ?>" required>
 
-    <form method="POST" action="edit_profile.php">
-        <label>Name</label>
-        <input type="text" name="name" value="<?php echo htmlspecialchars($name); ?>" required>
+    <label>Last Name</label>
+    <input type="text" name="last_name" value="<?php echo htmlspecialchars($last_name); ?>" required>
 
-        <label>Email</label>
-        <input type="email" name="email" value="<?php echo htmlspecialchars($email); ?>" required>
+    <label>Phone Number</label>
+    <input type="text" name="phone" value="<?php echo htmlspecialchars($phone); ?>">
 
-        <label>Address</label>
-        <input type="text" name="address" value="<?php echo htmlspecialchars($address); ?>">
+    <label>Alternate Phone Number</label>
+    <input type="text" name="alt_phone" value="<?php echo htmlspecialchars($alt_phone); ?>">
 
-        <label>New Password (leave blank to keep current password)</label>
-        <input type="password" name="password" placeholder="Enter new password">
+    <hr>
 
-        <button type="submit">Save Changes</button>
-    </form>
+    <label>Current Password (leave blank to keep existing)</label>
+    <input type="password" name="current_password">
+
+    <label>New Password</label>
+    <input type="password" name="new_password">
+
+    <label>Confirm New Password</label>
+    <input type="password" name="confirm_password">
+
+    <button type="submit">Save Changes</button>
+  </form>
 </div>
 
 </body>

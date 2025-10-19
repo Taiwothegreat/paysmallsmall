@@ -22,35 +22,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("sdsii", $product_name, $price, $plan_type, $duration, $user_id);
     $stmt->execute();
 
-    // Email confirmation
-    $subject = "Payment Confirmation - PaySmallSmall";
-    $message = "
+    // Get the last inserted order ID
+    $order_id = $conn->insert_id;
+
+    // Send confirmation email to admin
+    $subject_admin = "Confirm New Payment - PaySmallSmall";
+    $message_admin = "
     <html>
-    <head><title>Payment Confirmation</title></head>
+    <head><title>Payment Confirmation Request</title></head>
     <body style='font-family: Arial, sans-serif; background-color: #f9f9f9; padding: 20px;'>
       <div style='max-width:600px; margin:auto; background:#ffffff; border-radius:10px; padding:30px; box-shadow:0 0 10px rgba(0,0,0,0.1);'>
-        <h2 style='color:#2c3e50;'>Thank You for Your Payment!</h2>
-        <p>Your payment for <strong>$product_name</strong> has been successfully recorded.</p>
-        <p><strong>Amount Paid:</strong> ₦".number_format($price)."<br>
+        <h2 style='color:#2c3e50;'>Payment Confirmation Request</h2>
+        <p>A new payment has been made and needs your confirmation.</p>
+        <p><strong>Product:</strong> $product_name<br>
+        <strong>Amount:</strong> ₦".number_format($price)."<br>
         <strong>Plan Type:</strong> $plan_type<br>
         <strong>Duration:</strong> $duration<br>
-        <strong>Payment Option:</strong> $payment_option</p>
+        <strong>User Email:</strong> $email</p>
         <hr>
-        <h4>Bank Details</h4>
-        <p><strong>Bank Name:</strong> Access Bank<br>
-        <strong>Account Name:</strong> Paysmallsmall Limited<br>
-        <strong>Account Number:</strong> 0123456789</p>
-        <p style='margin-top:20px;'>We appreciate your trust in <strong>PaySmallSmall</strong>.</p>
+        <p style='text-align:center;'>
+          <a href='https://yourdomain.com/confirm_payment.php?order_id=$order_id&email=".urlencode($email)."'
+             style='background:#27ae60; color:white; padding:10px 20px; border-radius:5px; text-decoration:none;'>
+             Confirm Payment
+          </a>
+        </p>
       </div>
     </body>
     </html>";
 
-    $headers = "MIME-Version: 1.0\r\n";
-    $headers .= "Content-type:text/html;charset=UTF-8\r\n";
-    $headers .= "From: PaySmallSmall <info@paysmallsmall.org>\r\n";
+    $headers_admin = "MIME-Version: 1.0\r\n";
+    $headers_admin .= "Content-type:text/html;charset=UTF-8\r\n";
+    $headers_admin .= "From: PaySmallSmall <info@paysmallsmall.org>\r\n";
 
-    mail($email, $subject, $message, $headers);
+    // Temporary admin address for testing
+    mail("taiwoomosehin6@gmail.com", $subject_admin, $message_admin, $headers_admin);
 
+    // Redirect to success page
     header("Location: payment_success.html");
     exit();
 }
