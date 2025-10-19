@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <strong>User Email:</strong> $email</p>
         <hr>
         <p style='text-align:center;'>
-          <a href='https://yourdomain.com/confirm_payment.php?order_id=$order_id&email=".urlencode($email)."'
+          <a href='https://www.paysmallsmall.org/confirm_payment.php?order_id=$order_id&email=".urlencode($email)."'
              style='background:#27ae60; color:white; padding:10px 20px; border-radius:5px; text-decoration:none;'>
              Confirm Payment
           </a>
@@ -55,7 +55,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $headers_admin .= "From: PaySmallSmall <info@paysmallsmall.org>\r\n";
 
     // Temporary admin address for testing
-    mail("taiwoomosehin6@gmail.com", $subject_admin, $message_admin, $headers_admin);
+    #mail("taiwoomosehin6@gmail.com", $subject_admin, $message_admin, $headers_admin);
+    mail("info@paysmallsmall.org", $subject_admin, $message_admin, $headers_admin);
 
     // Redirect to success page
     header("Location: payment_success.html");
