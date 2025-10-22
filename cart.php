@@ -17,9 +17,17 @@ $conn->query("CREATE TABLE IF NOT EXISTS cart (
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8"><title>Cart - Paysmallsmall</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"></head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
 <body style="background:#f9f9f9">
-<nav class="navbar navbar-default" style="background:#2b6;border:none"><div class="container-fluid"><div class="navbar-header"><a class="navbar-brand" href="product.html" style="color:#fff">Paysmallsmall</a></div><ul class="nav navbar-nav navbar-right"><li><a href="product.html" style="color:#fff">Shop</a></li><li><a href="cart.php" style="color:#fff">Cart</a></li><li><a href="wishlist.php" style="color:#fff">Wishlist</a></li><li><a href="history.php" style="color:#fff">History</a></li><li><a href="account.php" style="color:#fff">Account</a></li></ul></div></nav>
+<nav class="navbar navbar-default" style="background:#2b6;border:none"><div class="container-fluid">
+  <div class="navbar-header">
+    <a class="navbar-brand" href="product.html" style="color:#fff">Paysmallsmall</a></div>
+    <ul class="nav navbar-nav navbar-right"><li><a href="product.html" style="color:#fff">Shop</a></li>
+    <li><a href="cart.php" style="color:#fff">Cart</a></li>
+    <li><a href="wishlist.php" style="color:#fff">Wishlist</a></li>
+    <li><a href="history.php" style="color:#fff">History</a></li>
+    <li><a href="account.php" style="color:#fff">Account</a></li></ul></div></nav>
 <div class="container" style="margin-top:20px;">
   <h2>Your Cart</h2>
   <div class="row">

@@ -12,7 +12,9 @@ body { background: #f9f9f9; font-family: 'Arial', sans-serif; }
 .container { margin-top: 20px; position: relative; overflow: hidden; }
 h2 { text-align:center; margin-bottom:20px; font-weight:bold; }
 .slider { display:flex; will-change:transform; }
-.product-card { background:#fff; border:1px solid #ddd; border-radius:8px; width:250px; flex:none; margin:0 10px; text-align:center; padding:10px; cursor:pointer; box-sizing:border-box; position:relative; }
+.product-card { background:#fff; border:1px solid #ddd; border-radius:8px; width:250px; 
+  flex:none; margin:0 10px; text-align:center; padding:10px; cursor:pointer; 
+  box-sizing:border-box; position:relative; }
 .product-card img { width:100%; height:200px; object-fit:cover; border-radius:6px; }
 .product-card h4 { font-size:16px; margin-top:10px; }
 .product-card p { color:#555; font-size:13px; min-height:40px; }
@@ -32,6 +34,7 @@ h2 { text-align:center; margin-bottom:20px; font-weight:bold; }
 .product-links { text-align:center; margin-bottom:25px; }
 .product-links a { display:inline-block; margin:0 10px; color:#2b6; font-weight:bold; text-decoration:none; }
 .product-links a:hover { text-decoration:underline; }
+
 </style>
 </head>
 <body>
@@ -59,37 +62,98 @@ h2 { text-align:center; margin-bottom:20px; font-weight:bold; }
     <a href="history.php">History</a>
     <a href="account.php">Account</a>
   </div>
-
+<!---Product One-->
   <div class="slider-container" style="position:relative;">
     <button id="prevBtn" class="nav-btn">&#10094;</button>
     <div class="slider" id="productSlider">
+       <div class="product-card" data-name="TWO LION DIRECT DRIVE INDUSTRIAL STRAIGHT SEWING MACHINE (TL9900D)"
+  data-price="350000" data-img="./assets/two-lion-drive.jpg" onclick="openProductFromCard(this)"
+  style=" border:1px solid #ddd; border-radius:8px; width:325px; height: 400px;
+   margin:0 10px;
+  text-align:center; padding:5px; cursor:pointer; box-sizing:border-box; position:relative;">
 
-      <!-- Product 1 -->
-      <div class="product-card" data-name="Phone X" data-price="350000" data-img="./assets/machine-1.jpg" onclick="openProductFromCard(this)">
-        <span class="wishlist-icon glyphicon glyphicon-heart" onclick="toggleWishlist(event, this)"></span>
-        <img src="./assets/machine-1.jpg" alt="Phone X">
-        <h4>Phone X</h4>
-        <p>Powerful camera and smooth performance.</p>
-        <div class="price">₦350,000</div>
-      </div>
+  <span class="wishlist-icon glyphicon glyphicon-heart" onclick="toggleWishlist(event, this)"></span>
+  <img src="./assets/two-lion-drive.jpg"
+    alt="TWO LION DIRECT DRIVE INDUSTRIAL STRAIGHT SEWING MACHINE (TL9900D)"
+    style="width:100%; height:auto; border-radius:5px;">
 
-      <!-- Product 2 -->
-      <div class="product-card" data-name="Smart TV 50" data-price="420000" data-img="./assets/machine-2.jpg" onclick="openProductFromCard(this)">
-        <span class="wishlist-icon glyphicon glyphicon-heart" onclick="toggleWishlist(event, this)"></span>
-        <img src="./assets/machine-2.jpg" alt="Smart TV">
-        <h4>Smart TV 50</h4>
-        <p>4K Ultra HD with smart connectivity.</p>
-        <div class="price">₦420,000</div>
-      </div>
+  <h5 style="font-size:11px; margin-top:5px;">
+    TWO LION DIRECT DRIVE INDUSTRIAL STRAIGHT SEWING MACHINE (TL9900D)
+  </h5>
 
-      <!-- Product 3 -->
-      <div class="product-card" data-name="Washing Machine" data-price="250000" data-img="./assets/machine-3.jpg" onclick="openProductFromCard(this)">
-        <span class="wishlist-icon glyphicon glyphicon-heart" onclick="toggleWishlist(event, this)"></span>
-        <img src="./assets/machine-3.jpg" alt="Washer">
-        <h4>Washing Machine</h4>
-        <p>Smart washing with fast spin mode.</p>
-        <div class="price">₦250,000</div>
-      </div>
+  <div class="product-description" style="font-size:10px; text-align:justify; max-height:80px; overflow:hidden; transition:max-height 0.4s ease;">
+    <p>Is a robust, high speed device designed for heavy-duty, commercial use, built to handle a wide range of fabrics from lightweight silks to thick canvas and leather.</p>
+    <p><strong>KEY FEATURES:</strong> Very strong metal frame, significantly faster operation of over 5,000 stitches per minute and specialized components like a large throat space and dedicated lubrication systems to ensure durability and precise, consistent stitching for high-volume production. Capabilities construction and durability built for constant use in factories and workshops, with heavy-duty components like larger shafts, bearings, and gears.</p>
+    <p>Large workspace: Equipped with a larger "throat" area between the needle and the machine's body
+      to accommodate large fabric pieces and user friendly as well.</p>
+    <p><strong>ADVANCE FEATURES:</strong> Models built-in motors for reduced vibration, electronic control panels for adjusting settings.</p>
+  </div>
+
+  <button class="read-more-btn" style="background:#007bff; color:#fff; 
+  border:none; border-radius:4px; font-size:10px; padding:3px 6px; margin-top:5px; cursor:pointer;">
+  Read More</button>
+
+  <div class="price" style="font-size:11px; font-weight:bold; margin-top:5px;">₦400,000</div>
+</div>
+      <div class="product-card" data-name="TWO LION DIRECT DRIVE INDUSTRIAL STRAIGHT SEWING MACHINE (TL9900D)"
+  data-price="350000" data-img="./assets/two-lion-drive.jpg" onclick="openProductFromCard(this)"
+  style=" border:1px solid #ddd; border-radius:8px; width:325px; height: 400px;
+   margin:0 10px;
+  text-align:center; padding:5px; cursor:pointer; box-sizing:border-box; position:relative;">
+
+  <span class="wishlist-icon glyphicon glyphicon-heart" onclick="toggleWishlist(event, this)"></span>
+  <img src="./assets/two-lion-drive.jpg"
+    alt="TWO LION DIRECT DRIVE INDUSTRIAL STRAIGHT SEWING MACHINE (TL9900D)"
+    style="width:100%; height:auto; border-radius:5px;">
+
+  <h5 style="font-size:11px; margin-top:5px;">
+    TWO LION DIRECT DRIVE INDUSTRIAL STRAIGHT SEWING MACHINE (TL9900D)
+  </h5>
+
+  <!---<div class="product-description" style="font-size:10px; text-align:justify; max-height:80px; overflow:hidden; transition:max-height 0.4s ease;">
+    <p>Is a robust, high speed device designed for heavy-duty, commercial use, built to handle a wide range of fabrics from lightweight silks to thick canvas and leather.</p>
+    <p><strong>KEY FEATURES:</strong> Very strong metal frame, significantly faster operation of over 5,000 stitches per minute and specialized components like a large throat space and dedicated lubrication systems to ensure durability and precise, consistent stitching for high-volume production. Capabilities construction and durability built for constant use in factories and workshops, with heavy-duty components like larger shafts, bearings, and gears.</p>
+    <p>Large workspace: Equipped with a larger "throat" area between the needle and the machine's body
+      to accommodate large fabric pieces and user friendly as well.</p>
+    <p><strong>ADVANCE FEATURES:</strong> Models built-in motors for reduced vibration, electronic control panels for adjusting settings.</p>
+  </div>-->
+<div class="product-description" style="
+  font-size:10px;
+  text-align:justify;
+  max-height:80px;
+  overflow-y:scroll;
+  overflow-x:hidden;
+  direction:rtl;
+  text-align:left;
+  scrollbar-width:thin;
+  scrollbar-color:#ccc #f9f9f9;
+  padding-right:5px;">
+  <div style="direction:ltr;">
+    <p>Is a robust, high speed device designed for heavy-duty, commercial use, built to handle a wide range of fabrics from lightweight silks to thick canvas and leather.</p>
+    <p><strong>KEY FEATURES:</strong> Very strong metal frame, significantly faster operation of over 5,000 stitches per minute and specialized components like a large throat space and dedicated lubrication systems to ensure durability and precise, consistent stitching for high-volume production. Capabilities construction and durability built for constant use in factories and workshops, with heavy-duty components like larger shafts, bearings, and gears.</p>
+    <p>Large workspace: Equipped with a larger "throat" area between the needle and the machine's body
+      to accommodate large fabric pieces and user friendly as well.</p>
+    <p><strong>ADVANCE FEATURES:</strong> Models built-in motors for reduced vibration, electronic control panels for adjusting settings.</p>
+  </div>
+</div>
+
+  <button class="read-more-btn" style="background:#007bff; color:#fff; 
+  border:none; border-radius:4px; font-size:10px; padding:3px 6px; margin-top:5px; cursor:pointer;">
+  Read More</button>
+
+  <div class="price" style="font-size:11px; font-weight:bold; margin-top:5px;">₦400,000</div>
+</div>
+<!----product 2-->
+
+   
+
+    
+
+     
+
+    
+
+     
 
     </div>
     <button id="nextBtn" class="nav-btn">&#10095;</button>
@@ -136,6 +200,24 @@ h2 { text-align:center; margin-bottom:20px; font-weight:bold; }
 <!-- your entire script section stays exactly the same -->
 <script>
 /* --- slider + product modal + cart/wishlist logic (unchanged) --- */
+</script>
+<!----------For Read More-->
+
+<script>
+  // Read More toggle function
+  document.querySelectorAll('.read-more-btn').forEach(btn => {
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation(); // Prevent triggering openProductFromCard
+      const desc = this.previousElementSibling;
+      if (desc.style.maxHeight === 'none') {
+        desc.style.maxHeight = '80px';
+        this.textContent = 'Read More';
+      } else {
+        desc.style.maxHeight = 'none';
+        this.textContent = 'Read Less';
+      }
+    });
+  });
 </script>
 <script>
 /* --- slider (same approach you had) --- */

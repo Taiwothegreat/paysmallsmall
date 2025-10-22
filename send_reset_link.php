@@ -21,14 +21,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt2->execute();
 
     // Send email (HTML)
-    $reset_link = "https://yourdomain.com/reset_password.php?token=" . $token;
+    $reset_link = "https://paysmallsmall.com/reset_password.php?token=" . $token;
     $subject = "Password Reset - Paysmallsmall";
     $message = "
     <html>
     <body style='font-family:Arial,sans-serif;'>
       <div style='max-width:500px;margin:auto;border:1px solid #eee;padding:20px;border-radius:6px;'>
         <div style='text-align:center;'>
-          <img src='https://yourdomain.com/logo.png' alt='Paysmallsmall' style='width:120px;margin-bottom:10px;'>
+          <img src='https://paysmallsmall.com/logo.png' alt='Paysmallsmall' style='width:120px;margin-bottom:10px;'>
         </div>
         <h3 style='color:#007bff;'>Password Reset Request</h3>
         <p>Hello,</p>
