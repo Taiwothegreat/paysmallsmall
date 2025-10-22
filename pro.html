@@ -1,0 +1,44 @@
+<!-- Product 1 -->
+<div class="product-card" data-name="TWO LION DIRECT DRIVE INDUSTRIAL STRAIGHT SEWING MACHINE (TL9900D)"
+  data-price="350000" data-img="./assets/two-lion-drive.jpg" onclick="openProductFromCard(this)"
+  style="background:#fff; border:1px solid #ddd; border-radius:8px; width:125px; flex:none; margin:0 10px;
+  text-align:center; padding:5px; cursor:pointer; box-sizing:border-box; position:relative;">
+
+  <span class="wishlist-icon glyphicon glyphicon-heart" onclick="toggleWishlist(event, this)"></span>
+  <img src="./assets/two-lion-drive.jpg"
+    alt="TWO LION DIRECT DRIVE INDUSTRIAL STRAIGHT SEWING MACHINE (TL9900D)"
+    style="width:100%; height:auto; border-radius:5px;">
+
+  <h5 style="font-size:11px; margin-top:5px;">
+    TWO LION DIRECT DRIVE INDUSTRIAL STRAIGHT SEWING MACHINE (TL9900D)
+  </h5>
+
+  <div class="product-description" style="font-size:10px; text-align:justify; max-height:80px; overflow:hidden; transition:max-height 0.4s ease;">
+    <p>Is a robust, high speed device designed for heavy-duty, commercial use, built to handle a wide range of fabrics from lightweight silks to thick canvas and leather.</p>
+    <p><strong>KEY FEATURES:</strong> Very strong metal frame, significantly faster operation of over 5,000 stitches per minute and specialized components like a large throat space and dedicated lubrication systems to ensure durability and precise, consistent stitching for high-volume production. Capabilities construction and durability built for constant use in factories and workshops, with heavy-duty components like larger shafts, bearings, and gears.</p>
+    <p>Large workspace: Equipped with a larger "throat" area between the needle and the machine's body
+      to accommodate large fabric pieces and user friendly as well.</p>
+    <p><strong>ADVANCE FEATURES:</strong> Models built-in motors for reduced vibration, electronic control panels for adjusting settings.</p>
+  </div>
+
+  <button class="read-more-btn" style="background:#007bff; color:#fff; border:none; border-radius:4px; font-size:10px; padding:3px 6px; margin-top:5px; cursor:pointer;">Read More</button>
+
+  <div class="price" style="font-size:11px; font-weight:bold; margin-top:5px;">₦400,000</div>
+</div>
+
+<script>
+  // Read More toggle function
+  document.querySelectorAll('.read-more-btn').forEach(btn => {
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation(); // Prevent triggering openProductFromCard
+      const desc = this.previousElementSibling;
+      if (desc.style.maxHeight === 'none') {
+        desc.style.maxHeight = '80px';
+        this.textContent = 'Read More';
+      } else {
+        desc.style.maxHeight = 'none';
+        this.textContent = 'Read Less';
+      }
+    });
+  });
+</script>
