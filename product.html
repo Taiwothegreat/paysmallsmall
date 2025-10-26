@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Paysmallsmall Installment Store</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<!-- Font Awesome 4.7.0 CDN (Bootstrap 3 compatible) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <style>
 body { background: #f9f9f9; font-family: 'Arial', sans-serif; }
 .navbar { background:#2b6; border:none; border-radius:0; }
@@ -12,9 +15,7 @@ body { background: #f9f9f9; font-family: 'Arial', sans-serif; }
 .container { margin-top: 20px; position: relative; overflow: hidden; }
 h2 { text-align:center; margin-bottom:20px; font-weight:bold; }
 .slider { display:flex; will-change:transform; }
-.product-card { background:#fff; border:1px solid #ddd; border-radius:8px; width:250px; 
-  flex:none; margin:0 10px; text-align:center; padding:10px; cursor:pointer; 
-  box-sizing:border-box; position:relative; }
+.product-card { background:#fff; border:1px solid #ddd; border-radius:8px; width:250px; flex:none; margin:0 10px; text-align:center; padding:10px; cursor:pointer; box-sizing:border-box; position:relative; }
 .product-card img { width:100%; height:200px; object-fit:cover; border-radius:6px; }
 .product-card h4 { font-size:16px; margin-top:10px; }
 .product-card p { color:#555; font-size:13px; min-height:40px; }
@@ -31,144 +32,504 @@ h2 { text-align:center; margin-bottom:20px; font-weight:bold; }
 .calendar-number { display:inline-block; width:44px; height:44px; line-height:44px; margin:6px; background:#f0f0f0; border-radius:6px; cursor:pointer; font-weight:bold; user-select:none; }
 .calendar-number:hover { background:#2b6; color:white; }
 .btn-block + .btn-block { margin-top:8px; }
-.product-links { text-align:center; margin-bottom:25px; }
-.product-links a { display:inline-block; margin:0 10px; color:#2b6; font-weight:bold; text-decoration:none; }
-.product-links a:hover { text-decoration:underline; }
+#modalDescription {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #333;
+  background: #fafafa;
+  padding: 12px 14px;
+  border-left: 4px solid #90ee90;
+  border-radius: 6px;
+  text-align: left;
+  max-height: 350px;
+  overflow-y: auto;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+#modalDescription strong {
+  color: #2e8b57; /* soft lemon-green tone */
+  display: block;
+  margin-top: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
 
 </style>
 </head>
 <body>
 
 <!-- NAVBAR -->
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="product.html">Paysmallsmall</a>
-    </div>
-    <ul class="nav navbar-nav navbar-right">
-      <li><a href="logout.php">Logout</a></li>
-    </ul>
-  </div>
-</nav>
+
 
 <div class="container">
   <h2>Paysmallsmall Products</h2>
-
-  <!-- MOVED LINKS UNDER PRODUCT TITLE -->
-  <div class="product-links">
-    <a href="product.html">Shop</a>
-    <a href="cart.php">Cart</a>
-    <a href="wishlist.php">Wishlist</a>
-    <a href="history.php">History</a>
-    <a href="account.php">Account</a>
-  </div>
-<!---Product One-->
   <div class="slider-container" style="position:relative;">
     <button id="prevBtn" class="nav-btn">&#10094;</button>
     <div class="slider" id="productSlider">
-       <div class="product-card" data-name="TWO LION DIRECT DRIVE INDUSTRIAL STRAIGHT SEWING MACHINE (TL9900D)"
-  data-price="350000" data-img="./assets/two-lion-drive.jpg" onclick="openProductFromCard(this)"
-  style=" border:1px solid #ddd; border-radius:8px; width:325px; height: 400px;
-   margin:0 10px;
-  text-align:center; padding:5px; cursor:pointer; box-sizing:border-box; position:relative;">
 
+     <!-- Product 1 -->
+<div class="product-card" 
+     data-name="TWO LION DIRECT DRIVE INDUSTRIAL STRAIGHT SEWING MACHINE " 
+     data-price="350000" 
+     data-img="./assets/two-lion-drive.jpg" 
+     data-desc="MODEL: TL9900D 
+     Is a robust, high speed device designed for heavy-duty, commercial use, built to handle 
+     a wide range of fabrics from lightweight silks to thick canvas and leather.  KEY FEATURES Very strong metal frame, significantly faster operation of over 5,000 stitches per minute and specialized components like a large throat space and dedicated lubrication systems to ensure durability and precise, consistent stitching for high-volume production. Capabilities construction and durability built for constant use in factories and workshops, with heavy-duty components like larger shafts, bearings, and gears.
+
+Large workspace: Equipped with a larger throat area between
+ the needle and the machine body to accommodate large fabric pieces
+  and user friendly as well
+
+ ADVANCE FEATURES :
+A models built-in motors for reduced vibration, electronic control panels for adjusting settings" 
+
+     onclick="openProductFromCard(this)">
   <span class="wishlist-icon glyphicon glyphicon-heart" onclick="toggleWishlist(event, this)"></span>
-  <img src="./assets/two-lion-drive.jpg"
-    alt="TWO LION DIRECT DRIVE INDUSTRIAL STRAIGHT SEWING MACHINE (TL9900D)"
-    style="width:100%; height:auto; border-radius:5px;">
-
-  <h5 style="font-size:11px; margin-top:5px;">
-    TWO LION DIRECT DRIVE INDUSTRIAL STRAIGHT SEWING MACHINE (TL9900D)
-  </h5>
-
-  <div class="product-description" style="font-size:10px; text-align:justify; max-height:80px; overflow:hidden; transition:max-height 0.4s ease;">
-    <p>Is a robust, high speed device designed for heavy-duty, commercial use, built to handle a wide range of fabrics from lightweight silks to thick canvas and leather.</p>
-    <p><strong>KEY FEATURES:</strong> Very strong metal frame, significantly faster operation of over 5,000 stitches per minute and specialized components like a large throat space and dedicated lubrication systems to ensure durability and precise, consistent stitching for high-volume production. Capabilities construction and durability built for constant use in factories and workshops, with heavy-duty components like larger shafts, bearings, and gears.</p>
-    <p>Large workspace: Equipped with a larger "throat" area between the needle and the machine's body
-      to accommodate large fabric pieces and user friendly as well.</p>
-    <p><strong>ADVANCE FEATURES:</strong> Models built-in motors for reduced vibration, electronic control panels for adjusting settings.</p>
-  </div>
-
-  <button class="read-more-btn" style="background:#007bff; color:#fff; 
-  border:none; border-radius:4px; font-size:10px; padding:3px 6px; margin-top:5px; cursor:pointer;">
-  Read More</button>
-
-  <div class="price" style="font-size:11px; font-weight:bold; margin-top:5px;">₦400,000</div>
+  <img src="./assets/two-lion-drive.jpg" alt="two lion industrial">
+  <h4>TWO LION DIRECT DRIVE INDUSTRIAL STRAIGHT SEWING MACHINE (TL9900D)</h4>
+  <div class="price">₦400,000</div>
 </div>
-      <div class="product-card" data-name="TWO LION DIRECT DRIVE INDUSTRIAL STRAIGHT SEWING MACHINE (TL9900D)"
-  data-price="350000" data-img="./assets/two-lion-drive.jpg" onclick="openProductFromCard(this)"
-  style=" border:1px solid #ddd; border-radius:8px; width:325px; height: 400px;
-   margin:0 10px;
-  text-align:center; padding:5px; cursor:pointer; box-sizing:border-box; position:relative;">
 
+<!-- Product 2 -->
+<div class="product-card" 
+     data-name=" TWO LION DOMESTIC SEWING MACHINE
+" 
+     data-price="190000" 
+     data-img="./assets/two-lion-domestic.jpg"
+     data-desc="
+MODELS: JA2-1
+Is a compact, versatile machine designed for home use for personal sewing projects, crafts, and mending. This machine offer a variety of stitches, user-friendly with features suitable for light to medium-duty fabrics like cotton and linen.
+
+PURPOSE: Built for personal use at home, such as making clothes, home decor, and crafts.
+
+Ease of use: designed with user-friendly suitable for light to medium-duty tasks to sew common fabrics like cotton, linen, and knits etc "
+     onclick="openProductFromCard(this)">
   <span class="wishlist-icon glyphicon glyphicon-heart" onclick="toggleWishlist(event, this)"></span>
-  <img src="./assets/two-lion-drive.jpg"
-    alt="TWO LION DIRECT DRIVE INDUSTRIAL STRAIGHT SEWING MACHINE (TL9900D)"
-    style="width:100%; height:auto; border-radius:5px;">
-
-  <h5 style="font-size:11px; margin-top:5px;">
-    TWO LION DIRECT DRIVE INDUSTRIAL STRAIGHT SEWING MACHINE (TL9900D)
-  </h5>
-
-  <!---<div class="product-description" style="font-size:10px; text-align:justify; max-height:80px; overflow:hidden; transition:max-height 0.4s ease;">
-    <p>Is a robust, high speed device designed for heavy-duty, commercial use, built to handle a wide range of fabrics from lightweight silks to thick canvas and leather.</p>
-    <p><strong>KEY FEATURES:</strong> Very strong metal frame, significantly faster operation of over 5,000 stitches per minute and specialized components like a large throat space and dedicated lubrication systems to ensure durability and precise, consistent stitching for high-volume production. Capabilities construction and durability built for constant use in factories and workshops, with heavy-duty components like larger shafts, bearings, and gears.</p>
-    <p>Large workspace: Equipped with a larger "throat" area between the needle and the machine's body
-      to accommodate large fabric pieces and user friendly as well.</p>
-    <p><strong>ADVANCE FEATURES:</strong> Models built-in motors for reduced vibration, electronic control panels for adjusting settings.</p>
-  </div>-->
-<div class="product-description" style="
-  font-size:10px;
-  text-align:justify;
-  max-height:80px;
-  overflow-y:scroll;
-  overflow-x:hidden;
-  direction:rtl;
-  text-align:left;
-  scrollbar-width:thin;
-  scrollbar-color:#ccc #f9f9f9;
-  padding-right:5px;">
-  <div style="direction:ltr;">
-    <p>Is a robust, high speed device designed for heavy-duty, commercial use, built to handle a wide range of fabrics from lightweight silks to thick canvas and leather.</p>
-    <p><strong>KEY FEATURES:</strong> Very strong metal frame, significantly faster operation of over 5,000 stitches per minute and specialized components like a large throat space and dedicated lubrication systems to ensure durability and precise, consistent stitching for high-volume production. Capabilities construction and durability built for constant use in factories and workshops, with heavy-duty components like larger shafts, bearings, and gears.</p>
-    <p>Large workspace: Equipped with a larger "throat" area between the needle and the machine's body
-      to accommodate large fabric pieces and user friendly as well.</p>
-    <p><strong>ADVANCE FEATURES:</strong> Models built-in motors for reduced vibration, electronic control panels for adjusting settings.</p>
-  </div>
+  <img src="./assets/two-lion-domestic.jpg" alt=" two lion domestic">
+  <h4>TWO LION DOMESTIC SEWING MACHINE
+ </h4>
+  <div class="price">₦190,000</div>
 </div>
 
-  <button class="read-more-btn" style="background:#007bff; color:#fff; 
-  border:none; border-radius:4px; font-size:10px; padding:3px 6px; margin-top:5px; cursor:pointer;">
-  Read More</button>
+<!-- Product 3 -->
+<div class="product-card" 
+     data-name="TWO LION DOMESTIC OVERLOCK MACHINE
+ " 
+     data-price="170000" 
+     data-img="./assets/two-lion-overlock.jpg" 
+     data-desc="MODEL: TL113D
+DISCRIPTION: Is a specialized sewing machine that trims the fabric's edge, stitches seams, and finishes the raw edge simultaneously to prevent fraying. It creates a durable, professional-looking finish that is common on store-bought clothing, and it sews at speeds of up to 1,700 stitches per minute. 
+This machines can use multiple threads (e.g., one,two, three) to create different types of stitches for various fabrics and projects. 
 
-  <div class="price" style="font-size:11px; font-weight:bold; margin-top:5px;">₦400,000</div>
+KEY FUNCTIONS
+Trims excess fabric: As it sews, it trims the excess fabric off the edge with a built-in blade.
+Stitches seams: It creates a strong seam by encasing the raw edge with thread.
+Finishes edges: It produces a neat, professional-looking finish that prevents fabric from fraying or unraveling. 
+VERSATILITY: They can be used for a wide range of projects, from basic garments like T-shirts to home decor like placemats and draperies.
+Multiple functions: They perform trimming, stitching, and finishing in a single pass, which saves time and provides a professional finish. "
+     onclick="openProductFromCard(this)">
+  <span class="wishlist-icon glyphicon glyphicon-heart" onclick="toggleWishlist(event, this)"></span>
+  <img src="./assets/two-lion-overlock.jpg" alt="Washer">
+  <h4> TWO LION DOMESTIC OVERLOCK MACHINE</h4>
+  <div class="price">₦170,000</div>
 </div>
-<!----product 2-->
+<!-- Product 4 -->
+<div class="product-card" 
+     data-name="TWO LION INDUSTRIAL SEWING MACHINE
 
-   
+ " 
+     data-price="390000" 
+     data-img="./assets/two-lion-industrial.jpg" 
+     data-desc="MODEL: TL8500
+DISCRIPTION: Is a heavy-duty, high-speed machine designed for commercial production, featuring a robust build and specialized function for tasks like stitching garments, leather, and canvas. Key characteristics include their high performance, durability, ability to handle thick materials, and typically specialized function, such as only performing a straight stitch These machines are built for continuous use in factories and workshops and are significantly more powerful than domestic models.
+It as a stronger metal frame and larger components like shafts, bearings, and gears to withstand constant, demanding use.
+High speed: It operate at much higher speeds, often exceeding 5,000 stitches per minute, which increases productivity.
+Handles heavy materials: They are engineered to sew a wide range of fabrics, from lightweight materials to heavy-duty ones like leather, canvas, and denim.
+Precision and consistency: Two lion Industrial machines are built for precise and consistent stitching, with features like automatic thread tension adjustment and backtacking to ensure high-quality results. 
+Common features
+TABLE MOUNTING: To be sold as a complete unit, mounted on a table with the motor underneath.
+FOOT PEDAL: A foot pedal controls the machine, and there is a lever to lift the sewing foot for thick materials.
+Accessories: They include a stand for thread, drawers for accessories like needles and bobbins, and various guides.
+MAINTENANCE: It require frequent oiling, and users must follow specific instructions to avoid damage. "
+     onclick="openProductFromCard(this)">
+  <span class="wishlist-icon glyphicon glyphicon-heart" onclick="toggleWishlist(event, this)"></span>
+  <img src="./assets/two-lion-industrial.jpg" alt="Washer">
+  <h4> TWO LION INDUSTRIAL SEWING  MACHINE</h4>
+  <div class="price">₦390,000</div>
+</div>
+<!-- Product 5 -->
+<div class="product-card" 
+     data-name="THREE THREAD INDUSTRIAL OVERLOCKING MACHINE
+ " 
+     data-price="450000 " 
+     data-img="./assets/three-thread.jpg" 
+     data-desc="MODEL:TL737
+DISCRIPTION: Is a high-speed, heavy-duty sewing machine used in commercial garment production for finishing fabric edges to prevent fraying. It simultaneously trims excess fabric and encases the raw edge with a durable, overlocking stitch using multiple threads. These machines are designed for continuous use, featuring rugged construction, automatic lubrication, and powerful motors.
+KEY FEATURES
+High-speed operation capable of running thousands of stitches per minute to increase productivity, significantly faster than a conventional sewing machine.
+SIMULTANEOUS FUNCTIONS: Cuts, sews, and finishes the edge of the fabric in a single pass.
+DURABLE SEAMS: Creates strong, flexible seams suitable for various fabrics, from delicate knits to heavy denim and leather.
+FABRIC EDGE FINISHING: Trims the excess fabric as it sews, creating a clean, professional finish that prevents fraying.
+AUTOMATIC LUBRICATIONS: an automatic lubrication system to ensure smooth and efficient operation during long periods of use.
+RUGGED CONSTRUCTION: Built with heavy-duty materials and a stable base to handle the demands of continuous industrial use for inner weaving system. "
+     onclick="openProductFromCard(this)">
+  <span class="wishlist-icon glyphicon glyphicon-heart" onclick="toggleWishlist(event, this)"></span>
+  <img src="./assets/three-thread.jpg" alt="Washer">
+  <h4> THREE THREAD INDUSTRIAL OVERLOCKING MACHINE</h4>
+  <div class="price">₦450,000</div>
+</div>
+<!-- Product 6 -->
+<div class="product-card" 
+     data-name="FOUR THREAD INDUSTRIAL OVERLOCKER MACHINE
 
-    
+ " 
+     data-price="470000 " 
+     data-img="./assets/four-thread.jpg" 
+     data-desc="
+     MODEL: TL747
+Is a multi-thread sewing machine designed for high-volume garment production, capable of trimming, sewing, and finishing fabric edges in a single pass.
+Key features include automatic lubrication, high-speed operation of up to 7500 stitches per minute and compatibility with  4 thread counts for various fabric types, from light knits to heavy denim. 
+This machine is sold as a complete set with the head, motor (clutch or servo motor), and table "
+     onclick="openProductFromCard(this)">
+  <span class="wishlist-icon glyphicon glyphicon-heart" onclick="toggleWishlist(event, this)"></span>
+  <img src="./assets/four-thread.jpg" alt="four thread">
+  <h4>FOUR THREAD INDUSTRIAL OVERLOCKER MACHINE
+</h4>
+  <div class="price">₦470,000</div>
+</div>
+<!-- Product 7 -->
+<div class="product-card" 
+     data-name="FIVE THREAD OVERLOCKER MACHINE
 
-     
+ " 
+     data-price="500000 " 
+     data-img="./assets/five-thread.jpg" 
+     data-desc="
+     MODEL: TL757
+DISCRIPTION:
+A five-thread overlock machine combines a straight chain stitch with an overlock stitch to create a strong, durable safety seam in a single step, making it ideal for high-stress areas like jeans and sportswear. It sews and trims the fabric edge simultaneously, providing a neat, professional finish. This function is especially useful for mass production and sewing non-flexible materials where seam strength is critical.
+KEY FUNCTIONS AND BENEFITS
+COMBINES SEAM AND EDGE FINISH: It sews a straight chain stitch with a five-thread overlock stitch at the same time, giving you both a seam to join pieces and a finished edge to prevent fraying.
+HIGH STRENGTH AND DURABILITY: The combination of the chain stitch and overlock stitch creates a robust safety stitch that is stronger than a 3- or 4-thread overlock, making it ideal for garments that need to withstand strain.
+INDUSTRY STANDARD FOR CONSTRUCTION: It is the industry standard for finishing seams on items like workwear, jeans, and sportswear, which require strong and durable seams.
+Increases production speed: By performing the sewing, trimming, and finishing in one pass, it significantly speeds up the production process and saves time in a factory setting.
+PRODUCES A POLISHED FINISH: The overlock stitch protects the fabric edge, resulting in a clean and professional-looking finish on both sides of the fabric, even with stretch fabrics. 
+Mass production of apparel due to its speed and efficiency.
+Sewing and finishing non-flexible materials like woven fabrics.
+     "
+     onclick="openProductFromCard(this)">
+  <span class="wishlist-icon glyphicon glyphicon-heart" onclick="toggleWishlist(event, this)"></span>
+  <img src="./assets/five-thread.jpg" alt="five thread">
+  <h4>FIVE THREAD OVERLOCKER MACHINE
+</h4>
+  <div class="price">₦500,000</div>
+</div>
 
-    
+<!-- Product 8 -->
+<div class="product-card" 
+     data-name="BUTTERFLY DOMESTIC SEWING MACHINE
 
-     
 
+ " 
+     data-price="230000 " 
+     data-img="./assets/butterfly-domestic.jpg" 
+     data-desc="
+     MODEL: JA2-1
+DESCRIPTION:This is a household sewing machine designed for safe, intuitive use by every user. Even beginners get a feel for the machine and a grasp of the operating techniques after only a short period of operation.
+butterfly's household sewing machines enable the sewing of general items such as blouses, bags and small articles with just one machine.
+Butterfly ensure easy operability for novice users.It enhanced force for the fabric-feed and needle-penetration into fabrics to ensure smooth sewing.
+   "
+     onclick="openProductFromCard(this)">
+  <span class="wishlist-icon glyphicon glyphicon-heart" onclick="toggleWishlist(event, this)"></span>
+  <img src="./assets/butterfly-domestic.jpg" alt="butterfly">
+  <h4>BUTTERFLY DOMESTIC SEWING MACHINE
+
+</h4>
+  <div class="price">₦230,000</div>
+</div>
+<!-- Product 8 -->
+<div class="product-card" 
+     data-name="MANUAL EYELET MACHINE
+
+ " 
+     data-price="50000 " 
+     data-img="./assets/manual-eyelet.jpg" 
+     data-desc="
+     MODEL: PRESS MACHINE
+DESCRIPTION:
+Is a hand-operated tool that uses user-applied force, typically via a lever or hand-press, to install eyelets (or grommets) into materials like fabric, vinyl banners, and synthetic paper.
+Ideal for low-volume production and hobbyists due to their simplicity, low cost, and portability.
+They are designed for ease of use, often featuring ergonomic grips and requiring no pre-punching on many materials as they can perforate and set the eyelet in one action.
+    "
+     onclick="openProductFromCard(this)">
+  <span class="wishlist-icon glyphicon glyphicon-heart" onclick="toggleWishlist(event, this)"></span>
+  <img src="./assets/manual-eyelet.jpg" alt="manual eyelet">
+  <h4>MANUAL EYELET MACHINE
+</h4>
+  <div class="price">₦50,000</div>
+</div>
+<!-- Product 9 -->
+<div class="product-card" 
+     data-name="
+BAG CLOSER MACHINE 
+
+ " 
+     data-price="170000 " 
+     data-img="./assets/bag-closer.jpg" 
+     data-desc="
+    MODEL: GK26-1A
+DESCRIPTION
+This is a  bag closer machine used to sew or seal filled bags, often used in industrial and agricultural packaging for items like grain, fertilizer, and chemicals. These machine is portable, are designed for high-speed, 
+durable sealing, and can sew a variety of materials, including paper, jute, cotton, and plastic.
+    "
+     onclick="openProductFromCard(this)">
+  <span class="wishlist-icon glyphicon glyphicon-heart" onclick="toggleWishlist(event, this)"></span>
+  <img src="./assets/bag-closer.jpg" alt="bag closer">
+  <h4>BAG CLOSER MACHINE 
+
+</h4>
+  <div class="price">₦170,000</div>
+</div>
+<!-- Product 10 -->
+<div class="product-card" 
+     data-name="
+HEAT TRANSFER/PRESS MACHINE
+ " 
+     data-price="350000 " 
+     data-img="./assets/heat-transfer-press.jpg" 
+     data-desc="
+  MODEL TL 38cm by 38cm
+DESCRIPTION
+This heat press is a handy machine designed to help you apply various designs onto different substrates. Between heat and pressure, these machines can help you successfully transfer your favorite designs onto everything from T-shirts to keychains. This guide explores the details surrounding these machines to help you decide if they suit your creation needs.
+Heat presses are machines designed to transfer designs onto various materials using heat. They feature a few key components: the upper platen, lower platen, pressure adjustment knobs, and time and temperature controls. Generally, the upper platen, or the upper plate, is responsible for generating heat. The lower platen typically doesn’t heat up unless you purchase specific models or additional accessories, so it serves as the working platform where you place the material. 
+You’ll find a pressure adjustment knob on top of the upper platen on manual presses. This knob controls the pressure and helps ensure a smooth, accurate transfer.
+    "
+     onclick="openProductFromCard(this)">
+  <span class="wishlist-icon glyphicon glyphicon-heart" onclick="toggleWishlist(event, this)"></span>
+  <img src="./assets/heat-transfer-press.jpg" alt="heat transfer">
+  <h4>HEAT TRANSFER/PRESS MACHINE
+</h4>
+  <div class="price">₦350,000</div>
+</div>
+<!-- Product 10 -->
+<div class="product-card" 
+     data-name="
+TWO LION ELECTRIC INDUSTRIAL STEAM IRON
+
+ " 
+     data-price="95000 " 
+     data-img="./assets/two-lion-electric-iron.jpg" 
+     data-desc="
+  MODEL: TL300L
+DESCRIPTION
+This steam iron is an electric appliance that uses steam to remove wrinkles from clothes by heating water in an internal reservoir and releasing it through small holes in the hot metal soleplate. This steam penetrates fabric fibers, making them easier to smooth out. It's an updated 
+version of a traditional dry iron that provides a quicker and more convenient ironing process.
+    "
+     onclick="openProductFromCard(this)">
+  <span class="wishlist-icon glyphicon glyphicon-heart" onclick="toggleWishlist(event, this)"></span>
+  <img src="./assets/two-lion-electric-iron.jpg" alt="two lion electric iron">
+  <h4>TWO LION ELECTRIC INDUSTRIAL STEAM IRON
+
+</h4>
+  <div class="price">₦95,000</div>
+</div>
+<!-- Product 11 -->
+<div class="product-card" 
+     data-name="
+EMEL PROTEX SEWING MACHINE
+ " 
+     data-price="600000 " 
+     data-img="./assets/emel-protex.jpg" 
+     data-desc="
+MODEL: TY3300
+
+DESCRIPTION
+Designed for heavy-duty, continuous use in professional tailoring and garment factories. The name (Protect) refers to its ability to provide a strong, finished edge that protects fabric from fraying.
+
+Is an industrial walking foot sewing machine with compound feeding mechanism that makes it very rugged for working on heavy projects like leather, canvas, tarpaulin and many more.
+    "
+     onclick="openProductFromCard(this)">
+  <span class="wishlist-icon glyphicon glyphicon-heart" onclick="toggleWishlist(event, this)"></span>
+  <img src="./assets/emel-protex.jpg" alt="emel protex">
+  <h4>EMEL PROTEX SEWING MACHINE
+</h4>
+  <div class="price">₦600,000</div>
+</div>
+<!-- Product 12-->
+<div class="product-card" 
+     data-name="
+INDUSTRIAL SHIRT BUTTONHOLE MACHINE
+
+ " 
+     data-price="2000000 " 
+     data-img="./assets/industrial-shirt-button.jpg" 
+     data-desc="
+MODEL: TL781
+
+DESCRIPTION
+Industrial Shirt Buttonhole machine is suitable for all light and medium-weight materials. It comes 
+with easy functionality, an  automatic hole piecer and can make more than 2 button hole sizes.
+    "
+     onclick="openProductFromCard(this)">
+  <span class="wishlist-icon glyphicon glyphicon-heart" onclick="toggleWishlist(event, this)"></span>
+  <img src="./assets/industrial-shirt-button.jpg" alt="industrial shirt buttonhole">
+  <h4>INDUSTRIAL SHIRT BUTTONHOLE MACHINE
+</h4>
+  <div class="price">₦2000,000</div>
+</div>
+<!-- Product 13-->
+<div class="product-card" 
+     data-name="
+INDUSTRIAL TAPPING MACHINE
+ " 
+     data-price="750000 " 
+     data-img="./assets/industrial-tapping-machine.jpg" 
+     data-desc="
+MODEL: TL500-2
+
+DESCRIPTION
+It operate on a 5 thread sysytem capable of producing two parallel sewing on the top surface of fabric and an interlocked on the reverse side.
+
+The machine can making decorative stitches on both surfaces of fabric. 
+It works with an automatic lubrication system to make underwears, sport wears, polos and many more
+    "
+     onclick="openProductFromCard(this)">
+  <span class="wishlist-icon glyphicon glyphicon-heart" onclick="toggleWishlist(event, this)"></span>
+  <img src="./assets/industrial-tapping-machine.jpg" alt="industrial shirt buttonhole">
+  <h4>INDUSTRIAL TAPPING MACHINE
+
+</h4>
+  <div class="price">₦750,000</div>
+</div>
+<!-- Product 13-->
+<div class="product-card" 
+     data-name="
+INDUSTRIAL STRIAGHT  SEWING MACHINE
+ " 
+     data-price="430000 " 
+     data-img="./assets/industrial-straight.jpg" 
+     data-desc="
+MODEL: HD8700
+
+DESCRIPTION 
+This is a reliable workhorses machine made to handle heavy-duty tasks and materials and other heavy fabrics, 
+multiple layers of fabric, and thick materials like leather or vinyl. It as a wide range of uses, including constructing durable garments such as hazmat suits, producing furniture covers, making sails, creating auto interiors and safety belts, and repairing luggage and other items made from leather, canvas, vinyl, or nylon.
+
+This machine as a large throat space between the needle and table so you can fit larger pieces under construction without having to move other items around to accommodate each piece as needed during construction.
+    "
+     onclick="openProductFromCard(this)">
+  <span class="wishlist-icon glyphicon glyphicon-heart" onclick="toggleWishlist(event, this)"></span>
+  <img src="./assets/industrial-straight.jpg" alt="industrial straight">
+  <h4>INDUSTRIAL STRIAGHT  SEWING MACHINE
+
+</h4>
+  <div class="price">₦430,000</div>
+</div>
+<!-- Product 13-->
+<div class="product-card" 
+     data-name="
+TWO LION BUTTON TACKING MACHINE
+
+ " 
+     data-price="430000 " 
+     data-img="./assets/two-lion-button-tacking" 
+     data-desc="
+MODEL: TL373
+PRODUCT TAG: PSS000101
+DESCRIPTION
+The two lion button tacking machine is a specialized sewing machine used in garment manufacturing to securely and efficiently attach buttons to fabric using a series of parallel stitches. This machine can handle various button types, such as two-holes to  four-holes and shank buttons as well, and are used for a wide range of products from shirts and jeans to automobile components. It features an  automated functions like button feeding, thread clipping, and high-speed operation to increase productivity.
+
+ OTHER APPLICATIONS ARE AS FOLLOW;
+1. GARMENT INDUSTRY: Used to attach buttons on a large scale for shirts, jeans, underwear, and other apparel.
+2. AUTOMOTIVE AND  OTHER INDUSTRIES: Can also be used for stitching accessories like leather belts and components in automobile interiors. 
+
+ PRODUCT COMPONENTS ARE AS FOLLOWS;
+1. Head-In a box of its own (except otherwise packed)
+2. Table/stand-In a box of it own (except otherwise packed or machine comes in complete form of single item)
+3. Running motor- Either as Direct drive or with Cluth motor/Servo motor/Injuction motor(except otherwise packed or machine comes in complete form of single item).
+    "
+     onclick="openProductFromCard(this)">
+  <span class="wishlist-icon glyphicon glyphicon-heart" onclick="toggleWishlist(event, this)"></span>
+  <img src="./assets/two-lion-button-tacking.jpg" alt="two lion button tacking machine">
+  <h4>TWO LION BUTTON TACKING MACHINE
+
+
+</h4>
+  <div class="price">₦430,000</div>
+</div>
     </div>
     <button id="nextBtn" class="nav-btn">&#10095;</button>
   </div>
 </div>
+<!-- Menu Section Below Carousel -->
+<div class="container text-center" style="margin-top:20px;">
+  <div class="row">
 
-<!-- PRODUCT MODAL (unchanged) -->
+    <div class="col-sm-2 col-xs-4" style="margin-bottom:15px;">
+      <a href="product.html" style="text-decoration:none; color:#333;">
+        <i class="fa fa-shopping-bag fa-2x" style="color:#5cb85c;"></i>
+        <div style="margin-top:5px;">Shop</div>
+      </a>
+    </div>
+
+    <div class="col-sm-2 col-xs-4" style="margin-bottom:15px;">
+      <a href="cart.php" style="text-decoration:none; color:#333;">
+        <i class="fa fa-shopping-cart fa-2x" style="color:#f0ad4e;"></i>
+        <div style="margin-top:5px;">Cart</div>
+      </a>
+    </div>
+
+    <div class="col-sm-2 col-xs-4" style="margin-bottom:15px;">
+      <a href="wishlist.php" style="text-decoration:none; color:#333;">
+        <i class="fa fa-heart fa-2x" style="color:#d9534f;"></i>
+        <div style="margin-top:5px;">Wishlist</div>
+      </a>
+    </div>
+
+    <div class="col-sm-2 col-xs-4" style="margin-bottom:15px;">
+      <a href="history.php" style="text-decoration:none; color:#333;">
+        <i class="fa fa-history fa-2x" style="color:#5bc0de;"></i>
+        <div style="margin-top:5px;">History</div>
+      </a>
+    </div>
+
+    <div class="col-sm-2 col-xs-4" style="margin-bottom:15px;">
+      <a href="account.php" style="text-decoration:none; color:#333;">
+        <i class="fa fa-user fa-2x" style="color:#428bca;"></i>
+        <div style="margin-top:5px;">Account</div>
+      </a>
+    </div>
+
+    <div class="col-sm-2 col-xs-4" style="margin-bottom:15px;">
+      <a href="logout.php" style="text-decoration:none; color:#333;">
+        <i class="fa fa-sign-out fa-2x" style="color:#777;"></i>
+        <div style="margin-top:5px;">Logout</div>
+      </a>
+    </div>
+
+  </div>
+</div>
+
+<!-- PRODUCT MODAL -->
 <div id="productModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
       <button type="button" class="close" data-dismiss="modal">&times;</button>
-      <h3 id="modalTitle"></h3>
+    <!--  <h3 id="modalTitle"></h3>
       <img id="modalImage" src="" style="width:100%; border-radius:8px; margin-top:10px;">
       <p id="modalDescription" style="margin-top:15px;"></p>
-      <h4 id="modalPrice" style="color:#2b6;"></h4>
+      <h4 id="modalPrice" style="color:#2b6;"></h4>-->
+      <div class="row" style="margin-top:10px;">
+  <div class="col-sm-6">
+    <img id="modalImage" src="" style="width:100%; border-radius:8px;">
+  </div>
+  <div class="col-sm-6">
+    <h3 id="modalTitle" style="margin-top:0;"></h3>
+    <p id="modalDescription" style="margin-top:10px; font-size:14px; line-height:1.6;"></p>
+    <h4 id="modalPrice" style="color:#2b6; margin-top:10px; font-weight:bold;"></h4>
+  </div>
+</div>
+
 
       <h4>Choose Payment Option</h4>
       <div class="installment-option">
@@ -187,7 +548,7 @@ h2 { text-align:center; margin-bottom:20px; font-weight:bold; }
   </div>
 </div>
 
-<!-- PAYMENT SIMULATION SECTION -->
+<!-- SIMULATED PAYMENT PAGE REDIRECT TARGET (kept here for reference) -->
 <div id="paymentPage" class="payment-page" style="display:none;">
   <h2>Proceed to Payment</h2>
   <p>You selected <span id="selectedPlan"></span> installment for <strong id="selectedProduct"></strong>.</p>
@@ -197,28 +558,6 @@ h2 { text-align:center; margin-bottom:20px; font-weight:bold; }
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-<!-- your entire script section stays exactly the same -->
-<script>
-/* --- slider + product modal + cart/wishlist logic (unchanged) --- */
-</script>
-<!----------For Read More-->
-
-<script>
-  // Read More toggle function
-  document.querySelectorAll('.read-more-btn').forEach(btn => {
-    btn.addEventListener('click', function (e) {
-      e.stopPropagation(); // Prevent triggering openProductFromCard
-      const desc = this.previousElementSibling;
-      if (desc.style.maxHeight === 'none') {
-        desc.style.maxHeight = '80px';
-        this.textContent = 'Read More';
-      } else {
-        desc.style.maxHeight = 'none';
-        this.textContent = 'Read Less';
-      }
-    });
-  });
-</script>
 <script>
 /* --- slider (same approach you had) --- */
 let slider = document.getElementById('productSlider');
@@ -256,7 +595,6 @@ function step(timestamp){
   }
   rafId = requestAnimationFrame(step);
 }
-
 sliderContainer.addEventListener('mouseenter', ()=> paused=true);
 sliderContainer.addEventListener('mouseleave', ()=> paused=false);
 nextBtn.addEventListener('click', ()=> manualShift(1));
@@ -276,13 +614,13 @@ let resizeTimer; window.addEventListener('resize', ()=> { clearTimeout(resizeTim
 /* ---------- product modal + cart/wishlist logic ---------- */
 let selectedProduct='', selectedPrice=0, selectedPlan='', selectedDuration=0, selectedImg='';
 
-function openProductFromCard(el){
+/*function openProductFromCard(el){
   // read dataset
   selectedProduct = el.dataset.name;
   selectedPrice = Number(el.dataset.price);
   selectedImg = el.dataset.img;
   openProduct(selectedProduct, selectedPrice, el.querySelector('p').innerText, selectedImg);
-}
+}*/
 
 function openProduct(name, price, desc, img) {
   selectedProduct = name;
@@ -291,12 +629,26 @@ function openProduct(name, price, desc, img) {
   selectedDuration = 0;
   document.getElementById('modalTitle').textContent = name;
   document.getElementById('modalPrice').textContent = "₦" + price.toLocaleString();
-  document.getElementById('modalDescription').textContent = desc;
+/*  document.getElementById('modalDescription').textContent = desc;*/
+// Format description: add line breaks before uppercase sections
+const formattedDesc = desc
+  .replace(/\b([A-Z]{2,}(?:\s+[A-Z]{2,})*)\b/g, "<br><strong>$1</strong>")
+  .replace(/\n/g, "<br>"); // convert newlines to <br>
+
+document.getElementById('modalDescription').innerHTML = formattedDesc;
+
   document.getElementById('modalImage').src = img;
   document.getElementById('installmentResult').textContent = '';
   document.getElementById('installmentCalendar').innerHTML = '';
   document.getElementById('installmentCalendar').style.display = 'none';
   $('#productModal').modal('show');
+}
+function openProductFromCard(el) {
+  selectedProduct = el.dataset.name;
+  selectedPrice = Number(el.dataset.price);
+  selectedImg = el.dataset.img;
+  const desc = el.dataset.desc || ''; // read description from data attribute
+  openProduct(selectedProduct, selectedPrice, desc, selectedImg);
 }
 
 function selectPayment(type){

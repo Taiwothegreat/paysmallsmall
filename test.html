@@ -1,0 +1,138 @@
+<?php
+date_default_timezone_set('Africa/Lagos');
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paysmallsmall | Coming Soon</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background-color: rgb(255, 253, 208); /* cream background */
+      color: #333;
+    }
+
+    /* Navigation */
+    nav {
+      background-color: rgb(173, 255, 47); /* lemon green */
+      padding: 12px 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+      color: #333;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #333;
+      font-size: 16px;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #006400; /* darker green on hover */
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        background-color: rgb(173, 255, 47);
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        padding: 10px 0;
+      }
+      .nav-links a {
+        padding: 10px 0;
+      }
+      .menu-toggle {
+        display: block;
+        cursor: pointer;
+        font-size: 22px;
+        color: #333;
+      }
+    }
+
+    .menu-toggle {
+      display: none;
+    }
+
+    /* Page content */
+    .content {
+      text-align: center;
+      padding: 100px 20px;
+    }
+
+    .content h1 {
+      font-size: 48px;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .content p {
+      font-size: 18px;
+      color: #555;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #555;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#" class="logo">Paysmallsmall</a>
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    <div class="nav-links" id="navLinks">
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Services</a>
+      <a href="#">Contact</a>
+    </div>
+  </nav>
+
+  <div class="content">
+    <h1>Coming Soon</h1>
+    <p>We’re almost ready to launch something amazing. Stay tuned!</p>
+  </div>
+
+  <footer>© <?php echo date("Y"); ?> Paysmallsmall. All rights reserved.</footer>
+
+  <script>
+    function toggleMenu() {
+      const navLinks = document.getElementById("navLinks");
+      if (navLinks.style.display === "flex") {
+        navLinks.style.display = "none";
+      } else {
+        navLinks.style.display = "flex";
+      }
+    }
+  </script>
+
+</body>
+</html>
