@@ -64,6 +64,8 @@ $result = $stmt->get_result();
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Bootstrap 3 -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<!-- Font Awesome 4.7.0 CDN (Bootstrap 3 compatible) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
   <style>
     body {
@@ -182,7 +184,7 @@ $result = $stmt->get_result();
 
 <body>
   <!-- Navbar -->
-  <nav class="navbar navbar-inverse navbar-fixed-top">
+<!--  <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
       <div class="navbar-header">
         <a class="navbar-brand" href="#" style="font-weight:bold; color:#0b63b8;">
@@ -210,7 +212,7 @@ $result = $stmt->get_result();
       <u>Toll free call:</u> <strong>+234 801 234 5678</strong> &nbsp;&nbsp;
       <u>info@paysmallsmall.org</u>
     </p>
-  </nav>
+  </nav>-->
 
   <div class="container history-container">
     <h2>Your Order History</h2>
@@ -254,39 +256,58 @@ $result = $stmt->get_result();
   </div>
 
   <!-- Responsive Footer -->
-  <div id="pure-footer">
-    <div style="display:flex; flex-wrap:wrap; justify-content:space-between; margin-bottom:30px;">
-      <div class="footer-col" style="flex:1 1 300px;">
-        <img src="./assets/paysmallsmall_logo-removebg-preview.png" alt="Logo" style="width:120px; margin-bottom:15px;">
-        <p style="font-size:14px; color:#ccc;">At <strong>Pure Finest Inc.</strong>, we empower communities through innovation and partnership.</p>
-      </div>
-
-      <div class="footer-col" style="flex:1 1 200px;">
-        <h4 style="margin-bottom:15px;">Quick Links</h4>
-        <ul style="list-style:none; padding:0;">
-          <li><a href="#" style="color:#ccc; text-decoration:none;">Home</a></li>
-          <li><a href="#" style="color:#ccc; text-decoration:none;">About Us</a></li>
-          <li><a href="#" style="color:#ccc; text-decoration:none;">Products</a></li>
-          <li><a href="#" style="color:#ccc; text-decoration:none;">Contact</a></li>
-          <li><a href="#" style="color:#ccc; text-decoration:none;">FAQs</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col" style="flex:1 1 250px;">
-        <h4 style="margin-bottom:15px;">Contact Us</h4>
-        <p style="color:#ccc;">📍 24 Unity Avenue, Lagos, Nigeria</p>
-        <p style="color:#ccc;">📞 +234 801 234 5678</p>
-        <p style="color:#ccc;">✉️ support@purefinest.com</p>
-      </div>
-    </div>
-
-    <div style="border-top:1px solid #333; text-align:center; padding-top:15px;">
-      <p style="font-size:13px; color:#999;">&copy; 2025 Pure Finest Inc. All Rights Reserved.</p>
-    </div>
-  </div>
+ 
 
   <!-- Bootstrap JS -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <!-- Menu Section Below Carousel -->
+<div class="container text-center" style="margin-top:20px;">
+  <div class="row">
+
+    <div class="col-sm-2 col-xs-4" style="margin-bottom:15px;">
+      <a href="product.html" style="text-decoration:none; color:#333;">
+        <i class="fa fa-shopping-bag fa-2x" style="color:#5cb85c;"></i>
+        <div style="margin-top:5px;">Shop</div>
+      </a>
+    </div>
+
+    <div class="col-sm-2 col-xs-4" style="margin-bottom:15px;">
+      <a href="cart.php" style="text-decoration:none; color:#333;">
+        <i class="fa fa-shopping-cart fa-2x" style="color:#f0ad4e;"></i>
+        <div style="margin-top:5px;">Cart</div>
+      </a>
+    </div>
+
+    <div class="col-sm-2 col-xs-4" style="margin-bottom:15px;">
+      <a href="wishlist.php" style="text-decoration:none; color:#333;">
+        <i class="fa fa-heart fa-2x" style="color:#d9534f;"></i>
+        <div style="margin-top:5px;">Wishlist</div>
+      </a>
+    </div>
+
+   <!-- <div class="col-sm-2 col-xs-4" style="margin-bottom:15px;">
+      <a href="history.php" style="text-decoration:none; color:#333;">
+        <i class="fa fa-history fa-2x" style="color:#5bc0de;"></i>
+        <div style="margin-top:5px;">History</div>
+      </a>
+    </div>-->
+
+    <div class="col-sm-2 col-xs-4" style="margin-bottom:15px;">
+      <a href="account.php" style="text-decoration:none; color:#333;">
+        <i class="fa fa-user fa-2x" style="color:#428bca;"></i>
+        <div style="margin-top:5px;">Account</div>
+      </a>
+    </div>
+
+    <div class="col-sm-2 col-xs-4" style="margin-bottom:15px;">
+      <a href="logout.php" style="text-decoration:none; color:#333;">
+        <i class="fa fa-sign-out fa-2x" style="color:#777;"></i>
+        <div style="margin-top:5px;">Logout</div>
+      </a>
+    </div>
+
+  </div>
+</div>
 </body>
 </html>
