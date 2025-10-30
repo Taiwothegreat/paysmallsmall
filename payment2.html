@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Payment Details | Paysmallsmall</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body style="background-color:#f9f9f9;">
+
+<div class="container" style="max-width:600px; margin-top:50px;">
+  <div class="panel panel-default">
+    <div class="panel-heading text-center" style="background-color:#2c3e50; color:#fff;">
+      <h3>Payment Details</h3>
+    </div>
+    <div class="panel-body">
+      <h4>Bank Information</h4>
+      <p><strong>Bank Name:</strong> Opay Account</p>
+      <p><strong>Account Name:</strong> Paysmallsmall Nig.Limited</p>
+      <p><strong>Account Number:</strong> 9038600375</p>
+
+      <hr>
+      <h4>Payment Summary</h4>
+      <p><strong>Product:</strong> <span id="product"></span></p>
+      <p><strong>Payment Plan:</strong> <span id="plan"></span></p>
+      <p><strong>Amount Due This Payment:</strong> ₦<span id="amount"></span></p>
+      <p><strong>Balance Remaining:</strong> ₦<span id="balance"></span></p>
+      <p><strong>Duration:</strong> <span id="duration"></span></p>
+
+      <hr>
+      <form id="paymentForm" method="POST" action="payment_process.php">
+        <div class="form-group">
+          <label for="email">Your Email Address</label>
+          <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email to receive receipt" required>
+        </div>
+
+        <!-- Hidden fields -->
+        <input type="hidden" id="productField" name="product_name">
+        <input type="hidden" id="amountField" name="price">
+        <input type="hidden" id="planField" name="plan_type">
+        <input type="hidden" id="durationField" name="duration">
+        <input type="hidden" id="paymentOptionField" name="payment_option" value="Bank Transfer">
+
+        <button type="submit" class="btn btn-success btn-block">Confirm Payment</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", ()=>{
+  const checkout = JSON.parse(localStorage.getItem("checkout") || "{}");
+  const payments = JSON.parse(localStorage.getItem("payments") || "{}"); // store balances for each product
+
+  const productName = checkout.name || "Unknown";
+  const plan = checkout.plan || "Buy Once";
+  const amountDue = Number(checkout.amountDue || 0);
+  const totalBalance = Number(checkout.balance || 0);
+  const duration = checkout.duration || 0;
+
+  // Retrieve stored remaining balance (if previously paid)
+  let remainingBalance = payments[productName]?.remaining || totalBalance;
+
+  document.getElementById("product").textContent = productName;
+  document.getElementById("plan").textContent = plan;
+  document.getElementById("amount").textContent = amountDue.toLocaleString();
+  document.getElementById("balance").textContent = remainingBalance.toLocaleString();
+  document.getElementById("duration").textContent = duration ? duration + ((plan==="Weekly")?" weeks":(plan==="Monthly"?" months":"")) : "0";
+
+  // Hidden inputs
+  document.getElementById("productField").value = productName;
+  document.getElementById("amountField").value = amountDue;
+  document.getElementById("planField").value = plan;
+  document.getElementById("durationField").value = duration;
+
+  // When payment is confirmed
+  document.getElementById("paymentForm").addEventListener("submit", function(e){
+    e.preventDefault();
+
+    // Deduct amount paid
+    remainingBalance = Math.max(remainingBalance - amountDue, 0);
+
+    // Update storage
+    payments[productName] = { remaining: remainingBalance, lastPaid: new Date().toISOString() };
+    localStorage.setItem("payments", JSON.stringify(payments));
+
+    // Update balance on screen
+    document.getElementById("balance").textContent = remainingBalance.toLocaleString();
+
+    // You can also send updated balance to your server here:
+    // fetch('payment_process.php', { method: 'POST', body: new FormData(this) });
+
+    alert("Payment recorded successfully! Remaining balance: ₦" + remainingBalance.toLocaleString());
+  });
+});
+</script>
+
+</body>
+</html>
