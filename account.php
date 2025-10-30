@@ -38,7 +38,7 @@ $verified       = (int) pick_field($user, ['verified'], 0);
 $referral_code  = pick_field($user, ['referral_code'], '');
 $sewing_machine = pick_field($user, ['sewing_machine'], '');
 $referral_link  = $referral_code ? "https://paysmallsmall.org/ref/" . rawurlencode($referral_code) : '';
-$company_address = "Paysmallsmall Headquarters, Suite 12, Abioye Plaza, Customs Bus Stop, Lagos, Nigeria.";
+$company_address = " 278,agege motor road,olorunshogo,mushin,lagos";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -76,7 +76,8 @@ $company_address = "Paysmallsmall Headquarters, Suite 12, Abioye Plaza, Customs 
         <?php if ($profile_pic): ?>
           <img src="<?php echo htmlspecialchars($profile_pic); ?>" alt="Profile Picture">
         <?php else: ?>
-          <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:#888;font-size:28px;">+</div>
+          <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;
+          color:#888;font-size:28px;">+</div>
         <?php endif; ?>
       </label>
       <input type="file" id="profileInput" name="profile_pic" accept="image/*" style="display:none;" onchange="document.getElementById('uploadForm').submit();">
