@@ -67,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $_SESSION['email'] = $email;
 
     // ✅ Redirect to product page
-    header("Location: product.html");
+    header("Location: products.php");
     exit();
   } else {
     echo "Error: " . $stmt->error;

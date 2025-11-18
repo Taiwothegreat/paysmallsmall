@@ -1,0 +1,70 @@
+ 
+ 
+ <div class="panel panel-default">
+      <div class="panel-heading" data-toggle="collapse" data-target="#faq10">
+        <div class="panel-title">
+          <span><span class="faq-number">10</span><h3>What happens if the price of the sewing machine reduces before delivery?</h3></span>
+          <span class="faq-icon glyphicon glyphicon-chevron-down"></span>
+        </div>
+      </div>
+      <div id="faq10" class="panel-collapse collapse">
+        <div class="faq-body">
+          <p>If the product’s price drops before your delivery, we will <strong>credit the difference (surplus)</strong> toward your <strong>subsequent installment payments</strong>. </p>
+          <div class="social-icons"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a><a href="#"><i class="fa fa-whatsapp"></i></a></div>
+        </div>
+      </div>
+    </div>
+ 
+ 
+ <div class="panel panel-default">
+      <div class="panel-heading" data-toggle="collapse" data-target="#faq9">
+        <div class="panel-title">
+          <span><span class="faq-number">11</span><h3> What should I do if the product I want isn’t available on the Marketplace?</h3></span>
+          <span class="faq-icon glyphicon glyphicon-chevron-down"></span>
+        </div>
+      </div>
+      <div id="faq9" class="panel-collapse collapse">
+        <div class="faq-body">
+          <p> If a product isn’t listed on our Marketplace, please <strong>inform us immediately</strong>. We’ll analyze the details and <strong>add the relevant information</strong> or make the product available as soon as possible.</p>
+          <div class="social-icons"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a><a href="#"><i class="fa fa-whatsapp"></i></a></div>
+        </div>
+      </div>
+    </div>
+ 
+   <div class="panel panel-default">
+      <div class="panel-heading" data-toggle="collapse" data-target="#faq10">
+        <div class="panel-title">
+          <span><span class="faq-number">13</span><h3>What happens if the price of
+             the sewing machine reduces before delivery?</h3></span>
+          <span class="faq-icon glyphicon glyphicon-chevron-down"></span>
+        </div>
+      </div>
+      <div id="faq10" class="panel-collapse collapse">
+        <div class="faq-body">
+          <p>If the product’s price drops before your delivery, we will <strong>credit the difference (surplus)</strong> toward your <strong>subsequent installment payments</strong>. </p>
+          <div class="social-icons"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a><a href="#"><i class="fa fa-whatsapp"></i></a></div>
+        </div>
+      </div>
+    </div>
+ 
+ 
+ 
+ 
+ 
+ <div class="panel panel-default">
+      <div class="panel-heading" data-toggle="collapse" data-target="#faq9">
+        <div class="panel-title">
+          <span><span class="faq-number">14</span><h3>Can I make a 50% payment to collect my sewing machine immediately?</h3></span>
+          <span class="faq-icon glyphicon glyphicon-chevron-down"></span>
+        </div>
+      </div>
+      <div id="faq9" class="panel-collapse collapse">
+        <div class="faq-body">
+          <p> Yes, partial payment of <strong>50%</strong> is accepted 
+            for <strong>immediate collection</strong>, but only under 
+            a <strong>two-month or two-week plan</strong>, and it is <strong>subject to management verification</strong> .
+The <strong>final payment</strong> must be made as a <strong>single lump-sum transaction</strong> . </p>
+          <div class="social-icons"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a><a href="#"><i class="fa fa-whatsapp"></i></a></div>
+        </div>
+      </div>
+    </div>
