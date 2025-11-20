@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Product Store</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+    margin: 0;
+    padding: 20px;
+}
+
+h2 { margin-top: 20px; }
+
+.search-box {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.product-grid {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.product-card {
+    width: 200px;
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    text-align: center;
+    cursor: pointer;
+}
+
+.product-card img {
+    width: 100%; height: 150px; object-fit: cover;
+}
+
+.product-card button {
+    margin-top: 10px;
+    padding: 8px 10px;
+    width: 100%;
+    border: none;
+    background: black;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.wishlist-item {
+    background: #fff;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 6px;
+}
+
+/* POPUP */
+#popup {
+    position: fixed;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-content {
+    width: 90%; max-width: 400px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.popup-content img {
+    width: 100%; height: 200px;
+    object-fit: cover;
+}
+</style>
+
+</head>
+<body>
+
+<h2>🔍 Search Product</h2>
+<input type="text" id="searchBox" class="search-box" placeholder="Search products...">
+
+<div class="product-grid" id="productList"></div>
+
+<h2>❤️ Wishlist</h2>
+<div id="wishlist"></div>
+
+<!-- POPUP MODAL -->
+<div id="popup">
+    <div class="popup-content">
+        <h3 id="popupTitle"></h3>
+        <img id="popupImg" src="">
+        <p id="popupDesc"></p>
+        <button style="background:green" id="payBtn">Proceed to Pay</button>
+        <button style="margin-top:10px;background:red" onclick="closePopup()">Close</button>
+    </div>
+</div>
+
+<script>
+const products = [
+    { id: 1, name:"iPhone 12", img:"assets/iphone12.jpg", desc:"64GB · Black · Very clean" },
+    { id: 2, name:"Samsung S21", img:"assets/s21.jpg", desc:"128GB · Grey · New" },
+    { id: 3, name:"Tecno Spark 10", img:"assets/spark10.jpg", desc:"64GB · Blue · Neat" },
+    { id: 4, name:"Infinix Hot 9", img:"assets/hot9.jpg", desc:"64GB · Purple · Fresh" }
+];
+
+const productList = document.getElementById("productList");
+const wishlist = document.getElementById("wishlist");
+const searchBox = document.getElementById("searchBox");
+
+function displayProducts(list) {
+    productList.innerHTML = "";
+    list.forEach(p => {
+        productList.innerHTML += `
+            <div class="product-card">
+                <img src="${p.img}" alt="${p.name}">
+                <h4>${p.name}</h4>
+                <button onclick="openPopup(${p.id})">View / Pay</button>
+                <button onclick="addToWishlist(${p.id})" style="background:#bc933b">Add to Wishlist</button>
+            </div>
+        `;
+    });
+}
+
+searchBox.addEventListener("keyup", () => {
+    const text = searchBox.value.toLowerCase();
+    const filtered = products.filter(p => p.name.toLowerCase().includes(text));
+    displayProducts(filtered);
+});
+
+function addToWishlist(id) {
+    const p = products.find(x => x.id === id);
+    wishlist.innerHTML += `<div class="wishlist-item">${p.name}</div>`;
+}
+
+function openPopup(id) {
+    const p = products.find(x => x.id === id);
+    document.getElementById("popupTitle").innerText = p.name;
+    document.getElementById("popupImg").src = p.img;
+    document.getElementById("popupDesc").innerText = p.desc;
+
+    document.getElementById("payBtn").onclick = () => {
+        alert("Payment page loading...");
+    };
+
+    document.getElementById("popup").style.display = "flex";
+}
+
+function closePopup() {
+    document.getElementById("popup").style.display = "none";
+}
+
+displayProducts(products);
+</script>
+
+</body>
+</html>

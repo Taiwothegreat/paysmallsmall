@@ -79,7 +79,7 @@ h2 { text-align:center; margin-bottom:20px; font-weight:bold; }
 <body>
 <!-------------Search Bar---->
 <!-- SEARCH BAR -->
-<!---<div style="background:#fff; padding:15px;">
+<div style="background:#fff; padding:15px;">
   <div class="container">
     <input 
       type="text" 
@@ -87,194 +87,19 @@ h2 { text-align:center; margin-bottom:20px; font-weight:bold; }
       class="form-control" 
       placeholder="Search product name..." 
       autocomplete="off"
-    >-->
+    >
 
     <!-- Dropdown results -->
-  <!--  <ul id="searchResults" 
+    <ul id="searchResults" 
         class="list-group" 
         style="position:absolute; z-index:999; width:95%; display:none;">
     </ul>
-  </div>
-</div>-->
-<!-------------Rebranded Search Bar---->
-
-
-<!-- === SEARCH SECTION === -->
-<div class="container" style="margin-top:40px;">
-
-    <div class="row">
-        <div class="col-sm-6 col-sm-offset-3">
-
-            <div class="input-group" style="width:50%; margin:auto;">
-                <input type="text" 
-                       id="searchInput" 
-                       class="form-control" 
-                       placeholder="Search products...">
-
-                <span class="input-group-btn">
-                    <button id="searchBtn" class="btn btn-primary">Search</button>
-                </span>
-            </div>
-
-            <!-- Suggestions Dropdown -->
-        <!--    <ul id="searchResults" 
-                class="list-group" 
-                style="display:none; width:70%; margin:auto; max-height:200px; overflow-y:auto; position:absolute; z-index:1000;">
-            </ul>-->
-            <ul id="searchResults" 
-    class="list-group" 
-    style="display:none; width:70%; margin:auto; max-height:200px; overflow-y:auto; position:absolute; z-index:1000;">
-</ul>
-
-        </div>
-    </div>
-
-    <!-- Search Gallery -->
-    <div id="searchGallery" class="row" style="margin-top:30px; display:none;"></div>
-
+    <div id="searchDisplay" 
+     style="margin-top:10px; display:none; background:#fff; padding:10px; border:1px solid #ccc; border-radius:6px;">
 </div>
 
-<script>
-// MASTER PRODUCT LIST (Required for Search & Suggestions)
-const products = [
-    {
-        name: "TWO LION DIRECT DRIVE INDUSTRIAL STRAIGHT SEWING MACHINE (TL9900D)",
-        price: "400000",
-        img: "./assets/two-lion-drive.jpg",
-        desc: `MODEL: TL9900D 
-Is a robust, high speed device designed for heavy-duty, commercial use...`
-    },
-    {
-        name: "TWO LION DOMESTIC SEWING MACHINE",
-        price: "190000",
-        img: "./assets/two-lion-domestic.jpg",
-        desc: `MODELS: JA2-1
-Is a compact, versatile machine designed for home use...`
-    },
-    {
-        name: "TWO LION DOMESTIC OVERLOCK MACHINE",
-        price: "170000",
-        img: "./assets/two-lion-overlock.jpg",
-        desc: `MODEL: TL113D
-A specialized machine that trims the fabric edge...`
-    },
-    {
-        name: "TWO LION INDUSTRIAL SEWING MACHINE",
-        price: "390000",
-        img: "./assets/two-lion-industrial.jpg",
-        desc: `MODEL: TL8500
-A heavy-duty, high-speed machine designed for commercial production...`
-    },
-    {
-        name: "THREE THREAD INDUSTRIAL OVERLOCKING MACHINE",
-        price: "450000",
-        img: "./assets/three-thread.jpg",
-        desc: `MODEL: TL737
-A high-speed machine for finishing fabric edges...`
-    },
-    {
-        name: "FOUR THREAD INDUSTRIAL OVERLOCKER MACHINE",
-        price: "470000",
-        img: "./assets/four-thread.jpg",
-        desc: `MODEL: TL747
-A multi-thread machine for high-volume production...`
-    },
-    {
-        name: "FIVE THREAD OVERLOCKER MACHINE",
-        price: "500000",
-        img: "./assets/five-thread.jpg",
-        desc: `MODEL: TL757
-Combines chain stitch with overlock for strong seams...`
-    },
-    {
-        name: "BUTTERFLY DOMESTIC SEWING MACHINE",
-        price: "230000",
-        img: "./assets/butterfly-domestic.jpg",
-        desc: `MODEL: JA2-1
-Designed for home use with easy operation...`
-    },
-    {
-        name: "MANUAL EYELET MACHINE",
-        price: "50000",
-        img: "./assets/manual-eyelet.jpg",
-        desc: `PRESS MACHINE
-A hand-operated tool for installing eyelets...`
-    },
-    {
-        name: "BAG CLOSER MACHINE",
-        price: "170000",
-        img: "./assets/bag-closer.jpg",
-        desc: `MODEL: GK26-1A
-Used to sew and seal filled bags...`
-    },
-    {
-        name: "HEAT TRANSFER/PRESS MACHINE",
-        price: "350000",
-        img: "./assets/heat-transfer-press.jpg",
-        desc: `MODEL: TL 38cm by 38cm
-A machine used to transfer designs with heat and pressure...`
-    }
-];
-</script>
-
-
-
-<script>
-// SEARCH BUTTON — SHOW MATCHING PRODUCT CARDS
-document.getElementById("searchBtn").addEventListener("click", function(){
-
-    let input = document.getElementById("searchInput").value.toLowerCase();
-    let gallery = document.getElementById("searchGallery");
-
-    gallery.innerHTML = "";
-    gallery.style.display = "block";
-
-    // Find matching products
-    let matches = products.filter(p =>
-        p.name.toLowerCase().includes(input)
-    );
-
-    // If nothing matches → show nothing (NO fallback card)
-    if(matches.length === 0){
-        return; 
-    }
-
-    // Create responsive product gallery
-    matches.forEach(function(p){
-        let col = document.createElement("div");
-        col.className = "col-xs-6 col-sm-3";
-        col.style.marginBottom = "20px";
-
-        col.innerHTML = `
-            <div onclick="openProductFromSearch('${p.name}')"
-                 style="border:1px solid #ddd; padding:10px; border-radius:5px; cursor:pointer;">
-                 
-                <img src="${p.img}" 
-                     style="width:200px; height:200px; object-fit:cover; border-radius:5px;">
-
-                <h5 style="margin-top:10px;">${p.name}</h5>
-                <div style="color:#28a745; font-weight:bold;">₦${p.price}</div>
-            </div>
-        `;
-
-        gallery.appendChild(col);
-    });
-});
-
-
-
-
-
-function openProductFromSearch(productName){
-    let product = products.find(p => p.name === productName);
-    if(!product) return;
-
-    // SIMULATE CLICKING A REAL PRODUCT CARD
-    openProduct(product.name, product.price, product.img, product.desc);
-}
-
-</script>
-
+  </div>
+</div>
 
 <!-- NAVBAR -->
 
@@ -287,6 +112,7 @@ function openProductFromSearch(productName){
 
      <!-- Product 1 -->
 <div class="product-card" 
+   data-id="p1"
      data-name="TWO LION DIRECT DRIVE INDUSTRIAL STRAIGHT SEWING MACHINE " 
      data-price="400000" 
      data-img="./assets/two-lion-drive.jpg" 
@@ -310,6 +136,7 @@ A models built-in motors for reduced vibration, electronic control panels for ad
 
 <!-- Product 2 -->
 <div class="product-card" 
+   data-id="p2"
      data-name=" TWO LION DOMESTIC SEWING MACHINE
 " 
      data-price="190000" 
@@ -331,6 +158,7 @@ Ease of use: designed with user-friendly suitable for light to medium-duty tasks
 
 <!-- Product 3 -->
 <div class="product-card" 
+   data-id="p3"
      data-name="TWO LION DOMESTIC OVERLOCK MACHINE
  " 
      data-price="170000" 
@@ -353,6 +181,7 @@ Multiple functions: They perform trimming, stitching, and finishing in a single 
 </div>
 <!-- Product 4 -->
 <div class="product-card" 
+   data-id="p4"
      data-name="TWO LION INDUSTRIAL SEWING MACHINE
 
  " 
@@ -377,6 +206,7 @@ MAINTENANCE: It require frequent oiling, and users must follow specific instruct
 </div>
 <!-- Product 5 -->
 <div class="product-card" 
+   data-id="p5"
      data-name="THREE THREAD INDUSTRIAL OVERLOCKING MACHINE
  " 
      data-price="450000 " 
@@ -398,6 +228,7 @@ RUGGED CONSTRUCTION: Built with heavy-duty materials and a stable base to handle
 </div>
 <!-- Product 6 -->
 <div class="product-card" 
+   data-id="p6"
      data-name="FOUR THREAD INDUSTRIAL OVERLOCKER MACHINE
 
  " 
@@ -417,6 +248,7 @@ This machine is sold as a complete set with the head, motor (clutch or servo mot
 </div>
 <!-- Product 7 -->
 <div class="product-card" 
+   data-id="p7"
      data-name="FIVE THREAD OVERLOCKER MACHINE
 
  " 
@@ -445,6 +277,7 @@ Sewing and finishing non-flexible materials like woven fabrics.
 
 <!-- Product 8 -->
 <div class="product-card" 
+   data-id="p8"
      data-name="BUTTERFLY DOMESTIC SEWING MACHINE
 
 
@@ -465,8 +298,9 @@ Butterfly ensure easy operability for novice users.It enhanced force for the fab
 </h4>
   <div class="price">₦230,000</div>
 </div>
-<!-- Product 8 -->
+<!-- Product 9 -->
 <div class="product-card" 
+   data-id="p9"
      data-name="MANUAL EYELET MACHINE
 
  " 
@@ -486,8 +320,9 @@ They are designed for ease of use, often featuring ergonomic grips and requiring
 </h4>
   <div class="price">₦50,000</div>
 </div>
-<!-- Product 9 -->
+<!-- Product 10 -->
 <div class="product-card" 
+   data-id="p10"
      data-name="
 BAG CLOSER MACHINE 
 
@@ -508,8 +343,9 @@ durable sealing, and can sew a variety of materials, including paper, jute, cott
 </h4>
   <div class="price">₦170,000</div>
 </div>
-<!-- Product 10 -->
+<!-- Product 11 -->
 <div class="product-card" 
+   data-id="p11"
      data-name="
 HEAT TRANSFER/PRESS MACHINE
  " 
@@ -529,18 +365,203 @@ You’ll find a pressure adjustment knob on top of the upper platen on manual pr
 </h4>
   <div class="price">₦350,000</div>
 </div>
-<!-- Product 10 -->
+<!-- Product 12 -->
+<div class="product-card" 
+   data-id="p12"
+     data-name="
+TWO LION ELECTRIC INDUSTRIAL STEAM IRON
 
-<!-- Product 13-->
+ " 
+     data-price="95000 " 
+     data-img="./assets/two-lion-electric-iron.jpg" 
+     data-desc="
+  MODEL: TL300L
+DESCRIPTION
+This steam iron is an electric appliance that uses steam to remove wrinkles from clothes by heating water in an internal reservoir and releasing it through small holes in the hot metal soleplate. This steam penetrates fabric fibers, making them easier to smooth out. It's an updated 
+version of a traditional dry iron that provides a quicker and more convenient ironing process.
+    "
+     onclick="openProductFromCard(this)">
+  <span class="wishlist-icon glyphicon glyphicon-heart" onclick="toggleWishlist(event, this)"></span>
+  <img src="./assets/two-lion-electric-iron.jpg" alt="two lion electric iron">
+  <h4>TWO LION ELECTRIC INDUSTRIAL STEAM IRON
 
-<!-- Product 13-->
+</h4>
+  <div class="price">₦95,000</div>
+</div>
+<!-- Product 13 -->
+<div class="product-card" 
+   data-id="p13"
+     data-name="
+EMEL PROTEX SEWING MACHINE
+ " 
+     data-price="600000 " 
+     data-img="./assets/emel-protex.jpg" 
+     data-desc="
+MODEL: TY3300
 
-<!-- Product 13-->
+DESCRIPTION
+Designed for heavy-duty, continuous use in professional tailoring and garment factories. The name (Protect) refers to its ability to provide a strong, finished edge that protects fabric from fraying.
+
+Is an industrial walking foot sewing machine with compound feeding mechanism that makes it very rugged for working on heavy projects like leather, canvas, tarpaulin and many more.
+    "
+     onclick="openProductFromCard(this)">
+  <span class="wishlist-icon glyphicon glyphicon-heart" onclick="toggleWishlist(event, this)"></span>
+  <img src="./assets/emel-protex.jpg" alt="emel protex">
+  <h4>EMEL PROTEX SEWING MACHINE
+</h4>
+  <div class="price">₦600,000</div>
+</div>
+<!-- Product 14-->
+<div class="product-card" 
+   data-id="p14"
+     data-name="
+INDUSTRIAL SHIRT BUTTONHOLE MACHINE
+
+ " 
+     data-price="2000000 " 
+     data-img="./assets/industrial-shirt-button.jpg" 
+     data-desc="
+MODEL: TL781
+
+DESCRIPTION
+Industrial Shirt Buttonhole machine is suitable for all light and medium-weight materials. It comes 
+with easy functionality, an  automatic hole piecer and can make more than 2 button hole sizes.
+    "
+     onclick="openProductFromCard(this)">
+  <span class="wishlist-icon glyphicon glyphicon-heart" onclick="toggleWishlist(event, this)"></span>
+  <img src="./assets/industrial-shirt-button.jpg" alt="industrial shirt buttonhole">
+  <h4>INDUSTRIAL SHIRT BUTTONHOLE MACHINE
+</h4>
+  <div class="price">₦2000,000</div>
+</div>
+<!-- Product 15-->
+<div class="product-card" 
+   data-id="p15"
+     data-name="
+INDUSTRIAL TAPPING MACHINE
+ " 
+     data-price="750000 " 
+     data-img="./assets/industrial-tapping-machine.jpg" 
+     data-desc="
+MODEL: TL500-2
+
+DESCRIPTION
+It operate on a 5 thread sysytem capable of producing two parallel sewing on the top surface of fabric and an interlocked on the reverse side.
+
+The machine can making decorative stitches on both surfaces of fabric. 
+It works with an automatic lubrication system to make underwears, sport wears, polos and many more
+    "
+     onclick="openProductFromCard(this)">
+  <span class="wishlist-icon glyphicon glyphicon-heart" onclick="toggleWishlist(event, this)"></span>
+  <img src="./assets/industrial-tapping-machine.jpg" alt="industrial shirt buttonhole">
+  <h4>INDUSTRIAL TAPPING MACHINE
+
+</h4>
+  <div class="price">₦750,000</div>
+</div>
+<!-- Product 16-->
+<div class="product-card" 
+   data-id="p16"
+     data-name="
+INDUSTRIAL STRIAGHT  SEWING MACHINE
+ " 
+     data-price="430000 " 
+     data-img="./assets/industrial-straight.jpg" 
+     data-desc="
+MODEL: HD8700
+
+DESCRIPTION 
+This is a reliable workhorses machine made to handle heavy-duty tasks and materials and other heavy fabrics, 
+multiple layers of fabric, and thick materials like leather or vinyl. It as a wide range of uses, including constructing durable garments such as hazmat suits, producing furniture covers, making sails, creating auto interiors and safety belts, and repairing luggage and other items made from leather, canvas, vinyl, or nylon.
+
+This machine as a large throat space between the needle and table so you can fit larger pieces under construction without having to move other items around to accommodate each piece as needed during construction.
+    "
+     onclick="openProductFromCard(this)">
+  <span class="wishlist-icon glyphicon glyphicon-heart" onclick="toggleWishlist(event, this)"></span>
+  <img src="./assets/industrial-straight.jpg" alt="industrial straight">
+  <h4>INDUSTRIAL STRIAGHT  SEWING MACHINE
+
+</h4>
+  <div class="price">₦430,000</div>
+</div>
+<!-- Product 17-->
+<div class="product-card" 
+   data-id="p17"
+     data-name="
+TWO LION BUTTON TACKING MACHINE
+
+ " 
+     data-price="430000 " 
+     data-img="./assets/two-lion-button-tacking.jpg" 
+     data-desc="
+MODEL: TL373
+PRODUCT TAG: PSS000101
+DESCRIPTION
+The two lion button tacking machine is a specialized sewing machine used in garment manufacturing to securely and efficiently attach buttons to fabric using a series of parallel stitches. This machine can handle various button types, such as two-holes to  four-holes and shank buttons as well, and are used for a wide range of products from shirts and jeans to automobile components. It features an  automated functions like button feeding, thread clipping, and high-speed operation to increase productivity.
+
+ OTHER APPLICATIONS ARE AS FOLLOW;
+1. GARMENT INDUSTRY: Used to attach buttons on a large scale for shirts, jeans, underwear, and other apparel.
+2. AUTOMOTIVE AND  OTHER INDUSTRIES: Can also be used for stitching accessories like leather belts and components in automobile interiors. 
+
+ PRODUCT COMPONENTS ARE AS FOLLOWS;
+1. Head-In a box of its own (except otherwise packed)
+2. Table/stand-In a box of it own (except otherwise packed or machine comes in complete form of single item)
+3. Running motor- Either as Direct drive or with Cluth motor/Servo motor/Injuction motor(except otherwise packed or machine comes in complete form of single item).
+    "
+     onclick="openProductFromCard(this)">
+  <span class="wishlist-icon glyphicon glyphicon-heart" onclick="toggleWishlist(event, this)"></span>
+  <img src="./assets/two-lion-button-tacking.jpg" alt="two lion button tacking machine">
+  <h4>TWO LION BUTTON TACKING MACHINE
+
+
+</h4>
+  <div class="price">₦430,000</div>
+</div>
+<!-- Product 18-->
+<div class="product-card" 
+   data-id="p1"
+     data-name="
+BARTACK SEWING MACHINE
+ " 
+     data-price="3,900000 " 
+     data-img="./assets/Bartack-sewing.jpg" 
+     data-desc="
+Model: TL430
+DESCRIPTION
+Two Lion bartack machine also known as bar-tack is used to do bartacking, which is a sort of reinforcement stitching.  The fabric and textile industries utilize this technology to reinforce stress areas in clothes, athletic equipment, uniforms, and a variety of other items. Bar tacking sewing machine is used to secure pocket corners, belt loops, the open end of a buttonhole, and zipper flies. Bar tacking machine is also used for small decorative tacks and shapes.
+
+With bar tacking machine, a lot of stitches are used to cover a small area and spread the pressure along the width of the fabric, which makes the material stronger. Small decorative tacks and shapes can also be made with a bar tacking machine.
+
+This machine is commonly used in the apparel industry to create reinforced stitching on fabrics. In contrast to standard sewing machines, which are limited to either a straight or zigzag stitch, tacker sewing machines can create a wide range of decorative stitches. Named after the bartack, a series of closely spaced stitches used to reinforce high-stress areas of a garment, the tacker sewing machine is named after the method by which it produces its results.
+
+ PRODUCT COMPONENTs are as follows;
+1. Head-In a box of its own (except otherwise packed)
+2. Table/stand-In a box of it own (except otherwise packed or machine comes in complete form of single item)
+3. Running motor- Either as Direct drive or with Cluth motor/Servo motor/Injuction motor(except otherwise packed or machine comes in complete form of single item).
+    "
+     onclick="openProductFromCard(this)">
+  <span class="wishlist-icon glyphicon glyphicon-heart" onclick="toggleWishlist(event, this)"></span>
+  <img src="./assets/Bartack-sewing.jpg" alt="industrial straight">
+  <h4>BARTACK SEWING MACHINE
+
+</h4>
+  <div class="price">₦3,900000</div>
+</div>
 
     </div>
     <button id="nextBtn" class="nav-btn">&#10095;</button>
   </div>
 </div>
+
+<!-- ================= SEARCH RESULT PRODUCT SECTION ================= -->
+<div class="container" id="searchProductSection" style="margin-top:30px; display:none;">
+    <h2 style="text-align:center; margin-bottom:20px; font-weight:bold;">
+        Search Results
+    </h2>
+
+    <div id="searchProductList" class="row"></div>
+</div>
+
 <!-- Menu Section Below Carousel -->
 <div class="container text-center" style="margin-top:20px;">
   <div class="row">
@@ -906,24 +927,184 @@ document.addEventListener("click", function (e) {
 </script>
 
 <script>
-// AUTO-GENERATE products[] AFTER PRODUCT CARDS ARE LOADED
-let products = [];
+// SEARCH AND DISPLAY BELOW SECTION
+document.getElementById("searchInput").addEventListener("keyup", function () {
+    let query = this.value.toLowerCase().trim();
+    let productCards = document.querySelectorAll(".product-card");
+    let searchSection = document.getElementById("searchProductSection");
+    let listBox = document.getElementById("searchProductList");
 
-document.querySelectorAll(".product-card").forEach(card => {
-    products.push({
+    // Clear previous results
+    listBox.innerHTML = "";
+
+    if (query === "") {
+        searchSection.style.display = "none";
+        return;
+    }
+
+    let matchCount = 0;
+
+    productCards.forEach(card => {
+        let name = card.getAttribute("data-name").toLowerCase();
+
+        if (name.includes(query)) {
+            matchCount++;
+
+            let clone = card.cloneNode(true);
+            clone.style.width = "100%";
+            clone.classList.add("col-sm-3");
+
+            listBox.appendChild(clone);
+        }
+    });
+
+    // Show if matches appear
+    searchSection.style.display = matchCount > 0 ? "block" : "none";
+});
+</script>
+<!--New script for searched product without typing-->
+<script>
+// READ ALL PRODUCTS FROM THE PAGE
+var allProducts = [];
+document.querySelectorAll(".product-card").forEach(function(card) {
+    allProducts.push({
         name: card.getAttribute("data-name"),
         price: card.getAttribute("data-price"),
         img: card.getAttribute("data-img"),
-        desc: card.getAttribute("data-desc")
+        element: card
     });
 });
 
+// DISPLAY ALL PRODUCTS UNDER SEARCH BAR AT START
+function displayAllProducts() {
+    var box = document.getElementById("searchDisplay");
+    box.innerHTML = "";  
+    box.style.display = "block";
 
+    allProducts.forEach(p => {
+        box.innerHTML += `
+            <div style="display:flex; border-bottom:1px solid #eee; padding:10px; cursor:pointer;"
+                onclick="openProductFromCard(document.querySelector('[data-name="${p.name}"]'))">
+                <img src="${p.img}" style="width:60px; height:60px; border-radius:4px; margin-right:10px;">
+                <div>
+                    <strong>${p.name}</strong><br>
+                    <span style="color:#2b6; font-weight:bold;">₦${p.price}</span>
+                </div>
+            </div>
+        `;
+    });
+}
 
+// FILTER PRODUCTS WHEN TYPING
+document.getElementById("searchInput").addEventListener("keyup", function() {
+    var text = this.value.toLowerCase();
+    var box = document.getElementById("searchDisplay");
 
+    if (text === "") {
+        displayAllProducts();
+        return;
+    }
 
+    box.innerHTML = "";  
+    box.style.display = "block";
 
+    var results = allProducts.filter(p => p.name.toLowerCase().includes(text));
+
+    if (results.length === 0) {
+        box.innerHTML = "<p style='padding:10px;'>No product found</p>";
+        return;
+    }
+
+    results.forEach(p => {
+        box.innerHTML += `
+            <div style="display:flex; border-bottom:1px solid #eee; padding:10px; cursor:pointer;"
+                onclick="openProductFromCard(document.querySelector('[data-name="${p.name}"]'))">
+                <img src="${p.img}" style="width:60px; height:60px; border-radius:4px; margin-right:10px;">
+                <div>
+                    <strong>${p.name}</strong><br>
+                    <span style="color:#2b6; font-weight:bold;">₦${p.price}</span>
+                </div>
+            </div>
+        `;
+    });
+});
+
+// SHOW PRODUCT LIST ON PAGE LOAD
+window.onload = function() {
+    displayAllProducts();
+};
 </script>
+<!-- Product Gallery with Auto IDs Example -->
+<div id="productGallery" class="gallery-container" style="display:flex;flex-wrap:wrap;gap:20px;">
+</div>
+
+<script>
+// PRODUCT LIST WITH AUTO-GENERATED IDS
+const products = [
+  {
+    name: "TWO LION DIRECT DRIVE INDUSTRIAL STRAIGHT SEWING MACHINE",
+    price: 400000,
+    img: "./assets/two-lion-drive.jpg",
+    desc: "MODEL TL9900D — High-speed industrial sewing machine built for heavy-duty production."
+  },
+  {
+    name: "BUTTERFLY INDUSTRIAL SEWING MACHINE",
+    price: 350000,
+    img: "./assets/butterfly.jpg",
+    desc: "Strong metal frame, smooth operation, suitable for workshop use."
+  },
+  {
+    name: "KING STAR OVERLOCK MACHINE",
+    price: 290000,
+    img: "./assets/king-star-overlock.jpg",
+    desc: "High-performance serging machine for tailoring and mass production."
+  }
+];
+
+// RENDER GALLERY
+const gallery = document.getElementById("productGallery");
+
+products.forEach((product, index) => {
+  const id = `product-${index+1}`;
+  product.id = id;
+
+  const card = document.createElement("div");
+  card.className = "product-card";
+  card.style.width = "250px";
+  card.style.border = "1px solid #ddd";
+  card.style.padding = "10px";
+  card.style.borderRadius = "8px";
+  card.style.cursor = "pointer";
+  card.style.textAlign = "center";
+
+  // ADD DATASET ATTRIBUTES
+  card.setAttribute("data-id", id);
+  card.setAttribute("data-name", product.name);
+  card.setAttribute("data-price", product.price);
+  card.setAttribute("data-img", product.img);
+  card.setAttribute("data-desc", product.desc);
+
+  card.innerHTML = `
+    <img src="${product.img}" alt="${product.name}" 
+         style="width:100%; height:200px; object-fit:cover; border-radius:5px;">
+    <h4 style="font-size:14px; margin-top:10px;">${product.name}</h4>
+    <div class="price" style="font-weight:bold;">₦${product.price.toLocaleString()}</div>
+  `;
+
+  // LINK TO REAL MODAL
+  card.addEventListener("click", () => {
+    openProduct(
+      product.name,
+      product.price,
+      product.desc,
+      product.img
+    );
+  });
+
+  gallery.appendChild(card);
+});
+</script>
+
 
 </body>
 </html>
