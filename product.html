@@ -15,7 +15,9 @@ body { background: #f9f9f9; font-family: 'Arial', sans-serif; }
 .container { margin-top: 20px; position: relative; overflow: hidden; }
 h2 { text-align:center; margin-bottom:20px; font-weight:bold; }
 .slider { display:flex; will-change:transform; }
-.product-card { background:#fff; border:1px solid #ddd; border-radius:8px; width:250px; flex:none; margin:0 10px; text-align:center; padding:10px; cursor:pointer; box-sizing:border-box; position:relative; }
+.product-card { background:#fff; border:1px solid #ddd; border-radius:8px; width:250px;
+     flex:none; margin:0 10px; text-align:center; padding:10px; cursor:pointer; box-sizing:border-box; 
+     position:relative; }
 .product-card img { width:100%; height:200px; object-fit:cover; border-radius:6px; }
 .product-card h4 { font-size:16px; margin-top:10px; }
 .product-card p { color:#555; font-size:13px; min-height:40px; }
@@ -74,28 +76,53 @@ h2 { text-align:center; margin-bottom:20px; font-weight:bold; }
 #suggestionBox div:hover {
   background: #f0f0f0;
 }
+
+
+@media(max-width:1024px){
+    .product-card { background:#fff; border:1px solid #ddd; border-radius:8px; width:250px;
+     flex:none;margin: auto; cursor:pointer; box-sizing:border-box; 
+     position:relative; }
+}
+/*Whatsapp Float*/
+.whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+    background-color: #25D366;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    text-decoration: none;
+    animation: pulse 1.5s infinite;
+}
+
+.whatsapp-icon {
+    width: 35px;
+    height: 35px;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+    100% { transform: scale(1); }
+}
+
 </style>
 </head>
 <body>
 <!-------------Search Bar---->
 <!-- SEARCH BAR -->
-<div style="background:#fff; padding:15px;">
-  <div class="container">
-    <input 
-      type="text" 
-      id="searchInput"
-      class="form-control" 
-      placeholder="Search product name..." 
-      autocomplete="off"
-    >
-
-    <!-- Dropdown results -->
-    <ul id="searchResults" 
-        class="list-group" 
-        style="position:absolute; z-index:999; width:95%; display:none;">
-    </ul>
-  </div>
+<!-- SEARCH BAR -->
+<div class="container" style="max-width:600px; margin-top:25px; position:relative;">
+  <input type="text" id="searchInput" class="form-control" placeholder="Search for product...">
+  <div id="suggestionBox"></div>
 </div>
+
 
 <!-- NAVBAR -->
 
@@ -107,7 +134,8 @@ h2 { text-align:center; margin-bottom:20px; font-weight:bold; }
     <div class="slider" id="productSlider">
 
      <!-- Product 1 -->
-<div class="product-card" 
+    <div class="product-card col-sm-3" 
+   data-id="p1"
      data-name="TWO LION DIRECT DRIVE INDUSTRIAL STRAIGHT SEWING MACHINE " 
      data-price="400000" 
      data-img="./assets/two-lion-drive.jpg" 
@@ -125,12 +153,13 @@ A models built-in motors for reduced vibration, electronic control panels for ad
      onclick="openProductFromCard(this)">
   <span class="wishlist-icon glyphicon glyphicon-heart" onclick="toggleWishlist(event, this)"></span>
   <img src="./assets/two-lion-drive.jpg" alt="two lion industrial">
-  <h4>TWO LION DIRECT DRIVE INDUSTRIAL STRAIGHT SEWING MACHINE (TL9900D)</h4>
+  <h4>TWO LION DIRECT DRIVE INDUSTRIAL STRAIGHT SEWING MACHINE</h4>
   <div class="price">₦400,000</div>
 </div>
 
 <!-- Product 2 -->
-<div class="product-card" 
+<div class="product-card col-sm-3" 
+   data-id="p2"
      data-name=" TWO LION DOMESTIC SEWING MACHINE
 " 
      data-price="190000" 
@@ -151,7 +180,8 @@ Ease of use: designed with user-friendly suitable for light to medium-duty tasks
 </div>
 
 <!-- Product 3 -->
-<div class="product-card" 
+<div class="product-card col-sm-3" 
+   data-id="p3"
      data-name="TWO LION DOMESTIC OVERLOCK MACHINE
  " 
      data-price="170000" 
@@ -171,9 +201,10 @@ Multiple functions: They perform trimming, stitching, and finishing in a single 
   <img src="./assets/two-lion-overlock.jpg" alt="Washer">
   <h4> TWO LION DOMESTIC OVERLOCK MACHINE</h4>
   <div class="price">₦170,000</div>
-</div>
+</div> 
 <!-- Product 4 -->
-<div class="product-card" 
+<div class="product-card col-sm-3" 
+   data-id="p4"
      data-name="TWO LION INDUSTRIAL SEWING MACHINE
 
  " 
@@ -197,7 +228,8 @@ MAINTENANCE: It require frequent oiling, and users must follow specific instruct
   <div class="price">₦3,90,000</div>
 </div>
 <!-- Product 5 -->
-<div class="product-card" 
+<div class="product-card col-sm-3" 
+   data-id="p5"
      data-name="THREE THREAD INDUSTRIAL OVERLOCKING MACHINE
  " 
      data-price="450000 " 
@@ -218,7 +250,8 @@ RUGGED CONSTRUCTION: Built with heavy-duty materials and a stable base to handle
   <div class="price">₦450,000</div>
 </div>
 <!-- Product 6 -->
-<div class="product-card" 
+<div class="product-card col-sm-3" 
+   data-id="p6"
      data-name="FOUR THREAD INDUSTRIAL OVERLOCKER MACHINE
 
  " 
@@ -237,7 +270,8 @@ This machine is sold as a complete set with the head, motor (clutch or servo mot
   <div class="price">₦470,000</div>
 </div>
 <!-- Product 7 -->
-<div class="product-card" 
+<div class="product-card col-sm-3" 
+   data-id="p7"
      data-name="FIVE THREAD OVERLOCKER MACHINE
 
  " 
@@ -265,7 +299,8 @@ Sewing and finishing non-flexible materials like woven fabrics.
 </div>
 
 <!-- Product 8 -->
-<div class="product-card" 
+<div class="product-card col-sm-3"
+   data-id="p8"
      data-name="BUTTERFLY DOMESTIC SEWING MACHINE
 
 
@@ -286,8 +321,9 @@ Butterfly ensure easy operability for novice users.It enhanced force for the fab
 </h4>
   <div class="price">₦230,000</div>
 </div>
-<!-- Product 8 -->
-<div class="product-card" 
+<!-- Product 9 -->
+<div class="product-card col-sm-3" 
+   data-id="p9"
      data-name="MANUAL EYELET MACHINE
 
  " 
@@ -307,8 +343,9 @@ They are designed for ease of use, often featuring ergonomic grips and requiring
 </h4>
   <div class="price">₦50,000</div>
 </div>
-<!-- Product 9 -->
-<div class="product-card" 
+<!-- Product 10 -->
+<div class="product-card col-sm-3" 
+   data-id="p10"
      data-name="
 BAG CLOSER MACHINE 
 
@@ -329,8 +366,9 @@ durable sealing, and can sew a variety of materials, including paper, jute, cott
 </h4>
   <div class="price">₦170,000</div>
 </div>
-<!-- Product 10 -->
-<div class="product-card" 
+<!-- Product 11 -->
+<div class="product-card col-sm-3" 
+   data-id="p11"
      data-name="
 HEAT TRANSFER/PRESS MACHINE
  " 
@@ -350,8 +388,9 @@ You’ll find a pressure adjustment knob on top of the upper platen on manual pr
 </h4>
   <div class="price">₦350,000</div>
 </div>
-<!-- Product 10 -->
-<div class="product-card" 
+<!-- Product 12 -->
+<div class="product-card col-sm-3" 
+   data-id="p12"
      data-name="
 TWO LION ELECTRIC INDUSTRIAL STEAM IRON
 
@@ -372,8 +411,9 @@ version of a traditional dry iron that provides a quicker and more convenient ir
 </h4>
   <div class="price">₦95,000</div>
 </div>
-<!-- Product 11 -->
-<div class="product-card" 
+<!-- Product 13 -->
+<div class="product-card col-sm-3" 
+   data-id="p13"
      data-name="
 EMEL PROTEX SEWING MACHINE
  " 
@@ -394,8 +434,9 @@ Is an industrial walking foot sewing machine with compound feeding mechanism tha
 </h4>
   <div class="price">₦600,000</div>
 </div>
-<!-- Product 12-->
-<div class="product-card" 
+<!-- Product 14-->
+<div class="product-card col-sm-3" 
+   data-id="p14"
      data-name="
 INDUSTRIAL SHIRT BUTTONHOLE MACHINE
 
@@ -416,8 +457,9 @@ with easy functionality, an  automatic hole piecer and can make more than 2 butt
 </h4>
   <div class="price">₦2000,000</div>
 </div>
-<!-- Product 13-->
-<div class="product-card" 
+<!-- Product 15-->
+<div class="product-card col-sm-3" 
+   data-id="p15"
      data-name="
 INDUSTRIAL TAPPING MACHINE
  " 
@@ -440,8 +482,9 @@ It works with an automatic lubrication system to make underwears, sport wears, p
 </h4>
   <div class="price">₦750,000</div>
 </div>
-<!-- Product 13-->
-<div class="product-card" 
+<!-- Product 16-->
+<div class="product-card col-sm-3" 
+   data-id="p16"
      data-name="
 INDUSTRIAL STRIAGHT  SEWING MACHINE
  " 
@@ -464,8 +507,9 @@ This machine as a large throat space between the needle and table so you can fit
 </h4>
   <div class="price">₦430,000</div>
 </div>
-<!-- Product 13-->
-<div class="product-card" 
+<!-- Product 17-->
+<div class="product-card col-sm-3"
+   data-id="p17"
      data-name="
 TWO LION BUTTON TACKING MACHINE
 
@@ -496,12 +540,13 @@ The two lion button tacking machine is a specialized sewing machine used in garm
 </h4>
   <div class="price">₦430,000</div>
 </div>
-<!-- Product 13-->
-<div class="product-card" 
+<!-- Product 18-->
+<div class="product-card col-sm-3" 
+   data-id="p1"
      data-name="
 BARTACK SEWING MACHINE
  " 
-     data-price="3,900000 " 
+     data-price="3900000 " 
      data-img="./assets/Bartack-sewing.jpg" 
      data-desc="
 Model: TL430
@@ -525,8 +570,8 @@ This machine is commonly used in the apparel industry to create reinforced stitc
 </h4>
   <div class="price">₦3,900000</div>
 </div>
-<!-- Product 13-->
-<div class="product-card" 
+<!-- Product 19-->
+<div class="product-card col-sm-3" 
      data-name="
 TWO LION DOMESTIC BLIND STITCH MACHINE
 
@@ -547,8 +592,8 @@ It uses a single-thread chain stitch to create the blind hem, where the stitch i
 </h4>
   <div class="price">₦250,000</div>
 </div>
-<!-- Product 13-->
-<div class="product-card" 
+<!-- Product 20-->
+<div class="product-card col-sm-3" 
      data-name="
 TWO LION ZIG ZAG INDUSTRIAL EMBROIDERY MACHINE
  " 
@@ -573,8 +618,8 @@ TWO LION ZIG ZAG INDUSTRIAL EMBROIDERY MACHINE
 </h4>
   <div class="price">₦450,000</div>
 </div>
-<!-- Product 13-->
-<div class="product-card" 
+<!-- Product 21-->
+<div class="product-card col-sm-3" 
      data-name="
 Butterfly multifunctional sewing machine
  " 
@@ -595,8 +640,8 @@ Butterfly multifunctional sewing machine
 </h4>
   <div class="price">₦250,000</div>
 </div>
-<!-- Product 13-->
-<div class="product-card" 
+<!-- Product 22-->
+<div class="product-card col-sm-3" 
      data-name="
 Two Lion Teflon Shoe
  " 
@@ -622,8 +667,8 @@ Two Lion Teflon Shoe
 </h4>
   <div class="price">₦12,000</div>
 </div>
-<!-- Product 13-->
-<div class="product-card" 
+<!-- Product 23-->
+<div class="product-card col-sm-3" 
      data-name="
 Two Lion Automatic Bobbin Winder
 
@@ -650,8 +695,8 @@ Two Lion Automatic Bobbin Winder
 </h4>
   <div class="price">₦100,000</div>
 </div>
-<!-- Product 13-->
-<div class="product-card" 
+<!-- Product 24-->
+<div class="product-card col-sm-3" 
      data-name="
 Janome Embroidery Machines
 
@@ -680,8 +725,8 @@ Janome Embroidery Machines
   <div class="price">₦2,950,000</div>
 </div>
 
-<!-- Product 13-->
-<div class="product-card" 
+<!-- Product 25-->
+<div class="product-card col-sm-3" 
      data-name="
 Wig Post Bed Sewing Machine
 
@@ -705,8 +750,8 @@ Wig Post Bed Sewing Machine
   <div class="price">₦620,000</div>
 </div>
 
-<!-- Product 13-->
-<div class="product-card" 
+<!-- Product 26-->
+<div class="product-card col-sm-3" 
      data-name="
 Two Lion Double Needle Industrial Straight Sewing  Machine
  " 
@@ -728,8 +773,8 @@ Two Lion Double Needle Industrial Straight Sewing  Machine
 </h4>
   <div class="price">₦790,000</div>
 </div>
-<!-- Product 13-->
-<div class="product-card" 
+<!-- Product 27-->
+<div class="product-card col-sm-3" 
      data-name="
 Two Lion Feed of the Arm
  " 
@@ -761,8 +806,8 @@ Two Lion Feed of the Arm
 </h4>
   <div class="price">₦1,550,000</div>
 </div>
-<!-- Product 13-->
-<div class="product-card" 
+<!-- Product 28-->
+<div class="product-card col-sm-3" 
      data-name="
 Two Lion Skiving Machine
  " 
@@ -784,8 +829,8 @@ Two Lion Skiving Machine
 </h4>
   <div class="price">₦750,000</div>
 </div>
-<!-- Product 13-->
-<div class="product-card" 
+<!-- Product 29-->
+<div class="product-card col-sm-3" 
      data-name="
 Two Lion High Speed Single/Double Post Bed Sewing  Machine
 
@@ -808,8 +853,8 @@ Two Lion Skiving Machine
 </h4>
   <div class="price">₦600,000</div>
 </div>
-<!-- Product 13-->
-<div class="product-card" 
+<!-- Product 30-->
+<div class="product-card col-sm-3" 
      data-name="
 Two Lion Bias Cutting machine
 
@@ -837,8 +882,8 @@ Two Lion Bias Cutting machine
 </h4>
   <div class="price">₦1,300,000</div>
 </div>
-<!-- Product 13-->
-<div class="product-card" 
+<!-- Product 31-->
+<div class="product-card col-sm-3" 
      data-name="
 Two Lion Elasticator Sewing Machine
 
@@ -863,8 +908,8 @@ Two Lion Elasticator Sewing Machine
   <div class="price">₦1,650,000</div>
 </div>
 
-<!-- Product 13-->
-<div class="product-card" 
+<!-- Product 32-->
+<div class="product-card col-sm-3" 
      data-name="
 Generic Full Body Female, Gold Mannequin
  " 
@@ -881,8 +926,8 @@ Generic Full Body Female, Gold Mannequin
 </h4>
   <div class="price">₦350,000</div>
 </div>
-<!-- Product 13-->
-<div class="product-card" 
+<!-- Product 33-->
+<div class="product-card col-sm-3" 
      data-name="
 Full Body Mannequin,
 Plastic
@@ -902,8 +947,8 @@ Plastic
 </h4>
   <div class="price">₦120,000</div>
 </div>
-<!-- Product 13-->
-<div class="product-card" 
+<!-- Product 34-->
+<div class="product-card col-sm-3" 
      data-name="
 Full Body Mannequin,
 Plastic
@@ -921,8 +966,8 @@ Plastic Mannequin(wihout arm)
 </h4>
   <div class="price">₦80,000</div>
 </div>
-<!-- Product 13-->
-<div class="product-card" 
+<!-- Product 35-->
+<div class="product-card col-sm-3" 
      data-name="
 Universal Upper Stich
 Multi-Function and Hand Held Chain Stich embroidery Machine
@@ -947,8 +992,8 @@ Multi-Function and Hand Held Chain Stich embroidery Machine
 </h4>
   <div class="price">₦600,000</div>
 </div>
-<!-- Product 13-->
-<div class="product-card" 
+<!-- Product 36-->
+<div class="product-card col-sm-3" 
      data-name="
 Fabric Pleating Machine
  " 
@@ -968,8 +1013,8 @@ Fabric Pleating Machine
 </h4>
   <div class="price">₦1,900,000</div>
 </div>
-<!-- Product 13-->
-<div class="product-card" 
+<!-- Product 37-->
+<div class="product-card col-sm-3" 
      data-name="
 Two Lion electronic steam press
 
@@ -995,8 +1040,8 @@ Two Lion electronic steam press
 </h4>
   <div class="price">₦280,000</div>
 </div>
-<!-- Product 13-->
-<div class="product-card" 
+<!-- Product 38-->
+<div class="product-card col-sm-3"
      data-name="
 Two Lion electronic steam press
 
@@ -1018,8 +1063,8 @@ Two Lion electronic steam press
 </h4>
   <div class="price">₦290,000</div>
 </div>
-<!-- Product 13-->
-<div class="product-card" 
+<!-- Product 39-->
+<div class="product-card col-sm-3" 
      data-name="
 Two Lion Servo Motor
  " 
@@ -1040,13 +1085,13 @@ Two Lion Servo Motor
 </h4>
   <div class="price">₦95,000</div>
 </div>
-<!-- Product 13-->
-<div class="product-card" 
+<!-- Product 40-->
+<div class="product-card col-sm-3" 
      data-name="
 Two Lion Mini Motor
 
  " 
-     data-price="15,000 " 
+     data-price="15000 " 
      data-img="./assets/two-lion-mini.jpg" 
      data-desc="
 MODEL: TL Mini Motor
@@ -1064,8 +1109,13 @@ Two Lion Mini Motor
 </h4>
   <div class="price">₦15,000</div>
 </div>
-<!-- Product 13-->
-<div class="product-card" 
+
+
+
+
+
+<!-- Product 41-->
+<div class="product-card col-sm-3" 
      data-name="
 ALPHA ULTIMATE INDUSTRIAL SEWING MACHINE
 
@@ -1088,8 +1138,8 @@ ALPHA ULTIMATE INDUSTRIAL SEWING MACHINE
 </h4>
   <div class="price">₦400,000</div>
 </div>
-<!-- Product 13-->
-<div class="product-card" 
+<!-- Product 42-->
+<div class="product-card col-sm-3" 
      data-name="
 Emel Direct Drive Industrial Straight Sewing Machine.
 
@@ -1113,8 +1163,8 @@ Emel Direct Drive Industrial Straight Sewing Machine.
 </h4>
   <div class="price">₦520,000</div>
 </div>
-<!-- Product 13-->
-<div class="product-card" 
+<!-- Product 43-->
+<div class="product-card col-sm-3" 
      data-name="
 Two Lion Single Head Monogram/Embroidery Machine
  " 
@@ -1133,8 +1183,8 @@ Two Lion Single Head Monogram/Embroidery Machine
 </h4>
   <div class="price">₦7,800,000</div>
 </div>
-<!-- Product 13-->
-<div class="product-card" 
+<!-- Product 44-->
+<div class="product-card col-sm-3"
      data-name="
 Female Gold Mannequin
 
@@ -1154,8 +1204,8 @@ Female Gold Mannequin
 </h4>
   <div class="price">₦290,000</div>
 </div>
-<!-- Product 13-->
-<div class="product-card" 
+<!-- Product 45-->
+<div class="product-card col-sm-3" 
      data-name="
 Two Lion rechargeable Electric Scissors
  " 
@@ -1178,8 +1228,8 @@ Two Lion rechargeable Electric Scissors
 </h4>
   <div class="price">₦45,000</div>
 </div>
-<!-- Product 13-->
-<div class="product-card" 
+<!-- Product 46-->
+<div class="product-card col-sm-3"
      data-name="
 CARBON STEEL SCISSORS
 
@@ -1209,7 +1259,25 @@ CARBON STEEL SCISSORS
     </div>
     <button id="nextBtn" class="nav-btn">&#10095;</button>
   </div>
+
+
+
+<!-- PRODUCT GALLERY -->
+<h2 style="margin-top:40px;">All Products</h2>
+<div id="productGallery" class="row" style="margin-top:20px;">
+    <!-- Gallery items will automatically clone ALL product-card items from slider -->
 </div>
+
+
+
+
+
+
+  
+</div>
+
+
+
 <!-- Menu Section Below Carousel -->
 <div class="container text-center" style="margin-top:20px;">
   <div class="row">
@@ -1481,99 +1549,124 @@ function proceedToPayment(){
 }
 </script>
 <!--Search Bar---->
-<style>
-/* Suggestion Box */
-#suggestionBox {
-  position: absolute;
-  background: #fff;
-  border: 1px solid #ccc;
-  width: 100%;
-  max-height: 200px;
-  overflow-y: auto;
-  z-index: 9999;
-  display: none;
-}
 
-#suggestionBox div {
-  padding: 8px;
-  cursor: pointer;
-}
 
-#suggestionBox div:hover {
-  background: #f0f0f0;
-}
-</style>
+
+<!--New script for searched product without typing-->
+
+<!-- Product Gallery with Auto IDs Example -->
+
+
 <script>
-// ✅ SEARCH + SUGGEST BOX
-const searchInput = document.getElementById("searchInput");
-let suggestionBox;
+// PRODUCT LIST WITH AUTO-GENERATED IDS
 
-// Create suggestion container
-function createSuggestionBox() {
-  suggestionBox = document.createElement("div");
-  suggestionBox.id = "suggestionBox";
-  searchInput.parentNode.appendChild(suggestionBox);
-}
-createSuggestionBox();
 
-searchInput?.addEventListener("input", function () {
-    const query = this.value.toLowerCase();
-    const cards = document.querySelectorAll(".product-card");
 
-    // ✅ Filter products LIVE
-    cards.forEach(card => {
-        const name = card.getAttribute("data-name")?.toLowerCase() || "";
-        card.style.display = name.includes(query) ? "block" : "none";
+</script>
+
+
+
+
+
+
+<script>
+// Clone ALL products from slider into gallery with pagination
+document.addEventListener("DOMContentLoaded", function() {
+    const sliderCards = document.querySelectorAll(".product-card");
+    const gallery = document.getElementById("productGallery");
+    const productsPerPage = 20;
+    let currentPage = 1;
+
+    // Store cloned products in an array
+    const allProducts = Array.from(sliderCards).map(card => {
+        const clone = card.cloneNode(true);
+        clone.classList.add("col-sm-3");
+        clone.style.marginBottom = "20px";
+        return clone;
     });
 
-    // ✅ Suggestion logic
+    function renderPage(page) {
+        gallery.innerHTML = "";
+        const start = (page - 1) * productsPerPage;
+        const end = start + productsPerPage;
+        const pageProducts = allProducts.slice(start, end);
+        pageProducts.forEach(p => gallery.appendChild(p));
+        renderPagination();
+    }
+
+    function renderPagination() {
+        let pagination = document.getElementById("pagination");
+        if (!pagination) {
+            pagination = document.createElement("div");
+            pagination.id = "pagination";
+            pagination.style.textAlign = "center";
+            pagination.style.margin = "20px 0";
+            gallery.parentNode.appendChild(pagination);
+        }
+
+        const totalPages = Math.ceil(allProducts.length / productsPerPage);
+        pagination.innerHTML = "";
+
+        const prevBtn = document.createElement("button");
+        prevBtn.textContent = "Previous";
+        prevBtn.disabled = currentPage === 1;
+        prevBtn.style.marginRight = "10px";
+        prevBtn.onclick = () => { if(currentPage>1){currentPage--; renderPage(currentPage);} };
+        pagination.appendChild(prevBtn);
+
+        const nextBtn = document.createElement("button");
+        nextBtn.textContent = "Next";
+        nextBtn.disabled = currentPage === totalPages;
+        nextBtn.onclick = () => { if(currentPage<totalPages){currentPage++; renderPage(currentPage);} };
+        pagination.appendChild(nextBtn);
+    }
+
+    renderPage(currentPage);
+});
+
+/* ------------------- SEARCH FUNCTION --------------------- */
+const searchInput = document.getElementById("searchInput");
+const suggestionBox = document.getElementById("suggestionBox");
+
+searchInput.addEventListener("keyup", function () {
+    const searchText = this.value.toLowerCase();
+    const products = document.querySelectorAll("#productGallery .product-card");
+
     suggestionBox.innerHTML = "";
-    if (query === "") {
-        suggestionBox.style.display = "none";
+    suggestionBox.style.display = "none";
+
+    if (searchText.trim() === "") {
+        products.forEach(p => p.style.display = "block");
         return;
     }
 
-    let matches = [];
+    products.forEach(product => {
+        const name = product.getAttribute("data-name").toLowerCase();
+        product.style.display = name.includes(searchText) ? "block" : "none";
 
-    cards.forEach(card => {
-        const name = card.getAttribute("data-name")?.trim();
-        if (name.toLowerCase().includes(query)) {
-            matches.push(name);
+        if (name.includes(searchText)) {
+            const div = document.createElement("div");
+            div.textContent = product.getAttribute("data-name");
+            div.onclick = () => {
+                openProductFromCard(product);
+                suggestionBox.style.display = "none";
+                searchInput.value = "";
+            };
+            suggestionBox.appendChild(div);
         }
     });
 
-    if (matches.length > 0) {
+    if (suggestionBox.children.length > 0) {
         suggestionBox.style.display = "block";
-        matches.forEach(name => {
-            const option = document.createElement("div");
-            option.textContent = name;
-
-            option.onclick = function () {
-                searchInput.value = name;
-                suggestionBox.style.display = "none";
-
-                // ✅ Show matching product (partial match allowed)
-                cards.forEach(card => {
-                    const nameCheck = card.getAttribute("data-name")?.trim().toLowerCase();
-                    card.style.display = nameCheck.includes(name.toLowerCase()) ? "block" : "none";
-                });
-            };
-
-            suggestionBox.appendChild(option);
-        });
-    } else {
-        suggestionBox.style.display = "none";
-    }
-});
-
-// Hide suggestions when clicking outside
-document.addEventListener("click", function (e) {
-    if (!suggestionBox.contains(e.target) && e.target !== searchInput) {
-        suggestionBox.style.display = "none";
     }
 });
 </script>
 
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/2349038600375" target="_blank" class="whatsapp-float">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" 
+         alt="WhatsApp" class="whatsapp-icon">
+</a>
 
 </body>
 </html>
