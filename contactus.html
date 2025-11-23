@@ -151,6 +151,34 @@
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
   }
+    /*Whatsapp Float*/
+  .whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+    background-color: #25D366;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    text-decoration: none;
+    animation: pulse 1.5s infinite;
+}
+
+.whatsapp-icon {
+    width: 35px;
+    height: 35px;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+    100% { transform: scale(1); }
+}
   </style>
 </head>
 <body>
@@ -300,6 +328,17 @@
 
 
 
+<div style="width:100%; height:350px;">
+  <iframe 
+    width="100%" 
+    height="100%" 
+    frameborder="0" 
+    style="border:0" 
+    referrerpolicy="no-referrer-when-downgrade"
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3941.8718366994217!2d3.379!3d6.4904!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8d40a8f83f1d%3A0xb4d6645e8a8d4f29!2s154%20Herbert%20Macaulay%20Way%2C%20Ebute%20Metta%2C%20Lagos!5e0!3m2!1sen!2sng!4v1700000000000"
+    allowfullscreen>
+  </iframe>
+</div>
 
   
 
@@ -410,7 +449,11 @@
   document.getElementById("year").textContent = new Date().getFullYear();
 </script>
 
-
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/2349038600375" target="_blank" class="whatsapp-float">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" 
+         alt="WhatsApp" class="whatsapp-icon">
+</a>
 
 </body>
 </html>

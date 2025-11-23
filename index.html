@@ -144,6 +144,35 @@
     }
      
     }
+    /*Whatsapp Float*/
+    .whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+    background-color: #25D366;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    text-decoration: none;
+    animation: pulse 1.5s infinite;
+}
+
+.whatsapp-icon {
+    width: 35px;
+    height: 35px;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+    100% { transform: scale(1); }
+}
+
   </style>
 </head>
 <body>
@@ -299,10 +328,12 @@ fashion designers, tailors, leather craftsman, hobbyists,Seamstresses,cobblers,
       <div class="feature-card">
         <span class="glyphicon glyphicon-lock" style="font-size:40px; color:#000000;"></span>
         <h3>NO DEPOSIT NEEDED!</h3>
-        <p>Your BVN is not required &amp; you don't have to input your bank login or tell your friend.</p>
-
+      <!--  <p>Your BVN is not required &amp; you don't have to input your bank login 
+          or tell your friend.</p>-->
+        
+<p>Financial privacy maintained with secured, non-banking verification process</p>
         <a href="your-link-here.html" class="btn btn-start">
-          Start Now <span class="glyphicon glyphicon-arrow-right"></span>
+          Order Now <span class="glyphicon glyphicon-arrow-right"></span>
         </a>
       </div>
     </div>
@@ -315,7 +346,7 @@ fashion designers, tailors, leather craftsman, hobbyists,Seamstresses,cobblers,
         <p>We sell at market price, no interest. Just easy installment payments.</p>
 
         <a href="product.html" class="btn btn-start">
-          Start Now <span class="glyphicon glyphicon-arrow-right"></span>
+          Shop Now <span class="glyphicon glyphicon-arrow-right"></span>
         </a>
       </div>
     </div>
@@ -325,8 +356,8 @@ fashion designers, tailors, leather craftsman, hobbyists,Seamstresses,cobblers,
       <div class="feature-card">
         <span class="glyphicon glyphicon-send" style="font-size:40px; color:#000000;"></span>
         <h3>Easy Instalments<br>You Can TRUST</h3>
-        <p>Your items are delivered quickly after your payment plan midpoint.</p>
-
+       <!-- <p>Your items are delivered quickly after your payment plan midpoint.</p>-->
+<p>Your SEWING MACHINE is delivered FAST once half the total INSTALLMENT has been received</p>
         <a href="product.html" class="btn btn-start">
           Start Now <span class="glyphicon glyphicon-arrow-right"></span>
         </a>
@@ -488,10 +519,12 @@ We support fashion designers in achieving ownership simply, via convenient payme
           /v1/fill/w_642,h_753,al_c,q_90,enc_avif,quality_auto/CD%20Care%20iPhone%20in%
           20Hand%20Mockup_edited_edi.png" alt="app mockup" style="width:100%; height:auto; 
           display:block; object-fit:cover; border-radius:8px;">-->
-<img src="./assets/two-lion-domestic.jpg" 
+<!--<img src="./assets/two-lion-domestic.jpg" 
+     alt="Sewing Machine Illustration" 
+     style="width:100%; height:auto; display:block; object-fit:cover; border-radius:8px;">-->
+<img src="./assets/medium-shot-black-woman-running-small-business (1).jpg" 
      alt="Sewing Machine Illustration" 
      style="width:100%; height:auto; display:block; object-fit:cover; border-radius:8px;">
-
 
 
         </div>
@@ -1250,7 +1283,11 @@ The <strong>final payment</strong> must be made as a <strong>single lump-sum tra
   document.getElementById("year").textContent = new Date().getFullYear();
 </script>
 
-
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/2349038600375" target="_blank" class="whatsapp-float">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" 
+         alt="WhatsApp" class="whatsapp-icon">
+</a>
 
 </body>
 </html>
