@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Paysmallsmall Installment Store</title>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+body { background: #f9f9f9; font-family: 'Arial', sans-serif; }
+.navbar { background:#2b6; border:none; border-radius:0; }
+.navbar .navbar-brand, .navbar .nav > li > a { color:#fff !important; }
+.container { margin-top: 20px; position: relative; overflow: hidden; }
+h2 { text-align:center; margin-bottom:20px; font-weight:bold; }
+.slider { display:flex; will-change:transform; }
+.product-card { 
+    background:#fff; border:1px solid #ddd; border-radius:8px; 
+    width:250px; flex:none; margin:0 10px; text-align:center; 
+    padding:10px; cursor:pointer; box-sizing:border-box; 
+    position:relative; 
+}
+.product-card img { width:100%; height:200px; object-fit:cover; border-radius:6px; }
+.product-card h4 { font-size:16px; margin-top:10px; }
+.product-card p { color:#555; font-size:13px; min-height:40px; }
+.price { font-weight:bold; color:#2b6; margin:10px 0; }
+
+.wishlist-icon { 
+    position:absolute; top:10px; right:15px; 
+    font-size:20px; color:#ccc; cursor:pointer; z-index:3; 
+}
+.wishlist-icon.active { color:red; }
+
+.nav-btn { 
+    position:absolute; top:40%; 
+    background:rgba(0,0,0,0.5); 
+    color:white; border:none; 
+    padding:10px; cursor:pointer; 
+    z-index:2; 
+}
+#prevBtn { left:0 } 
+#nextBtn { right:0 }
+
+.modal-content { padding:20px; }
+.installment-option { display:flex; justify-content:space-around; margin-top:15px; }
+.installment-option div { background:#f0f0f0; padding:10px; border-radius:6px; cursor:pointer; }
+.installment-option div:hover { background:#2b6; color:white; }
+
+#installmentCalendar { display:none; margin-top:15px; text-align:center; padding:10px 0; border-top:1px solid #eee; }
+.calendar-number { 
+    display:inline-block; width:44px; height:44px; 
+    line-height:44px; margin:6px; background:#f0f0f0; 
+    border-radius:6px; cursor:pointer; font-weight:bold; 
+}
+.calendar-number:hover { background:#2b6; color:white; }
+
+#modalDescription {
+    font-size: 14px; line-height: 1.7; color: #333;
+    background: #fafafa; padding: 12px 14px;
+    border-left: 4px solid #90ee90;
+    border-radius: 6px; text-align: left;
+    max-height: 350px; overflow-y: auto;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+#modalDescription strong { color:#2e8b57; display:block; margin-top:10px; }
+
+/* Suggestion Box */
+#suggestionBox {
+    position: absolute; background: #fff;
+    border: 1px solid #ccc; width: 100%;
+    max-height: 200px; overflow-y: auto;
+    z-index: 9999; display: none;
+}
+#suggestionBox div { padding: 8px; cursor: pointer; }
+#suggestionBox div:hover { background: #f0f0f0; }
+
+/* Whatsapp Float */
+.whatsapp-float {
+    position: fixed; width: 60px; height: 60px;
+    bottom: 20px; right: 20px; z-index: 9999;
+    background-color: #25D366; border-radius: 50%;
+    display: flex; justify-content: center; align-items: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    text-decoration: none; animation: pulse 1.5s infinite;
+}
+.whatsapp-icon { width: 35px; height: 35px; }
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+    100% { transform: scale(1); }
+}
+</style>
+</head>
+
+<body>
+
+<!-- SEARCH BAR -->
+<div class="container" style="max-width:600px; margin-top:25px; position:relative;">
+    <input type="text" id="searchInput" class="form-control" placeholder="Search for product...">
+    <div id="suggestionBox"></div>
+</div>
+
+
+<!-- MAIN PRODUCT SLIDER -->
+<div class="container">
+    <h2>Paysmallsmall Products (Hot Deals)</h2>
+
+    <div class="slider-container" style="position:relative;">
+        <button id="prevBtn" class="nav-btn">&#10094;</button>
+
+        <div class="slider" id="productSlider">
+
+
+            <!-- PRODUCT 12 -->
+            <div class="product-card accessory col-sm-3"
+                data-id="p12"
+                data-name="TWO LION ELECTRIC INDUSTRIAL STEAM IRON"
+                data-price="95000"
+                data-img="./assets/two-lion-electric-iron.jpg"
+                data-desc="MODEL: TL300L. This industrial steam iron...">
+                
+                <span class="wishlist-icon glyphicon glyphicon-heart" onclick="toggleWishlist(event, this)"></span>
+                
+                <img src="./assets/two-lion-electric-iron.jpg" alt="Two Lion Industrial Iron">
+
+                <h4>TWO LION ELECTRIC INDUSTRIAL STEAM IRON</h4>
+                
+                <div class="price">₦95,000</div>
+            </div>
+
+
+            <!-- PRODUCT 13 -->
+            <div class="product-card accessory col-sm-3"
+                data-id="p13"
+                data-name="SEWING TAPE"
+                data-price="500"
+                data-img="./assets/sewing-tape.jpg"
+                data-desc="Flexible, portable and durable measuring tape...">
+
+                <span class="wishlist-icon glyphicon glyphicon-heart" onclick="toggleWishlist(event, this)"></span>
+                
+                <img src="./assets/sewing-tape.jpg" alt="Sewing Tape">
+
+                <h4>SEWING TAPE</h4>
+
+                <div class="price">₦500</div>
+            </div>
+
+
+        </div>
+
+        <button id="nextBtn" class="nav-btn">&#10095;</button>
+    </div>
+</div>
+
+
+<!-- PRODUCT GALLERY START -->
+<h2 style="margin-top:40px;">Paysmallsmall Products</h2>
+
+<div class="container">
+    <div class="row" id="product-gallery">
+
+
+        <!-- PRODUCT 1 -->
+        <div class="product-card machine col-sm-3"
+            data-id="p1"
+            data-name="TWO LION DIRECT DRIVE INDUSTRIAL STRAIGHT SEWING MACHINE"
+            data-price="400000"
+            data-img="./assets/two-lion-drive.jpg"
+            data-desc="MODEL: TL9900D. Heavy duty, 5000 SPM...">
+
+            <span class="wishlist-icon glyphicon glyphicon-heart" onclick="toggleWishlist(event, this)"></span>
+
+            <img src="./assets/two-lion-drive.jpg" alt="Two Lion Direct Drive">
+
+            <h4>TWO LION DIRECT DRIVE INDUSTRIAL SEWING MACHINE</h4>
+
+            <div class="price">₦400,000</div>
+        </div>
+
+
+        <!-- PRODUCT 2 -->
+        <div class="product-card machine col-sm-3"
+            data-id="p2"
+            data-name="TWO LION DOMESTIC SEWING MACHINE"
+            data-price="190000"
+            data-img="./assets/two-lion-domestic.jpg"
+            data-desc="JA2-1 Domestic sewing machine for home use...">
+
+            <span class="wishlist-icon glyphicon glyphicon-heart" onclick="toggleWishlist(event, this)"></span>
+
+            <img src="./assets/two-lion-domestic.jpg" alt="Two Lion Domestic">
+
+            <h4>TWO LION DOMESTIC SEWING MACHINE</h4>
+
+            <div class="price">₦190,000</div>
+        </div>
+
+
+        <!-- PRODUCT 3 -->
+        <div class="product-card machine col-sm-3"
+            data-id="p3"
+            data-name="TWO LION DOMESTIC OVERLOCK MACHINE"
+            data-price="170000"
+            data-img="./assets/two-lion-overlock.jpg"
+            data-desc="TL113D Overlock machine for trimming and finishing fabrics...">
+
+            <span class="wishlist-icon glyphicon glyphicon-heart" onclick="toggleWishlist(event, this)"></span>
+
+            <img src="./assets/two-lion-overlock.jpg" alt="Two Lion Overlock">
+
+            <h4>TWO LION DOMESTIC OVERLOCK MACHINE</h4>
+
+            <div class="price">₦170,000</div>
+        </div>
+
+
+        <!-- PRODUCT 4 -->
+        <div class="product-card machine col-sm-3"
+            data-id="p4"
+            data-name="TWO LION INDUSTRIAL SEWING MACHINE"
+            data-price="390000"
+            data-img="./assets/two-lion-industrial.jpg"
+            data-desc="TL8500 industrial sewing machine for commercial production...">
+
+            <span class="wishlist-icon glyphicon glyphicon-heart" onclick="toggleWishlist(event, this)"></span>
+
+            <img src="./assets/two-lion-industrial.jpg" alt="Two Lion Industrial">
+
+            <h4>TWO LION INDUSTRIAL SEWING MACHINE</h4>
+
+            <div class="price">₦390,000</div>
+        </div>
+
+
+        <!-- PRODUCT 5 -->
+        <div class="product-card machine col-sm-3"
+            data-id="p5"
+            data-name="THREE THREAD INDUSTRIAL OVERLOCKING MACHINE"
+            data-price="450000"
+            data-img="./assets/three-thread.jpg"
+            data-desc="TL737 Three-thread industrial overlock machine...">
+
+            <span class="wishlist-icon glyphicon glyphicon-heart" onclick="toggleWishlist(event, this)"></span>
+
+            <img src="./assets/three-thread.jpg" alt="Three Thread Machine">
+
+            <h4>THREE THREAD INDUSTRIAL OVERLOCKING MACHINE</h4>
+
+            <div class="price">₦450,000</div>
+        </div>
+
+    </div>
+</div>
+
+
+ 
+
+<!-- WHATSAPP FLOAT BUTTON -->
+<a href="https://wa.me/2349038600375" class="whatsapp-float" target="_blank">
+    <img src="./assets/whatsapp.png" class="whatsapp-icon" alt="WhatsApp">
+</a>
+
+<!-- JS LIBRARIES -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+
+
+<script>
+/* ===========================
+   CONFIG
+   =========================== */
+const PRODUCTS_PER_PAGE = 20;
+
+/* ===========================
+   DOM ELEMENTS
+   =========================== */
+const slider = document.getElementById('productSlider');
+const sliderContainer = document.querySelector('.slider-container');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+
+const galleryContainer = document.getElementById('product-gallery'); // where paginated clones go
+const paginationDiv = document.getElementById('pagination');
+
+const searchInput = document.getElementById('searchInput');
+const suggestionBox = document.getElementById('suggestionBox');
+
+const modalEl = $('#productModal'); // jQuery modal
+const modalTitle = document.getElementById('modalTitle');
+const modalImage = document.getElementById('modalImage');
+const modalDescription = document.getElementById('modalDescription');
+const modalPrice = document.getElementById('modalPrice');
+const installmentCalendar = document.getElementById('installmentCalendar');
+const installmentResult = document.getElementById('installmentResult');
+
+/* ===========================
+   UTILS
+   =========================== */
+function parsePrice(raw) {
+  if (raw == null) return 0;
+  return Number(String(raw).replace(/[^0-9.-]+/g, '')) || 0;
+}
+function trimDataName(el) {
+  return (el.getAttribute('data-name') || '').trim();
+}
+
+/* ===========================
+   MASTER PRODUCT LIST
+   - Collect all .product-card in document (both slider accessories and any product cards)
+   - We'll use clones to populate the gallery so original DOM isn't disrupted
+   =========================== */
+const masterCards = Array.from(document.querySelectorAll('.product-card')); // live list
+// create clone-representations (DOM clones) that we control for gallery pagination/search
+const galleryItems = masterCards.map(card => {
+  const clone = card.cloneNode(true);
+  // ensure wishlist icon doesn't carry problematic inline handlers duplicates:
+  // We will rely on our functions toggleWishlist/addToCart etc.
+  // Make sure the card is clickable (click opens modal).
+  clone.style.marginBottom = '20px';
+  clone.classList.add('gallery-item'); // marker for gallery clones
+  return clone;
+});
+
+/* ===========================
+   PAGINATION / RENDERING
+   =========================== */
+let filteredItems = [...galleryItems];
+let currentPage = 1;
+
+function renderGalleryPage(page = 1) {
+  currentPage = page;
+  galleryContainer.innerHTML = ''; // empty then append slice
+  const start = (page - 1) * PRODUCTS_PER_PAGE;
+  const end = start + PRODUCTS_PER_PAGE;
+  const slice = filteredItems.slice(start, end);
+
+  if (slice.length === 0) {
+    galleryContainer.innerHTML = '<div class="col-xs-12"><p style="text-align:center;">No products found.</p></div>';
+  } else {
+    slice.forEach(item => galleryContainer.appendChild(item));
+  }
+
+  renderPagination();
+}
+
+function renderPagination() {
+  paginationDiv.innerHTML = '';
+  const totalPages = Math.max(1, Math.ceil(filteredItems.length / PRODUCTS_PER_PAGE));
+
+  // prev
+  if (currentPage > 1) {
+    const btnPrev = document.createElement('button');
+    btnPrev.className = 'btn btn-default';
+    btnPrev.textContent = 'Prev';
+    btnPrev.onclick = () => renderGalleryPage(currentPage - 1);
+    paginationDiv.appendChild(btnPrev);
+  }
+
+  // numbered pages (limit if many pages - show first/last +/-2)
+  for (let i = 1; i <= totalPages; i++) {
+    const btn = document.createElement('button');
+    btn.className = 'btn btn-default';
+    btn.style.margin = '0 4px';
+    btn.textContent = i;
+    if (i === currentPage) btn.style.fontWeight = 'bold';
+    btn.onclick = () => renderGalleryPage(i);
+    paginationDiv.appendChild(btn);
+  }
+
+  // next
+  if (currentPage < totalPages) {
+    const btnNext = document.createElement('button');
+    btnNext.className = 'btn btn-default';
+    btnNext.textContent = 'Next';
+    btnNext.onclick = () => renderGalleryPage(currentPage + 1);
+    paginationDiv.appendChild(btnNext);
+  }
+}
+
+/* ===========================
+   SEARCH
+   - Filters galleryItems by data-name (case-insensitive)
+   - Shows suggestionBox entries
+   =========================== */
+function updateSearchSuggestions(keyword) {
+  suggestionBox.innerHTML = '';
+  if (!keyword) { suggestionBox.style.display = 'none'; return; }
+
+  const matches = galleryItems.filter(it => (it.getAttribute('data-name') || '').toLowerCase().includes(keyword));
+  matches.slice(0, 10).forEach(match => {
+    const div = document.createElement('div');
+    div.textContent = (match.getAttribute('data-name') || '').trim();
+    div.onclick = () => {
+      // open the product - use the original master card that matches the name if possible
+      const name = match.getAttribute('data-name').trim();
+      // find original element (masterCards) with the same data-name
+      const original = masterCards.find(m => (m.getAttribute('data-name') || '').trim() === name) || match;
+      openProductFromCard(original);
+      suggestionBox.style.display = 'none';
+      searchInput.value = '';
+      // after open, reset filter to all
+      filteredItems = [...galleryItems];
+      renderGalleryPage(1);
+    };
+    suggestionBox.appendChild(div);
+  });
+
+  suggestionBox.style.display = suggestionBox.children.length ? 'block' : 'none';
+}
+
+function doSearch() {
+  const keyword = (searchInput.value || '').toLowerCase().trim();
+  suggestionBox.innerHTML = '';
+  suggestionBox.style.display = 'none';
+
+  if (!keyword) {
+    filteredItems = [...galleryItems];
+    renderGalleryPage(1);
+    return;
+  }
+
+  filteredItems = galleryItems.filter(item => {
+    const name = (item.getAttribute('data-name') || '').toLowerCase();
+    const desc = (item.getAttribute('data-desc') || '').toLowerCase();
+    return name.includes(keyword) || desc.includes(keyword) || item.innerText.toLowerCase().includes(keyword);
+  });
+
+  // show suggestions
+  updateSearchSuggestions(keyword);
+  renderGalleryPage(1);
+}
+searchInput.addEventListener('keyup', () => doSearch());
+
+/* close suggestion on outside click */
+document.addEventListener('click', (ev) => {
+  if (!suggestionBox.contains(ev.target) && ev.target !== searchInput) {
+    suggestionBox.style.display = 'none';
+  }
+});
+
+/* ===========================
+   SLIDER (ACCESSORIES) - infinite auto-scroll
+   - Expects accessory items inside #productSlider with class .accessory
+   =========================== */
+let sliderSpeed = 60;
+let paused = false;
+let pos = 0;
+let originalWidth = 0;
+let rafId = null;
+let lastTime = null;
+let cardFullWidth = 0;
+let originalCount = 0;
+
+function setupInfiniteSlider() {
+  if (!slider) return;
+  slider.style.transition = '';
+  pos = 0; lastTime = null; paused = false;
+  // remove previous clones
+  Array.from(slider.children).forEach(ch => { if (ch.dataset.clone) ch.remove(); });
+
+  const originalChildren = Array.from(slider.querySelectorAll('.accessory'));
+  originalCount = originalChildren.length;
+  if (!originalCount) return;
+
+  const first = originalChildren[0];
+  const st = window.getComputedStyle(first);
+  const ml = parseFloat(st.marginLeft) || 0, mr = parseFloat(st.marginRight) || 0;
+  cardFullWidth = Math.round(first.getBoundingClientRect().width + ml + mr);
+  originalWidth = cardFullWidth * originalCount;
+
+  for (let i = 0; i < originalCount; i++) {
+    const clone = originalChildren[i].cloneNode(true);
+    clone.dataset.clone = '1';
+    slider.appendChild(clone);
+  }
+
+  slider.style.transform = `translateX(${pos}px)`;
+  cancelAnimationFrame(rafId);
+  rafId = requestAnimationFrame(stepSlider);
+}
+function stepSlider(timestamp) {
+  if (!lastTime) lastTime = timestamp;
+  const dt = (timestamp - lastTime) / 1000;
+  lastTime = timestamp;
+  if (!paused) {
+    pos -= sliderSpeed * dt;
+    if (Math.abs(pos) >= originalWidth) pos += originalWidth;
+    slider.style.transform = `translateX(${pos}px)`;
+  }
+  rafId = requestAnimationFrame(stepSlider);
+}
+if (sliderContainer) {
+  sliderContainer.addEventListener('mouseenter', () => paused = true);
+  sliderContainer.addEventListener('mouseleave', () => paused = false);
+}
+if (nextBtn) nextBtn.addEventListener('click', () => manualShift(1));
+if (prevBtn) prevBtn.addEventListener('click', () => manualShift(-1));
+
+function manualShift(direction) {
+  paused = true;
+  if (!cardFullWidth || !originalWidth) return;
+  pos -= direction * cardFullWidth;
+  if (Math.abs(pos) >= originalWidth) pos += originalWidth * Math.sign(pos);
+  slider.style.transition = 'transform 0.35s ease';
+  slider.style.transform = `translateX(${pos}px)`;
+  setTimeout(() => { slider.style.transition = ''; setTimeout(() => paused = false, 200); }, 360);
+}
+
+/* initialize slider after load */
+window.addEventListener('load', () => {
+  try { setupInfiniteSlider(); } catch (e) { /* ignore */ }
+});
+window.addEventListener('resize', () => { clearTimeout(window._sliderResizeTimer); window._sliderResizeTimer = setTimeout(setupInfiniteSlider, 250); });
+
+/* ===========================
+   MODAL / CART / WISHLIST
+   =========================== */
+let selectedProduct = '';
+let selectedPrice = 0;
+let selectedPlan = '';
+let selectedDuration = 0;
+let selectedImg = '';
+
+function openProduct(name, price, desc, img) {
+  selectedProduct = name;
+  selectedPrice = parsePrice(price);
+  selectedPlan = '';
+  selectedDuration = 0;
+
+  modalTitle.textContent = name || '';
+  modalPrice.textContent = "₦" + selectedPrice.toLocaleString();
+  modalImage.src = img || '';
+  modalDescription.innerHTML = (desc || '').replace(/\n/g, '<br>');
+
+  installmentResult.textContent = '';
+  installmentCalendar.innerHTML = '';
+  installmentCalendar.style.display = 'none';
+  modalEl.modal('show');
+}
+
+function openProductFromCard(el) {
+  if (!el) return;
+  // el may be a clone or the original. Read data from attributes
+  const name = (el.getAttribute('data-name') || '').trim();
+  const price = el.getAttribute('data-price') || el.dataset.price || '';
+  const img = el.getAttribute('data-img') || el.dataset.img || '';
+  const desc = el.getAttribute('data-desc') || el.dataset.desc || el.innerText || '';
+
+  openProduct(name, price, desc, img);
+}
+
+/* click delegation - open modal when a product-card (or gallery-item) is clicked (but not when clicking wishlist icon) */
+document.addEventListener('click', function(e) {
+  const wish = e.target.closest('.wishlist-icon');
+  if (wish) return; // don't open modal when wish icon clicked
+
+  const card = e.target.closest('.product-card');
+  if (card) {
+    openProductFromCard(card);
+  }
+});
+
+/* Payment plan selection */
+function selectPayment(type) {
+  selectedPlan = type;
+  selectedDuration = 0;
+  installmentCalendar.innerHTML = '';
+  installmentResult.textContent = '';
+
+  if (type === 'weekly') {
+    installmentCalendar.style.display = 'block';
+    for (let i = 2; i <= 48; i += 2) {
+      if (i === 46) continue;
+      const d = document.createElement('div');
+      d.className = 'calendar-number';
+      d.textContent = i;
+      d.onclick = () => pickDuration(i);
+      installmentCalendar.appendChild(d);
+    }
+  } else if (type === 'monthly') {
+    installmentCalendar.style.display = 'block';
+    for (let i = 2; i <= 12; i++) {
+      const d = document.createElement('div');
+      d.className = 'calendar-number';
+      d.textContent = i;
+      d.onclick = () => pickDuration(i);
+      installmentCalendar.appendChild(d);
+    }
+  } else {
+    installmentCalendar.style.display = 'none';
+    installmentResult.textContent = `Total Price: ₦${selectedPrice.toLocaleString()}`;
+  }
+}
+
+function pickDuration(val) {
+  selectedDuration = val;
+  calculateInstallment(val);
+  Array.from(document.querySelectorAll('#installmentCalendar .calendar-number')).forEach(el => {
+    el.style.background = '#f0f0f0';
+    el.style.color = '';
+  });
+  const picked = Array.from(document.querySelectorAll('#installmentCalendar .calendar-number')).find(el => el.textContent == String(val));
+  if (picked) { picked.style.background = '#2b6'; picked.style.color = '#fff'; }
+}
+
+function calculateInstallment(value) {
+  if (!selectedPlan) return;
+  const installmentAmount = Math.round(selectedPrice / Number(value));
+  const perLabel = (selectedPlan === 'weekly') ? 'per week' : 'per month';
+  const unitLabel = (selectedPlan === 'weekly') ? 'weeks' : 'months';
+  installmentResult.textContent = `₦${installmentAmount.toLocaleString()} ${perLabel} for ${value} ${unitLabel}.`;
+}
+
+/* add to cart */
+function addToCart() {
+  if (!selectedProduct) { alert('Open a product first.'); return; }
+  const item = { name: selectedProduct, price: selectedPrice, plan: selectedPlan || 'Buy Once', duration: selectedDuration || null, image: modalImage.src };
+  let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+  cart.push(item);
+  localStorage.setItem('cart', JSON.stringify(cart));
+
+  // optional server POST (silently)
+  fetch('cart_api.php', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({ action: 'add', product: item })
+  }).catch(()=>{});
+
+  alert(selectedProduct + ' added to cart');
+}
+
+/* wishlist */
+function addToWishlist() {
+  if (!selectedProduct) { alert('Open a product first.'); return; }
+  const item = { name: selectedProduct, price: selectedPrice, image: modalImage.src };
+  let wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+  if (wishlist.find(w => w.name === item.name)) { alert('Already in wishlist'); return; }
+  wishlist.push(item);
+  localStorage.setItem('wishlist', JSON.stringify(wishlist));
+  fetch('wishlist_api.php', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ action: 'add', product: item }) }).catch(()=>{});
+  alert(selectedProduct + ' added to wishlist');
+}
+
+/* toggle wishlist from card icon */
+function toggleWishlist(e, iconEl) {
+  e.stopPropagation();
+  const card = iconEl.closest('.product-card');
+  if (!card) return;
+  const name = (card.getAttribute('data-name') || '').trim();
+  const price = parsePrice(card.getAttribute('data-price') || card.dataset.price);
+  const image = card.getAttribute('data-img') || card.dataset.img || '';
+
+  let wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+  const exists = wishlist.find(w => w.name === name);
+  if (exists) {
+    wishlist = wishlist.filter(w => w.name !== name);
+    iconEl.classList.remove('active');
+    fetch('wishlist_api.php', { method:'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ action:'remove', product: { name, price, image } }) }).catch(()=>{});
+  } else {
+    wishlist.push({ name, price, image });
+    iconEl.classList.add('active');
+    fetch('wishlist_api.php', { method:'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ action:'add', product: { name, price, image } }) }).catch(()=>{});
+  }
+  localStorage.setItem('wishlist', JSON.stringify(wishlist));
+}
+
+/* proceed to payment */
+function proceedToPayment() {
+  if (selectedPlan === '') return alert('Please choose a payment option.');
+  if (selectedPlan !== 'once' && selectedDuration === 0) return alert('Please select duration from the calendar.');
+  const planType = (selectedPlan === 'once') ? 'Buy Once' : (selectedPlan === 'weekly' ? 'Weekly' : 'Monthly');
+  const totalPrice = selectedPrice;
+  const amountDue = (selectedPlan === 'once') ? totalPrice : Math.round(totalPrice / selectedDuration);
+  const balance = (selectedPlan === 'once') ? 0 : totalPrice - amountDue;
+  const payload = { name: selectedProduct, plan: planType, amountDue, balance, duration: selectedDuration, price: totalPrice, image: selectedImg || modalImage.src };
+  localStorage.setItem('checkout', JSON.stringify(payload));
+  window.location.href = 'payment.html';
+}
+
+/* ===========================
+   INITIALIZE GALLERY (first render)
+   =========================== */
+filteredItems = [...galleryItems];
+renderGalleryPage(1);
+
+/* Make sure any dynamically added wishlist icon uses pointer cursor and clickable */
+document.addEventListener('DOMContentLoaded', () => {
+  // attach onclick for wishlist icons that may be in cloned gallery items
+  document.querySelectorAll('.wishlist-icon').forEach(icon => {
+    icon.style.cursor = 'pointer';
+  });
+});
+</script>
+
+
+
+
+</body>
+</html>
+

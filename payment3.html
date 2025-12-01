@@ -4,15 +4,39 @@
   <meta charset="UTF-8">
   <title>Payment Details | Paysmallsmall</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="icon" href="./assets/favicon.ico">
+    <style>
+        /*Whatsapp Float*/
+.whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+    background-color: #25D366;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    text-decoration: none;
+    animation: pulse 1.5s infinite;
+}
 
-  <style>
-    @media(max-width:767px){
-      body { width: 100%; height: 100%; }
-      .panel { width: 100%; height: auto; }
-    }
-  </style>
+.whatsapp-icon {
+    width: 35px;
+    height: 35px;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+    100% { transform: scale(1); }
+}
+
+    </style>
 </head>
-
 <body style="background-color:#f9f9f9;">
 
 <div class="container" style="margin-top:30px; padding:0 15px;">
@@ -20,77 +44,61 @@
     <div class="panel-heading text-center" style="background-color:#2c3e50; color:#fff;">
       <h3>Payment Details</h3>
     </div>
-
     <div class="panel-body">
       <h4>Bank Information</h4>
       <p><strong>Bank Name:</strong> Opay Account</p>
-      <p><strong>Account Name:</strong> Paysmallsmall Nig. Limited</p>
+      <p><strong>Account Name:</strong> Paysmallsmall Nig.Limited</p>
       <p><strong>Account Number:</strong> 9038600375</p>
 
       <hr>
-      
       <h4>Payment Summary</h4>
-      <p><strong>Order ID:</strong> <span id="order_id"></span></p>
       <p><strong>Product:</strong> <span id="product"></span></p>
       <p><strong>Payment Plan:</strong> <span id="plan"></span></p>
       <p><strong>Amount Due:</strong> ₦<span id="amount"></span></p>
+      <p><strong>Balance Remaining:</strong> ₦<span id="balance"></span></p>
       <p><strong>Duration:</strong> <span id="duration"></span></p>
 
       <hr>
-
       <form id="paymentForm" method="POST" action="payment_process.php">
-        
         <div class="form-group">
-          <label>Your Email Address</label>
+          <label for="email">Your Email Address</label>
           <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email to receive receipt" required>
         </div>
 
         <!-- Hidden fields -->
-        <input type="hidden" name="order_id" id="orderIDField">
-        <input type="hidden" name="product_name" id="productField">
-        <input type="hidden" name="price" id="amountField">
-        <input type="hidden" name="plan_type" id="planField">
-        <input type="hidden" name="duration" id="durationField">
-        <input type="hidden" name="payment_option" value="Bank Transfer">
+        <input type="hidden" id="productField" name="product_name">
+        <input type="hidden" id="amountField" name="price">
+        <input type="hidden" id="planField" name="plan_type">
+        <input type="hidden" id="durationField" name="duration">
+        <input type="hidden" id="paymentOptionField" name="payment_option" value="Bank Transfer">
 
         <button type="submit" class="btn btn-success btn-block">Confirm Payment</button>
       </form>
-
     </div>
   </div>
 </div>
 
-
 <script>
-document.addEventListener("DOMContentLoaded", () => {
-
+document.addEventListener("DOMContentLoaded", ()=>{
   const checkout = JSON.parse(localStorage.getItem("checkout") || "{}");
-
-  // FIXED DISPLAY-DATA
-  //document.getElementById("orderIDField").value = checkout.orderID || "";
-
-  document.getElementById("order_id").textContent = checkout.orderID || "N/A";
-  document.getElementById("product").textContent = checkout.name || "N/A";
-  document.getElementById("plan").textContent = checkout.plan || "N/A";
+  document.getElementById("product").textContent = checkout.name || "Unknown";
+  document.getElementById("plan").textContent = checkout.plan || "Buy Once";
   document.getElementById("amount").textContent = (checkout.amountDue || 0).toLocaleString();
+  document.getElementById("balance").textContent = (checkout.balance || 0).toLocaleString();
+  document.getElementById("duration").textContent = checkout.duration ? checkout.duration + ((checkout.plan==="Weekly")?" weeks":(checkout.plan==="Monthly"?" months":"")) : "0";
 
-  // Duration formatting
-  let durLabel = "";
-  if (checkout.plan === "Weekly") durLabel = " weeks";
-  else if (checkout.plan === "Monthly") durLabel = " months";
-
-  document.getElementById("duration").textContent =
-    checkout.duration ? checkout.duration + durLabel : "N/A";
-
-  // FIXED HIDDEN FIELDS
-  document.getElementById("orderIDField").value = checkout.orderID || "";
+  // Set hidden inputs
   document.getElementById("productField").value = checkout.name || "";
   document.getElementById("amountField").value = checkout.amountDue || 0;
   document.getElementById("planField").value = checkout.plan || "";
   document.getElementById("durationField").value = checkout.duration || 0;
-
 });
 </script>
+
+<a href="whatsapp://send?phone=2349038600375" class="whatsapp-float">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" 
+         alt="WhatsApp" class="whatsapp-icon">
+</a>
 
 </body>
 </html>

@@ -1,50 +1,44 @@
 <?php
-date_default_timezone_set('Africa/Lagos');
 include 'db_connect.php';
 
-if (isset($_GET['order_id']) && isset($_GET['email']) && isset($_GET['token'])) {
-    $order_id = intval($_GET['order_id']);
-    $email = $_GET['email'];
+if (isset($_GET['token'])) {
     $token = $_GET['token'];
 
-    $stmt = $conn->prepare("SELECT * FROM payments WHERE id = ? AND email = ? AND admin_token = ?");
-    $stmt->bind_param("iss", $order_id, $email, $token);
+    // Find payment by token
+    $stmt = $conn->prepare("SELECT * FROM payments WHERE admin_token=? AND status='pending'");
+    $stmt->bind_param("s", $token);
     $stmt->execute();
     $result = $stmt->get_result();
 
-    if ($result->num_rows > 0) {
-        $update = $conn->prepare("UPDATE payments SET status = 'confirmed' WHERE id = ?");
-        $update->bind_param("i", $order_id);
+    if ($payment = $result->fetch_assoc()) {
+        $new_balance = $payment['total_amount'] - $payment['amount_paid'];
+
+        // Update payment record
+        $update = $conn->prepare("UPDATE payments SET status='confirmed', balance=? WHERE admin_token=?");
+        $update->bind_param("ds", $new_balance, $token);
         $update->execute();
-        $update->close();
 
-        // Send confirmation email to user
-        $payment = $result->fetch_assoc();
-        $to = $payment['email'];
-        $subject = "Payment Confirmation Received - Paysmallsmall";
+        // Send confirmation email to customer
+        $to = $payment['customer_email'];
+        $subject = "Payment Confirmed - " . $payment['product_name'];
         $message = "
-            <html><body>
-            <h2>Payment Confirmed</h2>
-            <p>Dear Customer,</p>
-            <p>Your payment for <strong>{$payment['product_name']}</strong> (₦{$payment['price']}) has been successfully confirmed.</p>
-            <p>Thank you for your trust in Paysmallsmall.</p>
-            </body></html>
+          <html><body>
+          <h2>Payment Received Successfully!</h2>
+          <p>Your payment of ₦" . number_format($payment['amount_paid'], 2) . " has been confirmed.</p>
+          <p>New Balance: ₦" . number_format($new_balance, 2) . "</p>
+          <p>Thank you for using Paysmallsmall.</p>
+          </body></html>
         ";
-        $headers = "MIME-Version: 1.0\r\n";
+
+        $headers  = "MIME-Version: 1.0\r\n";
         $headers .= "Content-type:text/html;charset=UTF-8\r\n";
-        $headers .= "From: Paysmallsmall <info@paysmallsmall.org>\r\n";
+        $headers .= "From: Paysmallsmall <no-reply@paysmallsmall.org>\r\n";
 
-        if (mail($to, $subject, $message, $headers)) {
-            echo "<h3 style='text-align:center;color:green;margin-top:50px;'>✅ Payment confirmed and email sent to $to</h3>";
-        } else {
-            echo "<h3 style='text-align:center;color:red;margin-top:50px;'>⚠️ Payment confirmed, but email could not be sent. Check mail() configuration.</h3>";
-        }
+        mail($to, $subject, $message, $headers);
 
-        $stmt->close();
+        echo "<h2 style='color:green;text-align:center;'>✅ Payment confirmed successfully!</h2>";
     } else {
-        echo "<h3 style='text-align:center;color:red;margin-top:50px;'>❌ No matching payment record found.</h3>";
+        echo "<h3 style='color:red;text-align:center;'>❌ Invalid or already confirmed token.</h3>";
     }
-} else {
-    echo "<h3 style='text-align:center;color:red;margin-top:50px;'>⚠️ Invalid request.</h3>";
 }
 ?>

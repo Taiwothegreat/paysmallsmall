@@ -2631,7 +2631,7 @@ function toggleWishlist(e, iconEl) {
 }
 
 /* proceed to payment */
-/*function proceedToPayment() {
+function proceedToPayment() {
   if (selectedPlan === '') return alert('Please choose a payment option.');
   if (selectedPlan !== 'once' && selectedDuration === 0) return alert('Please select duration from the calendar.');
   const planType = (selectedPlan === 'once') ? 'Buy Once' : (selectedPlan === 'weekly' ? 'Weekly' : 'Monthly');
@@ -2639,32 +2639,6 @@ function toggleWishlist(e, iconEl) {
   const amountDue = (selectedPlan === 'once') ? totalPrice : Math.round(totalPrice / selectedDuration);
   const balance = (selectedPlan === 'once') ? 0 : totalPrice - amountDue;
   const payload = { name: selectedProduct, plan: planType, amountDue, balance, duration: selectedDuration, price: totalPrice, image: selectedImg || modalImage.src };
-  localStorage.setItem('checkout', JSON.stringify(payload));
-  window.location.href = 'payment.html';
-}*/
-function proceedToPayment() {
-  if (selectedPlan === '') return alert('Please choose a payment option.');
-  if (selectedPlan !== 'once' && selectedDuration === 0) return alert('Please select duration from the calendar.');
-
-  const planType = (selectedPlan === 'once') ? 'Buy Once' : (selectedPlan === 'weekly' ? 'Weekly' : 'Monthly');
-  const totalPrice = selectedPrice;
-  const amountDue = (selectedPlan === 'once') ? totalPrice : Math.round(totalPrice / selectedDuration);
-  const balance = (selectedPlan === 'once') ? 0 : totalPrice - amountDue;
-
-  // Generate unique Order ID
-  const orderID = "PS" + Math.floor(100000 + Math.random() * 900000); // e.g., PS123456
-
-  const payload = { 
-    orderID,           // add this line
-    name: selectedProduct, 
-    plan: planType, 
-    amountDue, 
-    balance, 
-    duration: selectedDuration, 
-    price: totalPrice, 
-    image: selectedImg || modalImage.src 
-  };
-
   localStorage.setItem('checkout', JSON.stringify(payload));
   window.location.href = 'payment.html';
 }
