@@ -1,79 +1,108 @@
 <?php
-include 'db_connect.php';
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
+include 'db_connect.php';  
 
-require 'PHPMailer/src/Exception.php';
-require 'PHPMailer/src/PHPMailer.php';
-require 'PHPMailer/src/SMTP.php';
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST['email'];
-    $product_name = $_POST['product_name'];
-    $total_price = floatval($_POST['total_price']);
-    $installment_amount = floatval($_POST['installment_amount']);
-    $plan_type = $_POST['plan_type'];
-    $duration = ($plan_type == "Weekly") ? "4 weeks" : (($plan_type == "Monthly") ? "3 months" : "Full Payment");
+    $email      = $_POST['email'];
+    $product    = $_POST['product_name'];
+    $price      = $_POST['price'];
+    $plan       = $_POST['plan_type'];
+    $duration   = $_POST['duration'];
+    $orderID    = $_POST['order_id'];
+    $payment_option = $_POST['payment_option'];
 
-    // Get user info
-    $stmt = $conn->prepare("SELECT id, balance FROM accounts WHERE email = ?");
-    $stmt->bind_param("s", $email);
+    // Admin token for confirmation
+    $token = bin2hex(random_bytes(16));
+
+    // Insert into database
+    $stmt = $conn->prepare("
+        INSERT INTO payments 
+        (email, product_name, price, plan_type, duration, payment_option, order_id_user, status, admin_token) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, 'pending', ?)
+    ");
+
+    $stmt->bind_param("ssdsssss", $email, $product, $price, $plan, $duration, $payment_option, $orderID, $token);
     $stmt->execute();
-    $user = $stmt->get_result()->fetch_assoc();
+    $stmt->close();
 
-    if ($user) {
-        $user_id = $user['id'];
-        $new_balance = $user['balance'] - $installment_amount;
+    // Confirmation link
+    $confirmLink = "https://www.paysmallsmall.org/confirm_payment.php?order_id=$orderID&email=" . urlencode($email) . "&token=$token";
 
-        // Update balance
-        $update = $conn->prepare("UPDATE accounts SET balance = ? WHERE id = ?");
-        $update->bind_param("di", $new_balance, $user_id);
-        $update->execute();
+    /*
+    ============================
+    SEND ADMIN EMAIL
+    ============================
+    */
+    $adminEmail = "info@paysmallsmall.org";
+    $subject = "Payment Confirmation Required – Order ID: $orderID";
 
-        // Record payment in order_history
-        $date = date("Y-m-d H:i:s");
-        $insert = $conn->prepare("INSERT INTO order_history (user_id, product_name, price, plan_type, duration, date)
-                                  VALUES (?, ?, ?, ?, ?, ?)");
-        $insert->bind_param("isdsss", $user_id, $product_name, $installment_amount, $plan_type, $duration, $date);
-        $insert->execute();
+    $message = "
+    <html>
+    <body>
+    <h2>New Payment Confirmation Request</h2>
 
-        // Send thank-you email
-        $mail = new PHPMailer(true);
-        try {
-            $mail->isSMTP();
-            $mail->Host = 'mail.paysmallsmall.org';
-            $mail->SMTPAuth = true;
-            $mail->Username = 'info@paysmallsmall.org';
-            $mail->Password = 'YOUR_EMAIL_PASSWORD';
-            $mail->SMTPSecure = 'tls';
-            $mail->Port = 587;
+    <p><strong>Order ID:</strong> $orderID</p>
+    <p><strong>Customer:</strong> $email</p>
+    <p><strong>Product:</strong> $product</p>
+    <p><strong>Amount:</strong> ₦$price</p>
+    <p><strong>Plan:</strong> $plan</p>
+    <p><strong>Duration:</strong> $duration</p>
+    <p><strong>Payment Option:</strong> $payment_option</p>
 
-            $mail->setFrom('info@paysmallsmall.org', 'Paysmallsmall');
-            $mail->addAddress($email);
-            $mail->isHTML(true);
-            $mail->Subject = "Payment Successful - Paysmallsmall";
-            $mail->Body = "
-                <h3>Payment Confirmation</h3>
-                <p>Dear Customer,</p>
-                <p>Thank you for your payment for <b>$product_name</b>.</p>
-                <p>Plan: <b>$plan_type</b><br>
-                Amount Paid: ₦" . number_format($installment_amount) . "<br>
-                Total Price: ₦" . number_format($total_price) . "</p>
-                <p>Your payment was successful.</p>
-                <p><b>Bank:</b> Paysmallsmall Microfinance Bank<br>
-                <b>Account Name:</b> Paysmallsmall Ltd<br>
-                <b>Account Number:</b> 1234567890</p>
-                <br><p>We appreciate your business!</p>
-                <p>– Paysmallsmall Team</p>
-            ";
-            $mail->send();
-        } catch (Exception $e) {
-            error_log("Mailer Error: " . $mail->ErrorInfo);
-        }
+    <br>
+    <p>Click below to confirm this payment:</p>
 
-        echo "<script>alert('Payment Successful! A confirmation email has been sent.'); window.location='product.html';</script>";
-    } else {
-        echo "<script>alert('No account found for this email.'); window.location='payment.html';</script>";
-    }
+    <p>
+      <a href='$confirmLink' 
+         style='background:#28a745;color:#fff;padding:10px 15px;text-decoration:none;border-radius:5px;'>
+         CONFIRM PAYMENT
+      </a>
+    </p>
+
+    </body>
+    </html>
+    ";
+
+    $headers  = "MIME-Version: 1.0\r\n";
+    $headers .= "Content-type:text/html;charset=UTF-8\r\n";
+    $headers .= "From: Paysmallsmall <no-reply@paysmallsmall.org>\r\n";
+
+    mail($adminEmail, $subject, $message, $headers);
+
+
+    /*
+    ============================
+    SEND CUSTOMER EMAIL
+    ============================
+    */
+    $customerSubject = "Your Payment Submission – Order ID: $orderID";
+
+    $customerMessage = "
+    <html>
+    <body>
+    <h2>Your Payment Has Been Submitted</h2>
+
+    <p>Thank you for your payment request!</p>
+
+    <p><strong>Order ID:</strong> $orderID</p>
+    <p><strong>Product:</strong> $product</p>
+    <p><strong>Amount:</strong> ₦$price</p>
+    <p><strong>Plan:</strong> $plan</p>
+    <p><strong>Duration:</strong> $duration</p>
+
+    <p>We will notify you once your payment is confirmed by our team.</p>
+
+    </body>
+    </html>
+    ";
+
+    $customerHeaders  = "MIME-Version: 1.0\r\n";
+    $customerHeaders .= "Content-type:text/html;charset=UTF-8\r\n";
+    $customerHeaders .= "From: Paysmallsmall <no-reply@paysmallsmall.org>\r\n";
+
+    mail($email, $customerSubject, $customerMessage, $customerHeaders);
+
+    echo "<script>alert('Payment submitted successfully! Check your email for your Order ID.'); 
+    window.location.href='thank_you.html';</script>";
 }
 ?>
