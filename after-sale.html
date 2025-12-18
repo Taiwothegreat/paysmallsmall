@@ -8,12 +8,9 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <style>
-   body {
+    body {
       font-family: Arial, sans-serif;
-  /*   background: #f5f7fb;*/
-     /*background-color:#bc933b ;
-     background-color: #FFFDD0;*/
-     background-color:#ffffff;
+  
     }
     .nav{
       margin-top: 20px;
@@ -59,7 +56,7 @@
     }
     .navbar-inverse .navbar-nav>li>a {
     /*color: #9d9d9d;*/
-    color: #bc933b;
+    color: #be923c;
     
 }
     .btn-start {
@@ -84,7 +81,7 @@
       object-fit: cover;
       border-radius: 10px;
     }
-      .faq-section { padding: 40px 20px; background: #bc933b; }
+      .faq-section { padding: 40px 20px; background: #e1d52b; }
     .faq-section h2 { text-align: center; font-size: 28px; font-weight: 600; margin-bottom: 30px; }
     .faq-number {
       background: orange; color: white; border-radius: 50%; display: inline-block;
@@ -150,34 +147,18 @@
       margin: 0 auto 15px auto !important;
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
+   /*#pure-footer .footer-col {
+  text-align: left !important;
+  margin-left: 0 !important;
+}*/
+
   }
-    /*Whatsapp Float*/
-  .whatsapp-float {
-    position: fixed;
-    width: 60px;
-    height: 60px;
-    bottom: 20px;
-    right: 20px;
-    z-index: 9999;
-    background-color: #25D366;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-    text-decoration: none;
-    animation: pulse 1.5s infinite;
-}
-
-.whatsapp-icon {
-    width: 35px;
-    height: 35px;
-}
-
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.08); }
-    100% { transform: scale(1); }
+  @media (max-width: 768px) {
+    #pure-footer .footer-col {
+        flex: 1 1 100% !important;
+        text-align: left !important;
+        margin-bottom: 25px !important;
+    }
 }
   </style>
 </head>
@@ -187,7 +168,7 @@
 <!-- Navbar -->
 
 
-   <nav class="navbar navbar-inverse navbar-fixed-top">
+  <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
       <div class="navbar-header">
         <a class="navbar-brand" href="#" style="font-weight:bold; color:#0b63b8;">
@@ -208,7 +189,7 @@
         <!--  <li><a href="#">Sewing Machine</a></li>-->
           <li><a href="aboutus.html">About Us</a></li>
           <li><a href="contactus.html">Contact Us</a></li>
-           <li><a href="blog.html">Blog</a></li>
+          
        <!--   <li><a href="pickup.html">Enquiry/Pickup Center</a></li>-->
           <li>
   <a href="sign-up.html">
@@ -232,70 +213,38 @@
   </nav>
 
 
-<div class="container" style="max-width:400px; margin-top:130px; background:#fff; padding:30px; border-radius:6px; box-shadow:0 0 10px rgba(0,0,0,0.1);margin-bottom: 50px;">
-    <h3 class="text-center" style="margin-bottom:25px; font-weight:bold; color:#333;">
-      Welcome Back to <br> <strong>PAY SMALL SMALL</strong><sup>TM</sup>
-    </h3>
+<!-- Post-Purchase Policy Section -->
+<section class="post-purchase-policy" style="background:#f9f9f9; padding:50px 20px; font-family:Arial, sans-serif; color:#333; margin-top: 100px;">
+  <div class="container">
+    <h2 style="text-align:center; margin-bottom:30px;">Post-Purchase Policy & Guarantee</h2>
+    
+    <p>Our responsibility is limited to the terms and conditions of the original manufacturer's warranty. We are unable to consider feature requests that deviate from the advertised product functionality, as we cannot accommodate feature requests outside the scope of the original specifications. Therefore, we recommend that customers thoroughly examine the product specifications prior to purchase to verify suitability for their requirements.</p>
+    
+    <h3>Guarantee and Conditions of Sale</h3>
+    <p>A. The descriptions provided are generic and subject to exceptions, which may vary by vendor or the sewing machine/sewing parts/sewing accessories.</p>
+    <p>Warranty is void if:</p>
+    <ol>
+      <li>From improper use, damage from accident or disaster, modifications made without Manufacturer's written approval, or normal wear and tear.</li>
+      <li>By way of trade in leasing for commercial purposes.</li>
+      <li>The damage is a result of an unforeseen incident.</li>
+      <li>Inadequate care.</li>
+      <li>Depreciation or decrease in value or quality over time, especially with use.</li>
+      <li>Power quality issues or voltage sag/dip disturbances.</li>
+      <li>Improper assembly/careless or negligent installation/bungled setup.</li>
+      <li>Erroneous operation.</li>
+      <li>Specific intense events like flood, flash flood, wildfire, firestorm, lightning, heat wave, or cold wave.</li>
+    </ol>
 
-    <form id="loginForm" action="login_process.php" method="post">
+    <p>B. Post-sale alterations not endorsed by the manufacturer.</p>
+    <p>C. The sewing machine is improperly serviced or maintained.</p>
 
-      <!-- Email -->
-      <div class="form-group">
-        <label for="email" style="font-weight:600;">Email Address</label>
-        <input type="email" class="form-control" id="email" name="email"
-               placeholder="Enter your email" required style="height:40px;">
-      </div>
-
-      <!-- Password -->
-      <div class="form-group" style="position:relative;">
-        <label for="password" style="font-weight:600;">Password</label>
-        <input type="password" class="form-control" id="password" name="password"
-               placeholder="Enter your password" required style="height:40px; padding-right:35px;">
-        <i id="togglePassword" class="fa fa-eye-slash"
-           style="position:absolute; top:37px; right:10px; cursor:pointer; color:#555;"></i>
-      </div>
-
-      <!-- Forgot Password -->
-      <div style="text-align:right; margin-bottom:15px;">
-        <a href="forgot_password.html"
-           style="font-size:13px; color:#007bff; text-decoration:none;">Forgot Password?</a>
-      </div>
-
-      <!-- Login Button -->
-      <button type="submit" class="btn btn-primary btn-block"
-              style="background:#bd933b; border:none; height:40px; font-weight:bold;">Login</button>
-
-      <!-- Signup Link -->
-      <p class="text-center" style="margin-top:15px; font-size:14px;">
-        Don't have an account?
-        <a href="sign-up.html" style="color:#007bff; text-decoration:none; font-weight:bold;">Sign Up</a>
-      </p>
-    </form>
+    <h3>Exclusion of Clause Within Legal Bounds</h3>
+    <ol>
+      <li>This document contains all the warranties provided by the manufacturer; no other guarantees are given.</li>
+      <li>Out-of-warranty service is subject to a charge imposed by the manufacturer/representative.</li>
+    </ol>
   </div>
-
-  
-
-  <!-- Password Toggle -->
-  <script>
-    $(document).ready(function(){
-      $("#togglePassword").click(function(){
-        var input = $("#password");
-        var icon = $(this);
-        if (input.attr("type") === "password") {
-          input.attr("type", "text");
-          icon.removeClass("fa-eye-slash").addClass("fa-eye");
-        } else {
-          input.attr("type", "password");
-          icon.removeClass("fa-eye").addClass("fa-eye-slash");
-        }
-      });
-    });
-  </script>
-<!-- WhatsApp Floating Button -->
-<a href="https://wa.me/2349038600375" target="_blank" class="whatsapp-float">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" 
-         alt="WhatsApp" class="whatsapp-icon">
-</a>
+</section>
 
 
 
@@ -312,7 +261,6 @@
 
 
 <!-- ====== Responsive Wix-style Footer (Bootstrap-Free) ====== -->
-
 <div id="pure-footer" style="background:#111; color:#fff; padding:50px 20px 20px 20px; font-family:Arial, sans-serif; box-sizing:border-box;">
 
   <div class="container">
@@ -322,9 +270,8 @@
       <div class="col-sm-4 col-xs-12" style="margin-bottom:20px; text-align:left;">
         <img src="./assets/paysmallsmall_logo-removebg-preview (1).png" alt="Logo" style="width:120px; margin-bottom:15px;">
         <p style="font-size:20px; line-height:1.6; color:#ccc; margin:0; text-align: justify;">
-            You can split the cost of your SEWING MACHINE into smaller, interest-free installments with the payment plan that fits your budget.
-No upfront costs,just pay in stages.
-Enjoy your SEWING MACHINE now, pay comfortably later
+          At <strong>Paysmallsmall</strong> We empower you to own sewing equipment at a reasonable price and manage your expenses effortlessly.
+          We do not charge interest at all because we are not a loan company but we encourage you save-up and buy at a reasonable and normal market price.
         </p>
       </div>
 
@@ -354,10 +301,10 @@ Enjoy your SEWING MACHINE now, pay comfortably later
       <div class="col-sm-3 col-xs-12 footer-adjust" style="margin-bottom:20px; text-align:left;">
         <h4 style="color:#fff; font-weight:600; margin-bottom:15px;">Contact Us</h4>
         <p style="font-size:20px; color:#ccc; margin:0;">📍 154,Herbert Macaulay way,Ebute Metta,Lagos</p>
-        <p style="font-size:20px; color:#ccc; margin:0;">📞  +234 903 860 0375</p>
+        <p style="font-size:20px; color:#ccc; margin:0;">📞 +234 903 860 0375</p>
         <p style="font-size:20px; color:#ccc; margin:0;">✉️ info@paysmallsmall.org</p>
-<!---
-        <div style="margin-top:15px; font-size:20px;">
+
+     <!--   <div style="margin-top:15px; font-size:20px;">
           <a href="#" style="color:#3b5998; margin-right:10px;">👍</a>
           <a href="#" style="color:#E4405F; margin-right:10px;">📷</a>
           <a href="#" style="color:#1DA1F2; margin-right:10px;">🐦</a>
@@ -378,8 +325,6 @@ Enjoy your SEWING MACHINE now, pay comfortably later
   </div>
 </div>
 
-
-
 <!-- Inline Responsive Styles -->
 <style>
   @media (max-width: 768px) {
@@ -396,7 +341,7 @@ Enjoy your SEWING MACHINE now, pay comfortably later
       display: block !important;
     }
     #pure-footer h4 {
-      font-size: 20px !important;
+      font-size: 16px !important;
     }
     #pure-footer p, #pure-footer a {
       font-size: 13px !important;
@@ -408,7 +353,7 @@ Enjoy your SEWING MACHINE now, pay comfortably later
 
   @media (max-width: 480px) {
     #pure-footer p, #pure-footer a {
-      font-size: 18px !important;
+      font-size: 12px !important;
     }
     #pure-footer {
       padding: 30px 10px 10px 10px !important;

@@ -696,6 +696,41 @@ STEEL SEAM ROLLER
 </h4>
   <div class="price">₦40,000</div>
 </div>
+
+
+
+
+<!-- Product 34-->
+<div class="product-card accessory col-sm-3" 
+     data-name="
+FINGERTIP PROTECTOR
+ " 
+     data-price="9000(6psc)" 
+     data-img="./assets/Fingertip-protector.jpg" 
+     data-desc="
+Description:
+It reduces fatigue for hand and machine sewing enthusiasts.
+Also called Finger Guards/Sleeves (for Hand Sewing): Elastic fabric, silicone, or latex covers that fit snugly over
+ fingertips to shield them from needle pricks and friction during detailed work like embroidery.
+
+ 
+    "
+    
+     onclick="openProductFromCard(this)">
+  <span class="wishlist-icon glyphicon glyphicon-heart" onclick="toggleWishlist(event, this)"></span>
+  <img src="./assets/Fingertip-protector.jpg" alt=" Fingertip-protector">
+  <h4>
+FINGERTIP PROTECTOR
+</h4>
+  <div class="price">₦#9,000(6psc)</div>
+</div>
+
+
+
+
+
+
+
 <!-- Product 34-->
 <div class="product-card accessory col-sm-3" 
      data-name="
@@ -1470,6 +1505,34 @@ durable sealing, and can sew a variety of materials, including paper, jute, cott
 </h4>
   <div class="price">₦170,000</div>
 </div>
+
+
+<!-- Product 10 -->
+<div class=" product-card machine col-sm-3" 
+   data-id="p10"
+     data-name="
+XIANTYPICAL INDUSTRIAL STRAIGHT SEWING MACHINE
+
+
+ " 
+     data-price="385000 " 
+     data-img="./assets/xiantypical.jpg" 
+     data-desc="
+  
+     MODEL: TY8500/8700
+
+This machine is designed for high-speed performance, high quality, durability, and safety in sewing factory production. BuiIt to accommodate various sewing items and areas. TYPICAL (as funnily called)  enhance quality and reduce the need for skilled labor in complex sewing operations. It stitches with high 
+accuracy with approximately 600 to 8,500 sti/min. Infact,it offers total support to sewing factories.
+    "
+     onclick="openProductFromCard(this)">
+  <span class="wishlist-icon glyphicon glyphicon-heart" onclick="toggleWishlist(event, this)"></span>
+  <img src="./assets/xiantypical.jpg" alt="xiantypical">
+  <h4>XIANTYPICAL INDUSTRIAL STRAIGHT SEWING MACHINE
+
+
+</h4>
+  <div class="price">₦385,000</div>
+</div>
 <!-- Product 11 -->
 <div class=" product-card machine col-sm-3" 
    data-id="p11"
@@ -1806,6 +1869,30 @@ Two Lion Double Needle Industrial Straight Sewing  Machine
 
 </h4>
   <div class="price">₦790,000</div>
+</div>
+<!-- Product 26-->
+<div class=" product-card machine col-sm-3" 
+     data-name="
+ELEGANT INDUSTRIAL STRAIGHT SEWING MACHINE
+ " 
+     data-price="370000 " 
+     data-img="./assets/elegant-industrial.jpg"
+     data-desc="
+
+MODEL:EG8500/8700
+Optimized for light to medium-weight fabrics, though capable of handling some heavier materials like denim and heavy leather jackets.
+ELEGANT is praised by users as a reliable powerhouse for its speed and consistent performance
+ known for energy efficiency, low noise, and low vibration enhancing user comfort and efficiency.
+
+    "
+     onclick="openProductFromCard(this)">
+  <span class="wishlist-icon glyphicon glyphicon-heart" onclick="toggleWishlist(event, this)"></span>
+  <img src="./assets/elegant-industrial.jpg" alt="elegant industrial">
+  <h4>
+ELEGANT INDUSTRIAL STRAIGHT SEWING MACHINE
+
+</h4>
+  <div class="price">₦370,000</div>
 </div>
 <!-- Product 27-->
 <div class="product-card machine col-sm-3" 
@@ -2168,7 +2255,7 @@ Two Lion Single Head Monogram/Embroidery Machine
   </div>
 </div>
 
-
+<!---
       <h4>Choose Payment Option</h4>
       <div class="installment-option">
         <div onclick="selectPayment('once')">Buy Once!</div>
@@ -2181,7 +2268,46 @@ Two Lion Single Head Monogram/Embroidery Machine
 
       <button class="btn btn-success btn-block" onclick="addToCart()">Add to Cart</button>
       <button class="btn btn-warning btn-block" onclick="addToWishlist()">Add to Wishlist</button>
-      <button class="btn btn-primary btn-block" onclick="proceedToPayment()">Proceed to Payment</button>
+      <button  class="btn btn-primary btn-block" onclick="proceedToPayment()">Proceed to Payment</button>-->
+
+      <h4>Choose Payment Option</h4>
+<div class="installment-option">
+  <div onclick="selectPayment('once')">Buy Once!</div>
+  <div onclick="selectPayment('weekly')">Weekly Installment</div>
+  <div onclick="selectPayment('monthly')">Monthly Installment</div>
+</div>
+
+<div id="installmentCalendar" aria-hidden="true"></div>
+<p id="installmentResult" style="margin-top:10px; font-weight:bold;"></p>
+
+
+
+
+
+<!-- Installment Breakdown Link -->
+<div style="margin:15px 0;">
+  <a href="javascript:void(0)" onclick="openInstallmentPopup()" style="font-weight:bold;">
+    View Installment Breakdown
+  </a>
+</div>
+
+
+
+
+
+<button class="btn btn-success btn-block" onclick="addToCart()">Add to Cart</button>
+<button class="btn btn-warning btn-block" onclick="addToWishlist()">Add to Wishlist</button>
+
+
+
+<button class="btn btn-primary btn-block" onclick="proceedToPayment()">Proceed to Payment</button>
+<!-- Checkbox for after-sales acknowledgment with link -->
+<div style="margin: 15px 0;">
+  <input type="checkbox" id="readTerms" />
+  <label for="readTerms" style="cursor: pointer;">
+    Click to read about <a href="after-sale.html" target="_blank">after sales support/returns</a>.
+  </label>
+</div>
     </div>
   </div>
 </div>
@@ -2202,489 +2328,717 @@ Two Lion Single Head Monogram/Embroidery Machine
 
 
 <script>
-/* ===========================
-   CONFIG
-   =========================== */
-const PRODUCTS_PER_PAGE = 20;
+(function(){
+  // Run after DOM ready
+  function ready(fn){ if (document.readyState !== 'loading') fn(); else document.addEventListener('DOMContentLoaded', fn); }
 
-/* ===========================
-   DOM ELEMENTS
-   =========================== */
-const slider = document.getElementById('productSlider');
-const sliderContainer = document.querySelector('.slider-container');
-const prevBtn = document.getElementById('prevBtn');
-const nextBtn = document.getElementById('nextBtn');
+  ready(() => {
 
-const galleryContainer = document.getElementById('product-gallery'); // where paginated clones go
-const paginationDiv = document.getElementById('pagination');
+    /* ===========================
+       CONFIG
+       =========================== */
+    const PRODUCTS_PER_PAGE = 20;
 
-const searchInput = document.getElementById('searchInput');
-const suggestionBox = document.getElementById('suggestionBox');
+    /* ===========================
+       DOM ELEMENTS (safely grabbed)
+       =========================== */
+    const slider = document.getElementById('productSlider') || null;
+    const sliderContainer = document.querySelector('.slider-container') || null;
+    const prevBtn = document.getElementById('prevBtn') || null;
+    const nextBtn = document.getElementById('nextBtn') || null;
 
-const modalEl = $('#productModal'); // jQuery modal
-const modalTitle = document.getElementById('modalTitle');
-const modalImage = document.getElementById('modalImage');
-const modalDescription = document.getElementById('modalDescription');
-const modalPrice = document.getElementById('modalPrice');
-const installmentCalendar = document.getElementById('installmentCalendar');
-const installmentResult = document.getElementById('installmentResult');
+    const galleryContainer = document.getElementById('product-gallery') || null; // where paginated clones go
+    const paginationDiv = document.getElementById('pagination') || null;
 
-/* ===========================
-   UTILS
-   =========================== */
-function parsePrice(raw) {
-  if (raw == null) return 0;
-  return Number(String(raw).replace(/[^0-9.-]+/g, '')) || 0;
-}
-function trimDataName(el) {
-  return (el.getAttribute('data-name') || '').trim();
-}
+    const searchInput = document.getElementById('searchInput') || null;
+    const suggestionBox = document.getElementById('suggestionBox') || null;
 
-/* ===========================
-   MASTER PRODUCT LIST
-   - Collect all .product-card in document (both slider accessories and any product cards)
-   - We'll use clones to populate the gallery so original DOM isn't disrupted
-   =========================== */
-const masterCards = Array.from(document.querySelectorAll('.product-card')); // live list
-// create clone-representations (DOM clones) that we control for gallery pagination/search
-const galleryItems = masterCards.map(card => {
-  const clone = card.cloneNode(true);
-  // ensure wishlist icon doesn't carry problematic inline handlers duplicates:
-  // We will rely on our functions toggleWishlist/addToCart etc.
-  // Make sure the card is clickable (click opens modal).
-  clone.style.marginBottom = '20px';
-  clone.classList.add('gallery-item'); // marker for gallery clones
-  return clone;
-});
+    // jQuery modal - guard in case jQuery isn't loaded
+    const modalEl = (typeof window.jQuery !== 'undefined' && window.jQuery('#productModal')) ? window.jQuery('#productModal') : null;
+    const modalTitle = document.getElementById('modalTitle') || null;
+    const modalImage = document.getElementById('modalImage') || { src: '' };
+    const modalDescription = document.getElementById('modalDescription') || null;
+    const modalPrice = document.getElementById('modalPrice') || null;
+    const installmentCalendar = document.getElementById('installmentCalendar') || null;
+    const installmentResult = document.getElementById('installmentResult') || null;
 
-/* ===========================
-   PAGINATION / RENDERING
-   =========================== */
-let filteredItems = [...galleryItems];
-let currentPage = 1;
+    /* ===========================
+       UTILS
+       =========================== */
+    function parsePrice(raw) {
+      if (raw == null) return 0;
+      return Number(String(raw).replace(/[^0-9.-]+/g, '')) || 0;
+    }
+    function trimDataName(el) {
+      return (el && el.getAttribute) ? (el.getAttribute('data-name') || '').trim() : '';
+    }
 
-function renderGalleryPage(page = 1) {
-  currentPage = page;
-  galleryContainer.innerHTML = ''; // empty then append slice
-  const start = (page - 1) * PRODUCTS_PER_PAGE;
-  const end = start + PRODUCTS_PER_PAGE;
-  const slice = filteredItems.slice(start, end);
+    /* ===========================
+       MASTER PRODUCT LIST
+       - grab product cards now that DOM is ready
+       =========================== */
+    const masterCards = Array.from(document.querySelectorAll('.product-card') || []);
+    const galleryItems = masterCards.map(card => {
+      const clone = card.cloneNode(true);
+      clone.style.marginBottom = '20px';
+      clone.classList.add('gallery-item'); // marker for gallery clones
+      return clone;
+    });
 
-  if (slice.length === 0) {
-    galleryContainer.innerHTML = '<div class="col-xs-12"><p style="text-align:center;">No products found.</p></div>';
-  } else {
-    slice.forEach(item => galleryContainer.appendChild(item));
-  }
+    /* ===========================
+       PAGINATION / RENDERING
+       =========================== */
+    let filteredItems = [...galleryItems];
+    let currentPage = 1;
 
-  renderPagination();
-}
+    function renderGalleryPage(page = 1) {
+      if (!galleryContainer) {
+        console.warn('renderGalleryPage: #product-gallery not found.');
+        return;
+      }
 
+      currentPage = page;
+      galleryContainer.innerHTML = ''; // empty then append slice
+      const start = (page - 1) * PRODUCTS_PER_PAGE;
+      const end = start + PRODUCTS_PER_PAGE;
+      const slice = filteredItems.slice(start, end);
 
+      if (slice.length === 0) {
+        galleryContainer.innerHTML = '<div class="col-xs-12"><p style="text-align:center;">No products found.</p></div>';
+      } else {
+        slice.forEach(item => galleryContainer.appendChild(item));
+      }
 
+      renderPagination();
+        // ⭐ SCROLL TO TOP OF THE PRODUCT SECTION ⭐
+  window.scrollTo({
+    top: document.getElementById("product-gallery").offsetTop - 100,
+    behavior: "smooth"
+  });
+    }
 
+    /* ===========================
+       FIXED PAGINATION
+       =========================== */
+    function renderPagination() {
+      if (!paginationDiv) {
+        // no pagination container on this page — skip silently
+        return;
+      }
 
+      paginationDiv.innerHTML = '';
 
+      const totalPages = Math.ceil(filteredItems.length / PRODUCTS_PER_PAGE);
+      if (totalPages <= 1) return; // Hide pagination if only 1 page
 
-
-/* ===========================
-   FIXED PAGINATION
-   =========================== */
-function renderPagination() {
-    paginationDiv.innerHTML = '';
-
-    const totalPages = Math.ceil(filteredItems.length / PRODUCTS_PER_PAGE);
-    if (totalPages <= 1) return; // Hide pagination if only 1 page
-
-    // Previous Button
-    const prev = document.createElement("button");
-    prev.textContent = "Previous";
-    prev.className = "btn btn-default";
-    prev.disabled = currentPage === 1;
-    prev.style.marginRight = "5px";
-    prev.onclick = () => {
+      // Previous Button
+      const prev = document.createElement("button");
+      prev.textContent = "Previous";
+      prev.className = "btn btn-default";
+      prev.disabled = currentPage === 1;
+      prev.style.marginRight = "5px";
+      prev.onclick = () => {
         if (currentPage > 1) {
-            currentPage--;
-            renderGalleryPage(currentPage);
+          currentPage--;
+          renderGalleryPage(currentPage);
         }
-    };
-    paginationDiv.appendChild(prev);
+      };
+      paginationDiv.appendChild(prev);
 
-    // Page Numbers
-    for (let i = 1; i <= totalPages; i++) {
+      // Page Numbers
+      for (let i = 1; i <= totalPages; i++) {
         const btn = document.createElement("button");
         btn.textContent = i;
         btn.className = "btn " + (i === currentPage ? "btn-primary" : "btn-default");
         btn.style.marginRight = "3px";
         btn.onclick = () => {
-            currentPage = i;
-            renderGalleryPage(i);
+          currentPage = i;
+          renderGalleryPage(i);
         };
         paginationDiv.appendChild(btn);
+      }
+
+      // Next Button
+      const next = document.createElement("button");
+      next.textContent = "Next";
+      next.className = "btn btn-default";
+      next.disabled = currentPage === totalPages;
+      next.onclick = () => {
+        if (currentPage < totalPages) {
+          currentPage++;
+          renderGalleryPage(currentPage);
+        }
+      };
+      paginationDiv.appendChild(next);
     }
 
-    // Next Button
-    const next = document.createElement("button");
-    next.textContent = "Next";
-    next.className = "btn btn-default";
-    next.disabled = currentPage === totalPages;
-    next.onclick = () => {
-        if (currentPage < totalPages) {
-            currentPage++;
-            renderGalleryPage(currentPage);
-        }
-    };
-    paginationDiv.appendChild(next);
-}
+    /* ===========================
+       SEARCH & SUGGESTIONS
+       =========================== */
+    function updateSearchSuggestions(keyword) {
+      if (!suggestionBox) return;
+      suggestionBox.innerHTML = '';
+      if (!keyword) { suggestionBox.style.display = 'none'; return; }
 
+      const matches = galleryItems.filter(it => (it.getAttribute('data-name') || '').toLowerCase().includes(keyword));
+      matches.slice(0, 10).forEach(match => {
+        const div = document.createElement('div');
+        div.textContent = (match.getAttribute('data-name') || '').trim();
+        div.onclick = () => {
+          const name = match.getAttribute('data-name').trim();
+          const original = masterCards.find(m => (m.getAttribute('data-name') || '').trim() === name) || match;
+          openProductFromCard(original);
+          suggestionBox.style.display = 'none';
+          if (searchInput) searchInput.value = '';
+          filteredItems = [...galleryItems];
+          renderGalleryPage(1);
+        };
+        suggestionBox.appendChild(div);
+      });
 
+      suggestionBox.style.display = suggestionBox.children.length ? 'block' : 'none';
+    }
 
+    function doSearch() {
+      if (!searchInput) return;
+      const keyword = (searchInput.value || '').toLowerCase().trim();
+      if (suggestionBox) { suggestionBox.innerHTML = ''; suggestionBox.style.display = 'none'; }
 
+      if (!keyword) {
+        filteredItems = [...galleryItems];
+        renderGalleryPage(1);
+        return;
+      }
 
+      filteredItems = galleryItems.filter(item => {
+        const name = (item.getAttribute('data-name') || '').toLowerCase();
+        const desc = (item.getAttribute('data-desc') || '').toLowerCase();
+        return name.includes(keyword) || desc.includes(keyword) || item.innerText.toLowerCase().includes(keyword);
+      });
 
-
-
-/* ===========================
-   SEARCH
-   - Filters galleryItems by data-name (case-insensitive)
-   - Shows suggestionBox entries
-   =========================== */
-function updateSearchSuggestions(keyword) {
-  suggestionBox.innerHTML = '';
-  if (!keyword) { suggestionBox.style.display = 'none'; return; }
-
-  const matches = galleryItems.filter(it => (it.getAttribute('data-name') || '').toLowerCase().includes(keyword));
-  matches.slice(0, 10).forEach(match => {
-    const div = document.createElement('div');
-    div.textContent = (match.getAttribute('data-name') || '').trim();
-    div.onclick = () => {
-      // open the product - use the original master card that matches the name if possible
-      const name = match.getAttribute('data-name').trim();
-      // find original element (masterCards) with the same data-name
-      const original = masterCards.find(m => (m.getAttribute('data-name') || '').trim() === name) || match;
-      openProductFromCard(original);
-      suggestionBox.style.display = 'none';
-      searchInput.value = '';
-      // after open, reset filter to all
-      filteredItems = [...galleryItems];
+      if (keyword && suggestionBox) updateSearchSuggestions(keyword);
       renderGalleryPage(1);
-    };
-    suggestionBox.appendChild(div);
-  });
+    }
 
-  suggestionBox.style.display = suggestionBox.children.length ? 'block' : 'none';
+    if (searchInput) {
+      searchInput.addEventListener('keyup', () => doSearch());
+    }
+
+    /* close suggestion on outside click */
+    document.addEventListener('click', (ev) => {
+      if (suggestionBox && !suggestionBox.contains(ev.target) && ev.target !== searchInput) {
+        suggestionBox.style.display = 'none';
+      }
+    });
+
+    /* ===========================
+       SLIDER (ACCESSORIES) - infinite auto-scroll
+       =========================== */
+    let sliderSpeed = 60;
+    let paused = false;
+    let pos = 0;
+    let originalWidth = 0;
+    let rafId = null;
+    let lastTime = null;
+    let cardFullWidth = 0;
+    let originalCount = 0;
+
+    function setupInfiniteSlider() {
+      try {
+        if (!slider) return;
+        slider.style.transition = '';
+        pos = 0; lastTime = null; paused = false;
+        Array.from(slider.children).forEach(ch => { if (ch.dataset && ch.dataset.clone) ch.remove(); });
+
+        const originalChildren = Array.from(slider.querySelectorAll('.accessory'));
+        originalCount = originalChildren.length;
+        if (!originalCount) return;
+
+        const first = originalChildren[0];
+        const st = window.getComputedStyle(first);
+        const ml = parseFloat(st.marginLeft) || 0, mr = parseFloat(st.marginRight) || 0;
+        cardFullWidth = Math.round(first.getBoundingClientRect().width + ml + mr);
+        originalWidth = cardFullWidth * originalCount;
+
+        for (let i = 0; i < originalCount; i++) {
+          const clone = originalChildren[i].cloneNode(true);
+          clone.dataset.clone = '1';
+          slider.appendChild(clone);
+        }
+
+        slider.style.transform = `translateX(${pos}px)`;
+        cancelAnimationFrame(rafId);
+        rafId = requestAnimationFrame(stepSlider);
+      } catch (err) {
+        console.warn('setupInfiniteSlider error', err);
+      }
+    }
+    function stepSlider(timestamp) {
+      if (!lastTime) lastTime = timestamp;
+      const dt = (timestamp - lastTime) / 1000;
+      lastTime = timestamp;
+      if (!paused && slider && originalWidth) {
+        pos -= sliderSpeed * dt;
+        if (Math.abs(pos) >= originalWidth) pos += originalWidth;
+        slider.style.transform = `translateX(${pos}px)`;
+      }
+      rafId = requestAnimationFrame(stepSlider);
+    }
+    if (sliderContainer) {
+      sliderContainer.addEventListener('mouseenter', () => paused = true);
+      sliderContainer.addEventListener('mouseleave', () => paused = false);
+    }
+    if (nextBtn) nextBtn.addEventListener('click', () => manualShift(1));
+    if (prevBtn) prevBtn.addEventListener('click', () => manualShift(-1));
+
+    function manualShift(direction) {
+      paused = true;
+      if (!cardFullWidth || !originalWidth || !slider) return;
+      pos -= direction * cardFullWidth;
+      if (Math.abs(pos) >= originalWidth) pos += originalWidth * Math.sign(pos);
+      slider.style.transition = 'transform 0.35s ease';
+      slider.style.transform = `translateX(${pos}px)`;
+      setTimeout(() => { slider.style.transition = ''; setTimeout(() => paused = false, 200); }, 360);
+    }
+
+    if (typeof window !== 'undefined') {
+      window.addEventListener('load', () => { try { setupInfiniteSlider(); } catch (e) { /* ignore */ } });
+      window.addEventListener('resize', () => { clearTimeout(window._sliderResizeTimer); window._sliderResizeTimer = setTimeout(setupInfiniteSlider, 250); });
+    }
+
+    /* ===========================
+       MODAL / CART / WISHLIST
+       =========================== */
+    let selectedProduct = '';
+    let selectedPrice = 0;
+    let selectedPlan = '';
+    let selectedDuration = 0;
+    let selectedImg = '';
+
+    function openProduct(name, price, desc, img) {
+      selectedProduct = name;
+      selectedPrice = parsePrice(price);
+      selectedPlan = '';
+      selectedDuration = 0;
+
+      if (modalTitle) modalTitle.textContent = name || '';
+      if (modalPrice) modalPrice.textContent = "₦" + selectedPrice.toLocaleString();
+      if (modalImage && modalImage.src !== undefined) modalImage.src = img || '';
+      if (modalDescription) modalDescription.innerHTML = (desc || '').replace(/\n/g, '<br>');
+
+      if (installmentResult) installmentResult.textContent = '';
+      if (installmentCalendar) { installmentCalendar.innerHTML = ''; installmentCalendar.style.display = 'none'; }
+
+      if (modalEl && typeof modalEl.modal === 'function') {
+        modalEl.modal('show');
+      } else {
+        // fallback: no jQuery modal — ensure there's a visible way to show product
+        console.info('Modal not available: product opened in modal fallback.');
+      }
+    }
+
+    function openProductFromCard(el) {
+      if (!el) return;
+      const name = (el.getAttribute('data-name') || '').trim();
+      const price = el.getAttribute('data-price') || el.dataset.price || '';
+      const img = el.getAttribute('data-img') || el.dataset.img || '';
+      const desc = el.getAttribute('data-desc') || el.dataset.desc || el.innerText || '';
+
+      openProduct(name, price, desc, img);
+    }
+
+    // click delegation - open modal when a product-card (or gallery-item) is clicked
+    document.addEventListener('click', function(e) {
+      const wish = e.target.closest && e.target.closest('.wishlist-icon');
+      if (wish) return; // don't open modal when wish icon clicked
+
+      const card = e.target.closest && e.target.closest('.product-card');
+      if (card) {
+        openProductFromCard(card);
+      }
+    });
+
+    /* Payment plan selection (keeps original names and behavior) */
+    function selectPayment(type) {
+      selectedPlan = type;
+      selectedDuration = 0;
+      if (installmentCalendar) installmentCalendar.innerHTML = '';
+      if (installmentResult) installmentResult.textContent = '';
+
+      if (type === 'weekly' && installmentCalendar) {
+        installmentCalendar.style.display = 'block';
+        for (let i = 2; i <= 48; i += 2) {
+          if (i === 46) continue;
+          const d = document.createElement('div');
+          d.className = 'calendar-number';
+          d.textContent = i;
+          d.onclick = () => pickDuration(i);
+          installmentCalendar.appendChild(d);
+        }
+      } else if (type === 'monthly' && installmentCalendar) {
+        installmentCalendar.style.display = 'block';
+        for (let i = 2; i <= 12; i++) {
+          const d = document.createElement('div');
+          d.className = 'calendar-number';
+          d.textContent = i;
+          d.onclick = () => pickDuration(i);
+          installmentCalendar.appendChild(d);
+        }
+    /*  } else if (installmentResult) {
+        installmentResult.textContent = `Total Price: ₦${selectedPrice.toLocaleString()}`;
+      }*/
+     } else if (type === 'once' && installmentResult) {
+  let shippingFee = Math.round(selectedPrice * 0.05);
+  let totalWithShipping = selectedPrice + shippingFee;
+
+  installmentResult.innerHTML = `
+    Product Price: ₦${selectedPrice.toLocaleString()}<br>
+    Installation / Shipping (5%): ₦${shippingFee.toLocaleString()}<br>
+    <strong>Total Payable: ₦${totalWithShipping.toLocaleString()}</strong>
+  `;
 }
 
-function doSearch() {
-  const keyword = (searchInput.value || '').toLowerCase().trim();
-  suggestionBox.innerHTML = '';
-  suggestionBox.style.display = 'none';
+    }
 
-  if (!keyword) {
-    filteredItems = [...galleryItems];
-    renderGalleryPage(1);
+    function pickDuration(val) {
+      selectedDuration = val;
+      calculateInstallment(val);
+      Array.from(document.querySelectorAll('#installmentCalendar .calendar-number')).forEach(el => {
+        el.style.background = '#f0f0f0';
+        el.style.color = '';
+      });
+      const picked = Array.from(document.querySelectorAll('#installmentCalendar .calendar-number')).find(el => el.textContent == String(val));
+      if (picked) { picked.style.background = '#2b6'; picked.style.color = '#fff'; }
+    }
+
+    function calculateInstallment(value) {
+      if (!selectedPlan) return;
+      let shippingFee = Math.round(selectedPrice * 0.05);
+      let baseInstallment = Math.round(selectedPrice / Number(value));
+      let perLabel = (selectedPlan === 'weekly') ? 'per week' : 'per month';
+      let unitLabel = (selectedPlan === 'weekly') ? 'weeks' : 'months';
+      let firstInstallment = baseInstallment + shippingFee;
+
+      if (installmentResult) {
+        installmentResult.innerHTML = `
+          First installment (includes 5% shipping): ₦${firstInstallment.toLocaleString()} <br>
+          Remaining ${value - 1} ${unitLabel}: ₦${baseInstallment.toLocaleString()} ${perLabel} each
+        `;
+      }
+    }
+
+    // addToCart / addToWishlist / toggleWishlist --- unchanged but guarded where DOM is required
+    function addToCart() {
+      if (!selectedProduct) { alert('Open a product first.'); return; }
+      const item = { name: selectedProduct, price: selectedPrice, plan: selectedPlan || 'Buy Once', duration: selectedDuration || null, image: (modalImage && modalImage.src) || '' };
+      let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+      cart.push(item);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      fetch('cart_api.php', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ action: 'add', product: item })
+      }).catch(()=>{});
+      alert(selectedProduct + ' added to cart');
+    }
+
+    function addToWishlist() {
+      if (!selectedProduct) { alert('Open a product first.'); return; }
+      const item = { name: selectedProduct, price: selectedPrice, image: (modalImage && modalImage.src) || '' };
+      let wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+      if (wishlist.find(w => w.name === item.name)) { alert('Already in wishlist'); return; }
+      wishlist.push(item);
+      localStorage.setItem('wishlist', JSON.stringify(wishlist));
+      fetch('wishlist_api.php', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ action: 'add', product: item }) }).catch(()=>{});
+      alert(selectedProduct + ' added to wishlist');
+    }
+
+    function toggleWishlist(e, iconEl) {
+      if (e && e.stopPropagation) e.stopPropagation();
+      const card = iconEl && iconEl.closest && iconEl.closest('.product-card');
+      if (!card) return;
+      const name = (card.getAttribute('data-name') || '').trim();
+      const price = parsePrice(card.getAttribute('data-price') || card.dataset.price);
+      const image = card.getAttribute('data-img') || card.dataset.img || '';
+
+      let wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+      const exists = wishlist.find(w => w.name === name);
+      if (exists) {
+        wishlist = wishlist.filter(w => w.name !== name);
+        iconEl.classList.remove('active');
+        fetch('wishlist_api.php', { method:'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ action:'remove', product: { name, price, image } }) }).catch(()=>{});
+      } else {
+        wishlist.push({ name, price, image });
+        iconEl.classList.add('active');
+        fetch('wishlist_api.php', { method:'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ action:'add', product: { name, price, image } }) }).catch(()=>{});
+      }
+      localStorage.setItem('wishlist', JSON.stringify(wishlist));
+    }
+
+    /* proceedToPayment (keeps original logic; refer to readTerms checkbox if present on page) */
+    function proceedToPayment() {
+      if (selectedPlan === '') return alert('Please choose a payment option.');
+      if (selectedPlan !== 'once' && selectedDuration === 0) return alert('Please select duration from the calendar.');
+
+      // If the page has a #readTerms checkbox, enforce it
+      const readTermsEl = document.getElementById('readTerms');
+      if (readTermsEl && !readTermsEl.checked) return alert('Please read and acknowledge after sales support/returns before proceeding.');
+
+      const planType = (selectedPlan === 'once') ? 'Buy Once' : (selectedPlan === 'weekly' ? 'Weekly' : 'Monthly');
+      const totalPrice = selectedPrice;
+      const amountDue = (selectedPlan === 'once') ? totalPrice : Math.round(totalPrice / selectedDuration);
+      const balance = (selectedPlan === 'once') ? 0 : totalPrice - amountDue;
+
+      const orderID = "PS" + Math.floor(100000 + Math.random() * 900000);
+
+      const payload = {
+        orderID,
+        name: selectedProduct,
+        plan: planType,
+        amountDue,
+        balance,
+        duration: selectedDuration,
+        price: totalPrice,
+        image: selectedImg || (modalImage && modalImage.src) || ''
+      };
+
+      localStorage.setItem('checkout', JSON.stringify(payload));
+      window.location.href = 'payment.html';
+    }
+
+    /* ===========================
+       INSTALLMENT BREAKDOWN POPUP
+       =========================== */
+/*
+    function openInstallmentPopup() {
+      if (!selectedPlan || !selectedDuration) {
+        alert("Please select an installment plan and duration first.");
+        return;
+      }
+
+      const popup = document.getElementById("installmentPopup");
+      if (!popup) return;
+
+      popup.style.display = "block";
+      renderInstallmentTable();
+    }*/
+function openInstallmentPopup() {
+  if (selectedPlan === 'once' || !selectedPlan) {
+    alert("Installment breakdown is only available for Weekly or Monthly plans.");
     return;
   }
 
-  filteredItems = galleryItems.filter(item => {
-    const name = (item.getAttribute('data-name') || '').toLowerCase();
-    const desc = (item.getAttribute('data-desc') || '').toLowerCase();
-    return name.includes(keyword) || desc.includes(keyword) || item.innerText.toLowerCase().includes(keyword);
-  });
-
-  // show suggestions
-  updateSearchSuggestions(keyword);
-  renderGalleryPage(1);
-}
-searchInput.addEventListener('keyup', () => doSearch());
-
-/* close suggestion on outside click */
-document.addEventListener('click', (ev) => {
-  if (!suggestionBox.contains(ev.target) && ev.target !== searchInput) {
-    suggestionBox.style.display = 'none';
-  }
-});
-
-/* ===========================
-   SLIDER (ACCESSORIES) - infinite auto-scroll
-   - Expects accessory items inside #productSlider with class .accessory
-   =========================== */
-let sliderSpeed = 60;
-let paused = false;
-let pos = 0;
-let originalWidth = 0;
-let rafId = null;
-let lastTime = null;
-let cardFullWidth = 0;
-let originalCount = 0;
-
-function setupInfiniteSlider() {
-  if (!slider) return;
-  slider.style.transition = '';
-  pos = 0; lastTime = null; paused = false;
-  // remove previous clones
-  Array.from(slider.children).forEach(ch => { if (ch.dataset.clone) ch.remove(); });
-
-  const originalChildren = Array.from(slider.querySelectorAll('.accessory'));
-  originalCount = originalChildren.length;
-  if (!originalCount) return;
-
-  const first = originalChildren[0];
-  const st = window.getComputedStyle(first);
-  const ml = parseFloat(st.marginLeft) || 0, mr = parseFloat(st.marginRight) || 0;
-  cardFullWidth = Math.round(first.getBoundingClientRect().width + ml + mr);
-  originalWidth = cardFullWidth * originalCount;
-
-  for (let i = 0; i < originalCount; i++) {
-    const clone = originalChildren[i].cloneNode(true);
-    clone.dataset.clone = '1';
-    slider.appendChild(clone);
+  if (!selectedDuration) {
+    alert("Please select an installment duration first.");
+    return;
   }
 
-  slider.style.transform = `translateX(${pos}px)`;
-  cancelAnimationFrame(rafId);
-  rafId = requestAnimationFrame(stepSlider);
-}
-function stepSlider(timestamp) {
-  if (!lastTime) lastTime = timestamp;
-  const dt = (timestamp - lastTime) / 1000;
-  lastTime = timestamp;
-  if (!paused) {
-    pos -= sliderSpeed * dt;
-    if (Math.abs(pos) >= originalWidth) pos += originalWidth;
-    slider.style.transform = `translateX(${pos}px)`;
-  }
-  rafId = requestAnimationFrame(stepSlider);
-}
-if (sliderContainer) {
-  sliderContainer.addEventListener('mouseenter', () => paused = true);
-  sliderContainer.addEventListener('mouseleave', () => paused = false);
-}
-if (nextBtn) nextBtn.addEventListener('click', () => manualShift(1));
-if (prevBtn) prevBtn.addEventListener('click', () => manualShift(-1));
+  const popup = document.getElementById("installmentPopup");
+  if (!popup) return;
 
-function manualShift(direction) {
-  paused = true;
-  if (!cardFullWidth || !originalWidth) return;
-  pos -= direction * cardFullWidth;
-  if (Math.abs(pos) >= originalWidth) pos += originalWidth * Math.sign(pos);
-  slider.style.transition = 'transform 0.35s ease';
-  slider.style.transform = `translateX(${pos}px)`;
-  setTimeout(() => { slider.style.transition = ''; setTimeout(() => paused = false, 200); }, 360);
+  popup.style.display = "block";
+
+  // 🔒 Lock background scroll
+  document.body.style.overflow = "hidden";
+
+  renderInstallmentTable();
 }
 
-/* initialize slider after load */
-window.addEventListener('load', () => {
-  try { setupInfiniteSlider(); } catch (e) { /* ignore */ }
-});
-window.addEventListener('resize', () => { clearTimeout(window._sliderResizeTimer); window._sliderResizeTimer = setTimeout(setupInfiniteSlider, 250); });
 
-/* ===========================
-   MODAL / CART / WISHLIST
-   =========================== */
-let selectedProduct = '';
-let selectedPrice = 0;
-let selectedPlan = '';
-let selectedDuration = 0;
-let selectedImg = '';
+   /* function closeInstallmentPopup() {
+      const popup = document.getElementById("installmentPopup");
+      if (popup) popup.style.display = "none";
+    }*/
+function closeInstallmentPopup() {
+  const popup = document.getElementById("installmentPopup");
+  if (popup) popup.style.display = "none";
 
-function openProduct(name, price, desc, img) {
-  selectedProduct = name;
-  selectedPrice = parsePrice(price);
-  selectedPlan = '';
-  selectedDuration = 0;
-
-  modalTitle.textContent = name || '';
-  modalPrice.textContent = "₦" + selectedPrice.toLocaleString();
-  modalImage.src = img || '';
-  modalDescription.innerHTML = (desc || '').replace(/\n/g, '<br>');
-
-  installmentResult.textContent = '';
-  installmentCalendar.innerHTML = '';
-  installmentCalendar.style.display = 'none';
-  modalEl.modal('show');
+  // 🔓 Restore scroll
+  document.body.style.overflow = "";
 }
 
-function openProductFromCard(el) {
-  if (!el) return;
-  // el may be a clone or the original. Read data from attributes
-  const name = (el.getAttribute('data-name') || '').trim();
-  const price = el.getAttribute('data-price') || el.dataset.price || '';
-  const img = el.getAttribute('data-img') || el.dataset.img || '';
-  const desc = el.getAttribute('data-desc') || el.dataset.desc || el.innerText || '';
+    /*function renderInstallmentTable() {
+      const table = document.getElementById("installmentTable");
+      if (!table) return;
 
-  openProduct(name, price, desc, img);
-}
+      table.innerHTML = "";
 
-/* click delegation - open modal when a product-card (or gallery-item) is clicked (but not when clicking wishlist icon) */
-document.addEventListener('click', function(e) {
-  const wish = e.target.closest('.wishlist-icon');
-  if (wish) return; // don't open modal when wish icon clicked
+      const storageKey = selectedProduct + "_paid_installments";
+      let paidCount = Number(localStorage.getItem(storageKey)) || 0;
 
-  const card = e.target.closest('.product-card');
-  if (card) {
-    openProductFromCard(card);
-  }
-});
+      let installmentAmount = Math.round(selectedPrice / selectedDuration);
+      let baseDate = new Date();
 
-/* Payment plan selection */
-function selectPayment(type) {
-  selectedPlan = type;
-  selectedDuration = 0;
-  installmentCalendar.innerHTML = '';
-  installmentResult.textContent = '';
+      for (let i = 1; i <= selectedDuration; i++) {
+        let dueDate = new Date(baseDate);
 
-  if (type === 'weekly') {
-    installmentCalendar.style.display = 'block';
-    for (let i = 2; i <= 48; i += 2) {
-      if (i === 46) continue;
-      const d = document.createElement('div');
-      d.className = 'calendar-number';
-      d.textContent = i;
-      d.onclick = () => pickDuration(i);
-      installmentCalendar.appendChild(d);
+        if (selectedPlan === "monthly") {
+          dueDate.setMonth(baseDate.getMonth() + i);
+        } else {
+          dueDate.setDate(baseDate.getDate() + (i * 7));
+        }
+
+        const isPaid = i <= paidCount;
+
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${i}</td>
+          <td>${dueDate.toDateString()}</td>
+          <td>₦${installmentAmount.toLocaleString()}</td>
+          <td>${isPaid ? "✔ Paid" : "Pending"}</td>
+        `;
+
+        table.appendChild(row);
+      }
+    }*/
+/*function renderInstallmentTable() {
+  const table = document.getElementById("installmentTable");
+  if (!table) return;
+
+  table.innerHTML = "";
+
+  const storageKey = selectedProduct + "_paid_installments";
+  let paidCount = Number(localStorage.getItem(storageKey)) || 0;
+
+  const shippingFee = Math.round(selectedPrice * 0.05);
+  const baseInstallment = Math.round(selectedPrice / selectedDuration);
+  const firstInstallment = baseInstallment + shippingFee;
+
+  let baseDate = new Date();
+
+  for (let i = 1; i <= selectedDuration; i++) {
+    let dueDate = new Date(baseDate);
+
+    if (selectedPlan === "monthly") {
+      dueDate.setMonth(baseDate.getMonth() + i);
+    } else {
+      dueDate.setDate(baseDate.getDate() + (i * 7));
     }
-  } else if (type === 'monthly') {
-    installmentCalendar.style.display = 'block';
-    for (let i = 2; i <= 12; i++) {
-      const d = document.createElement('div');
-      d.className = 'calendar-number';
-      d.textContent = i;
-      d.onclick = () => pickDuration(i);
-      installmentCalendar.appendChild(d);
-    }
-  } else {
-    installmentCalendar.style.display = 'none';
-    installmentResult.textContent = `Total Price: ₦${selectedPrice.toLocaleString()}`;
+
+    const amount = (i === 1) ? firstInstallment : baseInstallment;
+    const isPaid = i <= paidCount;
+
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td>${i}</td>
+      <td>${dueDate.toDateString()}</td>
+      <td>₦${amount.toLocaleString()}</td>
+      <td style="color:${isPaid ? 'green' : 'orange'};">
+        ${isPaid ? "✔ Paid" : "Pending"}
+      </td>
+    `;
+
+    table.appendChild(row);
   }
-}
-
-function pickDuration(val) {
-  selectedDuration = val;
-  calculateInstallment(val);
-  Array.from(document.querySelectorAll('#installmentCalendar .calendar-number')).forEach(el => {
-    el.style.background = '#f0f0f0';
-    el.style.color = '';
-  });
-  const picked = Array.from(document.querySelectorAll('#installmentCalendar .calendar-number')).find(el => el.textContent == String(val));
-  if (picked) { picked.style.background = '#2b6'; picked.style.color = '#fff'; }
-}
-
-function calculateInstallment(value) {
-  if (!selectedPlan) return;
-  const installmentAmount = Math.round(selectedPrice / Number(value));
-  const perLabel = (selectedPlan === 'weekly') ? 'per week' : 'per month';
-  const unitLabel = (selectedPlan === 'weekly') ? 'weeks' : 'months';
-  installmentResult.textContent = `₦${installmentAmount.toLocaleString()} ${perLabel} for ${value} ${unitLabel}.`;
-}
-
-/* add to cart */
-function addToCart() {
-  if (!selectedProduct) { alert('Open a product first.'); return; }
-  const item = { name: selectedProduct, price: selectedPrice, plan: selectedPlan || 'Buy Once', duration: selectedDuration || null, image: modalImage.src };
-  let cart = JSON.parse(localStorage.getItem('cart') || '[]');
-  cart.push(item);
-  localStorage.setItem('cart', JSON.stringify(cart));
-
-  // optional server POST (silently)
-  fetch('cart_api.php', {
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({ action: 'add', product: item })
-  }).catch(()=>{});
-
-  alert(selectedProduct + ' added to cart');
-}
-
-/* wishlist */
-function addToWishlist() {
-  if (!selectedProduct) { alert('Open a product first.'); return; }
-  const item = { name: selectedProduct, price: selectedPrice, image: modalImage.src };
-  let wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
-  if (wishlist.find(w => w.name === item.name)) { alert('Already in wishlist'); return; }
-  wishlist.push(item);
-  localStorage.setItem('wishlist', JSON.stringify(wishlist));
-  fetch('wishlist_api.php', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ action: 'add', product: item }) }).catch(()=>{});
-  alert(selectedProduct + ' added to wishlist');
-}
-
-/* toggle wishlist from card icon */
-function toggleWishlist(e, iconEl) {
-  e.stopPropagation();
-  const card = iconEl.closest('.product-card');
-  if (!card) return;
-  const name = (card.getAttribute('data-name') || '').trim();
-  const price = parsePrice(card.getAttribute('data-price') || card.dataset.price);
-  const image = card.getAttribute('data-img') || card.dataset.img || '';
-
-  let wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
-  const exists = wishlist.find(w => w.name === name);
-  if (exists) {
-    wishlist = wishlist.filter(w => w.name !== name);
-    iconEl.classList.remove('active');
-    fetch('wishlist_api.php', { method:'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ action:'remove', product: { name, price, image } }) }).catch(()=>{});
-  } else {
-    wishlist.push({ name, price, image });
-    iconEl.classList.add('active');
-    fetch('wishlist_api.php', { method:'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ action:'add', product: { name, price, image } }) }).catch(()=>{});
-  }
-  localStorage.setItem('wishlist', JSON.stringify(wishlist));
-}
-
-/* proceed to payment */
-/*function proceedToPayment() {
-  if (selectedPlan === '') return alert('Please choose a payment option.');
-  if (selectedPlan !== 'once' && selectedDuration === 0) return alert('Please select duration from the calendar.');
-  const planType = (selectedPlan === 'once') ? 'Buy Once' : (selectedPlan === 'weekly' ? 'Weekly' : 'Monthly');
-  const totalPrice = selectedPrice;
-  const amountDue = (selectedPlan === 'once') ? totalPrice : Math.round(totalPrice / selectedDuration);
-  const balance = (selectedPlan === 'once') ? 0 : totalPrice - amountDue;
-  const payload = { name: selectedProduct, plan: planType, amountDue, balance, duration: selectedDuration, price: totalPrice, image: selectedImg || modalImage.src };
-  localStorage.setItem('checkout', JSON.stringify(payload));
-  window.location.href = 'payment.html';
 }*/
-function proceedToPayment() {
-  if (selectedPlan === '') return alert('Please choose a payment option.');
-  if (selectedPlan !== 'once' && selectedDuration === 0) return alert('Please select duration from the calendar.');
+function renderInstallmentTable() {
+  const table = document.getElementById("installmentTable");
+  if (!table) return;
 
-  const planType = (selectedPlan === 'once') ? 'Buy Once' : (selectedPlan === 'weekly' ? 'Weekly' : 'Monthly');
-  const totalPrice = selectedPrice;
-  const amountDue = (selectedPlan === 'once') ? totalPrice : Math.round(totalPrice / selectedDuration);
-  const balance = (selectedPlan === 'once') ? 0 : totalPrice - amountDue;
+  table.innerHTML = "";
 
-  // Generate unique Order ID
-  const orderID = "PS" + Math.floor(100000 + Math.random() * 900000); // e.g., PS123456
+  const shippingFee = Math.round(selectedPrice * 0.05);
+  const baseInstallment = Math.round(selectedPrice / selectedDuration);
+  const firstInstallment = baseInstallment + shippingFee;
 
-  const payload = { 
-    orderID,           // add this line
-    name: selectedProduct, 
-    plan: planType, 
-    amountDue, 
-    balance, 
-    duration: selectedDuration, 
-    price: totalPrice, 
-    image: selectedImg || modalImage.src 
-  };
+  let baseDate = new Date();
 
-  localStorage.setItem('checkout', JSON.stringify(payload));
-  window.location.href = 'payment.html';
+  /* ✅ TRUE 50% INSTALLMENT POINT (shipping excluded) */
+  const midpoint = selectedDuration / 2;
+
+  for (let i = 1; i <= selectedDuration; i++) {
+    let dueDate = new Date(baseDate);
+
+   /* if (selectedPlan === "monthly") {
+      dueDate.setMonth(baseDate.getMonth() + i);
+    } else {
+      dueDate.setDate(baseDate.getDate() + (i * 7));
+    }*/
+if (selectedPlan === "monthly") {
+  dueDate.setMonth(baseDate.getMonth() + (i - 1));
+} else {
+  dueDate.setDate(baseDate.getDate() + ((i - 1) * 7));
 }
 
-/* ===========================
-   INITIALIZE GALLERY (first render)
-   =========================== */
-filteredItems = [...galleryItems];
-renderGalleryPage(1);
+    const amount = (i === 1) ? firstInstallment : baseInstallment;
 
-/* Make sure any dynamically added wishlist icon uses pointer cursor and clickable */
-document.addEventListener('DOMContentLoaded', () => {
-  // attach onclick for wishlist icons that may be in cloned gallery items
-  document.querySelectorAll('.wishlist-icon').forEach(icon => {
-    icon.style.cursor = 'pointer';
-  });
-});
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td>${i}</td>
+      <td>${dueDate.toDateString()}</td>
+      <td>₦${amount.toLocaleString()}</td>
+    `;
 
+    table.appendChild(row);
+
+    /* ✅ Insert shipping eligibility AFTER 50% installments */
+    if (i === midpoint) {
+      const markerRow = document.createElement("tr");
+      markerRow.innerHTML = `
+        <td colspan="3" style="
+          text-align:center;
+          font-weight:bold;
+          color:#0a7d2c;
+          background:#f3fff3;
+          padding:12px;
+          border-top:2px dashed #0a7d2c;
+          border-bottom:2px dashed #0a7d2c;
+        ">
+          Your item can be shipped here
+        </td>
+      `;
+      table.appendChild(markerRow);
+    }
+  }
+}
+
+
+
+    function markInstallmentPaid() {
+      const storageKey = selectedProduct + "_paid_installments";
+      let paidCount = Number(localStorage.getItem(storageKey)) || 0;
+
+      if (paidCount >= selectedDuration) {
+        alert("All installments have been paid.");
+        return;
+      }
+
+      localStorage.setItem(storageKey, paidCount + 1);
+      renderInstallmentTable();
+    }
+
+
+    // expose proceedToPayment / addToCart / addToWishlist / selectPayment to global scope if other inline buttons call them
+    window.proceedToPayment = proceedToPayment;
+    window.addToCart = addToCart;
+    window.addToWishlist = addToWishlist;
+    window.selectPayment = selectPayment;
+    window.toggleWishlist = toggleWishlist;
+    window.openProductFromCard = openProductFromCard; // ensure it's globally available
+
+
+    // 🔥 REQUIRED FOR INSTALLMENT POPUP
+window.openInstallmentPopup = openInstallmentPopup;
+window.closeInstallmentPopup = closeInstallmentPopup;
+window.markInstallmentPaid = markInstallmentPaid;
+
+    /* ===========================
+       INITIALIZE GALLERY (first render)
+       =========================== */
+    filteredItems = [...galleryItems];
+    renderGalleryPage(1);
+
+    /* Make sure wishlist icons are clickable */
+    document.querySelectorAll('.wishlist-icon').forEach(icon => {
+      icon.style.cursor = 'pointer';
+    });
+
+    // finished setup
+    console.info('Product gallery script initialized safely.');
+
+  }); // end ready
+})(); // end IIFE
 </script>
-
 
 <!--Search Bar---->
 
@@ -2724,6 +3078,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+<div id="installmentPopup" style="
+display:none;
+position:fixed;
+top:0; left:0;
+width:100%; height:100%;
+background:rgba(0,0,0,0.6);
+z-index:9999;
+">
+
+  <div style="
+  background:#fff;
+  max-width:500px;
+  max-height:80vh;
+  overflow-y:auto;
+  margin:80px auto;
+  padding:20px;
+  border-radius:6px;
+  ">
+
+    <h4>Installment Breakdown</h4>
+
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Installment</th>
+          <th>Due Date</th>
+          <th>Amount</th>
+        <!--  <th>Status</th>-->
+        </tr>
+      </thead>
+      <tbody id="installmentTable"></tbody>
+    </table>
+
+   <!--- <button class="btn btn-success" onclick="markInstallmentPaid()">Mark Current Paid</button>-->
+    <button class="btn btn-default pull-right" onclick="closeInstallmentPopup()">Close</button>
+
+  </div>
+</div>
 
 </body>
 </html>

@@ -395,7 +395,7 @@ fashion designers, tailors, leather craftsman, hobbyists,Seamstresses,cobblers,
        justify-content:center;">
         <!--<h2 id="comp-head" style="font-size:50px; line-height:1.15; margin:0 0 18px 0; font-weight:600;">
           Take control of your finances, <br>you can<br>start immediately.</h2>-->
-          <h2 id="comp-head" style="font-size:50px; line-height:1.15; margin:0 0 18px 0; font-weight:600;">
+          <h2 id="comp-head" style="font-size:30px; line-height:1.15; margin:0 0 18px 0; font-weight:600;">
           Change the way you pay to INSTALLMENT <br>and enjoy<br>  FREEDOM in your finance
 </h2>
 
@@ -461,6 +461,10 @@ We support fashion designers in achieving ownership simply, via convenient payme
               Start now</button>-->
               <button class="emboss-btn">Start now</button>
 
+    
+       
+
+
 <style>
 .emboss-btn {
   margin-right:10px;
@@ -499,7 +503,7 @@ We support fashion designers in achieving ownership simply, via convenient payme
 </style>
 
             <!-- cart icon (inline SVG) -->
-            <svg width="40" height="40" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <svg width="40" height="40" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <g fill="#987835">
                 <path d="M171.759 52.497H61.593L56.539 28.24H25.207c-3.032 0-5.054 1.565-5.054 4.043s2.021 4.043 5.054 4.043h25.268l15.161 78.835c1.127 5.026 4.808 8.086 10.107 8.086h80.856c5.299 0 8.982-3.059 10.107-8.086l13.139-55.589c1.008-4.501-3.033-7.075-8.086-7.075zm-12.128 61.653c-.194.865-1.011 2.021-3.032 2.021H76.753c-2.021 0-2.838-1.155-3.032-2.021L63.614 60.583h108.145l-12.128 53.567z"/>
                 <path d="M84.839 135.375c-10.047 0-18.193 8.145-18.193 18.193s8.145 18.193 18.193 18.193 18.193-8.145 18.193-18.193-8.146-18.193-18.193-18.193zm0 28.299c-5.582 0-10.107-4.525-10.107-10.107s4.525-10.107 10.107-10.107 10.107 4.525 10.107 10.107-4.525 10.107-10.107 10.107z"/>
@@ -596,7 +600,104 @@ We support fashion designers in achieving ownership simply, via convenient payme
 </div>-->
 <!-- Optional small script to ensure images are responsive inside Bootstrap 3 grids -->
 
+   <!------Testimonials-->
+<section id="testimonials" style="padding:40px 15px; max-width:900px; margin:auto;">
 
+  <h2 style="text-align:center; font-size:28px; margin-bottom:30px;">Customer Testimonials</h2>
+
+  <!-- Centered container -->
+  <div class="testimonial-container" 
+       style="position:relative; 
+              background:#f9f9f9; 
+              border-radius:12px; 
+              padding-bottom:60px; 
+              min-height:220px; 
+              box-shadow:0 4px 12px rgba(0,0,0,0.1);
+              margin:auto; 
+              max-width:700px;">
+
+    <p id="testimonialText" 
+       style="font-size:18px; 
+              line-height:1.6; 
+              white-space:pre-line; 
+              min-height:140px;
+              text-align:center;">
+    </p>
+
+    <div id="testimonialName" 
+         style="position:absolute; 
+                bottom:45px; 
+                left:20px; 
+                font-weight:bold; 
+                font-size:16px; 
+                opacity:0.9;">
+    </div>
+
+    <!-- Arrow link (centered) -->
+    <div style="text-align:center; position:absolute; bottom:10px; width:100%;">
+      <a href="testimonials.html" 
+         style="font-size:30px; color:#007bff; text-decoration:none;">
+        ▼
+      </a>
+    </div>
+
+  </div>
+
+  <!-- Keep the below if you want extra link -->
+  <div style="text-align:center; margin-top:20px;">
+    <a href="testimonials.html" style="font-size:16px; color:#007bff; text-decoration:underline;">
+      See All Testimonials
+    </a>
+  </div>
+
+</section>
+
+<script>
+// Testimonials Data
+const testimonials = [
+  { text: "Even as a demo site,i saw someone(Mr Tosin from ajah) registered and made his first payment for a two lion industrial overlock machine and since then we have received a wave of positive feedback.", name: "@MOTH STITCHES" },
+  { text: "paysmallsmall.org took the hassle out of from my parent to get me a domestic sewing machine in four instalment. Guess what,the machine was for my freedom ceremony. wow! Thank you so much", name: "@graceupstitches — Grace Oluwatobi" },
+  { text: "Several months down the line, a friend told me about paysmallsmall.org. I trusted him and had a change of heart towards the plan and immediately opted for their installment plan to buy a tapping machine. Having that financial wiggle room empowered me to tackle other critical expenses. Because i was saving up before,i just did a 2 month plan. 5days after my first payment,i got my two lion tapping machine. So,happy my baby is here with me! You too can,100%recommend", name: "@lizzerclothing — Gbamgboye Elizbeth" },
+  { text: "I was hesitant at first, but I went ahead and bought a pair of the scissors to try them out. I paid twice and they delivered and later went ahead to lock in four two lion cylinder bed for my shop. I got it at six weeks for a 12 weeks plan. So genuine!", name: "@nubble_plus — Nubble couture" },
+  { text: "I acquired a Post bed machine as my first purchase, and found their stellar service highly commendable. Very soon,i'll go for a monogram machine next.", name: "@chak_labbel — Mr Charles" },
+  { text: "Learning about your services has significantly streamlined my procurement process. It's a huge positive to have paysmallsmall.org on board with a 'buy now, pay later' approach when needed. Right now,i have bought about 4 machines from them and more still to come. They actually delivered at 50% installment paid.", name: "@yloon stitches" },
+  { text: "Their after sales service is top nutch. I'm surprise to have a dedicated pay small small plan for tailors. I bought an Emel straight sewing from them. They realy helped me through the process.", name: "@Foluke Ajibade — faph couture" },
+  { text: "People dont know they even have a physical warwhouse. I went to their shop and my money wasn't enough. They gave me the site and i tried it with 2 month plan. I got it after the first payment at no interest at all. I love things like this, Nigeria is growing o", name: "@stitchescolors — Emmanuel Joseph" },
+  { text: "I bought a skiving machine on a 4 month plan and they brought it after the second payment to my address. They did not scam me o. Right now,i have put in for another machine (protex)", name: "@Oseghale treasure" },
+  { text: "You too can try them too because i bought a deluxe sewing machine from them and i got it without stress. I have since then recommend to all my apprentiship student to start early with and they are on it.", name: "@yemmzz03 — YEMMZZ WORLD" },
+  { text: "I don't know something like this exist until tolu told me about it. I choose two lion 3 thread overlock machine and i got it as soon as i paid the second installment. I wish they could spread to other state too because i have lots tailors outside lagos wanting to join.", name: "" }
+];
+
+let index = 0;
+let charIndex = 0;
+let typingSpeed = 30;
+
+function typeTestimonial() {
+  const textElement = document.getElementById('testimonialText');
+  const nameElement = document.getElementById('testimonialName');
+
+  const fullText = testimonials[index].text;
+  const fullName = testimonials[index].name;
+
+  if (charIndex < fullText.length) {
+    textElement.textContent += fullText.charAt(charIndex);
+    charIndex++;
+    setTimeout(typeTestimonial, typingSpeed);
+  } else {
+    nameElement.textContent = fullName;
+
+    setTimeout(() => {
+      index = (index + 1) % testimonials.length;
+      charIndex = 0;
+      textElement.textContent = '';
+      nameElement.textContent = '';
+      setTimeout(typeTestimonial, 1200);
+    }, 2000);
+  }
+}
+
+typeTestimonial();
+</script>
 
 <div class="zoomSliderContainer">
     <div class="zoomSlider">
