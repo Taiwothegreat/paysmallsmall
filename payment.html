@@ -2,20 +2,185 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Payment Details | Paysmallsmall</title>
+  <title>Demo Site</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap 3 -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <style>
-    @media(max-width:767px){
-      body { width: 100%; height: 100%; }
-      .panel { width: 100%; height: auto; }
+    body {
+      font-family: Arial, sans-serif;
+  /*   background: #f5f7fb;*/
+ /*    background-color:#e1d52b ;*/
+     /* background-color: #FFFDD0;*/
+     background-color: #ffffff;
     }
+    .nav{
+      margin-top: 20px;
+    }
+     .navbar-brand img {
+        width: 100px;
+        margin-top: -5px;
+      }
+      .navbar-brand {
+        margin-top: -10px;
+      }
+    ul li{
+      font-size: 20px;
+    }
+    .navbar {
+      margin-bottom: 0;
+      border: none;
+      border-radius: 0;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+    }
+    .hero {
+      margin-top: 50px;
+      padding: 50px 20px;
+      /*background: linear-gradient(90deg, #0b63b8, #126fb3);*/
+      background: linear-gradient(90deg, #ADFF2F, #ADFF2F);
+      color: #fff;
+    }
+    .hero h1 {
+      font-weight: bold;
+      margin-top: 0;
+    }
+    .feature-card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 25px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      margin-bottom: 20px;
+    }
+    .feature-card h3 {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    .navbar-inverse .navbar-nav>li>a {
+    /*color: #9d9d9d;*/
+    color: #b68f3a;
+    
+}
+ 
+     
+    .panel-heading { padding: 15px 20px; cursor: pointer; position: relative; }
+    .panel-title { font-size: 18px; font-weight: 500; display: flex; align-items: center; justify-content: space-between; }
+    .panel-title h3 { margin: 0; font-size: 18px; display: inline-block; }
+    
+    .social-icons { margin-top: 15px; }
+    .social-icons a {
+      margin-right: 10px; text-decoration: none; color: #555; font-size: 18px;
+      transition: color 0.3s ease;
+    }
+    .social-icons a:hover { color: orange; }
+     @media (max-width: 767px) {
+      .navbar-brand img {
+        width: 100px;
+        margin-top: -5px;
+      }
+      .navbar-brand {
+        margin-top: -10px;
+      }
+      .navbar p {
+        font-size: 11px;
+        text-align: center !important;
+      }
+    .navbar-header{
+      padding: 20px;
+      padding-left :10px !important;
+    }
+     
+    }
+     /* Responsive layout for mobile */
+  @media (max-width: 767px) {
+    /* Stack both sides */
+    .row {
+      display: block !important;
+    }
+
+    .col-sm-6 {
+      width: 100% !important;
+      display: block !important;
+      text-align: center !important;
+      margin-bottom: 25px !important;
+    }
+
+    /* Images: make them full width and remove overlap */
+    .col-sm-6 img {
+      max-width: 100% !important;
+      width: 100% !important;
+      position: static !important;
+      margin: 0 auto 15px auto !important;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+   /*#pure-footer .footer-col {
+  text-align: left !important;
+  margin-left: 0 !important;
+}*/
+
+  }
+  @media (max-width: 768px) {
+    #pure-footer .footer-col {
+        flex: 1 1 100% !important;
+        text-align: left !important;
+        margin-bottom: 25px !important;
+    }
+}
   </style>
 </head>
+<body>
 
-<body style="background-color:#f9f9f9;">
 
-<div class="container" style="margin-top:30px; padding:0 15px;">
+<!-- Navbar -->
+
+
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#" style="font-weight:bold; color:#0b63b8;">
+          <img src="./assets/paysmallsmall_logo-removebg-preview (1).png" alt="logo">
+        </a>
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mainNav">
+          <span class="sr-only">Toggle nav</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+           <span class="icon-bar"></span>
+        
+        </button>
+      </div>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="index.html">Home</a></li>
+        <!--  <li><a href="#">Sewing Machine</a></li>-->
+          <li><a href="aboutus.html">About Us</a></li>
+          <li><a href="contactus.html">Contact Us</a></li>
+          
+       <!--   <li><a href="pickup.html">Enquiry/Pickup Center</a></li>-->
+          <li>
+  <a href="sign-up.html">
+    <span class="glyphicon glyphicon-user" ></span> Sign Up
+  </a>
+</li>
+<li>
+  <a href="login.html">
+    <span class="glyphicon glyphicon-log-in" ></span> Login
+  </a>
+</li>
+
+        </ul>
+      </div>
+    </div>
+   <!-- <p style="font-size:13px; text-align:right; margin-right:20px; color:white;">
+      <i>feel free to call us</i> &nbsp;&nbsp;
+      <u>Toll free call:</u> <strong>+234 801 234 5678</strong> &nbsp;&nbsp;
+      <u>info@paysmallsmall.org</u>
+    </p>-->
+  </nav>
+
+
+<div class="container" style="margin-top:100px;">
   <div class="panel panel-default">
     <div class="panel-heading text-center" style="background-color:#2c3e50; color:#fff;">
       <h3>Payment Details</h3>
@@ -33,7 +198,12 @@
       <p><strong>Order ID:</strong> <span id="order_id"></span></p>
       <p><strong>Product:</strong> <span id="product"></span></p>
       <p><strong>Payment Plan:</strong> <span id="plan"></span></p>
+
+      <!-- Correct amount fields -->
       <p><strong>Amount Due:</strong> ₦<span id="amount"></span></p>
+      <p><strong>Installment Amount:</strong> ₦<span id="installmentAmount"></span></p>
+      <p><strong>First Installment (with 5% shipping):</strong> ₦<span id="firstInstallment"></span></p>
+
       <p><strong>Duration:</strong> <span id="duration"></span></p>
 
       <hr>
@@ -49,6 +219,7 @@
         <input type="hidden" name="order_id" id="orderIDField">
         <input type="hidden" name="product_name" id="productField">
         <input type="hidden" name="price" id="amountField">
+        <input type="hidden" name="first_installment" id="firstInstallmentField">
         <input type="hidden" name="plan_type" id="planField">
         <input type="hidden" name="duration" id="durationField">
         <input type="hidden" name="payment_option" value="Bank Transfer">
@@ -60,36 +231,177 @@
   </div>
 </div>
 
-
 <script>
 document.addEventListener("DOMContentLoaded", () => {
 
   const checkout = JSON.parse(localStorage.getItem("checkout") || "{}");
 
-  // FIXED DISPLAY-DATA
-  //document.getElementById("orderIDField").value = checkout.orderID || "";
+  if (!checkout || !checkout.name) {
+    alert("No product selected. Please select a product first.");
+    return;
+  }
 
-  document.getElementById("order_id").textContent = checkout.orderID || "N/A";
-  document.getElementById("product").textContent = checkout.name || "N/A";
-  document.getElementById("plan").textContent = checkout.plan || "N/A";
-  document.getElementById("amount").textContent = (checkout.amountDue || 0).toLocaleString();
+  const price = Number(checkout.price) || 0;
+  const duration = parseInt(checkout.duration) || 1;
 
-  // Duration formatting
+  const validPlans = ["Weekly", "Monthly", "Buy Once"];
+  let plan = String(checkout.plan || "").trim();
+  if (! validPlans.includes(plan)) {
+    plan = "Buy Once";
+  }
+
+  const shippingFee = Math.round(price * 0.05);
+
+  let installmentAmount;
+  let firstInstallment;
+
+  if (plan === "Weekly" || plan === "Monthly") {
+    installmentAmount = Math.ceil(price / duration);
+    firstInstallment = installmentAmount + shippingFee;
+  } else {
+    installmentAmount = price;
+    firstInstallment = price + shippingFee;
+  }
+
+  document.getElementById("order_id").textContent = checkout.orderID || "";
+  document.getElementById("product").textContent = checkout.name || "";
+  document.getElementById("plan").textContent = plan;
+
+  document.getElementById("amount").textContent = price.toLocaleString();
+  document.getElementById("installmentAmount").textContent = installmentAmount.toLocaleString();
+  document.getElementById("firstInstallment").textContent = firstInstallment.toLocaleString();
+
   let durLabel = "";
-  if (checkout.plan === "Weekly") durLabel = " weeks";
-  else if (checkout.plan === "Monthly") durLabel = " months";
+  if (plan === "Weekly") durLabel = " weeks";
+  else if (plan === "Monthly") durLabel = " months";
 
-  document.getElementById("duration").textContent =
-    checkout.duration ? checkout.duration + durLabel : "N/A";
+  document.getElementById("duration").textContent = duration + durLabel;
 
-  // FIXED HIDDEN FIELDS
   document.getElementById("orderIDField").value = checkout.orderID || "";
   document.getElementById("productField").value = checkout.name || "";
-  document.getElementById("amountField").value = checkout.amountDue || 0;
-  document.getElementById("planField").value = checkout.plan || "";
-  document.getElementById("durationField").value = checkout.duration || 0;
-
+  document.getElementById("amountField").value = price;
+  document.getElementById("firstInstallmentField").value = firstInstallment;
+  document.getElementById("planField").value = plan;
+  document.getElementById("durationField").value = duration;
 });
+</script>
+
+
+
+
+  
+
+<!-- Bootstrap JS (only if this file is used standalone) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+
+
+
+
+<!-- ====== Responsive Wix-style Footer (Bootstrap-Free) ====== -->
+<div id="pure-footer" style="background:#111; color:#fff; padding:50px 20px 20px 20px; font-family:Arial, sans-serif; box-sizing:border-box;">
+
+  <div class="container">
+    <div class="row" style="margin-bottom:30px;">
+
+      <!-- Logo + Description -->
+      <div class="col-sm-4 col-xs-12" style="margin-bottom:20px; text-align:left;">
+        <img src="./assets/paysmallsmall_logo-removebg-preview (1).png" alt="Logo" style="width:120px; margin-bottom:15px;">
+        <p style="font-size:20px; line-height:1.6; color:#ccc; margin:0; text-align: justify;">
+            We are a budget-friendly and premier e-commerce platform devoted for INSTALLMENT PAYMENT PLAN to own SEWING MACHINE,PART AND ACCESSORIES. PAY SMALL SMALL ™ is Interest-free financing for fashion designers at  open market value.
+        </p>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="col-sm-2 col-xs-12 footer-adjust" style="margin-bottom:20px; text-align:left;">
+        <h4 style="color:#fff; font-weight:600; margin-bottom:15px;">Quick Links</h4>
+        <ul style="list-style:none; padding:0; margin:0;">
+          <li><a href="index.html" style="color:#ccc; text-decoration:none; display:block; padding:5px 0;">Home</a></li>
+          <li><a href="aboutus.html" style="color:#ccc; text-decoration:none; display:block; padding:5px 0;">About Us</a></li>
+          <li><a href="contactus.html" style="color:#ccc; text-decoration:none; display:block; padding:5px 0;">Contact</a></li>
+          <li><a href="shipping.html" style="color:#ccc; text-decoration:none; display:block; padding:5px 0;">Shipping Policy</a></li>
+        </ul>
+      </div>
+
+      <!-- Terms of Services -->
+      <div class="col-sm-3 col-xs-12 footer-adjust" style="margin-bottom:20px; text-align:left;">
+        <h4 style="color:#fff; font-weight:600; margin-bottom:15px;">Terms of Services</h4>
+        <ul style="list-style:none; padding:0; margin:0;">
+          <li><a href="terms-of-use.html" style="color:#ccc; text-decoration:none; display:block; padding:5px 0;">Terms of Use</a></li>
+          <li><a href="terms.html" style="color:#ccc; text-decoration:none; display:block; padding:5px 0;">Terms and Conditions</a></li>
+          <li><a href="rights.html" style="color:#ccc; text-decoration:none; display:block; padding:5px 0;">Proprietory Rights</a></li>
+          <li><a href="privacy.html" style="color:#ccc; text-decoration:none; display:block; padding:5px 0;">Privacy Policy</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="col-sm-3 col-xs-12 footer-adjust" style="margin-bottom:20px; text-align:left;">
+        <h4 style="color:#fff; font-weight:600; margin-bottom:15px;">Contact Us</h4>
+        <p style="font-size:20px; color:#ccc; margin:0;">📍 154,Herbert Macaulay way,Ebute Metta,Lagos</p>
+        <p style="font-size:20px; color:#ccc; margin:0;">📞  +234 903 860 0375</p>
+        <p style="font-size:20px; color:#ccc; margin:0;">✉️ info@paysmallsmall.org</p>
+
+      <!--  <div style="margin-top:15px; font-size:20px;">
+          <a href="#" style="color:#3b5998; margin-right:10px;">👍</a>
+          <a href="#" style="color:#E4405F; margin-right:10px;">📷</a>
+          <a href="#" style="color:#1DA1F2; margin-right:10px;">🐦</a>
+          <a href="#" style="color:#0077B5; margin-right:10px;">💼</a>
+          <a href="#" style="color:#FF0000;">▶️</a>
+        </div>-->
+      </div>
+
+    </div>
+
+    <!-- Footer Bottom -->
+    <div style="border-top:1px solid #333; text-align:center; padding-top:15px;">
+      <p style="font-size:20px; color:#999; margin:0;">
+        Copyrights &copy; <span id="year"></span> Paysmallsmall <span>&trade;</span>. All Rights Reserved.
+      </p>
+    </div>
+
+  </div>
+</div>
+
+<!-- Inline Responsive Styles -->
+<style>
+  @media (max-width: 768px) {
+    #pure-footer {
+      padding: 40px 15px 15px 15px !important;
+    }
+    #pure-footer .footer-col {
+      flex: 1 1 100% !important;
+      text-align: left !important;
+      margin-bottom: 25px !important;
+    }
+    #pure-footer img {
+      margin: 0 auto 15px auto !important;
+      display: block !important;
+    }
+    #pure-footer h4 {
+      font-size: 16px !important;
+    }
+    #pure-footer p, #pure-footer a {
+      font-size: 13px !important;
+    }
+    #pure-footer ul {
+      padding-left: 0 !important;
+    }
+  }
+
+  @media (max-width: 480px) {
+    #pure-footer p, #pure-footer a {
+      font-size: 12px !important;
+    }
+    #pure-footer {
+      padding: 30px 10px 10px 10px !important;
+    }
+  }
+</style>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
 </script>
 
 </body>
