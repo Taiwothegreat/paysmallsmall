@@ -17,7 +17,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // ==============================
 
     // 5% shipping fee
-    $shippingFee = round($price * 0.05);  // NOT divided by duration
+    //$shippingFee = round($price * 0.05);  // NOT divided by duration
+    /* 🔁 APPLY TIERED SHIPPING RATE (replaces 0.05 only) */
+$rate = 0.05;
+
+if ($price <= 50000) $rate = 0.15;
+else if ($price <= 100000) $rate = 0.18;
+else if ($price <= 150000) $rate = 0.15;
+else if ($price <= 250000) $rate = 0.12;
+else if ($price <= 500000) $rate = 0.10;
+else if ($price <= 1000000) $rate = 0.08;
+else if ($price <= 2000000) $rate = 0.05;
+else if ($price <= 3000000) $rate = 0.03;
+else if ($price <= 4000000) $rate = 0.02;
+else if ($price <= 5000000) $rate = 0.019;
+else if ($price <= 6000000) $rate = 0.018;
+else if ($price <= 7000000) $rate = 0.017;
+else if ($price <= 8000000) $rate = 0.016;
+else if ($price <= 9000000) $rate = 0.015;
+else if ($price <= 10000000) $rate = 0.014;
+
+$shippingFee = round($price * $rate);  // NOT divided by duration
+
 
     // Base installment (no shipping)
     if ($plan === 'Weekly' || $plan === 'Monthly') {
@@ -77,7 +98,20 @@ $stmt->close();
 
     <p><strong>Total Price:</strong> ₦" . number_format($price, 2) . "</p>
     <p><strong>Installment Amount (No Shipping):</strong> ₦" . number_format($installmentAmount, 2) . "</p>
-    <p><strong>First Installment (with 5% shipping):</strong> ₦" . number_format($firstInstallment, 2) . "</p>
+ 
+
+
+    
+
+<p><strong>First Installment (with <?php echo ($rate * 100); ?>% shipping):</strong> ₦<?php echo number_format($firstInstallment, 2); ?></p>
+
+
+
+
+
+
+
+
 
     <p><strong>Plan:</strong> $plan</p>
     <p><strong>Duration:</strong> $duration</p>
@@ -113,7 +147,11 @@ $stmt->close();
 
     <p><strong>Total Price:</strong> ₦" . number_format($price, 2) . "</p>
     <p><strong>Installment Amount (No Shipping):</strong> ₦" . number_format($installmentAmount, 2) . "</p>
-    <p><strong>First Installment (with 5% shipping):</strong> ₦" . number_format($firstInstallment, 2) . "</p>
+    
+<p><strong>First Installment (with <?php echo ($rate * 100); ?>% shipping):</strong> ₦<?php echo number_format($firstInstallment, 2); ?></p>
+
+
+
 
     <p><strong>Plan:</strong> $plan</p>
     <p><strong>Duration:</strong> $duration</p>

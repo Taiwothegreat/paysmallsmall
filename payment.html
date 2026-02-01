@@ -202,7 +202,8 @@
       <!-- Correct amount fields -->
       <p><strong>Amount Due:</strong> ₦<span id="amount"></span></p>
       <p><strong>Installment Amount:</strong> ₦<span id="installmentAmount"></span></p>
-      <p><strong>First Installment (with 5% shipping):</strong> ₦<span id="firstInstallment"></span></p>
+    <!---  <p><strong>First Installment (with 5% shipping):</strong> ₦<span id="firstInstallment"></span></p>-->
+<p><strong>First Installment (with <span id="shippingRate"></span>% shipping):</strong> ₦<span id="firstInstallment"></span></p>
 
       <p><strong>Duration:</strong> <span id="duration"></span></p>
 
@@ -250,7 +251,26 @@ document.addEventListener("DOMContentLoaded", () => {
     plan = "Buy Once";
   }
 
-  const shippingFee = Math.round(price * 0.05);
+  //const shippingFee = Math.round(price * 0.05);
+let rate = 0.05;
+
+if (price <= 50000) rate = 0.15;
+else if (price <= 100000) rate = 0.18;
+else if (price <= 150000) rate = 0.15;
+else if (price <= 250000) rate = 0.12;
+else if (price <= 500000) rate = 0.10;
+else if (price <= 1000000) rate = 0.08;
+else if (price <= 2000000) rate = 0.05;
+else if (price <= 3000000) rate = 0.03;
+else if (price <= 4000000) rate = 0.02;
+else if (price <= 5000000) rate = 0.019;
+else if (price <= 6000000) rate = 0.018;
+else if (price <= 7000000) rate = 0.017;
+else if (price <= 8000000) rate = 0.016;
+else if (price <= 9000000) rate = 0.015;
+else if (price <= 10000000) rate = 0.014;
+
+const shippingFee = Math.round(price * rate);
 
   let installmentAmount;
   let firstInstallment;
@@ -262,6 +282,10 @@ document.addEventListener("DOMContentLoaded", () => {
     installmentAmount = price;
     firstInstallment = price + shippingFee;
   }
+
+
+  //very important
+document.getElementById("shippingRate").textContent = rate * 100;
 
   document.getElementById("order_id").textContent = checkout.orderID || "";
   document.getElementById("product").textContent = checkout.name || "";
@@ -400,6 +424,37 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 </style>
 
+
+
+<style>
+  /* Desktop only alignment (>=768px) */
+  @media (min-width: 768px) {
+    .footer-adjust {
+      margin-top: 95px !important;
+    }
+  }
+
+  /* Mobile responsiveness */
+  @media (max-width: 767px) {
+    #pure-footer img {
+      margin: 0 auto 15px auto;
+      display: block;
+    }
+    #pure-footer h4 {
+      text-align: center !important;
+      font-size: 20px !important;
+    }
+    #pure-footer p, 
+    #pure-footer a {
+      font-size: 18px !important;
+      text-align: center !important;
+    }
+    .footer-adjust {
+      margin-top: 20px !important; /* Reset on mobile */
+      text-align: center !important;
+    }
+  }
+</style>
 <script>
   document.getElementById("year").textContent = new Date().getFullYear();
 </script>

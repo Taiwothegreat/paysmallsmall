@@ -252,6 +252,7 @@
           <li><a href="aboutus.html">About Us</a></li>
           <li><a href="contactus.html">Contact Us</a></li>
            <li><a href="blog.html">Blog</a></li>
+                               <li><a href="product.html">Sewwing Machines</a></li>
        <!--   <li><a href="pickup.html">Enquiry/Pickup Center</a></li>-->
           <li>
   <a href="sign-up.html">
@@ -1060,6 +1061,39 @@ document.querySelector(".zoomPrev").onclick = () => {
               Large scale retailers / High-volume procurement &
               Group buy.
             </h4>
+            <div style="margin-top:20px;">
+  <a href="javascript:void(0);"
+     onclick="
+       var phone='2349038600375';
+       var message='Hello, I am interested in bulk orders.';
+       var isMobile=/Android|iPhone|iPad|iPod|Opera Mini|IEMobile/i.test(navigator.userAgent);
+       if(isMobile){
+         window.location.href='whatsapp://send?phone='+phone+'&text='+encodeURIComponent(message);
+       }else{
+         window.open('https://web.whatsapp.com/send?phone='+phone+'&text='+encodeURIComponent(message),'_blank');
+       }
+     "
+     style="
+       display:inline-block;
+       padding:12px 28px;
+       background:linear-gradient(135deg,#25D366,#1ebe57);
+       color:#ffffff;
+       font-weight:600;
+       font-size:15px;
+       text-decoration:none;
+       border-radius:30px;
+       box-shadow:0 6px 15px rgba(37,211,102,0.35);
+       transition:all 0.3s ease;
+     "
+     onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 10px 20px rgba(37,211,102,0.45)'"
+     onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 6px 15px rgba(37,211,102,0.35)'"
+  >
+    <span style="word-spacing:4px;">💬 Let’s Chat</span>
+
+  </a>
+</div>
+
+
           </div>
 
         </div>

@@ -42,6 +42,27 @@ $row = $result->fetch_assoc();
 // Extract payment fields
 $product  = $row["product_name"];
 $price    = $row["price"];
+// ---- SHIPPING RATE (MUST MATCH CHECKOUT PAGE) ----
+$rate = 0.05;
+
+if ($price <= 50000) $rate = 0.15;
+else if ($price <= 100000) $rate = 0.18;
+else if ($price <= 150000) $rate = 0.15;
+else if ($price <= 250000) $rate = 0.12;
+else if ($price <= 500000) $rate = 0.10;
+else if ($price <= 1000000) $rate = 0.08;
+else if ($price <= 2000000) $rate = 0.05;
+else if ($price <= 3000000) $rate = 0.03;
+else if ($price <= 4000000) $rate = 0.02;
+else if ($price <= 5000000) $rate = 0.019;
+else if ($price <= 6000000) $rate = 0.018;
+else if ($price <= 7000000) $rate = 0.017;
+else if ($price <= 8000000) $rate = 0.016;
+else if ($price <= 9000000) $rate = 0.015;
+else if ($price <= 10000000) $rate = 0.014;
+
+$shippingPercent = $rate * 100;
+
 $installment = $row["installment_amount"];
 $installment_without_shipping = $installment;
 $first    = $row["first_installment"];
@@ -81,7 +102,10 @@ $message = "
 <p><strong>Product:</strong> $product</p>
 <p><strong>Total Price:</strong> ₦" . number_format($price, 2) . "</p>
 <p><strong>Installment Amount (without shipping):</strong> ₦" . number_format($installment, 2) . "</p>
-<p><strong>First Installment (with shipping):</strong> ₦" . number_format($first, 2) . "</p>
+
+
+<p><strong>First Installment (with {$shippingPercent}% shipping):</strong> ₦" . number_format($first, 2) . "</p>
+
 <p><strong>Plan:</strong> $plan</p>
 <p><strong>Duration:</strong> $duration Weeks</p>
 
@@ -119,7 +143,13 @@ mail($email, $subject, $message, $headers);
         <p><strong>Total Price:</strong> ₦<?php echo number_format($price, 2); ?></p>
         <p><strong>Installment Amount (without shipping):</strong> ₦<?php echo number_format($installment_without_shipping, 2); ?></p>
 
-        <p><strong>First Installment (with 5% shipping):</strong> ₦<?php echo number_format($first, 2); ?></p>
+      
+<p>
+  <strong>First Installment (with <?php echo $shippingPercent; ?>% shipping):</strong>
+  ₦<?php echo number_format($first, 2); ?>
+</p>
+
+
         <!--       <p><strong>Plan:</strong><?php #echo htmlspecialchars($plan); ?></p>-->
         <p><strong>Duration:</strong> <?php echo htmlspecialchars($duration); ?>Weeks</p>
 
