@@ -2,14 +2,108 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>FAQ - Bootstrap 3 Version</title>
+  <title>Paysmallsmall</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap 3 -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+     <link rel="icon" href="./assets/favicon.ico">
   <style>
-    .faq-section { padding: 40px 20px; background: #fff; }
+    body {
+      font-family: Arial, sans-serif;
+  /*   background: #f5f7fb;*/
+    /* background-color:#bc933b ;
+      background-color: #FFFDD0;*/
+     background-color:#ffffff ;
+    }
+      p{
+      font-size: 20px;
+    }
+    .nav{
+      margin-top: 20px;
+    }
+     .navbar-brand img {
+        width: 100px;
+        margin-top: -5px;
+      }
+      .navbar-brand {
+        margin-top: -10px;
+      }
+    ul li{
+      font-size: 20px;
+    }
+      span{
+      font-size: 20px;
+    }
+    .navbar {
+      margin-bottom: 0;
+      border: none;
+      border-radius: 0;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+    }
+    .hero {
+      margin-top: 50px;
+      padding: 50px 20px;
+      /*background: linear-gradient(90deg, #0b63b8, #126fb3);
+      background: linear-gradient(90deg, #ADFF2F, #ADFF2F);*/
+          background: linear-gradient(90deg, #ffffff, #ffffff);
+      color: #fff;
+    }
+    .hero h1 {
+      font-weight: bold;
+      margin-top: 0;
+    }
+    .hero h5{
+      font-size: 20px;
+      text-align: left;
+    }
+    
+    .feature-card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 25px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      margin-bottom: 20px;
+    }
+    .feature-card h3 {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    .navbar-inverse .navbar-nav>li>a {
+    /*color: #9d9d9d;*/
+    color: #bc933b;
+    
+}
+    .btn-start {
+    /*  background: #0b63b8;*/
+    /*  background-color:#bc933b;*/
+      background-color:#000000;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      margin-top: 15px;
+      padding: 10px 18px;
+    }
+    .btn-start:hover {
+    /*  background: #adff2f;*/
+      background: #af8a39;
+      color: #000;
+    }
+    .glyphicon-arrow-right {
+      margin-left: 5px;
+    }
+    .carousel-inner > .item > img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+ /*     .faq-section { padding: 40px 20px; background: #bc933b; }*/
+      .faq-section { padding: 40px 20px; background: #ffffff; }
     .faq-section h2 { text-align: center; font-size: 28px; font-weight: 600; margin-bottom: 30px; }
     .faq-number {
-      background: orange; color: white; border-radius: 50%; display: inline-block;
+      background: #000000; color: white; border-radius: 50%; display: inline-block;
       width: 30px; height: 30px; text-align: center; line-height: 30px;
       font-weight: bold; margin-right: 10px;
     }
@@ -32,30 +126,172 @@
       transition: color 0.3s ease;
     }
     .social-icons a:hover { color: orange; }
+     @media (max-width: 767px) {
+      .navbar-brand img {
+        width: 100px;
+        margin-top: -5px;
+      }
+      .navbar-brand {
+        margin-top: -10px;
+      }
+      .navbar p {
+        font-size: 11px;
+        text-align: center !important;
+      }
+    .navbar-header{
+      padding: 20px;
+      padding-left :10px !important;
+    }
+     
+    }
+    /*Whatsapp Float*/
+    .whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+    background-color: #25D366;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    text-decoration: none;
+    animation: pulse 1.5s infinite;
+}
+
+.whatsapp-icon {
+    width: 35px;
+    height: 35px;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+    100% { transform: scale(1); }
+}
+
   </style>
 </head>
 <body>
+<!-- Navbar -->
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#" style="font-weight:bold; color:#0b63b8;">
+          <img src="./assets/paysmallsmall_logo-removebg-preview (1).png" alt="logo">
+        </a>
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mainNav">
+          <span class="sr-only">Toggle nav</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+           <span class="icon-bar"></span>
+        
+        </button>
+      </div>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="index.html">Home</a></li>
+        <!--  <li><a href="#">Sewing Machine</a></li>-->
+          <li><a href="aboutus.html">About Us</a></li>
+          <li><a href="contactus.html">Contact Us</a></li>
+           <li><a href="blog.html">Blog</a></li>
+                               <li><a href="product.html">Sewing Machines</a></li>
+       <!--   <li><a href="pickup.html">Enquiry/Pickup Center</a></li>-->
+          <li>
+  <a href="sign-up.html">
+    <span class="glyphicon glyphicon-user" ></span> Sign Up
+  </a>
+</li>
+<li>
+  <a href="login.html">
+    <span class="glyphicon glyphicon-log-in" ></span> Login
+  </a>
+</li>
+
+        </ul>
+      </div>
+    </div>
+   <!-- <p style="font-size:13px; text-align:right; margin-right:20px; color:white;">
+      <i>feel free to call us</i> &nbsp;&nbsp;
+      <u>Toll free call:</u> <strong>+234 801 234 5678</strong> &nbsp;&nbsp;
+      <u>info@paysmallsmall.org</u>
+    </p>-->
+  </nav>
+
+<!-- Hero Section -->
+
+
+
+
+
+  
+
+<!------Cashy sliders-->
+<!-- FONT AWESOME -->
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+
+
+<!----End of Cashy-->
+<!-- Bootstrap JS (only if this file is used standalone) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+
 
 <div class="container faq-section">
-  <h2>Frequently Asked Questions</h2>
+  <h2 style="margin-top: 100px;">Frequently Asked Questions</h2>
   <div class="panel-group" id="faqAccordion">
 
     <!-- FAQ Template -->
+   
+
+    <!-- FAQ 2–10 -->
     <div class="panel panel-default">
+      <div class="panel-heading" data-toggle="collapse" data-target="#faq2">
+        <div class="panel-title">
+          <span><span class="faq-number">1</span><h3>What are the necessary conditions and requirements to participate in the installment plan?</h3></span>
+          <span class="faq-icon glyphicon glyphicon-chevron-down"></span>
+        </div>
+      </div>
+      <div id="faq2" class="panel-collapse collapse">
+        <div class="faq-body">
+       <!--   <p>You need a valid ID, BVN, verified Paysmallsmall account, and a steady source
+             of income linked to a Nigerian bank account for auto-debits.</p>-->
+             <ul>
+            <span>  To qualify for our installment plan, you need to:</span>
+            <li>Sign up on our platform</li>
+            <li>Provide a valid ID card</li>
+            <li>Submit your BVN for auto debit</li>
+          </ul>
+          <div class="social-icons"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a><a href="#"><i class="fa fa-whatsapp"></i></a></div>
+        </div>
+      </div>
+    </div>
+ <div class="panel panel-default">
       <div class="panel-heading" data-toggle="collapse" data-target="#faq1">
         <div class="panel-title">
-          <span><span class="faq-number">1</span><h3>When will I collect the item that I am paying for?</h3></span>
+          <span><span class="faq-number">2</span><h3>When will my sewing machine, parts, or accessories be delivered?</h3></span>
           <span class="faq-icon glyphicon glyphicon-chevron-down"></span>
         </div>
       </div>
       <div id="faq1" class="panel-collapse collapse">
         <div class="faq-body">
-          <p>Your item will be shipped when you reach the middle of your instalment period and meet all delivery conditions. You must have paid half of the cost of the item in equal instalments.</p>
-          <ul>
+         
+          <p>Delivery begins once you have paid at least fifty percent (50%) of the total cost through equal installments.</p>
+         <!-- <ul>
             <li>2-month plan: delivery immediately.</li>
             <li>6-month plan: delivery in 3rd month.</li>
             <li>12-month plan: delivery in 6th month.</li>
-          </ul>
+          </ul>-->
           <div class="social-icons">
             <a href="#"><i class="fa fa-facebook"></i></a>
             <a href="#"><i class="fa fa-twitter"></i></a>
@@ -65,33 +301,16 @@
         </div>
       </div>
     </div>
-
-    <!-- FAQ 2–10 -->
-    <div class="panel panel-default">
-      <div class="panel-heading" data-toggle="collapse" data-target="#faq2">
-        <div class="panel-title">
-          <span><span class="faq-number">2</span><h3>What are the requirements?</h3></span>
-          <span class="faq-icon glyphicon glyphicon-chevron-down"></span>
-        </div>
-      </div>
-      <div id="faq2" class="panel-collapse collapse">
-        <div class="faq-body">
-          <p>You need a valid ID, BVN, verified CDcare account, and a steady source of income linked to a Nigerian bank account for auto-debits.</p>
-          <div class="social-icons"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a><a href="#"><i class="fa fa-whatsapp"></i></a></div>
-        </div>
-      </div>
-    </div>
-
     <div class="panel panel-default">
       <div class="panel-heading" data-toggle="collapse" data-target="#faq3">
         <div class="panel-title">
-          <span><span class="faq-number">3</span><h3>Can I cancel my payment plan?</h3></span>
+          <span><span class="faq-number">3</span><h3>Can I discontinue my payment schedule after starting? </h3></span>
           <span class="faq-icon glyphicon glyphicon-chevron-down"></span>
         </div>
       </div>
       <div id="faq3" class="panel-collapse collapse">
         <div class="faq-body">
-          <p>Yes, you can cancel before delivery. Refunds are issued minus a 5% processing fee.</p>
+          <p> Yes, but only before delivery is processed. If you discontinue, you will receive a refund with a 10% deduction from your total installment paid.</p>
           <div class="social-icons"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a><a href="#"><i class="fa fa-whatsapp"></i></a></div>
         </div>
       </div>
@@ -100,13 +319,15 @@
     <div class="panel panel-default">
       <div class="panel-heading" data-toggle="collapse" data-target="#faq4">
         <div class="panel-title">
-          <span><span class="faq-number">4</span><h3>What happens if I miss a payment?</h3></span>
+          <span><span class="faq-number">4</span><h3>What happens if I halt or default on my payment plan? </h3></span>
           <span class="faq-icon glyphicon glyphicon-chevron-down"></span>
         </div>
       </div>
       <div id="faq4" class="panel-collapse collapse">
         <div class="faq-body">
-          <p>Missed payments attract a penalty and may affect your eligibility for future plans. Ensure your account has funds before your due date.</p>
+          <p>Late payments or defaults attract a penalty charge and may affect your eligibility for future plans.
+If the product has already been delivered, you may face forfeiture or additional fines as determined by management.
+In short: <span style="font-style: italic;">“Pay late, pay extra — or lose the item.”</span> </p>
           <div class="social-icons"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a><a href="#"><i class="fa fa-whatsapp"></i></a></div>
         </div>
       </div>
@@ -115,13 +336,14 @@
     <div class="panel panel-default">
       <div class="panel-heading" data-toggle="collapse" data-target="#faq5">
         <div class="panel-title">
-          <span><span class="faq-number">5</span><h3>Do I need to pay any deposit?</h3></span>
+          <span><span class="faq-number">5</span><h3>Can I modify my order after making payment?</h3></span>
           <span class="faq-icon glyphicon glyphicon-chevron-down"></span>
         </div>
       </div>
       <div id="faq5" class="panel-collapse collapse">
         <div class="faq-body">
-          <p>No upfront deposit. Your first instalment counts as your first payment.</p>
+          <p>No. Once a payment plan is activated, product changes are not allowed.
+To switch to a different product, you must cancel the current plan and start a new one.</p>
           <div class="social-icons"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a><a href="#"><i class="fa fa-whatsapp"></i></a></div>
         </div>
       </div>
@@ -130,13 +352,14 @@
     <div class="panel panel-default">
       <div class="panel-heading" data-toggle="collapse" data-target="#faq6">
         <div class="panel-title">
-          <span><span class="faq-number">6</span><h3>Is CDcare a loan company?</h3></span>
+          <span><span class="faq-number">6</span><h3>Can I buy multiple sewing machines or accessories in one transaction?</h3></span>
           <span class="faq-icon glyphicon glyphicon-chevron-down"></span>
         </div>
       </div>
       <div id="faq6" class="panel-collapse collapse">
         <div class="faq-body">
-          <p>No, CDcare is not a loan provider — it’s an interest-free instalment payment platform.</p>
+          <p>No. Each purchase must be completed one at a time.
+     Finish one transaction before starting another.</p>
           <div class="social-icons"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a><a href="#"><i class="fa fa-whatsapp"></i></a></div>
         </div>
       </div>
@@ -145,13 +368,40 @@
     <div class="panel panel-default">
       <div class="panel-heading" data-toggle="collapse" data-target="#faq7">
         <div class="panel-title">
-          <span><span class="faq-number">7</span><h3>Can I change my item after paying?</h3></span>
+          <span><span class="faq-number">7</span><h3>What types of sewing machines, parts, and accessories are available for installment purchase?</h3></span>
           <span class="faq-icon glyphicon glyphicon-chevron-down"></span>
         </div>
       </div>
       <div id="faq7" class="panel-collapse collapse">
         <div class="faq-body">
-          <p>Once a plan starts, you can’t change the product. You can cancel and start a new one instead.</p>
+         <!----<p></p>-->
+         <ul>
+          <span>We offer a wide range, including but not limited to:</span>
+          <li>Embroidery machines</li>
+          <li>Button sewing machines</li>
+          <li>Computerized sewing machines</li>
+          <li>Domestic sewing machines</li>
+          <li>Buttonhole machines</li>
+          <li>Chain stitch machines</li>
+          <li>Lockstitch machines</li>
+          <li>Mini and portable machines</li>
+          <li>Overlockers</li>
+          <li>Quilting machines</li>
+          <li>Treadle sewing machines</li>
+          <li>Bar tack sewing machines</li>
+          <li>Automated sewing machines</li>
+          <li>Cover stitch machines</li>
+          <li>Flatlock machines</li>
+          <li>Serger machines</li>
+          <li>Single needle lockstitch machines</li>
+          <li>Blind stitch machines</li>
+          <li>Double needle machines</li>
+          <li>Flatbed sewing machines</li>
+          <li>Bartack machines</li>
+          <li>Button attaching machines</li>
+          <li>Chain stitch sewing machine</li>
+          <span>…and many more, including machines available on special request.</span>
+         </ul>
           <div class="social-icons"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a><a href="#"><i class="fa fa-whatsapp"></i></a></div>
         </div>
       </div>
@@ -160,13 +410,15 @@
     <div class="panel panel-default">
       <div class="panel-heading" data-toggle="collapse" data-target="#faq8">
         <div class="panel-title">
-          <span><span class="faq-number">8</span><h3>Can I buy more than one item?</h3></span>
+          <span><span class="faq-number">8</span><h3> What sewing machine brands are available?</h3></span>
           <span class="faq-icon glyphicon glyphicon-chevron-down"></span>
         </div>
       </div>
       <div id="faq8" class="panel-collapse collapse">
         <div class="faq-body">
-          <p>Yes, but you must complete your first plan before starting another.</p>
+         <!--<p></p>----->
+         <span>We carry trusted brands such as:</span>
+         <p>TWO LION, SEW FINE, DELUXE, HUDGON, XIANTYPICAL, SUMO PREMIUM, ALPHA ULTIMATE, SINABRO, JACK, BUTTERFLY, EMEL, CLAP, MOON STAR, JUKI, BERNETTE, SINGER, BROTHER, JANOME, BERNINA, CONSEW, MERROW, HANDI QUILTER, UNION SPECIAL, ELNA, NECCHI, YAMATA, ANY SEW, SINCERE, CITIZEN, PATH, PFAFD, USHER, MERROW, TOYOTA, LOKI, AMRO BROTHERS, BEAUTIFUL, ELEGANT, RUSH, CNC, KUELL, NOVEL, AKIARA, KINGY, BUDDYFLY, UNIX, SEW PERFECT, TWO TIGER, BONAD SEW, BRIGHT, and more.</p>
           <div class="social-icons"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a><a href="#"><i class="fa fa-whatsapp"></i></a></div>
         </div>
       </div>
@@ -175,28 +427,74 @@
     <div class="panel panel-default">
       <div class="panel-heading" data-toggle="collapse" data-target="#faq9">
         <div class="panel-title">
-          <span><span class="faq-number">9</span><h3>What items can I buy?</h3></span>
+          <span><span class="faq-number">9</span><h3> What should I do if the product I want isn’t available on the Marketplace?</h3></span>
           <span class="faq-icon glyphicon glyphicon-chevron-down"></span>
         </div>
       </div>
       <div id="faq9" class="panel-collapse collapse">
         <div class="faq-body">
-          <p>You can buy phones, electronics, laptops, and appliances from verified vendors.</p>
+          <p> If a product isn’t listed on our Marketplace, please <strong>inform us immediately</strong>. We’ll analyze the details and <strong>add the relevant information</strong> or make the product available as soon as possible.</p>
+          <div class="social-icons"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a><a href="#"><i class="fa fa-whatsapp"></i></a></div>
+        </div>
+      </div>
+    </div>
+     <div class="panel panel-default">
+      <div class="panel-heading" data-toggle="collapse" data-target="#faq10">
+        <div class="panel-title">
+          <span><span class="faq-number">10</span><h3>What happens if the price of the sewing machine reduces before delivery?</h3></span>
+          <span class="faq-icon glyphicon glyphicon-chevron-down"></span>
+        </div>
+      </div>
+      <div id="faq10" class="panel-collapse collapse">
+        <div class="faq-body">
+          <p>If the product’s price drops before your delivery, we will <strong>credit the difference (surplus)</strong> toward your <strong>subsequent installment payments</strong>. </p>
+          <div class="social-icons"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a><a href="#"><i class="fa fa-whatsapp"></i></a></div>
+        </div>
+      </div>
+    </div>
+<div class="panel panel-default">
+      <div class="panel-heading" data-toggle="collapse" data-target="#faq11">
+        <div class="panel-title">
+          <span><span class="faq-number">11</span><h3>What happens if the price of the sewing machine increases before delivery?</h3></span>
+          <span class="faq-icon glyphicon glyphicon-chevron-down"></span>
+        </div>
+      </div>
+      <div id="faq11" class="panel-collapse collapse">
+        <div class="faq-body">
+          <p> If the price increases, we will <strong>adjust the balance</strong> across your <strong>remaining installment payments</strong>.
+Note: Purchases depend on the <strong>availability of the item</strong> at the time of delivery. </p>
+          <div class="social-icons"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a><a href="#"><i class="fa fa-whatsapp"></i></a></div>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading" data-toggle="collapse" data-target="#faq12">
+        <div class="panel-title">
+          <span><span class="faq-number">12</span><h3>Can I make a 50% payment to collect my sewing machine immediately?</h3></span>
+          <span class="faq-icon glyphicon glyphicon-chevron-down"></span>
+        </div>
+      </div>
+      <div id="faq12" class="panel-collapse collapse">
+        <div class="faq-body">
+          <p> Yes, partial payment of <strong>50%</strong> is accepted 
+            for <strong>immediate collection</strong>, but only under 
+            a <strong>two-month or two-week plan</strong>, and it is <strong>subject to management verification</strong> .
+The <strong>final payment</strong> must be made as a <strong>single lump-sum transaction</strong> . </p>
           <div class="social-icons"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a><a href="#"><i class="fa fa-whatsapp"></i></a></div>
         </div>
       </div>
     </div>
 
     <div class="panel panel-default">
-      <div class="panel-heading" data-toggle="collapse" data-target="#faq10">
+      <div class="panel-heading" data-toggle="collapse" data-target="#faq13">
         <div class="panel-title">
-          <span><span class="faq-number">10</span><h3>Is there interest on payment?</h3></span>
+          <span><span class="faq-number">13</span><h3>What are the terms for returning a product due to a change of mind?</h3></span>
           <span class="faq-icon glyphicon glyphicon-chevron-down"></span>
         </div>
       </div>
-      <div id="faq10" class="panel-collapse collapse">
+      <div id="faq13" class="panel-collapse collapse">
         <div class="faq-body">
-          <p>No interest. CDcare lets you pay over time without extra charges.</p>
+          <p>If you decide to return a product simply because you’ve changed your mind, a <strong>15% charge</strong> will apply to the <strong>total installment amount paid so far</strong> </p>
           <div class="social-icons"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a><a href="#"><i class="fa fa-whatsapp"></i></a></div>
         </div>
       </div>
@@ -205,8 +503,7 @@
   </div>
 </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 <script>
   // Flip icon on open/close
   $('#faqAccordion').on('shown.bs.collapse', function (e) {
@@ -216,6 +513,114 @@
     $(e.target).siblings('.panel-heading').find('.faq-icon').removeClass('rotate');
   });
 </script>
+
+
+<!-- ====== Bootstrap 3 Footer (Responsive & Aligned) ====== -->
+<div id="pure-footer" style="background:#111; color:#fff; padding:50px 20px 20px 20px; font-family:Arial, sans-serif; box-sizing:border-box;">
+
+  <div class="container">
+    <div class="row" style="margin-bottom:30px;">
+
+      <!-- Logo + Description -->
+      <div class="col-sm-4 col-xs-12" style="margin-bottom:20px; text-align:left;">
+        <img src="./assets/paysmallsmall_logo-removebg-preview (1).png" alt="Logo" style="width:120px; margin-bottom:15px;">
+        <p style="font-size:20px; line-height:1.6; color:#ccc; margin:0; text-align: justify;">
+          At <strong>Paysmallsmall</strong> We empower you to own sewing equipment at a reasonable price and manage your expenses effortlessly.
+          We do not charge interest at all because we are not a loan company but we encourage you 
+          save-up and buy at a reasonable and normal market price.
+        </p>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="col-sm-2 col-xs-12 footer-adjust" style="margin-bottom:20px; text-align:left;">
+        <h4 style="color:#fff; font-weight:600; margin-bottom:15px;">Quick Links</h4>
+        <ul style="list-style:none; padding:0; margin:0;">
+          <li><a href="index.html" style="color:#ccc; text-decoration:none; display:block; padding:5px 0;">Home</a></li>
+          <li><a href="aboutus.html" style="color:#ccc; text-decoration:none; display:block; padding:5px 0;">About Us</a></li>
+          <li><a href="contactus.html" style="color:#ccc; text-decoration:none; display:block; padding:5px 0;">Contact</a></li>
+          <li><a href="shipping.html" style="color:#ccc; text-decoration:none; display:block; padding:5px 0;">Shipping Policy</a></li>
+        </ul>
+      </div>
+
+      <!-- Terms of Services -->
+      <div class="col-sm-3 col-xs-12 footer-adjust" style="margin-bottom:20px; text-align:left;">
+        <h4 style="color:#fff; font-weight:600; margin-bottom:15px;">Terms of Services</h4>
+        <ul style="list-style:none; padding:0; margin:0;">
+          <li><a href="terms-of-use.html" style="color:#ccc; text-decoration:none; display:block; padding:5px 0;">Terms of Use</a></li>
+          <li><a href="terms.html" style="color:#ccc; text-decoration:none; display:block; padding:5px 0;">Terms and Conditions</a></li>
+          <li><a href="rights.html" style="color:#ccc; text-decoration:none; display:block; padding:5px 0;">Proprietory Rights</a></li>
+          <li><a href="privacy.html" style="color:#ccc; text-decoration:none; display:block; padding:5px 0;">Privacy Policy</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="col-sm-3 col-xs-12 footer-adjust" style="margin-bottom:20px; text-align:left;">
+        <h4 style="color:#fff; font-weight:600; margin-bottom:15px;">Contact Us</h4>
+        <p style="font-size:20px; color:#ccc; margin:0;">📍 154,Herbert Macaulay way,Ebute Metta,Lagos</p>
+        <p style="font-size:20px; color:#ccc; margin:0;">📞 +234 801 234 5678</p>
+        <p style="font-size:20px; color:#ccc; margin:0;">✉️ info@paysmallsmall.com</p>
+
+     <!--   <div style="margin-top:15px; font-size:20px;">
+          <a href="#" style="color:#3b5998; margin-right:10px;">👍</a>
+          <a href="#" style="color:#E4405F; margin-right:10px;">📷</a>
+          <a href="#" style="color:#1DA1F2; margin-right:10px;">🐦</a>
+          <a href="#" style="color:#0077B5; margin-right:10px;">💼</a>
+          <a href="#" style="color:#FF0000;">▶️</a>
+        </div>-->
+      </div>
+
+    </div>
+
+    <!-- Footer Bottom -->
+    <div style="border-top:1px solid #333; text-align:center; padding-top:15px;">
+      <p style="font-size:20px; color:#999; margin:0;">
+        Copyrights &copy; <span id="year"></span> Paysmallsmall <span>&trade;</span>. All Rights Reserved.
+      </p>
+    </div>
+
+  </div>
+</div>
+
+<!-- Responsive Alignment Fix -->
+<style>
+  /* Desktop only alignment (>=768px) */
+  @media (min-width: 768px) {
+    .footer-adjust {
+      margin-top: 95px !important;
+    }
+  }
+
+  /* Mobile responsiveness */
+  @media (max-width: 767px) {
+    #pure-footer img {
+      margin: 0 auto 15px auto;
+      display: block;
+    }
+    #pure-footer h4 {
+      text-align: center !important;
+      font-size: 20px !important;
+    }
+    #pure-footer p, 
+    #pure-footer a {
+      font-size: 18px !important;
+      text-align: center !important;
+    }
+    .footer-adjust {
+      margin-top: 20px !important; /* Reset on mobile */
+      text-align: center !important;
+    }
+  }
+</style>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/2349038600375" target="_blank" class="whatsapp-float">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" 
+         alt="WhatsApp" class="whatsapp-icon">
+</a>
 
 </body>
 </html>
