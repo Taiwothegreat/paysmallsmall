@@ -2,18 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Demo Site</title>
+  <title>Paysmallsmall</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Bootstrap 3 -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <style>
-   body {
+    body {
       font-family: Arial, sans-serif;
   /*   background: #f5f7fb;*/
-     /*background-color:#bc933b ;
-     background-color: #FFFDD0;*/
-     background-color:#ffffff;
+    /* background-color: #bc933b ;
+      background-color: #FFFDD0;*/
+      background-color: #ffffff;
     }
     .nav{
       margin-top: 20px;
@@ -25,7 +25,7 @@
       .navbar-brand {
         margin-top: -10px;
       }
-    ul li{
+    ul li,ol li{
       font-size: 20px;
     }
     .navbar {
@@ -151,7 +151,7 @@
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
   }
-    /*Whatsapp Float*/
+  /*Whatsapp Float*/
   .whatsapp-float {
     position: fixed;
     width: 60px;
@@ -179,6 +179,7 @@
     50% { transform: scale(1.08); }
     100% { transform: scale(1); }
 }
+
   </style>
 </head>
 <body>
@@ -187,7 +188,7 @@
 <!-- Navbar -->
 
 
-   <nav class="navbar navbar-inverse navbar-fixed-top">
+  <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
       <div class="navbar-header">
         <a class="navbar-brand" href="#" style="font-weight:bold; color:#0b63b8;">
@@ -209,6 +210,7 @@
           <li><a href="aboutus.html">About Us</a></li>
           <li><a href="contactus.html">Contact Us</a></li>
            <li><a href="blog.html">Blog</a></li>
+                <li><a href="product.html">Products</a></li>
        <!--   <li><a href="pickup.html">Enquiry/Pickup Center</a></li>-->
           <li>
   <a href="sign-up.html">
@@ -224,95 +226,58 @@
         </ul>
       </div>
     </div>
-   <!-- <p style="font-size:13px; text-align:right; margin-right:20px; color:white;">
-      <i>feel free to call us</i> &nbsp;&nbsp;
-      <u>Toll free call:</u> <strong>+234 801 234 5678</strong> &nbsp;&nbsp;
-      <u>info@paysmallsmall.org</u>
-    </p>-->
+
   </nav>
 
+<!-- ====== Content Section ====== -->
+<section id="delete-account" style="max-width:800px;margin:40px auto;
+padding:20px;font-family:Arial, sans-serif;line-height:1.6;margin-top:100px">
+  <h2 style="margin-bottom:15px;">Delete Your Pay Small Small Account</h2>
 
-<div class="container" style="max-width:400px; margin-top:130px; background:#fff; padding:30px; border-radius:6px; box-shadow:0 0 10px rgba(0,0,0,0.1);margin-bottom: 50px;">
-    <h3 class="text-center" style="margin-bottom:25px; font-weight:bold; color:#333;">
-      Welcome Back to <br> <strong>PAY SMALL SMALL</strong><sup>TM</sup>
-    </h3>
+  <p>
+    At <strong>Pay Small Small</strong>, we respect your privacy and your right to control your personal data.
+  </p>
 
-    <form id="loginForm" action="login_process.php" method="post">
+  <p><strong>To request deletion of your account and associated data:</strong></p>
+  <ol>
+    <li>Send an email to: <a href="mailto:info@paysmallsmall.org">info@paysmallsmall.org</a></li>
+    <li>Use the subject line: <strong>Account Deletion Request</strong></li>
+    <li>Include the email address linked to your account</li>
+  </ol>
 
-      <!-- Email -->
-      <div class="form-group">
-        <label for="email" style="font-weight:600;">Email Address</label>
-        <input type="email" class="form-control" id="email" name="email"
-               placeholder="Enter your email" required style="height:40px;">
-      </div>
+  <p><strong>Once verified, we will delete:</strong></p>
+  <ul>
+    <li>Your name</li>
+    <li>Email address</li>
+    <li>Phone number</li>
+    <li>Address</li>
+    <li>Account profile information</li>
+    <li>Wishlist and order history</li>
+  </ul>
 
-      <!-- Password -->
-      <div class="form-group" style="position:relative;">
-        <label for="password" style="font-weight:600;">Password</label>
-        <input type="password" class="form-control" id="password" name="password"
-               placeholder="Enter your password" required style="height:40px; padding-right:35px;">
-        <i id="togglePassword" class="fa fa-eye-slash"
-           style="position:absolute; top:37px; right:10px; cursor:pointer; color:#555;"></i>
-      </div>
+  <p><strong>Data that may be retained:</strong></p>
+  <ul>
+    <li>Transaction records required for legal, tax, or fraud-prevention purposes.</li>
+  </ul>
 
-      <!-- Forgot Password -->
-      <div style="text-align:right; margin-bottom:15px;">
-        <a href="forgot_password.html"
-           style="font-size:13px; color:#007bff; text-decoration:none;">Forgot Password?</a>
-      </div>
+  <p>
+    All deletion requests are processed within 7 business days.
+  </p>
+</section>
 
-      <!-- Login Button -->
-      <button type="submit" class="btn btn-primary btn-block"
-              style="background:#bd933b; border:none; height:40px; font-weight:bold;">Login</button>
 
-      <!-- Signup Link -->
-      <p class="text-center" style="margin-top:15px; font-size:14px;">
-        Don't have an account?
-        <a href="sign-up.html" style="color:#007bff; text-decoration:none; font-weight:bold;">Sign Up</a>
-      </p>
-    </form>
-  </div>
 
-  <!-- Bootstrap JS (only if this file is used standalone) -->
+
+
+
+
+<!-- Bootstrap JS (only if this file is used standalone) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-  <!-- Password Toggle -->
-  <script>
-    $(document).ready(function(){
-      $("#togglePassword").click(function(){
-        var input = $("#password");
-        var icon = $(this);
-        if (input.attr("type") === "password") {
-          input.attr("type", "text");
-          icon.removeClass("fa-eye-slash").addClass("fa-eye");
-        } else {
-          input.attr("type", "password");
-          icon.removeClass("fa-eye").addClass("fa-eye-slash");
-        }
-      });
-    });
-  </script>
-<!-- WhatsApp Floating Button -->
-<a href="https://wa.me/2349038600375" target="_blank" class="whatsapp-float">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" 
-         alt="WhatsApp" class="whatsapp-icon">
-</a>
 
 
-
-
-  
-
-
-
-
-
-
-
-
-<!-- ====== Responsive Wix-style Footer (Bootstrap-Free) ====== -->
-
+<!-- ====== Bootstrap 3 Footer (Responsive & Aligned) ====== -->
 <div id="pure-footer" style="background:#111; color:#fff; padding:50px 20px 20px 20px; font-family:Arial, sans-serif; box-sizing:border-box;">
 
   <div class="container">
@@ -321,8 +286,14 @@
       <!-- Logo + Description -->
       <div class="col-sm-4 col-xs-12" style="margin-bottom:20px; text-align:left;">
         <img src="./assets/paysmallsmall_logo-removebg-preview (1).png" alt="Logo" style="width:120px; margin-bottom:15px;">
-        <p style="font-size:20px; line-height:1.6; color:#ccc; margin:0; text-align: justify;">
-            You can split the cost of your SEWING MACHINE into smaller, interest-free installments with the payment plan that fits your budget.
+      <!--  <p style="font-size:20px; line-height:1.6; color:#ccc; margin:0; text-align: justify;">
+          At <strong>Paysmallsmall</strong> We empower you to own sewing equipment at a reasonable price 
+          and manage your expenses effortlessly.
+          We do not charge interest at all because we are not a loan company but we encourage you save-up
+           and buy at a reasonable and normal market price.
+        </p>-->
+          <p style="font-size:20px; line-height:1.6; color:#ccc; margin:0; text-align: justify;">
+          At <strong>Paysmallsmall</strong> You can split the cost of your SEWING MACHINE into smaller, interest-free installments with the payment plan that fits your budget.
 No upfront costs,just pay in stages.
 Enjoy your SEWING MACHINE now, pay comfortably later
         </p>
@@ -354,8 +325,8 @@ Enjoy your SEWING MACHINE now, pay comfortably later
       <div class="col-sm-3 col-xs-12 footer-adjust" style="margin-bottom:20px; text-align:left;">
         <h4 style="color:#fff; font-weight:600; margin-bottom:15px;">Contact Us</h4>
         <p style="font-size:20px; color:#ccc; margin:0;">📍 154,Herbert Macaulay way,Ebute Metta,Lagos</p>
-        <p style="font-size:20px; color:#ccc; margin:0;">📞  +234 903 860 0375</p>
-        <p style="font-size:20px; color:#ccc; margin:0;">✉️ info@paysmallsmall.org</p>
+        <p style="font-size:20px; color:#ccc; margin:0;">📞 +234 801 234 5678</p>
+        <p style="font-size:20px; color:#ccc; margin:0;">✉️ info@paysmallsmall.com</p>
 <!---
         <div style="margin-top:15px; font-size:20px;">
           <a href="#" style="color:#3b5998; margin-right:10px;">👍</a>
@@ -378,40 +349,33 @@ Enjoy your SEWING MACHINE now, pay comfortably later
   </div>
 </div>
 
-
-
-<!-- Inline Responsive Styles -->
+<!-- Responsive Alignment Fix -->
 <style>
-  @media (max-width: 768px) {
-    #pure-footer {
-      padding: 40px 15px 15px 15px !important;
-    }
-    #pure-footer .footer-col {
-      flex: 1 1 100% !important;
-      text-align: left !important;
-      margin-bottom: 25px !important;
-    }
-    #pure-footer img {
-      margin: 0 auto 15px auto !important;
-      display: block !important;
-    }
-    #pure-footer h4 {
-      font-size: 20px !important;
-    }
-    #pure-footer p, #pure-footer a {
-      font-size: 13px !important;
-    }
-    #pure-footer ul {
-      padding-left: 0 !important;
+  /* Desktop only alignment (>=768px) */
+  @media (min-width: 768px) {
+    .footer-adjust {
+      margin-top: 95px !important;
     }
   }
 
-  @media (max-width: 480px) {
-    #pure-footer p, #pure-footer a {
-      font-size: 18px !important;
+  /* Mobile responsiveness */
+  @media (max-width: 767px) {
+    #pure-footer img {
+      margin: 0 auto 15px auto;
+      display: block;
     }
-    #pure-footer {
-      padding: 30px 10px 10px 10px !important;
+    #pure-footer h4 {
+      text-align: left !important;
+      font-size: 20px !important;
+    }
+    #pure-footer p, 
+    #pure-footer a {
+      font-size: 18px !important;
+      text-align: left !important;
+    }
+    .footer-adjust {
+      margin-top: 20px !important; /* Reset on mobile */
+      text-align: left !important;
     }
   }
 </style>
@@ -419,6 +383,14 @@ Enjoy your SEWING MACHINE now, pay comfortably later
 <script>
   document.getElementById("year").textContent = new Date().getFullYear();
 </script>
+
+
+
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/2349038600375" target="_blank" class="whatsapp-float">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" 
+         alt="WhatsApp" class="whatsapp-icon">
+</a>
 
 </body>
 </html>

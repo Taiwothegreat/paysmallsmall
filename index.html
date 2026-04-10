@@ -58,7 +58,7 @@
       text-align: left;
     }
     
-    .feature-card {
+ /*   .feature-card {
       background: #fff;
       border-radius: 10px;
       padding: 25px;
@@ -69,7 +69,39 @@
     .feature-card h3 {
       margin-top: 10px;
       font-weight: bold;
-    }
+    }*/
+    .feature-row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.feature-row > [class*='col-'] {
+  display: flex;
+}
+
+.feature-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 25px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  margin-bottom: 20px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* pushes button to bottom */
+  width: 100%;
+}
+
+.feature-card h3 {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.feature-card p {
+  flex-grow: 1; /* makes content area expand equally */
+}
+
     .navbar-inverse .navbar-nav>li>a {
     /*color: #9d9d9d;*/
     color: #bc933b;
@@ -171,6 +203,127 @@
     0% { transform: scale(1); }
     50% { transform: scale(1.08); }
     100% { transform: scale(1); }
+}
+/*CSS FOR BRAND SLIDERS*/
+/* ===== BRAND SLIDER SECTION ===== */
+
+  
+.slider-wrapper {
+    position: relative;
+    width: 80%;
+    max-width: 1100px;
+    margin: 0 auto;   /* THIS centers it */
+}
+
+        .slider-container {
+            overflow: hidden;
+            background: white;
+            padding: 20px;
+            border: 1px solid #ccc;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+    .slider-track {
+    display: flex;
+    gap: 20px;
+    width: max-content;
+    animation: scroll 20s linear infinite;
+    animation-play-state: paused;   /* Start paused */
+}
+
+
+        .slide-item {
+            flex: 0 0 auto;
+            width: 150px;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .slide-item img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        @keyframes scroll {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        .slider-container:hover .slider-track {
+            animation-play-state: paused;
+        }
+
+        /* Navigation Buttons */
+      .nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    font-size: 50px;
+    cursor: pointer;
+    z-index: 10;
+    padding: 5px 15px;
+
+    color: #fff; /* White arrow */
+
+    /* Black stroke effect */
+   text-shadow:
+    -2px -2px 1px #000,
+     2px -2px 1px #000,
+    -2px  2px 1px #000,
+     2px  2px 1px #000;
+
+
+
+}
+
+
+
+       /* .nav-btn:hover {
+            background: #444;
+        }*/
+
+        .nav-left { left: -50px; }
+        .nav-right { right: -50px; }
+
+
+@media(max-width:991px){
+  .app-banner-left{
+  margin-top:30px !important ;
+}
+}
+/*Download App Section*/
+@media (min-width:768px){
+    .app-banner-left  { text-align:left; }
+    .app-banner-right { text-align:right; }
+}
+
+/*Animate the arrow download*/
+/* White Ring Around Arrow */
+.arrow-ring {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:20px;
+    height:20px;
+    border-radius:50%;
+    border:2px solid #ffffff;   /* Strong visible white ring */
+}
+
+/* Animate Arrow */
+.arrow-icon {
+    animation: arrowBounce 1s infinite ease-in-out;
+}
+
+/* Bounce Animation */
+@keyframes arrowBounce {
+    0%   { transform: translateY(0); }
+    50%  { transform: translateY(5px); }
+    100% { transform: translateY(0); }
 }
 
   </style>
@@ -275,6 +428,78 @@
     </p>-->
   </nav>
 
+<section style="background-color:#b68f3a; padding:8px 0; width:100%; margin-top:70px;">
+    <div class="container">
+        <div class="row text-center" style="margin:0;">
+
+            <!-- LEFT TEXT -->
+            <div class="col-sm-6 col-xs-12 app-banner-left"
+                 style="color:#fff; font-weight:600; font-size:18px;margin-top:10px;">
+                Get it Free on Google Play Store
+            </div>
+
+            <!-- RIGHT BUTTON -->
+            <div class="col-sm-6 col-xs-12 app-banner-right"
+                 style="margin-top:10px;">
+              <!----  <a href="#"
+                   style="background:#000;
+                          color:#fff;
+                          padding:12px 28px;
+                          text-decoration:none;
+                          border-radius:50px;
+                          display:inline-block;
+                          font-weight:600;
+                          letter-spacing:0.5px;
+                          box-shadow:0 4px 10px rgba(0,0,0,0.3);
+                          transition:0.3s ease;">
+                    Download Now
+                </a>-->
+                
+<a href="https://play.google.com/store/apps/details?id=com.paysmallsmall.app"
+   target="_blank"
+   class="download-btn"
+   style="background:#000;
+          color:#fff;
+          padding:6px 7px;
+          text-decoration:none;
+          border-radius:50px;
+          display:inline-flex;
+          align-items:center;
+          justify-content:center;
+          font-weight:600;
+          letter-spacing:0.5px;
+          box-shadow:0 4px 10px rgba(0,0,0,0.3);
+          gap:12px;">
+
+    Download Now
+
+    <span class="arrow-ring">
+        <svg class="arrow-icon" width="18" height="18" viewBox="0 0 24 24">
+            <!-- Arrow Tail -->
+            <line x1="12" y1="5" x2="12" y2="14"
+                  stroke="white"
+                  stroke-width="2.5"
+                  stroke-linecap="round"/>
+
+            <!-- Arrow Head -->
+            <polyline points="7 11 12 17 17 11"
+                      fill="none"
+                      stroke="white"
+                      stroke-width="2.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"/>
+        </svg>
+    </span>
+
+</a>
+ </div>
+
+        </div>
+    </div>
+</section>
+
+
+
 <!-- Hero Section -->
 <div class="container-fluid hero">
   <div class="row">
@@ -287,6 +512,10 @@ fashion designers, tailors, leather craftsman, hobbyists,Seamstresses,cobblers,
          hatters, cordwainers and even budget-conscious individuals etc
          <span class="glyphicon glyphicon-shopping-cart"></span>
       </h5>
+      <!----Google Play App-->
+  
+
+<!----End of Google Play App-->
     </div>
     <div class="col-sm-6">
       <div id="heroCarousel" class="carousel slide" data-ride="carousel">
@@ -322,7 +551,7 @@ fashion designers, tailors, leather craftsman, hobbyists,Seamstresses,cobblers,
 
 <!-- Features -->
 <div class="container" style="padding:50px 15px;">
-  <div class="row">
+  <div class="row feature-row">
 
     <!-- 1 -->
     <div class="col-sm-3">
@@ -1103,8 +1332,84 @@ document.querySelector(".zoomPrev").onclick = () => {
   </div>
 </div>
 
+<!-------For Brand sliders-->
 
+<div class="slider-wrapper">
 
+    <button class="nav-btn nav-left" >‹</button>
+    <button class="nav-btn nav-right">›</button>
+
+    <div class="slider-container">
+        <div class="slider-track" id="sliderTrack">
+
+            <!-- YOUR 29 IMAGES (UNCHANGED) -->
+            <div class="slide-item"><img src="./assets/s_brand.jpeg" alt="Brand 1"></div>
+            <div class="slide-item"><img src="./assets/brother_brand.jpeg" alt="Brand 2"></div>
+            <div class="slide-item"><img src="./assets/joy_brand.jpeg" alt="Brand 3"></div>
+            <div class="slide-item"><img src="./assets/emel_brand.jpeg" alt="Brand 4"></div>
+            <div class="slide-item"><img src="./assets/jack_brand.jpeg" alt="Brand 5"></div>
+            <div class="slide-item"><img src="./assets/juki_brand.jpeg" alt="Brand 6"></div>
+            <div class="slide-item"><img src="./assets/juky_brand.jpeg" alt="Brand 7"></div>
+            <div class="slide-item"><img src="./assets/unix_brand.jpeg" alt="Brand 8"></div>
+            <div class="slide-item"><img src="./assets/crown_brand.jpeg" alt="Brand 9"></div>
+            <div class="slide-item"><img src="./assets/royal_brand.jpeg" alt="Brand 10"></div>
+            <div class="slide-item"><img src="./assets/zoyer_brand.jpeg" alt="Brand 11"></div>
+            <div class="slide-item"><img src="./assets/deluxe_brand.jpeg" alt="Brand 12"></div>
+            <div class="slide-item"><img src="./assets/hudong_brand.jpeg" alt="Brand 13"></div>
+            <div class="slide-item"><img src="./assets/janome_brand.jpeg" alt="Brand 14"></div>
+            <div class="slide-item"><img src="./assets/protex_brand.jpeg" alt="Brand 15"></div>
+            <div class="slide-item"><img src="./assets/yamata_brand.jpeg" alt="Brand 16"></div>
+            <div class="slide-item"><img src="./assets/elegant_brand.jpeg" alt="Brand 17"></div>
+            <div class="slide-item"><img src="./assets/sewfine_brand.jpeg" alt="Brand 18"></div>
+            <div class="slide-item"><img src="./assets/sinabro_brand.jpeg" alt="Brand 19"></div>
+            <div class="slide-item"><img src="./assets/sincere_brand.jpeg" alt="Brand 20"></div>
+            <div class="slide-item"><img src="./assets/paysmall_brand.jpeg" alt="Brand 21"></div>
+            <div class="slide-item"><img src="./assets/two-lion_brand.jpeg" alt="Brand 22"></div>
+            <div class="slide-item"><img src="./assets/buddyfly_brand.jpeg" alt="Brand 23"></div>
+            <div class="slide-item"><img src="./assets/dauntless_brand.jpeg" alt="Brand 24"></div>
+            <div class="slide-item"><img src="./assets/beautiful_brand.jpeg" alt="Brand 25"></div>
+            <div class="slide-item"><img src="./assets/xiantypical_brand.jpeg" alt="Brand 26"></div>
+            <div class="slide-item"><img src="./assets/sumo_premium_brand.jpeg" alt="Brand 27"></div>
+            <div class="slide-item"><img src="./assets/amuro_brothers_brand.jpeg" alt="Brand 28"></div>
+            <div class="slide-item"><img src="./assets/L_brand.jpeg" alt="Brand 29"></div>
+                        <div class="slide-item"><img src="./assets/Yin_brand.jpeg" alt="Brand 29"></div>
+
+        </div>
+    </div>
+</div>
+
+<!-----Brand sliders javascript-->
+
+<script>
+const track = document.getElementById("sliderTrack");
+const leftBtn = document.querySelector(".nav-left");
+const rightBtn = document.querySelector(".nav-right");
+
+/* Duplicate slides for seamless loop */
+track.innerHTML += track.innerHTML;
+
+/* Hover LEFT → scroll reverse */
+leftBtn.addEventListener("mouseenter", function() {
+    track.style.animationDirection = "reverse";
+    track.style.animationPlayState = "running";
+});
+
+/* Stop when mouse leaves */
+leftBtn.addEventListener("mouseleave", function() {
+    track.style.animationPlayState = "paused";
+});
+
+/* Hover RIGHT → scroll normal */
+rightBtn.addEventListener("mouseenter", function() {
+    track.style.animationDirection = "normal";
+    track.style.animationPlayState = "running";
+});
+
+/* Stop when mouse leaves */
+rightBtn.addEventListener("mouseleave", function() {
+    track.style.animationPlayState = "paused";
+});
+</script>
 
 
 
@@ -1359,6 +1664,7 @@ The <strong>final payment</strong> must be made as a <strong>single lump-sum tra
         </div>
       </div>
     </div>
+<!----------------------->
 
     <div class="panel panel-default">
       <div class="panel-heading" data-toggle="collapse" data-target="#faq13">
@@ -1374,8 +1680,142 @@ The <strong>final payment</strong> must be made as a <strong>single lump-sum tra
         </div>
       </div>
     </div>
+    
+    
+<!-----New ones-->
+<div class="panel panel-default">
+      <div class="panel-heading" data-toggle="collapse" data-target="#faq14">
+        <div class="panel-title">
+          <span><span class="faq-number">14</span><h3>What if I default on this payment? </h3></span>
+          <span class="faq-icon glyphicon glyphicon-chevron-down"></span>
+        </div>
+      </div>
+      <div id="faq14" class="panel-collapse collapse">
+        <div class="faq-body">
+          <p> Shipment will only occur after final payment is processed if a subscriber fail to pay as at when due but if we have delivered your sewing machine, sewing parts or sewing accessories,you shall return the item(s) immediately after the grace period of five working days or 
+            else we shall proceed to retrieving it and neccessary legal action shall follow duely with penalies. </p>
+          <div class="social-icons"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a><a href="#"><i class="fa fa-whatsapp"></i></a></div>
+        </div>
+      </div>
+    </div>
+<div class="panel panel-default">
+      <div class="panel-heading" data-toggle="collapse" data-target="#faq15">
+        <div class="panel-title">
+          <span><span class="faq-number">15</span><h3> If I make a prepayment to settle the remaining balance, can I take possession of the item immediately?</h3></span>
+          <span class="faq-icon glyphicon glyphicon-chevron-down"></span>
+        </div>
+      </div>
+      <div id="faq15" class="panel-collapse collapse">
+        <div class="faq-body">
+          <p> Should you choose to liquidate the remaining total before the term ends, your sewing machine accessories will be dispatched right away without delay. </p>
+          <div class="social-icons"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a><a href="#"><i class="fa fa-whatsapp"></i></a></div>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading" data-toggle="collapse" data-target="#faq16">
+        <div class="panel-title">
+          <span><span class="faq-number">16</span><h3>What if the sewing machine becomes faulty during the installment period? </h3></span>
+          <span class="faq-icon glyphicon glyphicon-chevron-down"></span>
+        </div>
+      </div>
+      <div id="faq16" class="panel-collapse collapse">
+        <div class="faq-body">
+          <p> we strongly advice you test your sewing machine properly at delivery point. However, while this isn't covered under warranty, we’d be happy to assist by providing a certified engineer and genuine parts at your expense. </p>
+          <div class="social-icons"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a><a href="#"><i class="fa fa-whatsapp"></i></a></div>
+        </div>
+      </div>
+    </div>
+     <div class="panel panel-default">
+      <div class="panel-heading" data-toggle="collapse" data-target="#faq17">
+        <div class="panel-title">
+          <span><span class="faq-number">17</span><h3>What options are available if I experience
+             financial hardship and cannot meet future installments? </h3></span>
+          <span class="faq-icon glyphicon glyphicon-chevron-down"></span>
+        </div>
+      </div>
+      <div id="faq17" class="panel-collapse collapse">
+        <div class="faq-body">
+          <p> A remedial period of 3 days for weekly payments and 7 days for monthly payments is provided. However,overdue fees of 5% per week or 10% per month accrue once the grace period ends. Kindly ensure the sewing machine is returned to us immediately to avoid further dues and we shall sell off as "used item". For your  reimbursement, a holding period on sales proceeds will be enforced prior to final refund calculation. You must allow a
+             processing window after the sale to calculate the amount payable after all neccessary deductions. </p>
+          <div class="social-icons"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a><a href="#"><i class="fa fa-whatsapp"></i></a></div>
+        </div>
+      </div>
+    </div>
+       <div class="panel panel-default">
+      <div class="panel-heading" data-toggle="collapse" data-target="#faq18">
+        <div class="panel-title">
+          <span><span class="faq-number">18</span><h3>Is it available for immediate pickup upon payment? </h3></span>
+          <span class="faq-icon glyphicon glyphicon-chevron-down"></span>
+        </div>
+      </div>
+      <div id="faq18" class="panel-collapse collapse">
+        <div class="faq-body">
+          <p> You may opt to pay in full with a single transaction using the one-time payment method and your sewing machine/parts/accesaories will be delivered immediately </p>
+          <div class="social-icons"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a><a href="#"><i class="fa fa-whatsapp"></i></a></div>
+        </div>
+      </div>
+    </div>
+       <div class="panel panel-default">
+      <div class="panel-heading" data-toggle="collapse" data-target="#faq19">
+        <div class="panel-title">
+          <span><span class="faq-number">19</span><h3>I was wondering when I might be able to
+             collect the sewing machine i'm paying for </h3></span>
+          <span class="faq-icon glyphicon glyphicon-chevron-down"></span>
+        </div>
+      </div>
+      <div id="faq19" class="panel-collapse collapse">
+        <div class="faq-body">
+          <p> It is at midway milestone. Yes, shipping is triggered once you hit the 50% payment mark and all delivery criteria are met. Once you reach the middle of your plan and everything is set with our
+             delivery terms, we’ll get your sewing machine or
+              accessories shipped immediately without delay </p>
+          <div class="social-icons"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a><a href="#"><i class="fa fa-whatsapp"></i></a></div>
+        </div>
+      </div>
+    </div>
+ <div class="panel panel-default">
+      <div class="panel-heading" data-toggle="collapse" data-target="#faq20">
+        <div class="panel-title">
+          <span><span class="faq-number">20</span><h3>What are the demands? </h3></span>
+          <span class="faq-icon glyphicon glyphicon-chevron-down"></span>
+        </div>
+      </div>
+      <div id="faq20" class="panel-collapse collapse">
+        <div class="faq-body">
+       <!--   <p>You need a valid ID, BVN, verified Paysmallsmall account, and a steady source
+             of income linked to a Nigerian bank account for auto-debits.</p>-->
+             <ul>
+            
+            <li>Complete your identity check using Phone/NIN/BVN and a live selfie.</li>
+            <li>Allow location tracking to verify your home address.</li>
+            <li>You must acknowledge and accept Terms & Conditions</li>
+             <li>Validate your email address. You must use an active email address through wish we can relate.</li>
+              <li>Keep a threshold balance of at
+                 least ₦10,000 in an account with active card services of a commercial Bank in Nigeria.</li>
+                             <li>You must pass the human verification test</li>
+          </ul>
+          <div class="social-icons"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a><a href="#"><i class="fa fa-whatsapp"></i></a></div>
+        </div>
+      </div>
+    </div>
+       <div class="panel panel-default">
+      <div class="panel-heading" data-toggle="collapse" data-target="#faq21">
+        <div class="panel-title">
+          <span><span class="faq-number">21</span><h3>How can I verify the authenticity of these sewing machine? </h3></span>
+          <span class="faq-icon glyphicon glyphicon-chevron-down"></span>
+        </div>
+      </div>
+      <div id="faq21" class="panel-collapse collapse">
+        <div class="faq-body">
+          <p> unlike other "buy now,pay later" platforms that do not know about the product they are selling. We are a major dealer by importation. we source for only but genuine products,brands and quality. You will be surprised that we supply must of your social media rants.
+             we deal directly with manufacturers in china. We focus on our mission,vission and goal as a company </p>
+          <div class="social-icons"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a><a href="#"><i class="fa fa-whatsapp"></i></a></div>
+        </div>
+      </div>
+    </div>
 
   </div>
+  
 </div>
 
 
@@ -1435,13 +1875,36 @@ The <strong>final payment</strong> must be made as a <strong>single lump-sum tra
         <p style="font-size:20px; color:#ccc; margin:0;">📞 +234 801 234 5678</p>
         <p style="font-size:20px; color:#ccc; margin:0;">✉️ info@paysmallsmall.com</p>
 
-     <!--   <div style="margin-top:15px; font-size:20px;">
-          <a href="#" style="color:#3b5998; margin-right:10px;">👍</a>
-          <a href="#" style="color:#E4405F; margin-right:10px;">📷</a>
-          <a href="#" style="color:#1DA1F2; margin-right:10px;">🐦</a>
-          <a href="#" style="color:#0077B5; margin-right:10px;">💼</a>
-          <a href="#" style="color:#FF0000;">▶️</a>
-        </div>-->
+
+        <!-----Social media url-->
+     <div style="margin-top:20px; font-size:22px;">
+
+  <a href="https://web.facebook.com/people/pay-small-small/61584013714489/?checkpoint_src=any"
+     target="_blank"
+     style="color:#1877F2; margin-right:15px;">
+     <i class="fab fa-facebook"></i>
+  </a>
+
+  <a href="https://www.tiktok.com/@pay_small_small"
+     target="_blank"
+     style="color:#ffffff; margin-right:15px;">
+     <i class="fab fa-tiktok"></i>
+  </a>
+
+  <a href="https://www.instagram.com/pay_small_small?igsh=Yml0MjN2c3pjeHF0 "
+     target="_blank"
+     style="color:#E4405F; margin-right:15px;">
+     <i class="fab fa-instagram"></i>
+  </a>
+
+  <a href="https://www.youtube.com/@pay_small_small "
+     target="_blank"
+     style="color:#FF0000;">
+     <i class="fab fa-youtube"></i>
+  </a>
+
+</div>
+<!----------End of social media url-->
       </div>
 
     </div>
