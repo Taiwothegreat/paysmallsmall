@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Slider</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+            margin: 0;
+        }
+
+        .slider-wrapper {
+            position: relative;
+            width: 80%;
+            max-width: 1100px;
+        }
+
+        .slider-container {
+            overflow: hidden;
+            background: white;
+            padding: 20px;
+            border: 1px solid #ccc;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .slider-track {
+            display: flex;
+            gap: 20px;
+            width: max-content;
+            animation: scroll 20s linear infinite; 
+        }
+
+        .slide-item {
+            flex: 0 0 auto;
+            width: 150px;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .slide-item img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        @keyframes scroll {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        .slider-container:hover .slider-track {
+            animation-play-state: paused;
+        }
+
+        /* Navigation Buttons */
+        .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: whitesmoke;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 50px;
+            z-index: 10;
+        }
+
+        .nav-btn:hover {
+            background: #444;
+        }
+
+        .nav-left { left: -50px; }
+        .nav-right { right: -50px; }
+
+    </style>
+</head>
+
+<body>
+
+<div class="slider-wrapper">
+
+    <button class="nav-btn nav-left" onclick="scrollLeft()">‹</button>
+    <button class="nav-btn nav-right" onclick="scrollRight()">›</button>
+
+    <div class="slider-container">
+        <div class="slider-track" id="sliderTrack">
+
+            <!-- YOUR 29 IMAGES (UNCHANGED) -->
+            <div class="slide-item"><img src="./assets/s_brand.jpeg" alt="Brand 1"></div>
+            <div class="slide-item"><img src="./assets/brother_brand.jpeg" alt="Brand 2"></div>
+            <div class="slide-item"><img src="./assets/joy_brand.jpeg" alt="Brand 3"></div>
+            <div class="slide-item"><img src="./assets/emel_brand.jpeg" alt="Brand 4"></div>
+            <div class="slide-item"><img src="./assets/jack_brand.jpeg" alt="Brand 5"></div>
+            <div class="slide-item"><img src="./assets/juki_brand.jpeg" alt="Brand 6"></div>
+            <div class="slide-item"><img src="./assets/juky_brand.jpeg" alt="Brand 7"></div>
+            <div class="slide-item"><img src="./assets/unix_brand.jpeg" alt="Brand 8"></div>
+            <div class="slide-item"><img src="./assets/crown_brand.jpeg" alt="Brand 9"></div>
+            <div class="slide-item"><img src="./assets/royal_brand.jpeg" alt="Brand 10"></div>
+            <div class="slide-item"><img src="./assets/zoyer_brand.jpeg" alt="Brand 11"></div>
+            <div class="slide-item"><img src="./assets/deluxe_brand.jpeg" alt="Brand 12"></div>
+            <div class="slide-item"><img src="./assets/hudong_brand.jpeg" alt="Brand 13"></div>
+            <div class="slide-item"><img src="./assets/janome_brand.jpeg" alt="Brand 14"></div>
+            <div class="slide-item"><img src="./assets/protex_brand.jpeg" alt="Brand 15"></div>
+            <div class="slide-item"><img src="./assets/yamata_brand.jpeg" alt="Brand 16"></div>
+            <div class="slide-item"><img src="./assets/elegant_brand.jpeg" alt="Brand 17"></div>
+            <div class="slide-item"><img src="./assets/sewfine_brand.jpeg" alt="Brand 18"></div>
+            <div class="slide-item"><img src="./assets/sinabro_brand.jpeg" alt="Brand 19"></div>
+            <div class="slide-item"><img src="./assets/sincere_brand.jpeg" alt="Brand 20"></div>
+            <div class="slide-item"><img src="./assets/paysmall_brand.jpeg" alt="Brand 21"></div>
+            <div class="slide-item"><img src="./assets/two-lion_brand.jpeg" alt="Brand 22"></div>
+            <div class="slide-item"><img src="./assets/buddyfly_brand.jpeg" alt="Brand 23"></div>
+            <div class="slide-item"><img src="./assets/dauntless_brand.jpeg" alt="Brand 24"></div>
+            <div class="slide-item"><img src="./assets/beautiful_brand.jpeg" alt="Brand 25"></div>
+            <div class="slide-item"><img src="./assets/xiantypical_brand.jpeg" alt="Brand 26"></div>
+            <div class="slide-item"><img src="./assets/sumo_premium_brand.jpeg" alt="Brand 27"></div>
+            <div class="slide-item"><img src="./assets/amuro_brothers_brand.jpeg" alt="Brand 28"></div>
+          <!----  <div class="slide-item"><img src="./assets/Biola_Federal_cardFront.jpeg" alt="Brand 29"></div>-->
+
+        </div>
+    </div>
+</div>
+
+<script>
+const track = document.getElementById("sliderTrack");
+
+/* Duplicate all slides for seamless infinite effect */
+track.innerHTML += track.innerHTML;
+
+/* Navigation Controls */
+function scrollLeft() {
+    track.style.animationDirection = "reverse";
+}
+
+function scrollRight() {
+    track.style.animationDirection = "normal";
+}
+</script>
+
+</body>
+</html>
