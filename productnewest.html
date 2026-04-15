@@ -3890,7 +3890,7 @@ Sew Fine Direct Drive Industrial Straight Sewing Machine
 <div style="margin: 15px 0;">
   <input type="checkbox" id="readTerms" />
   <label for="readTerms" style="cursor: pointer;">
-    Click to read about <a href="after-sale.html" target="_blank">delivery clause/after sales support/returns/delivery policy</a>.
+    Click to read about <a href="after-sale.html" target="_blank">after sales support/returns</a>.
   </label>
 </div>
     </div>
@@ -4341,7 +4341,7 @@ function restoreAccessorySlider() {
           d.onclick = () => pickDuration(i);
           installmentCalendar.appendChild(d);
         }
-      }/* else if (type === 'monthly' && installmentCalendar) {
+      } else if (type === 'monthly' && installmentCalendar) {
         installmentCalendar.style.display = 'block';
         for (let i = 2; i <= 12; i++) {
           const d = document.createElement('div');
@@ -4349,16 +4349,8 @@ function restoreAccessorySlider() {
           d.textContent = i;
           d.onclick = () => pickDuration(i);
           installmentCalendar.appendChild(d);
-        }*/
-  else if (type === 'monthly' && installmentCalendar) {
-    installmentCalendar.style.display = 'block';
-    for (let i = 2; i <= 12; i += 2) {
-        const d = document.createElement('div');
-        d.className = 'calendar-number';
-        d.textContent = i;
-        d.onclick = () => pickDuration(i);
-        installmentCalendar.appendChild(d);
-    }
+        }
+  
 
 } else if (type === 'once' && installmentResult) {
 
@@ -4438,7 +4430,7 @@ function restoreAccessorySlider() {
 
   if (installmentResult) {
     installmentResult.innerHTML = `
-      First installment (includes ${rate * 100}%  shipping for Lagos residents and delivery to designated Lagos motor parks for customers in other states of Nigeria): ₦${firstInstallment.toLocaleString()} <br>
+      First installment (includes ${rate * 100}% shipping): ₦${firstInstallment.toLocaleString()} <br>
       Remaining ${value - 1} ${unitLabel}: ₦${baseInstallment.toLocaleString()} ${perLabel} each
     `;
   }
