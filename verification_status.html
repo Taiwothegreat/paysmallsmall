@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Face verification</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center; /* horizontal center */
+      align-items: center;     /* vertical center */
+      background-color: #f5f5f5;
+      font-family: Arial, sans-serif;
+    }
+
+    button {
+      padding: 14px 24px;
+      background: black;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      opacity: 0.85;
+    }
+  </style>
+</head>
+
+<body>
+
+<button onclick="startFaceVerification()">
+  Verify Delivery
+</button>
+
+<!-- script for face verification --> 
+<script>
+function startFaceVerification() {
+  if (window.ReactNativeWebView) {
+    window.ReactNativeWebView.postMessage("VERIFY_FACE");
+  } else {
+    alert("Please open this inside the mobile app for verification.");
+  }
+}
+</script>
+
+<!-- confirmation message -->
+<script>
+window.addEventListener("message", function(event) {
+  const data = event.data;
+
+  if (data === "FACE_VERIFIED_SUCCESS") {
+    alert("✅ Delivery Confirmed");
+  }
+
+  if (data === "FACE_VERIFIED_FAILED") {
+    alert("❌ Face Verification Failed");
+  }
+});
+</script>
+
+</body>
+</html>

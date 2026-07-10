@@ -121,7 +121,9 @@ $company_address = " 278,agege motor road,olorunshogo,mushin,lagos";
   <a href="terms.html" class="btn btn-default btn-block-custom">
     📜 Terms & Conditions <br><small>Read our service policy.</small>
   </a>
-
+<a href="verification_status.html" class="btn btn-default btn-block-custom">
+    🔒 Verification status <br><small>Verification status.</small>
+  </a>
   <a href="edit_profile.php" class="btn btn-default btn-block-custom">
     🔒 Edit Profile <br><small>Learn how we protect your data.</small>
   </a>
@@ -146,7 +148,7 @@ $company_address = " 278,agege motor road,olorunshogo,mushin,lagos";
   </button>
 
   <div style="margin-top:25px;text-align:center;">
-    <a href="delete_account.php" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete your account permanently?')">Delete Profile</a>
+  <!--<a href="delete_account.php" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete your account permanently?')">Delete Profile</a>-->
     <a href="logout.php" class="btn btn-default">Sign Out</a>
   </div>
 
