@@ -3938,90 +3938,10 @@ TWO LION CYLINDER BED SEWING MACHINE
       if (raw == null) return 0;
       return Number(String(raw).replace(/[^0-9.-]+/g, '')) || 0;
     }
-   // function trimDataName(el) {
-      //return (el && el.getAttribute) ? (el.getAttribute('data-name') || '').trim() : '';
-    //}
+    function trimDataName(el) {
+      return (el && el.getAttribute) ? (el.getAttribute('data-name') || '').trim() : '';
+    }
 
-const lgaCharges = {
-    "Agege LGA": 25000,
-    "Orile-Agege LCDA": 25000,
-
-    "Ajeromi-Ifelodun LGA": 25000,
-    "Ifelodun LCDA": 25000,
-
-    "Alimosho LGA": 27000,
-    "Ayobo-Ipaja LCDA": 31000,
-    "Egbe-Idimu LCDA": 26000,
-    "Igando-Ikotun LCDA": 29000,
-    "Mosan Okunola LCDA": 31500,
-    "Ejigbo LCDA": 26500,
-
-    "Amuwo-Odofin LGA": 26990,
-    "Oriade LCDA": 28500,
-
-    "Apapa LGA": 29000,
-    "Apapa-Iganmu LCDA": 25200,
-
-    "Badagry LGA": 33600,
-    "Badagry West LCDA": 35000,
-    "Olorunda LCDA": 36500,
-
-    "Epe LGA": 38750,
-    "Eredo LCDA": 39000,
-    "Ikosi-Ejinrin LCDA": 37000,
-
-    "Eti-Osa LGA": 31000,
-    "Eti-Osa East LCDA": 32900,
-    "Iru Victoria Island LCDA": 29500,
-    "Ikoyi Obalende LCDA": 28200,
-
-    "Ibeju-Lekki LGA": 39990,
-    "Lekki LCDA": 36200,
-
-    "Ifako-Ijaiye LGA": 28400,
-    "Ojokoro LCDA": 30900,
-    "Agbado/Oke-Odo LCDA": 32300,
-
-    "Ikeja LGA": 29600,
-    "Ojodu LCDA": 32000,
-    "Onigbongbo LCDA": 27400,
-
-    "Ikorodu LGA": 30000,
-    "Ikorodu North LCDA": 31000,
-    "Ikorodu West LCDA": 33000,
-    "Imota LCDA": 33900,
-    "Ijede LCDA": 34100,
-    "Igbogbo-Baiyeku LCDA": 34980,
-
-    "Kosofe LGA": 29000,
-    "Ikosi-Isheri LCDA": 31000,
-    "Agboyi-Ketu LCDA": 31800,
-
-    "Lagos Island LGA": 30000,
-    "Lagos Island East LCDA": 32000,
-
-    "Lagos Mainland LGA": 19000,
-    "Yaba LCDA": 15000,
-
-    "Mushin LGA": 14200,
-    "Odi-Olowo/Ojuwoye LCDA": 16000,
-
-    "Ojo LGA": 31009,
-    "Oto-Awori LCDA": 31600,
-    "Iba LCDA": 32500,
-
-    "Somolu LGA": 19000,
-    "Bariga LCDA": 21000,
-
-    "Oshodi-Isolo LGA": 13000,
-    "Isolo LCDA": 23500,
-    "Ejigbo LCDA": 24000,
-
-    "Surulere LGA": 20000,
-    "Coker-Aguda LCDA": 22000,
-    "Itire-Ikate LCDA": 24500
-};
-const customerLGA = localStorage.getItem("customerLGA");
     /* ===========================
        MASTER PRODUCT LIST
        - grab product cards now that DOM is ready
@@ -4343,7 +4263,7 @@ function restoreAccessorySlider() {
     let selectedPrice = 0;
     let selectedPlan = '';
     let selectedDuration = 0;
-   // let selectedImg = '';
+    let selectedImg = '';
 
     function openProduct(name, price, desc, img) {
       selectedProduct = name;
@@ -4390,13 +4310,6 @@ function restoreAccessorySlider() {
 
     /* Payment plan selection (keeps original names and behavior) */
     function selectPayment(type) {
-
-      if (!customerLGA) {
-        alert("Please complete your profile and select your LGA before purchasing.");
-        return;
-    }
-
-    
       selectedPlan = type;
       selectedDuration = 0;
       if (installmentCalendar) installmentCalendar.innerHTML = '';
@@ -4433,24 +4346,34 @@ function restoreAccessorySlider() {
 
 } else if (type === 'once' && installmentResult) {
 
-  
-//New
-  //let shippingFee = Math.round(selectedPrice * rate);
-  //let totalWithShipping = selectedPrice + shippingFee;
-//const customerLGA = localStorage.getItem("customerLGA");
+  /* 🔁 APPLY SAME TIERED RATE AS INSTALLMENTS */
+  let rate = 0.05;
 
-const shippingFee = lgaCharges[customerLGA] || 0;
+  if (selectedPrice <= 50000) rate = 0.15;
+  else if (selectedPrice <= 100000) rate = 0.18;
+  else if (selectedPrice <= 150000) rate = 0.15;
+  else if (selectedPrice <= 250000) rate = 0.12;
+  else if (selectedPrice <= 500000) rate = 0.10;
+  else if (selectedPrice <= 1000000) rate = 0.08;
+  else if (selectedPrice <= 2000000) rate = 0.05;
+  else if (selectedPrice <= 3000000) rate = 0.03;
+  else if (selectedPrice <= 4000000) rate = 0.02;
+  else if (selectedPrice <= 5000000) rate = 0.019;
+  else if (selectedPrice <= 6000000) rate = 0.018;
+  else if (selectedPrice <= 7000000) rate = 0.017;
+  else if (selectedPrice <= 8000000) rate = 0.016;
+  else if (selectedPrice <= 9000000) rate = 0.015;
+  else if (selectedPrice <= 10000000) rate = 0.014;
 
-const totalWithShipping = selectedPrice + shippingFee;
+  let shippingFee = Math.round(selectedPrice * rate);
+  let totalWithShipping = selectedPrice + shippingFee;
 
   installmentResult.innerHTML = `
     Product Price: ₦${selectedPrice.toLocaleString()}<br>
-    Installation / Shipping: ₦${shippingFee.toLocaleString()}<br>
+    Installation / Shipping (${rate * 100}%): ₦${shippingFee.toLocaleString()}<br>
     <strong>Total Payable: ₦${totalWithShipping.toLocaleString()}</strong>
   `;
 }
-
-/*                                               */
 
     }
 
@@ -4468,23 +4391,29 @@ const totalWithShipping = selectedPrice + shippingFee;
    
 
     function calculateInstallment(value) {
-        if (!customerLGA) {
-        alert("Please complete your profile and select your LGA before purchasing.");
-        return;
-    }
   if (!selectedPlan) return;
 
   /* 🔁 REPLACED: 5% flat fee → tiered percentage */
-  
-//New
-  //let shippingFee = Math.round(selectedPrice * rate);
+  let rate = 0.05;
+
+  if (selectedPrice <= 50000) rate = 0.15;
+  else if (selectedPrice <= 100000) rate = 0.18;
+  else if (selectedPrice <= 150000) rate = 0.15;
+  else if (selectedPrice <= 250000) rate = 0.12;
+  else if (selectedPrice <= 500000) rate = 0.10;
+  else if (selectedPrice <= 1000000) rate = 0.08;
+  else if (selectedPrice <= 2000000) rate = 0.05;
+  else if (selectedPrice <= 3000000) rate = 0.03;
+  else if (selectedPrice <= 4000000) rate = 0.02;
+  else if (selectedPrice <= 5000000) rate = 0.019;
+  else if (selectedPrice <= 6000000) rate = 0.018;
+  else if (selectedPrice <= 7000000) rate = 0.017;
+  else if (selectedPrice <= 8000000) rate = 0.016;
+  else if (selectedPrice <= 9000000) rate = 0.015;
+  else if (selectedPrice <= 10000000) rate = 0.014;
+
+  let shippingFee = Math.round(selectedPrice * rate);
   /* 🔁 END OF CHANGE */
-
-//const customerLGA = localStorage.getItem("customerLGA");
-
-const shippingFee = lgaCharges[customerLGA] || 0;
-
-
 
   let baseInstallment = Math.round(selectedPrice / Number(value));
   let perLabel = (selectedPlan === 'weekly') ? 'per week' : 'per month';
@@ -4493,7 +4422,7 @@ const shippingFee = lgaCharges[customerLGA] || 0;
 
   if (installmentResult) {
     installmentResult.innerHTML = `
-First installment (includes installation/shipping charge based on your selected Lagos LGA/LCDA): ₦${firstInstallment.toLocaleString()} <br>
+      First installment (includes ${rate * 100}%  shipping for Lagos residents and delivery to designated Lagos motor parks for customers in other states of Nigeria): ₦${firstInstallment.toLocaleString()} <br>
       Remaining ${value - 1} ${unitLabel}: ₦${baseInstallment.toLocaleString()} ${perLabel} each
     `;
   }
@@ -4551,10 +4480,7 @@ First installment (includes installation/shipping charge based on your selected 
     /* proceedToPayment (keeps original logic; refer to readTerms checkbox if present on page) */
     function proceedToPayment() {
       if (selectedPlan === '') return alert('Please choose a payment option.');
-      if (selectedPlan !== 'once' && selectedDuration === 0) 
-      return alert('Please select duration from the calendar.');
-
-
+      if (selectedPlan !== 'once' && selectedDuration === 0) return alert('Please select duration from the calendar.');
 
       // If the page has a #readTerms checkbox, enforce it
       const readTermsEl = document.getElementById('readTerms');
@@ -4628,17 +4554,25 @@ function renderInstallmentTable() {
   //const shippingFee = Math.round(selectedPrice * 0.05);
 
   /* 🔁 APPLY TIERED SHIPPING RATE */
+let rate = 0.05;
 
+if (selectedPrice <= 50000) rate = 0.15;
+else if (selectedPrice <= 100000) rate = 0.18;
+else if (selectedPrice <= 150000) rate = 0.15;
+else if (selectedPrice <= 250000) rate = 0.12;
+else if (selectedPrice <= 500000) rate = 0.10;
+else if (selectedPrice <= 1000000) rate = 0.08;
+else if (selectedPrice <= 2000000) rate = 0.05;
+else if (selectedPrice <= 3000000) rate = 0.03;
+else if (selectedPrice <= 4000000) rate = 0.02;
+else if (selectedPrice <= 5000000) rate = 0.019;
+else if (selectedPrice <= 6000000) rate = 0.018;
+else if (selectedPrice <= 7000000) rate = 0.017;
+else if (selectedPrice <= 8000000) rate = 0.016;
+else if (selectedPrice <= 9000000) rate = 0.015;
+else if (selectedPrice <= 10000000) rate = 0.014;
 
-
-//New
-//const shippingFee = Math.round(selectedPrice * rate);
-//const customerLGA = localStorage.getItem("customerLGA");
-
-const shippingFee = lgaCharges[customerLGA] || 0;
-
-
-
+const shippingFee = Math.round(selectedPrice * rate);
 
   const baseInstallment = Math.round(selectedPrice / selectedDuration);
   const firstInstallment = baseInstallment + shippingFee;
