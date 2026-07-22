@@ -11,33 +11,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $duration = intval($_POST['duration'] ?? 0);
     $orderID  = trim($_POST['order_id'] ?? '');
     $payment_option = trim($_POST['payment_option'] ?? 'Bank Transfer');
+    $shippingFee = floatval($_POST['shipping_fee'] ?? 0);
+    $customerLGA = trim($_POST['customer_lga'] ?? '');
 
     // ==============================
-    // SHIPPING + INSTALLMENT LOGIC
-    // ==============================
-
-    // 5% shipping fee
-    //$shippingFee = round($price * 0.05);  // NOT divided by duration
-    /* 🔁 APPLY TIERED SHIPPING RATE (replaces 0.05 only) */
-$rate = 0.05;
-
-if ($price <= 50000) $rate = 0.15;
-else if ($price <= 100000) $rate = 0.18;
-else if ($price <= 150000) $rate = 0.15;
-else if ($price <= 250000) $rate = 0.12;
-else if ($price <= 500000) $rate = 0.10;
-else if ($price <= 1000000) $rate = 0.08;
-else if ($price <= 2000000) $rate = 0.05;
-else if ($price <= 3000000) $rate = 0.03;
-else if ($price <= 4000000) $rate = 0.02;
-else if ($price <= 5000000) $rate = 0.019;
-else if ($price <= 6000000) $rate = 0.018;
-else if ($price <= 7000000) $rate = 0.017;
-else if ($price <= 8000000) $rate = 0.016;
-else if ($price <= 9000000) $rate = 0.015;
-else if ($price <= 10000000) $rate = 0.014;
-
-$shippingFee = round($price * $rate);  // NOT divided by duration
+   
 
 
     // Base installment (no shipping)
@@ -55,18 +33,19 @@ $shippingFee = round($price * $rate);  // NOT divided by duration
 
    // INSERT INTO DB
 $stmt = $conn->prepare("
-    INSERT INTO payments 
-    (order_id, email, product_name, price, installment_amount, first_installment, 
-     plan_type, duration, payment_option, status, admin_token) 
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending', ?)
+INSERT INTO payments
+(order_id, email, product_name, price, customer_lga, installment_amount,
+ first_installment, plan_type, duration, payment_option, status, admin_token)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending', ?)
 ");
 
 $stmt->bind_param(
-    "sssddsdsss",
+    "sssdsddsiss",
     $orderID,
     $email,
     $product,
     $price,
+    $customerLGA,
     $installmentAmount,
     $firstInstallment,
     $plan,
@@ -98,24 +77,17 @@ $stmt->close();
 
     <p><strong>Total Price:</strong> ₦" . number_format($price, 2) . "</p>
     <p><strong>Installment Amount (No Shipping):</strong> ₦" . number_format($installmentAmount, 2) . "</p>
- 
 
+<p><strong>LGA/LCDA:</strong> $customerLGA</p>
 
-    
+<p><strong>Shipping Fee:</strong>
+₦" . number_format($shippingFee,2) . "</p>
 
-<p><strong>First Installment (with <?php echo ($rate * 100); ?>% shipping):</strong> ₦<?php echo number_format($firstInstallment, 2); ?></p>
-
-
-
-
-
-
-
-
-
-    <p><strong>Plan:</strong> $plan</p>
-    <p><strong>Duration:</strong> $duration</p>
-    <p><strong>Payment Option:</strong> $payment_option</p>
+<p><strong>First Installment:</strong>
+₦" . number_format($firstInstallment,2) . "</p>
+ <p><strong>Plan:</strong> $plan</p>
+<p><strong>Duration:</strong> $duration</p>
+<p><strong>Payment Option:</strong> $payment_option</p>
 
     <br><br>
     <a href='$confirmLink' 
@@ -135,6 +107,7 @@ $stmt->close();
     // ==============================
     // CUSTOMER EMAIL
     // ==============================
+    $shippingFee = floatval($_POST['shipping_fee'] ?? 0);
 
     $customerSubject = "Your Payment Submission – Order ID: $orderID";
 
@@ -146,16 +119,18 @@ $stmt->close();
     <p><strong>Product:</strong> $product</p>
 
     <p><strong>Total Price:</strong> ₦" . number_format($price, 2) . "</p>
-    <p><strong>Installment Amount (No Shipping):</strong> ₦" . number_format($installmentAmount, 2) . "</p>
-    
-<p><strong>First Installment (with <?php echo ($rate * 100); ?>% shipping):</strong> ₦<?php echo number_format($firstInstallment, 2); ?></p>
 
+<p><strong>LGA/LCDA:</strong> $customerLGA</p>
 
+<p><strong>LGA/LCDA Charge:</strong> ₦" . number_format($shippingFee, 2) . "</p>
 
+<p><strong>First Installment (Including LGA/LCDA Charge):</strong> ₦" . number_format($firstInstallment, 2) . "</p>
 
-    <p><strong>Plan:</strong> $plan</p>
-    <p><strong>Duration:</strong> $duration</p>
+<p><strong>Regular Installment:</strong> ₦" . number_format($installmentAmount, 2) . "</p>
 
+<p><strong>Plan:</strong> $plan</p>
+
+<p><strong>Duration:</strong> $duration</p>
     <p>You will be notified once our team confirms your payment.</p>
     </body></html>
     ";

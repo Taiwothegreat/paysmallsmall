@@ -3858,6 +3858,74 @@ TWO LION CYLINDER BED SEWING MACHINE
       </div>
 
       <div id="installmentCalendar" aria-hidden="true"></div>
+
+      <div class="form-group" style="margin-top:15px;">
+    <label for="customerLGASelect">
+        Delivery LGA/LCDA
+    </label>
+
+    <select id="customerLGASelect" class="form-control">
+        <option value="">-- Select Delivery LGA/LCDA --</option>
+        <option>Badagry LGA</option>
+<option>Badagry West LCDA</option>
+<option>Olorunda LCDA</option>
+
+<option>Epe LGA</option>
+<option>Eredo LCDA</option>
+<option>Ikosi-Ejinrin LCDA</option>
+
+<option>Eti-Osa LGA</option>
+<option>Eti-Osa East LCDA</option>
+<option>Iru Victoria Island LCDA</option>
+<option>Ikoyi-Obalende LCDA</option>
+
+<option>Ibeju-Lekki LGA</option>
+<option>Lekki LCDA</option>
+
+<option>Ifako-Ijaiye LGA</option>
+<option>Ojokoro LCDA</option>
+<option>Agbado/Oke-Odo LCDA</option>
+
+<option>Ikeja LGA</option>
+<option>Ojodu LCDA</option>
+<option>Onigbongbo LCDA</option>
+
+<option>Ikorodu LGA</option>
+<option>Ikorodu North LCDA</option>
+<option>Ikorodu West LCDA</option>
+<option>Imota LCDA</option>
+<option>Ijede LCDA</option>
+<option>Igbogbo-Baiyeku LCDA</option>
+
+<option>Kosofe LGA</option>
+<option>Ikosi-Isheri LCDA</option>
+<option>Agboyi-Ketu LCDA</option>
+
+<option>Lagos Island LGA</option>
+<option>Lagos Island East LCDA</option>
+
+<option>Lagos Mainland LGA</option>
+<option>Yaba LCDA</option>
+
+<option>Mushin LGA</option>
+<option>Odi-Olowo/Ojuwoye LCDA</option>
+
+<option>Ojo LGA</option>
+<option>Oto-Awori LCDA</option>
+<option>Iba LCDA</option>
+
+<option>Somolu LGA</option>
+<option>Bariga LCDA</option>
+
+<option>Oshodi-Isolo LGA</option>
+<option>Isolo LCDA</option>
+<option>Ejigbo LCDA</option>
+
+<option>Surulere LGA</option>
+<option>Coker-Aguda LCDA</option>
+<option>Itire-Ikate LCDA</option>
+    </select>
+</div>
       <p id="installmentResult" style="margin-top:10px; font-weight:bold;"></p>
 <!-- Installment Breakdown Link -->
 <div style="margin:15px 0;">
@@ -4021,7 +4089,12 @@ const lgaCharges = {
     "Coker-Aguda LCDA": 22000,
     "Itire-Ikate LCDA": 24500
 };
-const customerLGA = localStorage.getItem("customerLGA");
+const customerLGASelect = document.getElementById("customerLGASelect");
+
+customerLGASelect.addEventListener("change", function () {
+    localStorage.setItem("customerLGA", this.value);
+});
+//const customerLGA = localStorage.getItem("customerLGA");
     /* ===========================
        MASTER PRODUCT LIST
        - grab product cards now that DOM is ready
@@ -4343,13 +4416,14 @@ function restoreAccessorySlider() {
     let selectedPrice = 0;
     let selectedPlan = '';
     let selectedDuration = 0;
-   // let selectedImg = '';
+    let selectedImg = '';
 
     function openProduct(name, price, desc, img) {
       selectedProduct = name;
       selectedPrice = parsePrice(price);
       selectedPlan = '';
       selectedDuration = 0;
+      selectedImg = img;
 
       if (modalTitle) modalTitle.textContent = name || '';
       if (modalPrice) modalPrice.textContent = "₦" + selectedPrice.toLocaleString();
@@ -4360,6 +4434,10 @@ function restoreAccessorySlider() {
       if (installmentCalendar) { installmentCalendar.innerHTML = ''; installmentCalendar.style.display = 'none'; }
 
       if (modalEl && typeof modalEl.modal === 'function') {
+        const savedLGA = localStorage.getItem("customerLGA");
+if (customerLGASelect) {
+    customerLGASelect.value = savedLGA || "";
+}
         modalEl.modal('show');
       } else {
         // fallback: no jQuery modal — ensure there's a visible way to show product
@@ -4391,10 +4469,10 @@ function restoreAccessorySlider() {
     /* Payment plan selection (keeps original names and behavior) */
     function selectPayment(type) {
 
-      if (!customerLGA) {
+      /*if (!customerLGA) {
         alert("Please complete your profile and select your LGA before purchasing.");
         return;
-    }
+    }*/
 
     
       selectedPlan = type;
@@ -4439,7 +4517,18 @@ function restoreAccessorySlider() {
   //let totalWithShipping = selectedPrice + shippingFee;
 //const customerLGA = localStorage.getItem("customerLGA");
 
+//const shippingFee = lgaCharges[customerLGA] || 0;
+
+const customerLGA = customerLGASelect.value;
+
+if (!customerLGA) {
+    alert("Please select your Delivery LGA/LCDA.");
+    return;
+}
+
 const shippingFee = lgaCharges[customerLGA] || 0;
+
+
 
 const totalWithShipping = selectedPrice + shippingFee;
 
@@ -4468,10 +4557,10 @@ const totalWithShipping = selectedPrice + shippingFee;
    
 
     function calculateInstallment(value) {
-        if (!customerLGA) {
+      /*  if (!customerLGA) {
         alert("Please complete your profile and select your LGA before purchasing.");
         return;
-    }
+    }*/
   if (!selectedPlan) return;
 
   /* 🔁 REPLACED: 5% flat fee → tiered percentage */
@@ -4482,8 +4571,16 @@ const totalWithShipping = selectedPrice + shippingFee;
 
 //const customerLGA = localStorage.getItem("customerLGA");
 
-const shippingFee = lgaCharges[customerLGA] || 0;
+//const shippingFee = lgaCharges[customerLGA] || 0;
 
+const customerLGA = customerLGASelect.value;
+
+if (!customerLGA) {
+    alert("Please select your Delivery LGA/LCDA.");
+    return;
+}
+
+const shippingFee = lgaCharges[customerLGA] || 0;
 
 
   let baseInstallment = Math.round(selectedPrice / Number(value));
@@ -4549,39 +4646,107 @@ First installment (includes installation/shipping charge based on your selected 
     }
 
     /* proceedToPayment (keeps original logic; refer to readTerms checkbox if present on page) */
+    
     function proceedToPayment() {
-      if (selectedPlan === '') return alert('Please choose a payment option.');
-      if (selectedPlan !== 'once' && selectedDuration === 0) 
-      return alert('Please select duration from the calendar.');
+      const customerLGA = customerLGASelect.value;
+
+if (!customerLGA) {
+    alert("Please select your Delivery LGA/LCDA.");
+    return;
+}
+
+localStorage.setItem("customerLGA", customerLGA);
+
+  if (selectedPlan === '') {
+    return alert('Please choose a payment option.');
+  }
+
+  if (selectedPlan !== 'once' && selectedDuration === 0) {
+    return alert('Please select duration from the calendar.');
+  }
 
 
+  const readTermsEl = document.getElementById('readTerms');
 
-      // If the page has a #readTerms checkbox, enforce it
-      const readTermsEl = document.getElementById('readTerms');
-      if (readTermsEl && !readTermsEl.checked) return alert('Please read and acknowledge after sales support/returns before proceeding.');
+  if (readTermsEl && !readTermsEl.checked) {
+    return alert('Please read and acknowledge after sales support/returns before proceeding.');
+  }
 
-      const planType = (selectedPlan === 'once') ? 'Buy Once' : (selectedPlan === 'weekly' ? 'Weekly' : 'Monthly');
-      const totalPrice = selectedPrice;
-      const amountDue = (selectedPlan === 'once') ? totalPrice : Math.round(totalPrice / selectedDuration);
-      const balance = (selectedPlan === 'once') ? 0 : totalPrice - amountDue;
 
-      const orderID = "PS" + Math.floor(100000 + Math.random() * 900000);
+  const planType =
+    (selectedPlan === 'once')
+      ? 'Buy Once'
+      : (selectedPlan === 'weekly' ? 'Weekly' : 'Monthly');
 
-      const payload = {
-        orderID,
-        name: selectedProduct,
-        plan: planType,
-        amountDue,
-        balance,
-        duration: selectedDuration,
-        price: totalPrice,
-        image: selectedImg || (modalImage && modalImage.src) || ''
-      };
 
-      localStorage.setItem('checkout', JSON.stringify(payload));
-      window.location.href = 'payment.html';
-    }
+  const totalPrice = selectedPrice;
 
+
+  // LGA installation/shipping charge
+  const shippingFee = lgaCharges[customerLGA] || 0;
+
+
+  let installmentAmount;
+  let firstInstallment;
+  let balance;
+
+
+  if (planType === "Buy Once") {
+
+    installmentAmount = totalPrice;
+    firstInstallment = totalPrice + shippingFee;
+    balance = 0;
+
+  } else {
+
+    installmentAmount = Math.ceil(totalPrice / selectedDuration);
+
+    firstInstallment = installmentAmount + shippingFee;
+
+    balance = totalPrice - installmentAmount;
+
+  }
+
+
+  const orderID = "PS" + Math.floor(100000 + Math.random() * 900000);
+
+
+  const payload = {
+
+    orderID: orderID,
+
+    name: selectedProduct,
+
+    plan: planType,
+
+    price: totalPrice,
+
+    shippingFee: shippingFee,
+
+    installmentAmount: installmentAmount,
+
+    firstInstallment: firstInstallment,
+
+    balance: balance,
+
+    duration: selectedDuration,
+
+    customerLGA: customerLGA,
+
+    image: selectedImg || (modalImage && modalImage.src) || ''
+
+  };
+
+
+  localStorage.setItem(
+    'checkout',
+    JSON.stringify(payload)
+  );
+
+  console.log(payload);
+  window.location.href = 'payment.html';
+
+}
   
 function openInstallmentPopup() {
   if (selectedPlan === 'once' || !selectedPlan) {
@@ -4606,10 +4771,7 @@ function openInstallmentPopup() {
 }
 
 
-   /* function closeInstallmentPopup() {
-      const popup = document.getElementById("installmentPopup");
-      if (popup) popup.style.display = "none";
-    }*/
+  
 function closeInstallmentPopup() {
   const popup = document.getElementById("installmentPopup");
   if (popup) popup.style.display = "none";
@@ -4627,17 +4789,15 @@ function renderInstallmentTable() {
 
   //const shippingFee = Math.round(selectedPrice * 0.05);
 
-  /* 🔁 APPLY TIERED SHIPPING RATE */
+  
 
+//const shippingFee = lgaCharges[customerLGA] || 0;
 
+const checkout = JSON.parse(localStorage.getItem("checkout") || "{}");
 
-//New
-//const shippingFee = Math.round(selectedPrice * rate);
-//const customerLGA = localStorage.getItem("customerLGA");
+const customerLGA = checkout.customerLGA || "";
 
 const shippingFee = lgaCharges[customerLGA] || 0;
-
-
 
 
   const baseInstallment = Math.round(selectedPrice / selectedDuration);
@@ -4651,11 +4811,7 @@ const shippingFee = lgaCharges[customerLGA] || 0;
   for (let i = 1; i <= selectedDuration; i++) {
     let dueDate = new Date(baseDate);
 
-   /* if (selectedPlan === "monthly") {
-      dueDate.setMonth(baseDate.getMonth() + i);
-    } else {
-      dueDate.setDate(baseDate.getDate() + (i * 7));
-    }*/
+  
 if (selectedPlan === "monthly") {
   dueDate.setMonth(baseDate.getMonth() + (i - 1));
 } else {
