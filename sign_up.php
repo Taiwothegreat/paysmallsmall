@@ -146,6 +146,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $_SESSION['user_id'] = $user_id;
     $_SESSION['fullname'] = $fullname;
     $_SESSION['email'] = $email;
+    $_SESSION['state'] = $state;
+
+echo "
+<!DOCTYPE html>
+<html>
+<body>
+<script>
+localStorage.setItem('customerLGA', " . json_encode($state) . ");
+localStorage.setItem('customerName', " . json_encode($fullname) . ");
+localStorage.setItem('customerEmail', " . json_encode($email) . ");
+window.location.href = 'product.html';
+</script>
+</body>
+</html>";
 
     // ✅ Redirect to product page
     header("Location: product.html");
