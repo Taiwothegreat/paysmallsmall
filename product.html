@@ -4010,7 +4010,91 @@ TWO LION CYLINDER BED SEWING MACHINE
       //return (el && el.getAttribute) ? (el.getAttribute('data-name') || '').trim() : '';
     //}
 
-const lgaCharges = {
+// Accessory LGA Charges
+
+
+const accessoryLGACharges = {
+    "Agege LGA": 6000,
+    "Orile-Agege LCDA": 7000,
+
+    "Ajeromi-Ifelodun LGA": 9000,
+    "Ifelodun LCDA": 10000,
+
+    "Alimosho LGA": 10000,
+    "Ayobo-Ipaja LCDA": 8000,
+    "Egbe-Idimu LCDA": 9000,
+    "Igando-Ikotun LCDA": 10000,
+    "Mosan Okunola LCDA": 11500,
+
+    "Amuwo-Odofin LGA": 10990,
+    "Oriade LCDA": 8500,
+
+    "Apapa LGA": 9000,
+    "Apapa-Iganmu LCDA": 8200,
+
+    "Badagry LGA": 15600,
+    "Badagry West LCDA": 15000,
+    "Olorunda LCDA": 16500,
+
+    "Epe LGA": 13750,
+    "Eredo LCDA": 15000,
+    "Ikosi-Ejinrin LCDA": 16000,
+
+    "Eti-Osa LGA": 11000,
+    "Eti-Osa East LCDA": 12900,
+    "Iru Victoria Island LCDA": 10500,
+    "Ikoyi Obalende LCDA": 10200,
+
+    "Ibeju-Lekki LGA": 10990,
+    "Lekki LCDA": 11200,
+
+    "Ifako-Ijaiye LGA": 9400,
+    "Ojokoro LCDA": 10900,
+    "Agbado/Oke-Odo LCDA": 10300,
+
+    "Ikeja LGA": 8600,
+    "Ojodu LCDA": 8000,
+    "Onigbongbo LCDA": 7400,
+
+    "Ikorodu LGA": 10000,
+    "Ikorodu North LCDA": 10000,
+    "Ikorodu West LCDA": 11000,
+    "Imota LCDA": 12000,
+    "Ijede LCDA": 10100,
+    "Igbogbo-Baiyeku LCDA": 10980,
+
+    "Kosofe LGA": 6000,
+    "Ikosi-Isheri LCDA": 6000,
+    "Agboyi-Ketu LCDA": 6000,
+
+    "Lagos Island LGA": 5000,
+    "Lagos Island East LCDA": 5000,
+
+    "Lagos Mainland LGA": 4000,
+    "Yaba LCDA": 4500,
+
+    "Mushin LGA": 3200,
+    "Odi-Olowo/Ojuwoye LCDA": 3000,
+
+    "Ojo LGA": 7000,
+    "Oto-Awori LCDA": 6600,
+    "Iba LCDA": 6500,
+
+    "Somolu LGA": 5000,
+    "Bariga LCDA": 5000,
+
+    "Oshodi-Isolo LGA": 3000,
+    "Isolo LCDA": 3500,
+    "Ejigbo LCDA": 3590,
+
+    "Surulere LGA": 4500,
+    "Coker-Aguda LCDA": 5000,
+    "Itire-Ikate LCDA": 5000
+};
+
+// Machine LGA Charges
+
+const machineLGACharges = {
     "Agege LGA": 25000,
     "Orile-Agege LCDA": 25000,
 
@@ -4022,7 +4106,6 @@ const lgaCharges = {
     "Egbe-Idimu LCDA": 26000,
     "Igando-Ikotun LCDA": 29000,
     "Mosan Okunola LCDA": 31500,
-    "Ejigbo LCDA": 26500,
 
     "Amuwo-Odofin LGA": 26990,
     "Oriade LCDA": 28500,
@@ -4417,6 +4500,7 @@ function restoreAccessorySlider() {
     let selectedPlan = '';
     let selectedDuration = 0;
     let selectedImg = '';
+    let selectedCategory = "";
 
     function openProduct(name, price, desc, img) {
       selectedProduct = name;
@@ -4424,6 +4508,7 @@ function restoreAccessorySlider() {
       selectedPlan = '';
       selectedDuration = 0;
       selectedImg = img;
+      
 
       if (modalTitle) modalTitle.textContent = name || '';
       if (modalPrice) modalPrice.textContent = "₦" + selectedPrice.toLocaleString();
@@ -4447,11 +4532,14 @@ if (customerLGASelect) {
 
     function openProductFromCard(el) {
       if (!el) return;
+       selectedCategory = el.classList.contains("accessory")
+    ? "accessory"
+    : "machine";
       const name = (el.getAttribute('data-name') || '').trim();
       const price = el.getAttribute('data-price') || el.dataset.price || '';
       const img = el.getAttribute('data-img') || el.dataset.img || '';
       const desc = el.getAttribute('data-desc') || el.dataset.desc || el.innerText || '';
-
+     
       openProduct(name, price, desc, img);
     }
 
@@ -4490,15 +4578,7 @@ if (customerLGASelect) {
           d.onclick = () => pickDuration(i);
           installmentCalendar.appendChild(d);
         }
-      } /*else if (type === 'monthly' && installmentCalendar) {
-        installmentCalendar.style.display = 'block';
-        for (let i = 2; i <= 12; i++) {
-          const d = document.createElement('div');
-          d.className = 'calendar-number';
-          d.textContent = i;
-          d.onclick = () => pickDuration(i);
-          installmentCalendar.appendChild(d);
-        }*/
+      } 
     else if (type === 'monthly' && installmentCalendar) {
     installmentCalendar.style.display = 'block';
     for (let i = 2; i <= 12; i += 2) {
@@ -4512,12 +4592,7 @@ if (customerLGASelect) {
 } else if (type === 'once' && installmentResult) {
 
   
-//New
-  //let shippingFee = Math.round(selectedPrice * rate);
-  //let totalWithShipping = selectedPrice + shippingFee;
-//const customerLGA = localStorage.getItem("customerLGA");
 
-//const shippingFee = lgaCharges[customerLGA] || 0;
 
 const customerLGA = customerLGASelect.value;
 
@@ -4526,8 +4601,13 @@ if (!customerLGA) {
     return;
 }
 
-const shippingFee = lgaCharges[customerLGA] || 0;
+//const shippingFee = lgaCharges[customerLGA] || 0;
+const charges =
+    selectedCategory === "accessory"
+        ? accessoryLGACharges
+        : machineLGACharges;
 
+const shippingFee = charges[customerLGA] || 0;
 
 
 const totalWithShipping = selectedPrice + shippingFee;
@@ -4580,7 +4660,14 @@ if (!customerLGA) {
     return;
 }
 
-const shippingFee = lgaCharges[customerLGA] || 0;
+//const shippingFee = lgaCharges[customerLGA] || 0;
+const charges =
+    selectedCategory === "accessory"
+        ? accessoryLGACharges
+        : machineLGACharges;
+
+const shippingFee = charges[customerLGA] || 0;
+
 
 
   let baseInstallment = Math.round(selectedPrice / Number(value));
@@ -4683,7 +4770,13 @@ localStorage.setItem("customerLGA", customerLGA);
 
 
   // LGA installation/shipping charge
-  const shippingFee = lgaCharges[customerLGA] || 0;
+  //const shippingFee = lgaCharges[customerLGA] || 0;
+  const charges =
+    selectedCategory === "accessory"
+        ? accessoryLGACharges
+        : machineLGACharges;
+
+const shippingFee = charges[customerLGA] || 0;
 
 
   let installmentAmount;
@@ -4720,6 +4813,8 @@ localStorage.setItem("customerLGA", customerLGA);
     plan: planType,
 
     price: totalPrice,
+
+    category: selectedCategory,
 
     shippingFee: shippingFee,
 
@@ -4797,8 +4892,14 @@ const checkout = JSON.parse(localStorage.getItem("checkout") || "{}");
 
 const customerLGA = checkout.customerLGA || "";
 
-const shippingFee = lgaCharges[customerLGA] || 0;
+//const shippingFee = lgaCharges[customerLGA] || 0;
 
+const charges =
+    selectedCategory === "accessory"
+        ? accessoryLGACharges
+        : machineLGACharges;
+
+const shippingFee = charges[customerLGA] || 0;
 
   const baseInstallment = Math.round(selectedPrice / selectedDuration);
   const firstInstallment = baseInstallment + shippingFee;
