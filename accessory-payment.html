@@ -7,7 +7,6 @@
   <!-- Bootstrap 3 -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -194,68 +193,74 @@
       <p><strong>Account Name:</strong> PAYSMALLSMALL NIG.LTD</p>
       <p><strong>Account Number:</strong> 0079391943</p>
 
-<hr>
+      <hr>
+      <h4>Accessory Order Summary</h4>
 
-<!-- ACCESSORY ORDER SUMMARY -->
-<div id="accessoryOrderSummary" style="display:none; margin-top:20px;">
+<p><strong>Order ID:</strong>
+<span id="order_id"></span></p>
 
-    <h4>
-        <span class="glyphicon glyphicon-shopping-cart"></span>
-        Accessory Order Summary
-    </h4>
+<table class="table table-bordered">
 
-    <table class="table table-bordered table-striped">
+<thead>
 
-        <thead>
-            <tr>
-                <th>Product</th>
-                <th style="width:70px;">Qty</th>
-                <th style="text-align:right;">Amount</th>
-            </tr>
-        </thead>
+<tr>
 
-        <tbody id="summaryBody"></tbody>
+<th>Item</th>
 
-        <tfoot>
+<th style="width:80px;">Qty</th>
 
-            <tr>
-                <th colspan="2">Subtotal</th>
-                <th style="text-align:right;">
-                    ₦<span id="summarySubtotal">0</span>
-                </th>
-            </tr>
+<th style="text-align:right;">Amount</th>
 
-            <tr>
-                <th colspan="2">LGA/LCDA Charge</th>
-                <th style="text-align:right;">
-                    ₦<span id="summaryShipping">0</span>
-                </th>
-            </tr>
+</tr>
 
-            <tr>
-                <th colspan="2">Grand Total</th>
-                <th style="text-align:right;color:green;font-size:18px;">
-                    ₦<span id="summaryTotal">0</span>
-                </th>
-            </tr>
+</thead>
 
-        </tfoot>
+<tbody id="summaryBody">
 
-    </table>
+</tbody>
 
-</div>
+<tfoot>
 
-<hr>
+<tr>
 
-<form id="paymentForm" method="POST" action="payment_process.php">
+<th colspan="2">
+Subtotal
+</th>
 
-    <!-- DISCLAIMER BLOCK -->
+<th style="text-align:right;">
+₦<span id="summarySubtotal">0</span>
+</th>
 
+</tr>
 
+<tr>
 
+<th colspan="2">
+LGA/LCDA Charge
+</th>
 
-        
+<th style="text-align:right;">
+₦<span id="summaryShipping">0</span>
+</th>
 
+</tr>
+
+<tr>
+
+<th colspan="2">
+Grand Total
+</th>
+
+<th style="text-align:right;color:green;">
+₦<span id="summaryTotal">0</span>
+</th>
+
+</tr>
+
+</tfoot>
+
+</table>
+    
         
         <!-- DISCLAIMER BLOCK -->
 <div style="margin-top:18px; padding:12px; background:#f9f9f9; border-left:4px solid green; border-radius:5px;">
@@ -286,165 +291,118 @@
         <input type="hidden" name="order_id" id="orderIDField">
 <input type="hidden" name="product_name" id="productField">
 <input type="hidden" name="price" id="amountField">
+<input type="hidden" name="first_installment" id="firstInstallmentField">
+<input type="hidden" name="plan_type" id="planField">
+<input type="hidden" name="duration" id="durationField">
 <input type="hidden" name="payment_option" value="Bank Transfer">
-<input type="hidden"
-       name="accessory_items"
-       id="accessoryItemsField">
-
-<input type="hidden"
-       name="subtotal"
-       id="subtotalField">
-
-<input type="hidden"
-       name="shipping_fee"
-       id="shippingFeeField">
-
-<input type="hidden"
-       name="grand_total"
-       id="grandTotalField">
-
-<input type="hidden"
-       name="customer_lga"
-       id="customerLGAField">
+<input type="hidden" name="shipping_fee" id="shippingFeeField">
+<input type="hidden" name="customer_lga" id="customerLGAField">
+<input type="hidden" name="order_type" value="accessory">
         <button type="submit" class="btn btn-success btn-block">Confirm Payment</button>
       </form>
 
     </div>
   </div>
 </div>
-
+<script src="shipping-charges.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
 
-  const checkout = JSON.parse(localStorage.getItem("checkout") || "{}");
-const accessoryCart =
-JSON.parse(localStorage.getItem("accessoryCheckout") || "[]");
+    const cart = JSON.parse(
+        localStorage.getItem("accessoryCheckout") || "[]"
+    );
 
+    if(cart.length === 0){
 
-  const accessorySummary =
-document.getElementById("accessoryOrderSummary");
+        alert("No accessory selected.");
 
-const summaryBody =
-document.getElementById("accessorySummaryBody");
+        window.location.href="product.html";
 
-const summarySubtotal =
-document.getElementById("summarySubtotal");
+        return;
 
-const summaryShipping =
-document.getElementById("summaryShipping");
+    }
 
-const summaryTotal =
-document.getElementById("summaryTotal");
-  const category = checkout.category || "machine";
+    const tbody = document.getElementById("summaryBody");
 
+    const subtotalSpan = document.getElementById("summarySubtotal");
 
+    const shippingSpan = document.getElementById("summaryShipping");
 
-  if (accessoryCart.length > 0) {
-
-    accessorySummary.style.display = "block";
+    const totalSpan = document.getElementById("summaryTotal");
 
     let subtotal = 0;
 
-    summaryBody.innerHTML = "";
+    let productList = [];
 
-    accessoryCart.forEach(item => {
+    tbody.innerHTML = "";
 
-        const qty = Number(item.quantity || item.qty || 1);
+    cart.forEach(item=>{
 
-        const total = Number(item.price) * qty;
+        const qty = Number(item.qty || 1);
 
-        subtotal += total;
+        const lineTotal = qty * Number(item.price);
 
-        summaryBody.innerHTML += `
-            <tr>
-                <td>${item.name}</td>
-                <td>${qty}</td>
-                <td style="text-align:right;">
-                    ₦${total.toLocaleString()}
-                </td>
-            </tr>
+        subtotal += lineTotal;
+
+        productList.push(`${item.name} x${qty}`);
+
+        tbody.innerHTML += `
+
+        <tr>
+
+            <td>${item.name}</td>
+
+            <td>${qty}</td>
+
+            <td>₦${lineTotal.toLocaleString()}</td>
+
+        </tr>
+
         `;
+
     });
 
-}else {
-   if (!checkout || !checkout.name) {
-    alert("No product selected. Please select a product first.");
-    return;
-  }
+    const customerLGA = localStorage.getItem("customerLGA") || "";
 
-  const price = Number(checkout.price) || 0;
-  //const duration = parseInt(checkout.duration) || 1;
-const duration = Number(checkout.duration) || 1;
+    const shipping =
+        accessoryLGACharges[customerLGA] || 0;
 
-  const validPlans = ["Weekly", "Monthly", "Buy Once"];
-  let plan = String(checkout.plan || "").trim();
+    const grandTotal = subtotal + shipping;
 
-  if (!validPlans.includes(plan)) {
-    plan = "Buy Once";
-  }
+    subtotalSpan.innerHTML =
+        subtotal.toLocaleString();
 
+    shippingSpan.innerHTML =
+        shipping.toLocaleString();
 
-  // Fixed Shipping Charges (Not Percentage)
-  const shippingFee = Number(checkout.shippingFee) || 0;
-/*
-  let installmentAmount;
-  let firstInstallment;*/
+    totalSpan.innerHTML =
+        grandTotal.toLocaleString();
 
+    // Hidden Fields
 
- let installmentAmount =
-    Number(checkout.installmentAmount) || price;
+    document.getElementById("productField").value =
+        productList.join(", ");
 
-let firstInstallment =
-    Number(checkout.firstInstallment) || (price + shippingFee);
+    document.getElementById("amountField").value =
+        grandTotal;
 
+    document.getElementById("shippingFeeField").value =
+        shipping;
 
-  // Display Order Details
-  document.getElementById("order_id").textContent = checkout.orderID || "";
-  document.getElementById("product").textContent = checkout.name || "";
-  document.getElementById("plan").textContent = plan;
-
-  document.getElementById("amount").textContent = price.toLocaleString();
-
-  document.getElementById("shippingFee").textContent = shippingFee.toLocaleString();
-
-  document.getElementById("installmentAmount").textContent =
-    installmentAmount.toLocaleString();
-
-  document.getElementById("firstInstallment").textContent =
-    firstInstallment.toLocaleString();
-
-
-  let durLabel = "";
-
-  if (plan === "Weekly") durLabel = " weeks";
-  else if (plan === "Monthly") durLabel = " months";
-
-
-  document.getElementById("duration").textContent =
-    duration + durLabel;
-
-
-  // Hidden form fields
-  document.getElementById("orderIDField").value =
-    checkout.orderID || "";
-
-  document.getElementById("productField").value =
-    checkout.name || "";
-
-  document.getElementById("amountField").value =
-    price;
-    document.getElementById("shippingFeeField").value = shippingFee;
     document.getElementById("customerLGAField").value =
-    checkout.customerLGA || "";
-  document.getElementById("firstInstallmentField").value =
-    firstInstallment;
+        customerLGA;
 
-  document.getElementById("planField").value =
-    plan;
+    document.getElementById("planField").value =
+        "Buy Once";
 
-  document.getElementById("durationField").value =
-    duration;
-  }
+    document.getElementById("durationField").value = 1;
+
+    document.getElementById("firstInstallmentField").value =
+        grandTotal;
+
+    document.getElementById("orderIDField").value =
+        "PSA" + Math.floor(Math.random()*1000000);
+
 });
 </script>
 

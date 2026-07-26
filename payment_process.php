@@ -13,6 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $payment_option = trim($_POST['payment_option'] ?? 'Bank Transfer');
     $shippingFee = floatval($_POST['shipping_fee'] ?? 0);
     $customerLGA = trim($_POST['customer_lga'] ?? '');
+    $orderType = trim($_POST['order_type'] ?? 'machine');
 
     // ==============================
    
@@ -67,14 +68,20 @@ $stmt->close();
 
     $confirmLink = "https://www.paysmallsmall.org/confirm_payment.php?order_id=$orderID&email=" . urlencode($email) . "&token=$token";
 
+
+    if ($orderType === "accessory") {
+    $productLabel = "Accessories Purchased";
+} else {
+    $productLabel = "Product";
+}
     $message = "
     <html><body>
+    
     <h2>New Payment Confirmation Request</h2>
 
     <p><strong>Order ID:</strong> $orderID</p>
     <p><strong>Customer Email:</strong> $email</p>
-    <p><strong>Product:</strong> $product</p>
-
+<p><strong>$productLabel:</strong><br>$product</p>
     <p><strong>Total Price:</strong> ₦" . number_format($price, 2) . "</p>
     <p><strong>Installment Amount (No Shipping):</strong> ₦" . number_format($installmentAmount, 2) . "</p>
 
