@@ -265,7 +265,6 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   const checkout = JSON.parse(localStorage.getItem("checkout") || "{}");
-  const category = checkout.category || "machine";
 
   if (!checkout || !checkout.name) {
     alert("No product selected. Please select a product first.");
