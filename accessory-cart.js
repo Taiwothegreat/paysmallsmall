@@ -241,29 +241,7 @@ function loadAccessoryLGAs() {
     });
 
 }
-function loadAccessoryLGAs() {
 
-    const select =
-        document.getElementById("accessoryLGASelect");
-
-    if (!select) return;
-
-    // Prevent duplicates if called more than once
-    if (select.options.length > 1) return;
-
-    Object.keys(accessoryLGACharges).forEach(function(lga) {
-
-        const option =
-            document.createElement("option");
-
-        option.value = lga;
-        option.textContent = lga;
-
-        select.appendChild(option);
-
-    });
-
-}
 document.addEventListener("DOMContentLoaded", function () {
 
     renderAccessoryCart();
