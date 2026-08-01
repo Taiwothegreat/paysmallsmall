@@ -254,6 +254,7 @@
 <input type="hidden" name="payment_option" value="Bank Transfer">
 <input type="hidden" name="shipping_fee" id="shippingFeeField">
 <input type="hidden" name="customer_lga" id="customerLGAField">
+<input type="hidden" name="customer_address" id="customerAddressField">
         <button type="submit" class="btn btn-success btn-block">Confirm Payment</button>
       </form>
 
@@ -335,6 +336,8 @@ let firstInstallment =
     document.getElementById("shippingFeeField").value = shippingFee;
     document.getElementById("customerLGAField").value =
     checkout.customerLGA || "";
+    document.getElementById("customerAddressField").value =
+    checkout.customerAddress || "";
   document.getElementById("firstInstallmentField").value =
     firstInstallment;
 

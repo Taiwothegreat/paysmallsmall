@@ -1070,7 +1070,18 @@ Subtotal
         <!-- Your LGA options will load here -->
 
     </select>
+<div class="form-group" style="margin-top:15px;">
+    <label for="accessoryCustomerAddress">
+        Delivery Address
+    </label>
 
+    <textarea
+        id="accessoryCustomerAddress"
+        class="form-control"
+        rows="3"
+        placeholder="Enter your full delivery address"
+        required></textarea>
+</div>
 </div>
 
 
@@ -3809,32 +3820,10 @@ TWO LION CYLINDER BED SEWING MACHINE
 <!--<div id="pagination" class="text-center" style="margin:20px 0;"></div>-->
 
 
-  
-
-
-
-
-
-
-
-
-
-
 
 
 
 </div>
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -3941,6 +3930,7 @@ TWO LION CYLINDER BED SEWING MACHINE
     </label>
 
     <select id="customerLGASelect" class="form-control">
+      
         <option value="">-- Select Delivery LGA/LCDA --</option>
         <option>Badagry LGA</option>
 <option>Badagry West LCDA</option>
@@ -4001,7 +3991,15 @@ TWO LION CYLINDER BED SEWING MACHINE
 <option>Coker-Aguda LCDA</option>
 <option>Itire-Ikate LCDA</option>
     </select>
+    <label for="customerAddress">Delivery Address</label>
+
+<textarea
+    id="customerAddress"
+    rows="3"
+    placeholder="Enter your full delivery address"
+    required></textarea>
 </div>
+
       <p id="installmentResult" style="margin-top:10px; font-weight:bold;"></p>
 <!-- Installment Breakdown Link -->
 <div style="margin:15px 0;">
@@ -4038,7 +4036,7 @@ TWO LION CYLINDER BED SEWING MACHINE
 
 
 
-<script src="shipping-charges.js"></script>
+<!--<script src="shipping-charges.js"></script>-->
 
 <script>
 (function(){
@@ -4419,177 +4417,13 @@ function restoreAccessorySlider() {
     let selectedDuration = 0;
     let selectedImg = '';
     let selectedCategory = "";
-    let accessoryCart = JSON.parse(
-    localStorage.getItem("accessoryCart") || "[]"
-);
+  
 
-   function addAccessoryToCart(product){
 
-    const existing = accessoryCart.find(
-        p => p.name === product.name
-    );
 
-    if(existing){
 
-        existing.qty++;
 
-    }else{
-
-        accessoryCart.push({
-
-            ...product,
-
-            qty:1
-
-        });
-
-    }
-
-
-    localStorage.setItem(
-        "accessoryCart",
-        JSON.stringify(accessoryCart)
-    );
-
-
-    renderAccessoryCart();
-
-}
-function removeAccessory(index){
-
-    accessoryCart.splice(index,1);
-
-    renderAccessoryCart();
-
-}
-
-function increaseQty(index){
-
-    accessoryCart[index].qty++;
-
-    renderAccessoryCart();
-
-}
-
-function decreaseQty(index){
-
-    accessoryCart[index].qty--;
-
-    if(accessoryCart[index].qty<=0){
-
-        accessoryCart.splice(index,1);
-
-    }
-
-    renderAccessoryCart();
-
-}
-
-window.removeAccessory = removeAccessory;
-window.increaseQty = increaseQty;
-window.decreaseQty = decreaseQty;
-
-function renderAccessoryCart() {
-
-    const cartBox = document.getElementById("accessoryCart");
-    const cartItems = document.getElementById("cartItems");
-    const subtotal = document.getElementById("cartSubtotal");
-    const count = document.getElementById("cartCount");
-
-    // NEW
-    const lgaSection =
-    document.getElementById("accessoryLGASection");
-
-    if (!cartBox || !cartItems) return;
-
-    if (accessoryCart.length === 0) {
-
-        cartBox.style.display = "none";
-
-        // NEW
-        if (lgaSection) {
-            lgaSection.style.display = "none";
-        }
-
-        return;
-
-    }
-
-    cartBox.style.display = "block";
-
-    // NEW
-    if (lgaSection) {
-        lgaSection.style.display = "block";
-    }
-
-    cartItems.innerHTML = "";
-
-    let total = 0;
-
-    accessoryCart.forEach((item,index)=>{
-
-        total += item.price * item.qty;
-
-        cartItems.innerHTML += `
-
-<div class="row" style="margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid #eee;">
-
-<div class="col-xs-2">
-
-<img src="${item.image}"
-style="width:60px;height:60px;object-fit:cover;">
-
-</div>
-
-<div class="col-xs-5">
-
-<strong>${item.name}</strong>
-
-<br>
-
-₦${item.price.toLocaleString()}
-
-</div>
-
-<div class="col-xs-3 text-center">
-
-<button
-class="btn btn-default btn-xs"
-onclick="decreaseQty(${index})">-</button>
-
-<strong style="padding:0 10px;">
-${item.qty}
-</strong>
-
-<button
-class="btn btn-default btn-xs"
-onclick="increaseQty(${index})">+</button>
-
-</div>
-
-<div class="col-xs-2 text-right">
-
-<button
-class="btn btn-danger btn-xs"
-onclick="removeAccessory(${index})">
-
-×
-
-</button>
-
-</div>
-
-</div>
-
-`;
-
-    });
-
-    subtotal.textContent = total.toLocaleString();
-
-    count.textContent = accessoryCart.length;
-
-}
+    
     function openProduct(name, price, desc, img) {
       selectedProduct = name;
       selectedPrice = parsePrice(price);
@@ -4911,13 +4745,23 @@ First installment (includes installation/shipping charge based on your selected 
     
     function proceedToPayment() {
       const customerLGA = customerLGASelect.value;
+      const customerAddress =
+    document.getElementById("customerAddress").value.trim();
+    
 
 if (!customerLGA) {
     alert("Please select your Delivery LGA/LCDA.");
     return;
 }
-
+if (!customerAddress) {
+    alert("Please enter your Delivery Address.");
+    return;
+}
 localStorage.setItem("customerLGA", customerLGA);
+localStorage.setItem(
+    "customerAddress",
+    customerAddress
+);
 
   if (selectedPlan === '') {
     return alert('Please choose a payment option.');
@@ -5001,7 +4845,8 @@ const shippingFee = charges[customerLGA] || 0;
 
     duration: selectedDuration,
 
-    customerLGA: customerLGA,
+  customerLGA: customerLGA,
+customerAddress: customerAddress,
 
     image: selectedImg || (modalImage && modalImage.src) || ''
 

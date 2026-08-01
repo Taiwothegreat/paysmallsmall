@@ -297,6 +297,7 @@ Grand Total
 <input type="hidden" name="payment_option" value="Bank Transfer">
 <input type="hidden" name="shipping_fee" id="shippingFeeField">
 <input type="hidden" name="customer_lga" id="customerLGAField">
+<input type="hidden" name="customer_address" id="customerAddressField">
 <input type="hidden" name="order_type" value="accessory">
         <button type="submit" class="btn btn-success btn-block">Confirm Payment</button>
       </form>
@@ -363,6 +364,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     const customerLGA = localStorage.getItem("customerLGA") || "";
+    const customerAddress = localStorage.getItem("customerAddress") || "";
 
     const shipping =
         accessoryLGACharges[customerLGA] || 0;
@@ -391,7 +393,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.getElementById("customerLGAField").value =
         customerLGA;
-
+document.getElementById("customerAddressField").value =
+    customerAddress;
     document.getElementById("planField").value =
         "Buy Once";
 

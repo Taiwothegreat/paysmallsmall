@@ -2,11 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Demo Site</title>
+  <title>paysmallsmall</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Bootstrap 3 -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -156,7 +157,8 @@
         <!--  <li><a href="#">Sewing Machine</a></li>-->
           <li><a href="aboutus.html">About Us</a></li>
           <li><a href="contactus.html">Contact Us</a></li>
-          
+           <li><a href="blog.html">Blog</a></li>
+                  <li><a href="product.html">Sewing Machines</a></li>
        <!--   <li><a href="pickup.html">Enquiry/Pickup Center</a></li>-->
           <li>
   <a href="sign-up.html">
@@ -188,9 +190,9 @@
 
     <div class="panel-body">
       <h4>Bank Information</h4>
-      <p><strong>Bank Name:</strong> Opay Account</p>
-      <p><strong>Account Name:</strong> Paysmallsmall Nig. Limited</p>
-      <p><strong>Account Number:</strong> 9038600375</p>
+      <p><strong>Bank Name:</strong> STANBIC IBTC BANK</p>
+      <p><strong>Account Name:</strong> PAYSMALLSMALL NIG.LTD</p>
+      <p><strong>Account Number:</strong> 0079391943</p>
 
       <hr>
       
@@ -202,7 +204,9 @@
       <!-- Correct amount fields -->
       <p><strong>Amount Due:</strong> ₦<span id="amount"></span></p>
       <p><strong>Installment Amount:</strong> ₦<span id="installmentAmount"></span></p>
-    <!---  <p><strong>First Installment (with 5% shipping):</strong> ₦<span id="firstInstallment"></span></p>-->
+      <!--<p><strong>First Installment (with 5% shipping):</strong> ₦<span id="firstInstallment"></span></p>
+-->
+
 <p><strong>First Installment (with <span id="shippingRate"></span>% shipping):</strong> ₦<span id="firstInstallment"></span></p>
 
       <p><strong>Duration:</strong> <span id="duration"></span></p>
@@ -211,6 +215,26 @@
 
       <form id="paymentForm" method="POST" action="payment_process.php">
         
+        <!-- DISCLAIMER BLOCK -->
+<div style="margin-top:18px; padding:12px; background:#f9f9f9; border-left:4px solid green; border-radius:5px;">
+  <h4 style="margin:0 0 8px 0; font-weight:bold; color:green;">Disclaimer</h4>
+  <p style="margin:0 0 8px 0; font-size:18px; line-height:1.6; color:#333;">
+    The images shown are for illustration purposes only and may not be an exact representation of the product.
+    All features of the machines aren't standard across all models and they are subject to vary based on model. 
+    Hence, actual device/machine may differ from the image shown.
+  </p>
+
+  <p style="margin:0 0 5px 0; font-size:18px; line-height:1.6; color:#333; font-weight:bold;">
+    PRODUCT COMPONENTS are as follows:
+  </p>
+
+  <ul style="margin:0; padding-left:18px; font-size:14px; line-height:1.6; color:#333;">
+    <li>Head — In a box of its own (except otherwise packed)</li>
+    <li>Table/Stand — In a box of its own (except otherwise packed or machine comes in complete form as a single item)</li>
+    <li>Running Motor — Either Direct Drive, Clutch Motor, Servo Motor, or Injection Motor (except otherwise packed or machine comes in complete form as a single item)</li>
+  </ul>
+</div>
+
         <div class="form-group">
           <label>Your Email Address</label>
           <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email to receive receipt" required>
@@ -236,7 +260,6 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   const checkout = JSON.parse(localStorage.getItem("checkout") || "{}");
-  console.log("Checkout Data:", checkout);
 
   if (!checkout || !checkout.name) {
     alert("No product selected. Please select a product first.");
@@ -253,7 +276,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   //const shippingFee = Math.round(price * 0.05);
-let rate = 0.05;
+  
+  let rate = 0.05;
 
 if (price <= 50000) rate = 0.15;
 else if (price <= 100000) rate = 0.18;
@@ -273,6 +297,7 @@ else if (price <= 10000000) rate = 0.014;
 
 const shippingFee = Math.round(price * rate);
 
+
   let installmentAmount;
   let firstInstallment;
 
@@ -283,9 +308,7 @@ const shippingFee = Math.round(price * rate);
     installmentAmount = price;
     firstInstallment = price + shippingFee;
   }
-
-
-  //very important
+//very important
 document.getElementById("shippingRate").textContent = rate * 100;
 
   document.getElementById("order_id").textContent = checkout.orderID || "";
@@ -335,7 +358,8 @@ document.getElementById("shippingRate").textContent = rate * 100;
       <div class="col-sm-4 col-xs-12" style="margin-bottom:20px; text-align:left;">
         <img src="./assets/paysmallsmall_logo-removebg-preview (1).png" alt="Logo" style="width:120px; margin-bottom:15px;">
         <p style="font-size:20px; line-height:1.6; color:#ccc; margin:0; text-align: justify;">
-            We are a budget-friendly and premier e-commerce platform devoted for INSTALLMENT PAYMENT PLAN to own SEWING MACHINE,PART AND ACCESSORIES. PAY SMALL SMALL ™ is Interest-free financing for fashion designers at  open market value.
+            We are a budget-friendly and premier e-commerce platform devoted for INSTALLMENT PAYMENT PLAN to own SEWING MACHINE,PART AND ACCESSORIES.
+            PAY SMALL SMALL ™ is Interest-free financing for fashion designers at  open market value.
         </p>
       </div>
 
@@ -357,24 +381,48 @@ document.getElementById("shippingRate").textContent = rate * 100;
           <li><a href="terms-of-use.html" style="color:#ccc; text-decoration:none; display:block; padding:5px 0;">Terms of Use</a></li>
           <li><a href="terms.html" style="color:#ccc; text-decoration:none; display:block; padding:5px 0;">Terms and Conditions</a></li>
           <li><a href="rights.html" style="color:#ccc; text-decoration:none; display:block; padding:5px 0;">Proprietory Rights</a></li>
-          <li><a href="privacy.html" style="color:#ccc; text-decoration:none; display:block; padding:5px 0;">Privacy Policy</a></li>
+          <li><a href="privacy-policy.html" style="color:#ccc; text-decoration:none; display:block; padding:5px 0;">Privacy Policy</a></li>
+                          <li><a href="testimonials.html" style="color:#ccc; text-decoration:none; display:block; padding:5px 0;">Testimonials</a></li>
         </ul>
       </div>
 
       <!-- Contact Info -->
       <div class="col-sm-3 col-xs-12 footer-adjust" style="margin-bottom:20px; text-align:left;">
         <h4 style="color:#fff; font-weight:600; margin-bottom:15px;">Contact Us</h4>
-        <p style="font-size:20px; color:#ccc; margin:0;">📍 154,Herbert Macaulay way,Ebute Metta,Lagos</p>
+        <p style="font-size:20px; color:#ccc; margin:0;">📍 153,Herbert Macaulay Street,Lagos,Yaba, Nigeria</p>
         <p style="font-size:20px; color:#ccc; margin:0;">📞  +234 903 860 0375</p>
         <p style="font-size:20px; color:#ccc; margin:0;">✉️ info@paysmallsmall.org</p>
 
-      <!--  <div style="margin-top:15px; font-size:20px;">
-          <a href="#" style="color:#3b5998; margin-right:10px;">👍</a>
-          <a href="#" style="color:#E4405F; margin-right:10px;">📷</a>
-          <a href="#" style="color:#1DA1F2; margin-right:10px;">🐦</a>
-          <a href="#" style="color:#0077B5; margin-right:10px;">💼</a>
-          <a href="#" style="color:#FF0000;">▶️</a>
-        </div>-->
+  <!-----Social media url-->
+     <div style="margin-top:20px; font-size:22px;">
+
+  <a href="https://web.facebook.com/people/pay-small-small/61584013714489/?checkpoint_src=any"
+     target="_blank"
+     style="color:#1877F2; margin-right:15px;">
+     <i class="fab fa-facebook"></i>
+  </a>
+
+  <a href="https://www.tiktok.com/@pay_small_small"
+     target="_blank"
+     style="color:#ffffff; margin-right:15px;">
+     <i class="fab fa-tiktok"></i>
+  </a>
+
+  <a href="https://www.instagram.com/pay_small_small?igsh=Yml0MjN2c3pjeHF0 "
+     target="_blank"
+     style="color:#E4405F; margin-right:15px;">
+     <i class="fab fa-instagram"></i>
+  </a>
+
+  <a href="https://www.youtube.com/@pay_small_small "
+     target="_blank"
+     style="color:#FF0000;">
+     <i class="fab fa-youtube"></i>
+  </a>
+
+</div>
+<!----------End of social media url-->
+     
       </div>
 
     </div>
@@ -382,7 +430,7 @@ document.getElementById("shippingRate").textContent = rate * 100;
     <!-- Footer Bottom -->
     <div style="border-top:1px solid #333; text-align:center; padding-top:15px;">
       <p style="font-size:20px; color:#999; margin:0;">
-        Copyrights &copy; <span id="year"></span> Paysmallsmall <span>&trade;</span>. All Rights Reserved.
+        Copyrights &copy; <span id="year"></span> PAY SMALL SMALL <span>&trade;</span>. All Rights Reserved.
       </p>
     </div>
 
@@ -424,9 +472,7 @@ document.getElementById("shippingRate").textContent = rate * 100;
     }
   }
 </style>
-
-
-
+<!------Added style for Footer------->
 <style>
   /* Desktop only alignment (>=768px) */
   @media (min-width: 768px) {
@@ -442,17 +488,17 @@ document.getElementById("shippingRate").textContent = rate * 100;
       display: block;
     }
     #pure-footer h4 {
-      text-align: center !important;
+      text-align: left !important;
       font-size: 20px !important;
     }
     #pure-footer p, 
     #pure-footer a {
       font-size: 18px !important;
-      text-align: center !important;
+      text-align: left !important;
     }
     .footer-adjust {
       margin-top: 20px !important; /* Reset on mobile */
-      text-align: center !important;
+      text-align: left !important;
     }
   }
 </style>
