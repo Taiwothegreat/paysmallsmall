@@ -132,7 +132,17 @@ function checkoutAccessories(){
         "customerLGA",
         lgaSelect.value
     );
+const customerAddress = document
+    .getElementById("accessoryCustomerAddress")
+    .value
+    .trim();
 
+if (!customerAddress) {
+    alert("Please enter your Delivery Address.");
+    return;
+}
+console.log("Address entered:", customerAddress);
+localStorage.setItem("customerAddress", customerAddress);
     // Save accessory cart
     localStorage.setItem(
         "accessoryCheckout",

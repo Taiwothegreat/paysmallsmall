@@ -10,7 +10,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $plan     = trim($_POST['plan_type'] ?? '');
     $duration = intval($_POST['duration'] ?? 0);
     $orderID  = trim($_POST['order_id'] ?? '');
-    
     $payment_option = trim($_POST['payment_option'] ?? 'Bank Transfer');
 
     // ==============================

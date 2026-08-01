@@ -8,16 +8,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $product = trim($_POST['product_name'] ?? '');
 
 $orderType = trim($_POST['order_type'] ?? 'machine');
-
-
-
 $price = floatval($_POST['price'] ?? 0);
 $plan = trim($_POST['plan_type'] ?? '');
 $duration = intval($_POST['duration'] ?? 0);
 $orderID = trim($_POST['order_id'] ?? '');
 $payment_option = trim($_POST['payment_option'] ?? 'Bank Transfer');
 $shippingFee = floatval($_POST['shipping_fee'] ?? 0);
+$productSubtotal = $price - $shippingFee;
 $customerLGA = trim($_POST['customer_lga'] ?? '');
+$customerAddress = trim($_POST['customer_address'] ?? '');
 
 
     // ==============================
@@ -40,18 +39,20 @@ $customerLGA = trim($_POST['customer_lga'] ?? '');
    // INSERT INTO DB
 $stmt = $conn->prepare("
 INSERT INTO payments
-(order_id, email, product_name, price, customer_lga, installment_amount,
- first_installment, plan_type, duration, payment_option, status, admin_token)
-VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending', ?)
+(order_id, email, product_name, price, customer_lga, customer_address,
+ installment_amount, first_installment, plan_type, duration,
+ payment_option, status, admin_token)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending', ?)
 ");
 
 $stmt->bind_param(
-    "sssdsddsiss",
-    $orderID,
+    "sssdssddsiss",
+     $orderID,
     $email,
     $product,
     $price,
     $customerLGA,
+    $customerAddress,
     $installmentAmount,
     $firstInstallment,
     $plan,
@@ -86,19 +87,21 @@ $stmt->close();
 
     <p><strong>Order ID:</strong> $orderID</p>
     <p><strong>Customer Email:</strong> $email</p>
-<p><strong>$productLabel:</strong><br>$product</p>
+<p><strong>Product Cost:</strong>
+₦" . number_format($productSubtotal, 2) . "</p>
+
+<p><strong>LGA/LCDA:</strong>
+$customerLGA</p>
+<p><strong>Delivery Address:</strong><br>$customerAddress</p>
+<p><strong>LGA/LCDA Charge:</strong>
+₦" . number_format($shippingFee, 2) . "</p>
+
+<p><strong>Grand Total:</strong>
+₦" . number_format($price, 2) . "</p>
     <p><strong>Total Price:</strong> ₦" . number_format($price, 2) . "</p>
-    <p><strong>Installment Amount (No Shipping):</strong> ₦" . number_format($installmentAmount, 2) . "</p>
+   
 
-<p><strong>LGA/LCDA:</strong> $customerLGA</p>
-
-<p><strong>Shipping Fee:</strong>
-₦" . number_format($shippingFee,2) . "</p>
-
-<p><strong>First Installment:</strong>
-₦" . number_format($firstInstallment,2) . "</p>
- <p><strong>Plan:</strong> $plan</p>
-<p><strong>Duration:</strong> $duration</p>
+    
 <p><strong>Payment Option:</strong> $payment_option</p>
 
     <br><br>
@@ -129,11 +132,17 @@ $stmt->close();
     <p><strong>Order ID:</strong> $orderID</p>
     <p><strong>Product:</strong> $product</p>
 
-    <p><strong>Total Price:</strong> ₦" . number_format($price, 2) . "</p>
+  <p><strong>Product Cost:</strong>
+₦" . number_format($productSubtotal, 2) . "</p>
 
-<p><strong>LGA/LCDA:</strong> $customerLGA</p>
+<p><strong>LGA/LCDA:</strong>
+$customerLGA</p>
+<p><strong>Delivery Address:</strong><br>$customerAddress</p>
+<p><strong>LGA/LCDA Charge:</strong>
+₦" . number_format($shippingFee, 2) . "</p>
 
-<p><strong>LGA/LCDA Charge:</strong> ₦" . number_format($shippingFee, 2) . "</p>
+<p><strong>Grand Total:</strong>
+₦" . number_format($price, 2) . "</p>
 
 <p><strong>Plan:</strong> $plan</p>
 
@@ -149,9 +158,11 @@ $stmt->close();
     mail($email, $customerSubject, $customerMessage, $customerHeaders);
 
     // REDIRECT
-    echo "<script>
-        alert('Payment submitted successfully! Check your email for your Order ID.');
-        window.location.href='thank_you.html';
-    </script>";
+echo "<script>
+    localStorage.removeItem('accessoryCart');
+    localStorage.removeItem('accessoryCheckout');
+    alert('Payment submitted successfully! Check your email for your Order ID.');
+    window.location.href='thank_you.html';
+</script>";
 }
 ?>

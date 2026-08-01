@@ -13,6 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $payment_option = trim($_POST['payment_option'] ?? 'Bank Transfer');
     $shippingFee = floatval($_POST['shipping_fee'] ?? 0);
     $customerLGA = trim($_POST['customer_lga'] ?? '');
+    $customerAddress = trim($_POST['customer_address'] ?? '');
     $orderType = trim($_POST['order_type'] ?? 'machine');
 
     // ==============================
@@ -35,18 +36,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    // INSERT INTO DB
 $stmt = $conn->prepare("
 INSERT INTO payments
-(order_id, email, product_name, price, customer_lga, installment_amount,
- first_installment, plan_type, duration, payment_option, status, admin_token)
-VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending', ?)
+(order_id, email, product_name, price, customer_lga, customer_address,
+ installment_amount, first_installment, plan_type, duration,
+ payment_option, status, admin_token)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending', ?)
 ");
 
 $stmt->bind_param(
-    "sssdsddsiss",
+    "sssdssddsiss",
     $orderID,
     $email,
     $product,
     $price,
     $customerLGA,
+    $customerAddress,
     $installmentAmount,
     $firstInstallment,
     $plan,
@@ -86,7 +89,7 @@ $stmt->close();
     <p><strong>Installment Amount (No Shipping):</strong> ₦" . number_format($installmentAmount, 2) . "</p>
 
 <p><strong>LGA/LCDA:</strong> $customerLGA</p>
-
+<p><strong>Delivery Address:</strong><br>$customerAddress</p>
 <p><strong>Shipping Fee:</strong>
 ₦" . number_format($shippingFee,2) . "</p>
 
@@ -128,7 +131,7 @@ $stmt->close();
     <p><strong>Total Price:</strong> ₦" . number_format($price, 2) . "</p>
 
 <p><strong>LGA/LCDA:</strong> $customerLGA</p>
-
+<p><strong>Delivery Address:</strong><br>$customerAddress</p>
 <p><strong>LGA/LCDA Charge:</strong> ₦" . number_format($shippingFee, 2) . "</p>
 
 <p><strong>First Installment (Including LGA/LCDA Charge):</strong> ₦" . number_format($firstInstallment, 2) . "</p>
@@ -150,6 +153,7 @@ $stmt->close();
 
     // REDIRECT
     echo "<script>
+    
         alert('Payment submitted successfully! Check your email for your Order ID.');
         window.location.href='thank_you.html';
     </script>";
